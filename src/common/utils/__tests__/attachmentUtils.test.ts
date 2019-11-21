@@ -8,6 +8,7 @@ import {
     getPendingAttachmentFromFile,
     VALID_EXTENSIONS
 } from '../attachmentUtils';
+import { Attachment } from '../../types/Attachment';
 
 const fileMock = new File([''], 'filename.png', { type: 'text/png' });
 const invalidFileMock = new File([''], 'filename.docx', { type: 'text/png' });

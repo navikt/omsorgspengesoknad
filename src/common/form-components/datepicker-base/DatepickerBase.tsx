@@ -5,7 +5,7 @@ import { guid } from 'nav-frontend-js-utils';
 import { SkjemaelementFeil as ValidationError } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import './datepickerBase.less';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
-import { dateToISOFormattedDateString } from 'app/utils/dateUtils';
+import { dateToISOFormattedDateString } from 'common/utils/dateUtils';
 
 const placeholder = 'dd.mm.åååå';
 

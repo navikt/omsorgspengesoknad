@@ -1,8 +1,9 @@
-import { YesOrNo } from '../types/YesOrNo';
+import { YesOrNo } from '../../common/types/YesOrNo';
 import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
-import { isMoreThan3YearsAgo } from '../utils/dateUtils';
-import { attachmentHasBeenUploaded } from '../utils/attachmentUtils';
+import { isMoreThan3YearsAgo } from '../../common/utils/dateUtils';
+import { attachmentHasBeenUploaded } from '../../common/utils/attachmentUtils';
 import { FieldValidationResult } from './types';
+import { Attachment } from '../../common/types/Attachment';
 
 const moment = require('moment');
 

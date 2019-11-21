@@ -2,10 +2,10 @@ import * as React from 'react';
 import { injectIntl, InjectedIntlProps, InjectedIntl } from 'react-intl';
 import { Wrapper, Button, Menu, MenuItem } from 'react-aria-menubutton';
 const { NedChevron } = require('nav-frontend-chevron');
-import intlHelper from 'app/utils/intlUtils';
+import intlHelper from 'common/utils/intlUtils';
 import 'nav-frontend-lenker-style';
 import './languageToggle.less';
-import { Locale } from 'app/types/Locale';
+import { Locale } from 'common/types/Locale';
 import NorwayFlagSVG from './NorwayFlagSVG';
 
 interface Props {

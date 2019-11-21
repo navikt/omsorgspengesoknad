@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Page from '../../../../common/components/page/Page';
-import bemUtils from '../../../utils/bemUtils';
+import bemUtils from '../../../../common/utils/bemUtils';
 import Box from '../../../../common/components/box/Box';
 import StepBanner from '../../step-banner/StepBanner';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';

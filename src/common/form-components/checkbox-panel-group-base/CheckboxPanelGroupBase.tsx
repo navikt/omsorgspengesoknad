@@ -5,7 +5,7 @@ import HelperTextPanel from '../../components/helper-text-panel/HelperTextPanel'
 import HelperTextButton from '../../components/helper-text-button/HelperTextButton';
 import 'nav-frontend-skjema-style';
 import './checkboxPanelGroupBase.less';
-import intlHelper from 'app/utils/intlUtils';
+import intlHelper from 'common/utils/intlUtils';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
 
 export type CheckboxPanelExpandedContentRenderer = () => React.ReactNode;

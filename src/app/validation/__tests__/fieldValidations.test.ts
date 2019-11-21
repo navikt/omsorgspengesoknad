@@ -12,10 +12,11 @@ import {
     FieldValidationErrors,
     fieldValidationError
 } from '../fieldValidations';
-import * as dateUtils from './../../utils/dateUtils';
+import * as dateUtils from '../../../common/utils/dateUtils';
 import Mock = jest.Mock;
-import { YesOrNo } from '../../types/YesOrNo';
+import { YesOrNo } from '../../../common/types/YesOrNo';
 import { FieldValidationResult } from '../types';
+import { Attachment } from '../../../common/types/Attachment';
 
 const moment = require('moment');
 

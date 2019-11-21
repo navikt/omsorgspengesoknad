@@ -1,3 +1,5 @@
+import { Attachment } from '../types/Attachment';
+
 export const VALID_EXTENSIONS = ['.pdf', '.jpeg', '.jpg', '.png'];
 
 export const fileExtensionIsValid = (filename: string): boolean => {

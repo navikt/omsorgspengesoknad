@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Lenke from 'nav-frontend-lenker';
-import CustomSVG from '../../../app/components/custom-svg/CustomSVG';
-import bemHelper from '../../../app/utils/bemUtils';
+import CustomSVG from '../custom-svg/CustomSVG';
+import bemHelper from '../../utils/bemUtils';
 const attachmentIcon = require('./assets/attachment.svg').default;
 import ContentSwitcher from '../../../app/components/content-switcher/ContentSwitcher';
+import { Attachment } from '../../types/Attachment';
 import './attachmentLabel.less';
 
 interface AttachmentLabelProps {

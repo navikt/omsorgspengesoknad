@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { default as NFCounsellorPanel } from 'nav-frontend-veilederpanel';
 import InformationIcon from '../information-icon/InformationIcon';
-import bemUtils from '../../../app/utils/bemUtils';
+import bemUtils from '../../utils/bemUtils';
 import './informationPoster.less';
 
 const bem = bemUtils('informationPoster');

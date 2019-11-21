@@ -1,4 +1,4 @@
-interface Attachment {
+export interface Attachment {
     file: File;
     pending: boolean;
     uploaded: boolean;

@@ -2,14 +2,15 @@ import * as React from 'react';
 import { connect } from 'formik';
 import { Field } from '../../types/OmsorgspengesøknadFormData';
 import AttachmentList from '../../../common/components/attachment-list/AttachmentList';
-import { removeElementFromArray } from '../../utils/listUtils';
+import { removeElementFromArray } from '../../../common/utils/listUtils';
 import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
 import { deleteFile } from '../../api/api';
-import { containsAnyUploadedAttachments, fileExtensionIsValid } from '../../utils/attachmentUtils';
+import { containsAnyUploadedAttachments, fileExtensionIsValid } from '../../../common/utils/attachmentUtils';
 import Box from '../../../common/components/box/Box';
 import { Normaltekst } from 'nav-frontend-typografi';
 import AttachmentListWithDeletion from '../../../common/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import { FormattedMessage } from 'react-intl';
+import { Attachment } from '../../../common/types/Attachment';
 
 interface LegeerklæringAttachmentListProps {
     includeDeletionFunctionality: boolean;

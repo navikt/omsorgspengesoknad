@@ -4,8 +4,9 @@ import AttachmentListElement from '../attachment-list-element/AttachmentListElem
 import DeleteButton from '../delete-button/DeleteButton';
 import LoadingSpinner from '../loading-spinner/LoadingSpinner';
 import ContentSwitcher from '../../../app/components/content-switcher/ContentSwitcher';
-import intlHelper from 'app/utils/intlUtils';
+import intlHelper from 'common/utils/intlUtils';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
+import { Attachment } from '../../types/Attachment';
 
 interface AttachmentListWithDeletionProps {
     attachments: Attachment[];

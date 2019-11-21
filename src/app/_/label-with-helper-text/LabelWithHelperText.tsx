@@ -1,9 +1,9 @@
 import * as React from 'react';
-import bemUtils from '../../utils/bemUtils';
-import HelperTextButton from '../helper-text-button/HelperTextButton';
-import HelperTextPanel from '../helper-text-panel/HelperTextPanel';
-import intlHelper from 'common/utils/intlUtils';
+import bemUtils from '../../../common/utils/bemUtils';
+import HelperTextButton from '../../../common/components/helper-text-button/HelperTextButton';
+import HelperTextPanel from '../../../common/components/helper-text-panel/HelperTextPanel';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
+import intlHelper from '../../../common/utils/intlUtils';
 import './labelWithHelperText.less';
 
 interface LabelWithHelperText {

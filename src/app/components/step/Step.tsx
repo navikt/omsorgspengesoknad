@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Page from '../../../common/components/page/Page';
 import { StepID, StepConfigItemTexts, getStepConfig } from '../../config/stepConfig';
-import bemHelper from '../../utils/bemUtils';
+import bemHelper from '../../../common/utils/bemUtils';
 import StepIndicator from '../step-indicator/StepIndicator';
 import { Hovedknapp as Button } from 'nav-frontend-knapper';
 import Box from '../../../common/components/box/Box';
@@ -14,7 +14,7 @@ import { getStepTexts } from 'app/utils/stepUtils';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 
 import './step.less';
-import intlHelper from '../../utils/intlUtils';
+import intlHelper from '../../../common/utils/intlUtils';
 
 const bem = bemHelper('step');
 

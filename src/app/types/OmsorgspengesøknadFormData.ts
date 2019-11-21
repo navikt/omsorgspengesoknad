@@ -1,4 +1,5 @@
-import { YesOrNo } from './YesOrNo';
+import { YesOrNo } from '../../common/types/YesOrNo';
+import { Attachment } from '../../common/types/Attachment';
 
 export enum Field {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',

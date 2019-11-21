@@ -3,9 +3,9 @@ import { RadioPanel, RadioPanelProps, SkjemaGruppe, Radio } from 'nav-frontend-s
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import HelperTextPanel from '../../components/helper-text-panel/HelperTextPanel';
 import HelperTextButton from '../../components/helper-text-button/HelperTextButton';
-import intlHelper from 'app/utils/intlUtils';
+import intlHelper from 'common/utils/intlUtils';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
-import bemUtils from 'app/utils/bemUtils';
+import bemUtils from 'common/utils/bemUtils';
 import 'nav-frontend-skjema-style';
 import './radioPanelGroup.less';
 

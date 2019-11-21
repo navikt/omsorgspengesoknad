@@ -1,6 +1,6 @@
 import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import * as fieldValidations from './fieldValidations';
-import { YesOrNo } from '../types/YesOrNo';
+import { YesOrNo } from '../../common/types/YesOrNo';
 
 export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: OmsorgspengesøknadFormData) =>
     harForståttRettigheterOgPlikter === true;

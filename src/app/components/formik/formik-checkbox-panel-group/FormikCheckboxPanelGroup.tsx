@@ -4,7 +4,7 @@ import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils
 import CheckboxPanelGroupBase, {
     CheckboxPanelExpandedContentRenderer
 } from '../../../../common/form-components/checkbox-panel-group-base/CheckboxPanelGroupBase';
-import { removeElementFromArray } from '../../../utils/listUtils';
+import { removeElementFromArray } from '../../../../common/utils/listUtils';
 import { FormikValidateFunction, FormikValidationProps } from 'app/types/FormikProps';
 import { isCheckboxChecked } from 'app/utils/formikUtils';
 

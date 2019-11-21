@@ -1,8 +1,9 @@
 import * as React from 'react';
-import bemHelper from '../../../app/utils/bemUtils';
+import bemHelper from '../../utils/bemUtils';
 import AttachmentLabel from '../attachment-label/AttachmentLabel';
 const listElementBem = bemHelper(`attachmentListElement`);
 import './attachmentListElement.less';
+import { Attachment } from '../../types/Attachment';
 
 interface AttachmentListElementProps {
     attachment: Attachment;

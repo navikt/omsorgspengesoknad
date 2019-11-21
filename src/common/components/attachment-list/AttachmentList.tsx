@@ -1,6 +1,7 @@
 import * as React from 'react';
 import UnstyledList from '../unstyled-list/UnstyledList';
 import AttachmentListElement from '../attachment-list-element/AttachmentListElement';
+import { Attachment } from '../../types/Attachment';
 
 interface AttachmentListProps {
     attachments: Attachment[];

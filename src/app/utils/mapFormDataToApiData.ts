@@ -1,11 +1,11 @@
-import { formatDate } from './dateUtils';
+import { formatDate } from '../../common/utils/dateUtils';
 import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import { BarnToSendToApi, OmsorgspengesøknadApiData } from '../types/OmsorgspengesøknadApiData';
-import { attachmentUploadHasFailed } from './attachmentUtils';
-import { YesOrNo } from '../types/YesOrNo';
-import { formatName } from './personUtils';
+import { attachmentUploadHasFailed } from '../../common/utils/attachmentUtils';
+import { YesOrNo } from '../../common/types/YesOrNo';
+import { formatName } from '../../common/utils/personUtils';
 import { BarnReceivedFromApi } from '../types/Søkerdata';
-import { Locale } from 'app/types/Locale';
+import { Locale } from 'common/types/Locale';
 
 export const mapFormDataToApiData = (
     {

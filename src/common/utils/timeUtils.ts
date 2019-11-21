@@ -1,6 +1,6 @@
 import { InjectedIntl } from 'react-intl';
 import intlHelper from './intlUtils';
-import { Time } from 'app/types/Time';
+import { Time } from 'common/types/Time';
 import { parse } from 'iso8601-duration';
 
 export const timeToIso8601Duration = ({ hours, minutes }: Partial<Time>): string => {
