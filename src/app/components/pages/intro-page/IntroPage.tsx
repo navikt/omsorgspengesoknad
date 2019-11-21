@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { YesOrNo } from '../../../types/YesOrNo';
 import Page from '../../../../common/components/page/Page';
-import { default as YesOrNoQuestion } from '../../yes-or-no-question-base/YesOrNoQuestionBase';
+import { default as YesOrNoQuestion } from '../../../../common/form-components/yes-or-no-question-base/YesOrNoQuestionBase';
 import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
 import bemUtils from '../../../utils/bemUtils';
 import Box from '../../../../common/components/box/Box';

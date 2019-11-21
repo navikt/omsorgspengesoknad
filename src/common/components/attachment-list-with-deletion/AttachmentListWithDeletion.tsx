@@ -1,7 +1,7 @@
 import * as React from 'react';
 import UnstyledList from '../unstyled-list/UnstyledList';
 import AttachmentListElement from '../attachment-list-element/AttachmentListElement';
-import DeleteButton from '../../../app/components/delete-button/DeleteButton';
+import DeleteButton from '../delete-button/DeleteButton';
 import LoadingSpinner from '../loading-spinner/LoadingSpinner';
 import ContentSwitcher from '../../../app/components/content-switcher/ContentSwitcher';
 import intlHelper from 'app/utils/intlUtils';

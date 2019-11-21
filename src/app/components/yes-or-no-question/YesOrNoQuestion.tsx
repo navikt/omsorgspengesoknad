@@ -4,7 +4,7 @@ import { Field } from '../../types/OmsorgspengesøknadFormData';
 import { YesOrNo } from '../../types/YesOrNo';
 import { FormikValidationProps } from 'app/types/FormikProps';
 import { injectIntl } from 'react-intl';
-import { RadioPanelGroupStyle } from '../radio-panel-group-base/RadioPanelGroupBase';
+import { RadioPanelGroupStyle } from '../../../common/form-components/radio-panel-group-base/RadioPanelGroupBase';
 import intlHelper from '../../utils/intlUtils';
 
 interface YesOrNoQuestionProps {

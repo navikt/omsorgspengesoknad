@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Textarea, TextareaProps } from 'nav-frontend-skjema';
-import LabelWithHelperText from '../../../common/components/label-with-helper-text/LabelWithHelperText';
+import LabelWithHelperText from '../../components/label-with-helper-text/LabelWithHelperText';
 
 import './textareaBase.less';
 

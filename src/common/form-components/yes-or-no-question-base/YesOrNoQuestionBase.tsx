@@ -1,6 +1,6 @@
 import * as React from 'react';
 import RadioPanelGroupBase from '../radio-panel-group-base/RadioPanelGroupBase';
-import { YesOrNo } from '../../types/YesOrNo';
+import { YesOrNo } from '../../../app/types/YesOrNo';
 
 interface YesOrNoQuestionProps {
     legend: string;

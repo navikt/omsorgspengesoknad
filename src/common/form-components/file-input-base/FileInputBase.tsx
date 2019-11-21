@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Element } from 'nav-frontend-typografi';
-import bemHelper from '../../utils/bemUtils';
-import CustomSVG from '../custom-svg/CustomSVG';
-import CustomInputElement from '../custom-input-element/CustomInputElement';
+import bemHelper from '../../../app/utils/bemUtils';
+import CustomSVG from '../../../app/components/custom-svg/CustomSVG';
+import CustomInputElement from '../../../app/components/custom-input-element/CustomInputElement';
 import { SkjemaelementFeil as ValidationError } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
-const uploadIcon = require('../../../assets/upload.svg').default;
+const uploadIcon = require('./assets/upload.svg').default;
 import './fileInputBase.less';
 
 interface FileInputProps {

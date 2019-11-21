@@ -1,5 +1,5 @@
 import React from 'react';
-import useDocumentTitle from 'app/hooks/useDocumentTitle';
+import useDocumentTitle from 'common/hooks/useDocumentTitle';
 
 interface DocumentTitleProps {
     title: string;

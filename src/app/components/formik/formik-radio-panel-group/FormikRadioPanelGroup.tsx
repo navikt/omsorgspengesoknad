@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
 import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
-import RadioPanelGroupBase, { RadioPanelGroupStyle } from '../../radio-panel-group-base/RadioPanelGroupBase';
+import RadioPanelGroupBase, { RadioPanelGroupStyle } from '../../../../common/form-components/radio-panel-group-base/RadioPanelGroupBase';
 import { FormikValidateFunction, FormikValidationProps } from 'app/types/FormikProps';
 
 interface FormikRadioPanelProps {
