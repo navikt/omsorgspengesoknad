@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Element } from 'nav-frontend-typografi';
 import bemHelper from '../../utils/bemUtils';
 import CustomSVG from '../../components/custom-svg/CustomSVG';
-import CustomInputElement from '../../../app/components/custom-input-element/CustomInputElement';
+import CustomInputElement from '../custom-input-element/CustomInputElement';
 import { SkjemaelementFeil as ValidationError } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 const uploadIcon = require('./assets/upload.svg').default;
 import './fileInputBase.less';

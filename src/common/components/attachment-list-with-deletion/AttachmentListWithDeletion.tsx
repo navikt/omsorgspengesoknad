@@ -3,7 +3,7 @@ import UnstyledList from '../unstyled-list/UnstyledList';
 import AttachmentListElement from '../attachment-list-element/AttachmentListElement';
 import DeleteButton from '../delete-button/DeleteButton';
 import LoadingSpinner from '../loading-spinner/LoadingSpinner';
-import ContentSwitcher from '../../../app/components/content-switcher/ContentSwitcher';
+import ContentSwitcher from '../content-switcher/ContentSwitcher';
 import intlHelper from 'common/utils/intlUtils';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import { Attachment } from '../../types/Attachment';

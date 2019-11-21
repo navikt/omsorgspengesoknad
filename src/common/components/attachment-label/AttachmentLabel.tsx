@@ -3,7 +3,7 @@ import Lenke from 'nav-frontend-lenker';
 import CustomSVG from '../custom-svg/CustomSVG';
 import bemHelper from '../../utils/bemUtils';
 const attachmentIcon = require('./assets/attachment.svg').default;
-import ContentSwitcher from '../../../app/components/content-switcher/ContentSwitcher';
+import ContentSwitcher from '../content-switcher/ContentSwitcher';
 import { Attachment } from '../../types/Attachment';
 import './attachmentLabel.less';
 

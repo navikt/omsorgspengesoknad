@@ -9,7 +9,7 @@ import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils'
 import FormikStep from '../../formik-step/FormikStep';
 import { mapFormDataToApiData } from '../../../utils/mapFormDataToApiData';
 import Panel from '../../../../common/components/panel/Panel';
-import ContentWithHeader from '../../content-with-header/ContentWithHeader';
+import ContentWithHeader from '../../../../common/components/content-with-header/ContentWithHeader';
 import LegeerklæringAttachmentList from '../../legeerklæring-file-list/LegeerklæringFileList';
 import { prettifyDate } from '../../../../common/utils/dateUtils';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
@@ -19,7 +19,7 @@ import { sendApplication } from '../../../api/api';
 import routeConfig from '../../../config/routeConfig';
 import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
 import * as apiUtils from '../../../utils/apiUtils';
-import ContentSwitcher from '../../content-switcher/ContentSwitcher';
+import ContentSwitcher from '../../../../common/components/content-switcher/ContentSwitcher';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import intlHelper from 'common/utils/intlUtils';
 import { Locale } from 'common/types/Locale';

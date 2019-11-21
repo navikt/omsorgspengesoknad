@@ -3,8 +3,8 @@ import {
     default as ValidationErrorMessage,
     SkjemaelementFeil as ValidationError
 } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
-import HelperTextButton from '../../../common/components/helper-text-button/HelperTextButton';
-import HelperTextPanel from '../../../common/components/helper-text-panel/HelperTextPanel';
+import HelperTextButton from '../../components/helper-text-button/HelperTextButton';
+import HelperTextPanel from '../../components/helper-text-panel/HelperTextPanel';
 const classnames = require('classnames');
 import './customInputElement.less';
 import intlHelper from 'common/utils/intlUtils';
