@@ -24,6 +24,8 @@
     "Torsdag": "Torsdag",
     "Fredag": "Fredag",
 
+    "banner.title": "Søknad om omsorgspenger",
+
     "page.loadingPage.tekst": "Laster ...",
     "gotoApplicationLink.lenketekst": "Gå til den digitale søknaden",
     "backlink.label": "Tilbake",
@@ -47,40 +49,28 @@
     "step.sendButtonLabel": "Send inn søknaden",
     "step.sendButtonAriaLabel": "Send inn søknaden",
 
-    "step.opplysninger-om-barnet.pageTitle": "Pleiepengesøknad - opplysninger om barnet",
+    "step.opplysninger-om-barnet.pageTitle": "Omsorgspengesøknad - opplysninger om barnet",
     "step.opplysninger-om-barnet.stepTitle": "Barn",
     "step.opplysninger-om-barnet.stepIndicatorLabel": "Om barnet",
 
-    "step.tidsrom.pageTitle": "Pleiepengesøknad - periode",
+    "step.tidsrom.pageTitle": "Omsorgspengesøknad - periode",
     "step.tidsrom.stepTitle": "Periode",
     "step.tidsrom.stepIndicatorLabel": "Periode",
 
-    "step.omsorgstilbud.pageTitle": "Pleiepengesøknad - omsorgstilbud",
-    "step.omsorgstilbud.stepTitle": "Omsorgstilbud",
-    "step.omsorgstilbud.stepIndicatorLabel": "Omsorgstilbud",
-
-    "step.nattevåk.pageTitle": "Pleiepengesøknad - nattevåk",
-    "step.nattevåk.stepTitle": "Nattevåk",
-    "step.nattevåk.stepIndicatorLabel": "Nattevåk",
-
-    "step.beredskap.pageTitle": "Pleiepengesøknad - beredskap",
-    "step.beredskap.stepTitle": "Beredskap",
-    "step.beredskap.stepIndicatorLabel": "Beredskap",
-
-    "step.medlemskap.pageTitle": "Pleiepengesøknad - medlemskap",
+    "step.medlemskap.pageTitle": "Omsorgspengesøknad - medlemskap",
     "step.medlemskap.stepTitle": "Medlemskap",
     "step.medlemskap.stepIndicatorLabel": "Om medlemskap i folketrygden",
 
-    "step.legeerklaering.pageTitle": "Pleiepengesøknad - legeerklæring",
+    "step.legeerklaering.pageTitle": "Omsorgspengesøknad - legeerklæring",
     "step.legeerklaering.stepTitle": "Legeerklæring",
     "step.legeerklaering.stepIndicatorLabel": "Last opp din legeerklæring",
 
-    "step.oppsummering.pageTitle": "Pleiepengesøknad - oppsummering",
+    "step.oppsummering.pageTitle": "Omsorgspengesøknad - oppsummering",
     "step.oppsummering.stepTitle": "Oppsummering",
     "step.oppsummering.stepIndicatorLabel": "Oppsummering",
 
-    "introPage.tittel": "Søknad om pleiepenger - intro",
-    "introPage.stegTittel": "Kan jeg bruke den digitale pleiepengesøknaden?",
+    "introPage.tittel": "Søknad om omsorgspenger - intro",
+    "introPage.stegTittel": "Kan jeg bruke den digitale søknaden for omsorgspenger?",
     "introPage.tekst": "Den digitale søknaden er under utvikling og kan foreløpig ikke brukes av alle. Svar på to spørsmål, så får du vite om du kan søke digitalt.",
     "introPage.tekst.utenTilsyn": "Den digitale søknaden er under utvikling og kan foreløpig ikke brukes av alle. Svar på ett spørsmål, så får du vite om du kan søke digitalt.",
     "introPage.spm.selvstendigEllerFrilanser": "Er du selvstendig næringsdrivende eller frilanser?",
@@ -91,10 +81,10 @@
     "introPage.veileder.papirLenke.html": "Du fyller i stedet ut <a href=\"{url}\" class=\"lenke\">søknaden på papir</a> og sender den i posten.",
     "introPage.veileder.papirLenke.utenTilsyn.html": "Hvis det gjelder deg fyller du i stedet ut <a href=\"{url}\">søknaden på papir</a> og sender den i posten.",
 
-    "welcomingPage.sidetittel": "Søknad om pleiepenger",
+    "welcomingPage.sidetittel": "Søknad om omsorgspenger",
     "welcomingPage.banner.tittel": "Hei,",
     "welcomingPage.banner.tekst": "jeg vil hjelpe deg med å fylle ut søknaden!",
-    "welcomingPage.introtittel": "Søknad om pleiepenger",
+    "welcomingPage.introtittel": "Søknad om omsorgspenger",
     "welcomingPage.legeerklæring": "Har du legeerklæringen klar? Du trenger den senere i søknaden. Da tar du bare et bilde av den og laster opp.",
     "welcomingPage.samtykke.tekst": "Jeg bekrefter at jeg har lest og forstått",
     "welcomingPage.samtykke.harIkkeGodkjentVilkår": "Du må godkjenne vilkårene",
@@ -107,8 +97,8 @@
 
     "modal.personalopplysninger.tittel": "Slik behandler NAV personopplysningene dine",
     "modal.personalopplysninger.intro.1": "NAV innhenter og mottar opplysninger om deg når du sender inn en søknad. Det er nødvendig for at du skal kunne få riktig tjeneste og ytelser.",
-    "modal.personalopplysninger.intro.2a": "Du har valgt å søke om pleiepenger. Det er en ytelse fra folketrygden som du kan få hvis du fyller vilkårene. Vilkårene står på",
-    "modal.personalopplysninger.intro.2b": "nav.no/pleiepenger",
+    "modal.personalopplysninger.intro.2a": "Du har valgt å søke om omsorgspenger. Det er en ytelse fra folketrygden som du kan få hvis du fyller vilkårene. Vilkårene står på",
+    "modal.personalopplysninger.intro.2b": "nav.no/omsorgspenger",
     "modal.personalopplysninger.opplysninger.tittel": "Opplysningene vi innhenter",
     "modal.personalopplysninger.opplysninger.part1": "Opplysningene kommer enten fra deg eller fra offentlige registre:",
     "modal.personalopplysninger.opplysninger.1": "arbeidsforholdene dine og inntekten din",
@@ -129,7 +119,7 @@
     "modal.personalopplysninger.personvern.part1b": "nav.no/personvern",
 
     "modal.minePlikter.tittel": "Mine plikter",
-    "modal.minePlikter.part1": "Jeg forstår at det kan få konsekvenser for retten min til pleiepenger hvis jeg",
+    "modal.minePlikter.part1": "Jeg forstår at det kan få konsekvenser for retten min til omsorgspenger hvis jeg",
     "modal.minePlikter.part1a": "gir uriktig informasjon eller",
     "modal.minePlikter.part1b": "holder tilbake opplysninger",
     "modal.minePlikter.part2a": "Jeg har lest og forstått det som står på",
@@ -146,13 +136,13 @@
     "steg.omBarnet.relasjon.eksempel": "Eksempler: mor, far, tante, onkel eller andre som står barnet nær",
 
     "steg.tidsrom.hjelpetekst": "Søknaden er under utvikling: Hvis du skal søke for flere perioder må du sende én søknad for hver periode.",
-    "steg.tidsrom.hvilketTidsrom.spm": "Hvilken periode søker du pleiepenger for?",
+    "steg.tidsrom.hvilketTidsrom.spm": "Hvilken periode søker du omsorgspenger for?",
     "steg.tidsrom.hvilketTidsrom.fom": "Fra og med",
     "steg.tidsrom.hvilketTidsrom.tom": "Til og med",
     "steg.tidsrom.hvorMye.spm": "Hvor mye søker du om?",
     "steg.tidsrom.hvorMye.hjelp.part1": "Kan du jobbe noe? Da reduserer du prosenten tilsvarende.",
-    "steg.tidsrom.hvorMye.hjelp.part2": "Jobber du deltid i utgangspunktet? Du kan likevel søke om 100 % pleiepenger hvis du mister hele inntekten fordi du pleier barnet.",
-    "steg.tidsrom.annenSamtidig.spm": "Er det en annen person som søker om pleiepenger i samme periode som deg?",
+    "steg.tidsrom.hvorMye.hjelp.part2": "Jobber du deltid i utgangspunktet? Du kan likevel søke om 100 % omsorgspenger hvis du mister hele inntekten fordi du pleier barnet.",
+    "steg.tidsrom.annenSamtidig.spm": "Er det en annen person som søker om omsorgspenger i samme periode som deg?",
     "steg.tidsrom.dagerPerUkeBorteFraJobb.spm": "Hvor mange dager per uke skal du være borte fra jobb for å ta hånd om barnet? Rund av til nærmeste halve dag.",
 
     "steg.medlemsskap.annetLandSiste12.spm": "Har du bodd i andre land enn Norge i hele eller deler av de siste 12 månedene?",
@@ -181,11 +171,11 @@
     "steg.oppsummering.utlandetSiste12.header": "Bodd i utlandet siste 12 måneder",
     "steg.oppsummering.utlandetNeste12.header": "Skal bo i utlandet neste 12 måneder",
     "steg.oppsummering.legeerklæring.header": "Legeerklæring",
-    "steg.oppsummering.bekrefterOpplysninger": "Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.",
+    "steg.oppsummering.bekrefterOpplysninger": "Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.",
     "steg.oppsummering.bekrefterOpplysninger.ikkeBekreftet": "Du må bekrefte opplysningene",
 
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
-    "page.confirmation.tittel": "Vi har mottatt søknad fra deg om pleiepenger",
+    "page.confirmation.tittel": "Vi har mottatt søknad fra deg om omsorgspenger",
     "page.confirmation.undertittel": "Hva skjer videre nå?",
     "page.confirmation.nav.html": "<p>Vi starter behandlingen av søknaden, og den vil bli synlig på Ditt NAV innen en uke. Når søknaden er ferdig behandlet, får du et svarbrev fra oss. Du kan se <a href=\"{lenke}\" className=\"lenke\" rel=\"noopener\">saksbehandlingstiden for ditt fylke her</a>.</p><p>Vi tar kontakt med deg hvis vi trenger flere opplysninger i saken din.</p>",
 
@@ -193,11 +183,11 @@
     "page.generalErrorPage.tittel": "Noe gikk galt...",
     "page.generalErrorPage.tekst": "Beklager, her har det dessverre skjedd en feil.",
 
-    "page.ikkeMyndig.sidetittel": "Søknad om pleiepenger - ikke myndig",
+    "page.ikkeMyndig.sidetittel": "Søknad om omsorgspenger - ikke myndig",
     "page.ikkeMyndig.banner.tittel": "Hei!",
     "page.ikkeMyndig.banner.tekst": "Fordi du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.",
     "page.ikkeMyndig.banner.lastNed": "Her kan du laste ned papirsøknaden",
-    "page.ikkeMyndig.tittel": "Søknad om pleiepenger",
+    "page.ikkeMyndig.tittel": "Søknad om omsorgspenger",
 
     "vedleggsliste.fjernKnapp": "Fjern vedlegg",
     "vedleggsliste.ingenLegeerklæringLastetOpp": "Ingen vedlegg er lastet opp",
@@ -208,12 +198,12 @@
     "fieldvalidation.foreløpigFødselsnummer.ugyldig": "Det foreløpige fødselsnummeret / D-nummeret må bestå av 11 siffer",
     "fieldvalidation.navn.maksAntallTegn": "Navnet kan være maks {maxNumOfLetters} tegn",
     "fieldvalidation.relasjon.maksAntallTegn": "Din relasjon til barnet kan maks være beskrevet på {maxNumOfLetters} tegn",
-    "fieldvalidation.fradato.merEnnTreÅr": "Du kan ikke søke om pleiepenger for en periode som er mer enn tre år tilbake i tid",
+    "fieldvalidation.fradato.merEnnTreÅr": "Du kan ikke søke om omsorgspenger for en periode som er mer enn tre år tilbake i tid",
     "fieldvalidation.fradato.erEtterTildato": "Fra-datoen kan ikke være senere enn til-datoen",
-    "fieldvalidation.tildato.merEnnTreÅr": "Du kan ikke søke om pleiepenger for en periode som er mer enn tre år tilbake i tid",
+    "fieldvalidation.tildato.merEnnTreÅr": "Du kan ikke søke om omsorgspenger for en periode som er mer enn tre år tilbake i tid",
     "fieldvalidation.tildato.erFørFradato": "Til-datoen kan ikke være tidligere enn fra-datoen",
     "fieldvalidation.legeerklæring.mangler": "Du må laste opp en legeerklæring",
     "fieldvalidation.legeerklæring.forMangeFiler": "Du kan maksimalt laste opp 3 bilder",
 
-    "demoInfo.html": "Dette er en <strong>demoversjon</strong> av søknadsskjemaet for pleiepenger, og blir kun brukt i sammenheng med brukertest på <a href=\"http://navlab.no/\">http://navlab.no/</a>"
+    "demoInfo.html": "Dette er en <strong>demoversjon</strong> av søknadsskjemaet for omsorgspenger, og blir kun brukt i sammenheng med brukertest på <a href=\"http://navlab.no/\">http://navlab.no/</a>"
 }

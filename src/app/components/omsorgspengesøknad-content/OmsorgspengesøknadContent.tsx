@@ -12,18 +12,18 @@ import LegeerklæringStep from '../steps/legeerklæring/LegeerklæringStep';
 import SummaryStep from '../steps/summary/SummaryStep';
 import GeneralErrorPage from '../pages/general-error-page/GeneralErrorPage';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
-import { PleiepengesøknadFormData } from '../../types/PleiepengesøknadFormData';
+import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 
-interface PleiepengesøknadContentProps {
+interface OmsorgspengesøknadContentProps {
     formikProps: CustomFormikProps;
 }
 
 export interface CommonStepFormikProps {
-    formValues: PleiepengesøknadFormData;
+    formValues: OmsorgspengesøknadFormData;
     handleSubmit: () => void;
 }
 
-const PleiepengesøknadContent: React.FunctionComponent<PleiepengesøknadContentProps> = ({ formikProps }) => {
+const OmsorgspengesøknadContent: React.FunctionComponent<OmsorgspengesøknadContentProps> = ({ formikProps }) => {
     const [søknadHasBeenSent, setSøknadHasBeenSent] = React.useState(false);
     const { handleSubmit, values, isSubmitting, isValid, resetForm } = formikProps;
     const commonFormikProps: CommonStepFormikProps = { handleSubmit, formValues: formikProps.values };
@@ -124,4 +124,4 @@ const PleiepengesøknadContent: React.FunctionComponent<PleiepengesøknadContent
     );
 };
 
-export default PleiepengesøknadContent;
+export default OmsorgspengesøknadContent;

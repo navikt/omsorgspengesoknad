@@ -1,9 +1,9 @@
 import { FormikProps } from 'formik';
-import { PleiepengesøknadFormData } from './PleiepengesøknadFormData';
+import { OmsorgspengesøknadFormData } from './OmsorgspengesøknadFormData';
 import { InjectedIntlProps } from 'react-intl';
 import { FieldValidationResult } from 'app/validation/types';
 
-export type CustomFormikProps = FormikProps<PleiepengesøknadFormData> & { submitForm: () => Promise<void> };
+export type CustomFormikProps = FormikProps<OmsorgspengesøknadFormData> & { submitForm: () => Promise<void> };
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;

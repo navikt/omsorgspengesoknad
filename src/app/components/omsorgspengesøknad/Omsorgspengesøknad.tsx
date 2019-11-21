@@ -1,14 +1,14 @@
 import * as React from 'react';
 import AppEssentialsLoader from '../app-essentials-loader/AppEssentialsLoader';
 import FormikWrapper from '../formik-wrapper/FormikWrapper';
-import PleiepengesøknadContent from '../pleiepengesøknad-content/PleiepengesøknadContent';
+import OmsorgspengesøknadContent from '../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import IkkeMyndigPage from '../pages/ikke-myndig-page/IkkeMyndigPage';
 
-const renderPleiepengesøknadContent = () => (
-    <FormikWrapper contentRenderer={(formikProps) => <PleiepengesøknadContent formikProps={formikProps} />} />
+const renderOmsorgspengesoknad = () => (
+    <FormikWrapper contentRenderer={(formikProps) => <OmsorgspengesøknadContent formikProps={formikProps} />} />
 );
 
-const Pleiepengesøknad = () => (
+const Omsorgspengesoknad = () => (
     <AppEssentialsLoader
         contentLoadedRenderer={(søkerdata) => {
             if (søkerdata) {
@@ -17,9 +17,9 @@ const Pleiepengesøknad = () => (
                     return <IkkeMyndigPage />;
                 }
             }
-            return renderPleiepengesøknadContent();
+            return renderOmsorgspengesoknad();
         }}
     />
 );
 
-export default Pleiepengesøknad;
+export default Omsorgspengesoknad;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PleiepengesøknadApiData } from '../types/PleiepengesøknadApiData';
+import { OmsorgspengesøknadApiData } from '../types/OmsorgspengesøknadApiData';
 import axiosConfig from '../config/axiosConfig';
 import { getApiUrlByResourceType, sendMultipartPostRequest } from '../utils/apiUtils';
 import { ResourceType } from '../types/ResourceType';
@@ -7,7 +7,7 @@ import { ResourceType } from '../types/ResourceType';
 export const getBarn = () => axios.get(getApiUrlByResourceType(ResourceType.BARN), axiosConfig);
 export const getSøker = () => axios.get(getApiUrlByResourceType(ResourceType.SØKER), axiosConfig);
 
-export const sendApplication = (data: PleiepengesøknadApiData) =>
+export const sendApplication = (data: OmsorgspengesøknadApiData) =>
     axios.post(getApiUrlByResourceType(ResourceType.SEND_SØKNAD), data, axiosConfig);
 
 export const uploadFile = (file: File) => {

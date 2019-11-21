@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StepID } from '../../../config/stepConfig';
 import { HistoryProps } from '../../../types/History';
-import { Field } from '../../../types/PleiepengesøknadFormData';
+import { Field } from '../../../types/OmsorgspengesøknadFormData';
 import ConfirmationCheckboxPanel from '../../confirmation-checkbox-panel/ConfirmationCheckboxPanel';
 import Box from '../../box/Box';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -23,7 +23,7 @@ import ContentSwitcher from '../../content-switcher/ContentSwitcher';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import intlHelper from 'app/utils/intlUtils';
 import { Locale } from 'app/types/Locale';
-import { CommonStepFormikProps } from '../../pleiepengesøknad-content/PleiepengesøknadContent';
+import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 
 interface State {

@@ -1,6 +1,6 @@
 import { formatDate } from './dateUtils';
-import { PleiepengesøknadFormData } from '../types/PleiepengesøknadFormData';
-import { BarnToSendToApi, PleiepengesøknadApiData } from '../types/PleiepengesøknadApiData';
+import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
+import { BarnToSendToApi, OmsorgspengesøknadApiData } from '../types/OmsorgspengesøknadApiData';
 import { attachmentUploadHasFailed } from './attachmentUtils';
 import { YesOrNo } from '../types/YesOrNo';
 import { formatName } from './personUtils';
@@ -21,10 +21,10 @@ export const mapFormDataToApiData = (
         legeerklæring,
         harBoddUtenforNorgeSiste12Mnd,
         skalBoUtenforNorgeNeste12Mnd
-    }: PleiepengesøknadFormData,
+    }: OmsorgspengesøknadFormData,
     barn: BarnReceivedFromApi[],
     sprak: Locale
-): PleiepengesøknadApiData => {
+): OmsorgspengesøknadApiData => {
     const barnObject: BarnToSendToApi = { navn: null, fodselsnummer: null, alternativ_id: null, aktoer_id: null };
     if (barnetSøknadenGjelder) {
         const barnChosenFromList = barn.find((currentBarn) => currentBarn.aktoer_id === barnetSøknadenGjelder);
@@ -40,7 +40,7 @@ export const mapFormDataToApiData = (
         }
     }
 
-    const apiData: PleiepengesøknadApiData = {
+    const apiData: OmsorgspengesøknadApiData = {
         new_version: true,
         sprak,
         barn: barnObject,

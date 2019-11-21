@@ -1,6 +1,6 @@
 import { StepID, getStepConfig } from '../config/stepConfig';
 import RouteConfig from '../config/routeConfig';
-import { Field, PleiepengesøknadFormData } from '../types/PleiepengesøknadFormData';
+import { Field, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import { appIsRunningInDevEnvironment, appIsRunningInDemoMode } from './envUtils';
 import {
     legeerklæringStepAvailable,
@@ -17,12 +17,12 @@ export const getSøknadRoute = (stepId: StepID | undefined) => {
     return undefined;
 };
 
-export const getNextStepRoute = (stepId: StepID, formData?: PleiepengesøknadFormData): string | undefined => {
+export const getNextStepRoute = (stepId: StepID, formData?: OmsorgspengesøknadFormData): string | undefined => {
     const stepConfig = getStepConfig();
     return stepConfig[stepId] ? getSøknadRoute(stepConfig[stepId].nextStep) : undefined;
 };
 
-export const isAvailable = (path: StepID | RouteConfig, values: PleiepengesøknadFormData) => {
+export const isAvailable = (path: StepID | RouteConfig, values: OmsorgspengesøknadFormData) => {
     if (!appIsRunningInDevEnvironment() && !appIsRunningInDemoMode()) {
         switch (path) {
             case StepID.OPPLYSNINGER_OM_BARNET:

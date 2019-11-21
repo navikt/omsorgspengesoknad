@@ -1,4 +1,4 @@
-import { Field, initialValues } from '../types/PleiepengesøknadFormData';
+import { Field, initialValues } from '../types/OmsorgspengesøknadFormData';
 import flatten from 'flat';
 
 interface HasSubmittedValidFormProps {

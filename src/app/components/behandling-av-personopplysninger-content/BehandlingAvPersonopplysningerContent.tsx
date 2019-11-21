@@ -16,7 +16,7 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent<InjectedInt
             <Normaltekst>{getText('intro.1')}</Normaltekst>
             <Normaltekst>
                 {getText('intro.2a')}{' '}
-                <Lenke href={getLenker(intl.locale).vilkårPleiepenger} target="_blank">
+                <Lenke href={getLenker(intl.locale).vilkårOmsorgspenger} target="_blank">
                     {getText('intro.2b')}
                 </Lenke>
                 .

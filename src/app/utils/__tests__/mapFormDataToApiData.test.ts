@@ -1,6 +1,6 @@
-import { Field, PleiepengesøknadFormData } from '../../types/PleiepengesøknadFormData';
+import { Field, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import { mapFormDataToApiData } from '../mapFormDataToApiData';
-import { PleiepengesøknadApiData } from '../../types/PleiepengesøknadApiData';
+import { OmsorgspengesøknadApiData } from '../../types/OmsorgspengesøknadApiData';
 import * as dateUtils from './../dateUtils';
 import * as attachmentUtils from './../attachmentUtils';
 import { YesOrNo } from '../../types/YesOrNo';
@@ -26,7 +26,7 @@ type AttachmentMock = Attachment & { failed: boolean };
 const attachmentMock1: Partial<AttachmentMock> = { url: 'nav.no/1', failed: true };
 const attachmentMock2: Partial<AttachmentMock> = { url: 'nav.no/2', failed: false };
 
-const formDataMock: Partial<PleiepengesøknadFormData> = {
+const formDataMock: Partial<OmsorgspengesøknadFormData> = {
     [Field.barnetsNavn]: 'Ola Foobar',
     [Field.harBekreftetOpplysninger]: true,
     [Field.harForståttRettigheterOgPlikter]: true,
@@ -53,11 +53,11 @@ jest.mock('../attachmentUtils', () => {
 });
 
 describe('mapFormDataToApiData', () => {
-    let resultingApiData: PleiepengesøknadApiData;
+    let resultingApiData: OmsorgspengesøknadApiData;
 
     beforeAll(() => {
         (isFeatureEnabled as any).mockImplementation(() => false);
-        resultingApiData = mapFormDataToApiData(formDataMock as PleiepengesøknadFormData, barnMock, 'nb');
+        resultingApiData = mapFormDataToApiData(formDataMock as OmsorgspengesøknadFormData, barnMock, 'nb');
     });
 
     it("should set 'barnetsNavn' in api data correctly", () => {
@@ -96,34 +96,34 @@ describe('mapFormDataToApiData', () => {
     it("should set 'fodselsnummer' in api data to undefined if it doesnt exist, and otherwise it should assign value to 'fodselsnummer' in api data", () => {
         const fnr = '12345123456';
         expect(resultingApiData.barn.fodselsnummer).toBeNull();
-        const formDataWithFnr: Partial<PleiepengesøknadFormData> = {
+        const formDataWithFnr: Partial<OmsorgspengesøknadFormData> = {
             ...formDataMock,
             [Field.barnetsFødselsnummer]: fnr
         };
-        const result = mapFormDataToApiData(formDataWithFnr as PleiepengesøknadFormData, barnMock, 'nb');
+        const result = mapFormDataToApiData(formDataWithFnr as OmsorgspengesøknadFormData, barnMock, 'nb');
         expect(result.barn.fodselsnummer).toEqual(fnr);
     });
 
     it("should set 'alternativ_id' in api data to undefined if it doesnt exist, and otherwise it should assign value to 'alternativ_id' in api data", () => {
         const fnr = '12345123456';
         expect(resultingApiData.barn.alternativ_id).toBeNull();
-        const formDataWithFnr: Partial<PleiepengesøknadFormData> = {
+        const formDataWithFnr: Partial<OmsorgspengesøknadFormData> = {
             ...formDataMock,
             [Field.barnetsForeløpigeFødselsnummerEllerDNummer]: fnr
         };
-        const result = mapFormDataToApiData(formDataWithFnr as PleiepengesøknadFormData, barnMock, 'nb');
+        const result = mapFormDataToApiData(formDataWithFnr as OmsorgspengesøknadFormData, barnMock, 'nb');
         expect(result.barn.alternativ_id).toEqual(fnr);
     });
 
     it("should assign fnr to 'fodselsnummer' in api data, and set 'alternativ_id' to undefined, if both barnetsFødselsnummer and barnetsForeløpigeFødselsnummerEllerDNummer has values", () => {
         const fnr = '12345123456';
         expect(resultingApiData.barn.alternativ_id).toBeNull();
-        const formDataWithFnr: Partial<PleiepengesøknadFormData> = {
+        const formDataWithFnr: Partial<OmsorgspengesøknadFormData> = {
             ...formDataMock,
             [Field.barnetsFødselsnummer]: fnr,
             [Field.barnetsForeløpigeFødselsnummerEllerDNummer]: fnr
         };
-        const result = mapFormDataToApiData(formDataWithFnr as PleiepengesøknadFormData, barnMock, 'nb');
+        const result = mapFormDataToApiData(formDataWithFnr as OmsorgspengesøknadFormData, barnMock, 'nb');
         expect(result.barn.alternativ_id).toBeNull();
         expect(result.barn.fodselsnummer).toEqual(fnr);
     });

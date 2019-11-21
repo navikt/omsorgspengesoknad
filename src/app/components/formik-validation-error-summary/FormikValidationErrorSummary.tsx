@@ -4,7 +4,7 @@ import ValidationErrorSummaryBase, {
 } from '../validation-error-summary-base/ValidationErrorSummaryBase';
 import { connect } from 'formik';
 import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
-import { Field } from '../../types/PleiepengesøknadFormData';
+import { Field } from '../../types/OmsorgspengesøknadFormData';
 import intlHelper from '../../utils/intlUtils';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 import { renderFieldValidationError, isFieldValidationError } from '../../validation/fieldValidationRenderUtils';

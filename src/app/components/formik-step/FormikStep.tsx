@@ -4,7 +4,7 @@ import Step, { StepProps } from '../step/Step';
 import { userHasSubmittedValidForm } from '../../utils/formikUtils';
 import { connect } from 'formik';
 import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
-import { Field } from '../../types/PleiepengesøknadFormData';
+import { Field } from '../../types/OmsorgspengesøknadFormData';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
 export interface FormikStepProps {

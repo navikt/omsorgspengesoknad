@@ -11,15 +11,16 @@ import FormikValidationErrorSummary from '../formik-validation-error-summary/For
 import BackLinkWithFormikReset from '../back-link-with-formik-reset/BackLinkWithFormikReset';
 import { InjectedIntl, injectIntl } from 'react-intl';
 import { getStepTexts } from 'app/utils/stepUtils';
-import { PleiepengesøknadFormData } from '../../types/PleiepengesøknadFormData';
+import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 
 import './step.less';
+import intlHelper from '../../utils/intlUtils';
 
 const bem = bemHelper('step');
 
 export interface StepProps {
     id: StepID;
-    formValues: PleiepengesøknadFormData;
+    formValues: OmsorgspengesøknadFormData;
     handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     showSubmitButton?: boolean;
     showButtonSpinner?: boolean;
@@ -30,7 +31,6 @@ export interface StepProps {
 
 const Step: React.FunctionComponent<StepProps> = ({
     id,
-    formValues,
     handleSubmit,
     showSubmitButton,
     showButtonSpinner,
@@ -48,7 +48,7 @@ const Step: React.FunctionComponent<StepProps> = ({
             title={stepTexts.pageTitle}
             topContentRenderer={() => (
                 <>
-                    <StepBanner text="Søknad om pleiepenger" />
+                    <StepBanner text={intlHelper(intl, 'banner.title')} />
                     {useValidationErrorSummary !== false && (
                         <FormikValidationErrorSummary className={bem.element('validationErrorSummary')} />
                     )}

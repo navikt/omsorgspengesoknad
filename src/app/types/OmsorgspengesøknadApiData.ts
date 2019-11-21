@@ -14,7 +14,7 @@ interface Medlemskap {
     skal_bo_i_utlandet_neste_12_mnd: boolean;
 }
 
-export interface PleiepengesøknadApiData {
+export interface OmsorgspengesøknadApiData {
     new_version: boolean;
     sprak: Locale;
     barn: BarnToSendToApi;

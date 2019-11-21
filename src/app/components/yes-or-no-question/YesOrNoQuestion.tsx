@@ -1,6 +1,6 @@
 import * as React from 'react';
 import RadioPanelGroup from '../form-elements/radio-panel-group/RadioPanelGroup';
-import { Field } from '../../types/PleiepengesøknadFormData';
+import { Field } from '../../types/OmsorgspengesøknadFormData';
 import { YesOrNo } from '../../types/YesOrNo';
 import { FormikValidationProps } from 'app/types/FormikProps';
 import { injectIntl } from 'react-intl';

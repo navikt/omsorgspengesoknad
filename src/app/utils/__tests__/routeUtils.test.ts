@@ -2,7 +2,7 @@ import { StepID } from '../../config/stepConfig';
 import RouteConfig from '../../config/routeConfig';
 import { getSøknadRoute, isAvailable } from '../routeUtils';
 import * as stepUtils from '../stepUtils';
-import { Field } from '../../types/PleiepengesøknadFormData';
+import { Field } from '../../types/OmsorgspengesøknadFormData';
 
 jest.mock('../featureToggleUtils', () => {
     return {

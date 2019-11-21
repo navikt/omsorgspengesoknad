@@ -2,7 +2,7 @@ import * as React from 'react';
 import { HistoryProps } from '../../../types/History';
 import { StepID, StepConfigProps } from '../../../config/stepConfig';
 import { navigateTo } from '../../../utils/navigationUtils';
-import { Field } from '../../../types/PleiepengesøknadFormData';
+import { Field } from '../../../types/OmsorgspengesøknadFormData';
 import FormikStep from '../../formik-step/FormikStep';
 import DateIntervalPicker from '../../date-interval-picker/DateIntervalPicker';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';

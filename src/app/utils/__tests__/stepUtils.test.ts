@@ -1,6 +1,6 @@
 import * as stepValidations from '../../validation/stepValidations';
 import * as stepUtils from '../stepUtils';
-import { PleiepengesøknadFormData } from '../../types/PleiepengesøknadFormData';
+import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 
 jest.mock('./../../validation/stepValidations', () => {
     return {
@@ -12,12 +12,12 @@ jest.mock('./../../validation/stepValidations', () => {
     };
 });
 
-const formData: Partial<PleiepengesøknadFormData> = {};
+const formData: Partial<OmsorgspengesøknadFormData> = {};
 
 describe('stepUtils', () => {
     describe('opplysningerOmBarnetStepAvailable', () => {
         it('should call relevant stepValidator-functions to determine whether the step should be available', () => {
-            const returnValue = stepUtils.opplysningerOmBarnetStepAvailable(formData as PleiepengesøknadFormData);
+            const returnValue = stepUtils.opplysningerOmBarnetStepAvailable(formData as OmsorgspengesøknadFormData);
             expect(stepValidations.welcomingPageIsValid).toHaveBeenCalledWith(formData);
             expect(returnValue).toEqual(stepValidations.welcomingPageIsValid({} as any));
         });
@@ -25,7 +25,7 @@ describe('stepUtils', () => {
 
     describe('opplysningerOmTidsromStepAvailable', () => {
         it('should call relevant stepValidator-functions to determine whether the step should be available', () => {
-            const returnValue = stepUtils.opplysningerOmTidsromStepAvailable(formData as PleiepengesøknadFormData);
+            const returnValue = stepUtils.opplysningerOmTidsromStepAvailable(formData as OmsorgspengesøknadFormData);
             expect(stepValidations.welcomingPageIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmBarnetStepIsValid).toHaveBeenCalledWith(formData);
             expect(returnValue).toEqual(
@@ -37,7 +37,7 @@ describe('stepUtils', () => {
 
     describe('medlemskapStepAvailable', () => {
         it('should call relevant stepValidator-functions to determine whether the step should be available', () => {
-            const returnValue = stepUtils.medlemskapStepAvailable(formData as PleiepengesøknadFormData);
+            const returnValue = stepUtils.medlemskapStepAvailable(formData as OmsorgspengesøknadFormData);
             expect(stepValidations.welcomingPageIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmBarnetStepIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmTidsromStepIsValid).toHaveBeenCalledWith(formData);
@@ -51,7 +51,7 @@ describe('stepUtils', () => {
 
     describe('legeerklæringStepAvailable', () => {
         it('should call relevant stepValidator-functions to determine whether the step should be available', () => {
-            const returnValue = stepUtils.legeerklæringStepAvailable(formData as PleiepengesøknadFormData);
+            const returnValue = stepUtils.legeerklæringStepAvailable(formData as OmsorgspengesøknadFormData);
             expect(stepValidations.welcomingPageIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmBarnetStepIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmTidsromStepIsValid).toHaveBeenCalledWith(formData);
@@ -67,7 +67,7 @@ describe('stepUtils', () => {
 
     describe('summaryStepAvailable', () => {
         it('should call relevant stepValidator-functions to determine whether the step should be available', () => {
-            const returnValue = stepUtils.summaryStepAvailable(formData as PleiepengesøknadFormData);
+            const returnValue = stepUtils.summaryStepAvailable(formData as OmsorgspengesøknadFormData);
             expect(stepValidations.welcomingPageIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmBarnetStepIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmTidsromStepIsValid).toHaveBeenCalledWith(formData);

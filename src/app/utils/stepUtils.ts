@@ -1,4 +1,4 @@
-import { PleiepengesøknadFormData } from '../types/PleiepengesøknadFormData';
+import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import {
     legeerklæringStepIsValid,
     medlemskapStepIsValid,
@@ -25,23 +25,24 @@ export const getStepTexts = (
     };
 };
 
-export const opplysningerOmBarnetStepAvailable = (formData: PleiepengesøknadFormData) => welcomingPageIsValid(formData);
+export const opplysningerOmBarnetStepAvailable = (formData: OmsorgspengesøknadFormData) =>
+    welcomingPageIsValid(formData);
 
-export const opplysningerOmTidsromStepAvailable = (formData: PleiepengesøknadFormData) =>
+export const opplysningerOmTidsromStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     welcomingPageIsValid(formData) && opplysningerOmBarnetStepIsValid(formData);
 
-export const medlemskapStepAvailable = (formData: PleiepengesøknadFormData) =>
+export const medlemskapStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     welcomingPageIsValid(formData) &&
     opplysningerOmBarnetStepIsValid(formData) &&
     opplysningerOmTidsromStepIsValid(formData);
 
-export const legeerklæringStepAvailable = (formData: PleiepengesøknadFormData) =>
+export const legeerklæringStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     welcomingPageIsValid(formData) &&
     opplysningerOmBarnetStepIsValid(formData) &&
     opplysningerOmTidsromStepIsValid(formData) &&
     medlemskapStepIsValid(formData);
 
-export const summaryStepAvailable = (formData: PleiepengesøknadFormData) =>
+export const summaryStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     welcomingPageIsValid(formData) &&
     opplysningerOmBarnetStepIsValid(formData) &&
     opplysningerOmTidsromStepIsValid(formData) &&

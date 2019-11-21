@@ -5,7 +5,7 @@ import {
     opplysningerOmTidsromStepIsValid,
     welcomingPageIsValid
 } from '../stepValidations';
-import { Field, PleiepengesøknadFormData } from '../../types/PleiepengesøknadFormData';
+import { Field, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import * as fieldValidations from './../fieldValidations';
 import Mock = jest.Mock;
 import { YesOrNo } from '../../types/YesOrNo';
@@ -24,20 +24,20 @@ jest.mock('./../../utils/featureToggleUtils', () => {
     return { isFeatureEnabled: () => false, Feature: {} };
 });
 
-const formData: Partial<PleiepengesøknadFormData> = {};
+const formData: Partial<OmsorgspengesøknadFormData> = {};
 
 describe('stepValidation tests', () => {
     describe('welcomingPageIsValid', () => {
         it(`should be valid if ${Field.harForståttRettigheterOgPlikter} is true`, () => {
             formData[Field.harForståttRettigheterOgPlikter] = true;
-            expect(welcomingPageIsValid(formData as PleiepengesøknadFormData)).toBe(true);
+            expect(welcomingPageIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
         });
 
         it(`should be invalid if ${Field.harForståttRettigheterOgPlikter} is undefined or false`, () => {
             formData[Field.harForståttRettigheterOgPlikter] = undefined;
-            expect(welcomingPageIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+            expect(welcomingPageIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
             formData[Field.harForståttRettigheterOgPlikter] = false;
-            expect(welcomingPageIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+            expect(welcomingPageIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
         });
     });
 
@@ -49,12 +49,12 @@ describe('stepValidation tests', () => {
 
             it(`should be invalid if ${Field.søkersRelasjonTilBarnet} is invalid`, () => {
                 (fieldValidations.validateRelasjonTilBarnet as Mock).mockReturnValue('some error message');
-                expect(opplysningerOmBarnetStepIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+                expect(opplysningerOmBarnetStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
             });
 
             it(`should be valid if ${Field.søkersRelasjonTilBarnet} is valid`, () => {
                 (fieldValidations.validateRelasjonTilBarnet as Mock).mockReturnValue(undefined);
-                expect(opplysningerOmBarnetStepIsValid(formData as PleiepengesøknadFormData)).toBe(true);
+                expect(opplysningerOmBarnetStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
             });
         });
 
@@ -65,22 +65,22 @@ describe('stepValidation tests', () => {
             });
 
             it('should be valid if barnetsNavn, barnetsFødselsnummer and are all valid', () => {
-                expect(opplysningerOmBarnetStepIsValid(formData as PleiepengesøknadFormData)).toBe(true);
+                expect(opplysningerOmBarnetStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
             });
 
             it(`should be invalid if ${Field.barnetsNavn} is invalid`, () => {
                 (fieldValidations.validateNavn as Mock).mockReturnValue('some error message');
-                expect(opplysningerOmBarnetStepIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+                expect(opplysningerOmBarnetStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
             });
 
             it(`should be invalid if ${Field.barnetsFødselsnummer} is invalid`, () => {
                 (fieldValidations.validateFødselsnummer as Mock).mockReturnValue('some error message');
-                expect(opplysningerOmBarnetStepIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+                expect(opplysningerOmBarnetStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
             });
 
             it(`should be invalid if ${Field.søkersRelasjonTilBarnet} is invalid`, () => {
                 (fieldValidations.validateRelasjonTilBarnet as Mock).mockReturnValue('some error message');
-                expect(opplysningerOmBarnetStepIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+                expect(opplysningerOmBarnetStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
             });
         });
     });
@@ -89,19 +89,19 @@ describe('stepValidation tests', () => {
         it(`should be valid if both ${Field.periodeFra} and ${Field.periodeTil} are defined`, () => {
             formData[Field.periodeFra] = moment().toDate();
             formData[Field.periodeTil] = moment().toDate();
-            expect(opplysningerOmTidsromStepIsValid(formData as PleiepengesøknadFormData)).toBe(true);
+            expect(opplysningerOmTidsromStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
         });
 
         it(`should be invalid if ${Field.periodeFra} is undefined`, () => {
             formData[Field.periodeFra] = undefined;
             formData[Field.periodeTil] = moment().toDate();
-            expect(opplysningerOmTidsromStepIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+            expect(opplysningerOmTidsromStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
         });
 
         it(`should be invalid if ${Field.periodeTil} is undefined`, () => {
             formData[Field.periodeFra] = moment().toDate();
             formData[Field.periodeTil] = undefined;
-            expect(opplysningerOmTidsromStepIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+            expect(opplysningerOmTidsromStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
         });
     });
 
@@ -109,32 +109,32 @@ describe('stepValidation tests', () => {
         it('should be valid if both harBoddUtenforNorgeSiste12Mnd and skalBoUtenforNorgeNeste12Mnd are either answered with YES or NO', () => {
             formData[Field.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.YES;
             formData[Field.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.YES;
-            expect(medlemskapStepIsValid(formData as PleiepengesøknadFormData)).toBe(true);
+            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
             formData[Field.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.NO;
             formData[Field.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.NO;
-            expect(medlemskapStepIsValid(formData as PleiepengesøknadFormData)).toBe(true);
+            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
             formData[Field.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.YES;
             formData[Field.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.NO;
-            expect(medlemskapStepIsValid(formData as PleiepengesøknadFormData)).toBe(true);
+            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
             formData[Field.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.NO;
             formData[Field.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.YES;
-            expect(medlemskapStepIsValid(formData as PleiepengesøknadFormData)).toBe(true);
+            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
         });
 
         it(`should be invalid if ${Field.harBoddUtenforNorgeSiste12Mnd} is UNANSWERED`, () => {
             formData[Field.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.UNANSWERED;
             formData[Field.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.YES;
-            expect(medlemskapStepIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
             formData[Field.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.NO;
-            expect(medlemskapStepIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
         });
 
         it(`should be invalid if ${Field.skalBoUtenforNorgeNeste12Mnd} is UNANSWERED`, () => {
             formData[Field.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.UNANSWERED;
             formData[Field.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.YES;
-            expect(medlemskapStepIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
             formData[Field.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.NO;
-            expect(medlemskapStepIsValid(formData as PleiepengesøknadFormData)).toBe(false);
+            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
         });
     });
 

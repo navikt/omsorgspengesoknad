@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'formik';
-import { Field } from '../../types/PleiepengesøknadFormData';
+import { Field } from '../../types/OmsorgspengesøknadFormData';
 import AttachmentList from '../attachment-list/AttachmentList';
 import { removeElementFromArray } from '../../utils/listUtils';
 import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';

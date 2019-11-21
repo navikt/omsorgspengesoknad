@@ -7,7 +7,7 @@ import Box from '../../../components/box/Box';
 import intlHelper from '../../../utils/intlUtils';
 import { HistoryProps } from '../../../types/History';
 import ConfirmationCheckboxPanel from '../../confirmation-checkbox-panel/ConfirmationCheckboxPanel';
-import { Field } from '../../../types/PleiepengesøknadFormData';
+import { Field } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateTo } from '../../../utils/navigationUtils';
 import { StepConfigProps } from '../../../config/stepConfig';
 import { userHasSubmittedValidForm } from '../../../utils/formikUtils';

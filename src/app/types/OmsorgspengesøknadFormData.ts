@@ -17,7 +17,7 @@ export enum Field {
     skalBoUtenforNorgeNeste12Mnd = 'skalBoUtenforNorgeNeste12Mnd'
 }
 
-export interface PleiepengesøknadFormData {
+export interface OmsorgspengesøknadFormData {
     [Field.harForståttRettigheterOgPlikter]: boolean;
     [Field.harBekreftetOpplysninger]: boolean;
     [Field.barnetsNavn]: string;
@@ -34,7 +34,7 @@ export interface PleiepengesøknadFormData {
     [Field.skalBoUtenforNorgeNeste12Mnd]: YesOrNo;
 }
 
-export const initialValues: PleiepengesøknadFormData = {
+export const initialValues: OmsorgspengesøknadFormData = {
     [Field.barnetsNavn]: '',
     [Field.barnetsFødselsnummer]: '',
     [Field.barnetSøknadenGjelder]: '',

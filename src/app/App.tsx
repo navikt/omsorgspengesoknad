@@ -2,7 +2,7 @@ import * as React from 'react';
 import ApplicationWrapper from './components/application-wrapper/ApplicationWrapper';
 import { Route, Switch } from 'react-router-dom';
 import RouteConfig from './config/routeConfig';
-import Pleiepengesøknad from './components/pleiepengesøknad/Pleiepengesøknad';
+import Omsorgspengesoknad from './components/omsorgspengesøknad/Omsorgspengesøknad';
 import IntroPage from './components/pages/intro-page/IntroPage';
 import { render } from 'react-dom';
 import Modal from 'nav-frontend-modal';
@@ -24,14 +24,14 @@ const App: React.FunctionComponent = () => {
                 setLocaleInSessionStorage(activeLocale);
                 setLocale(activeLocale);
             }}>
-            {appIsRunningInDemoMode() && <Pleiepengesøknad />}
+            {appIsRunningInDemoMode() && <Omsorgspengesoknad />}
             {appIsRunningInDemoMode() === false && (
                 <>
                     {isFeatureEnabled(Feature.UTILGJENGELIG) ? (
                         <UnavailablePage />
                     ) : (
                         <Switch>
-                            <Route path={RouteConfig.SØKNAD_ROUTE_PREFIX} component={Pleiepengesøknad} />
+                            <Route path={RouteConfig.SØKNAD_ROUTE_PREFIX} component={Omsorgspengesoknad} />
                             <Route path="/" component={IntroPage} />
                         </Switch>
                     )}

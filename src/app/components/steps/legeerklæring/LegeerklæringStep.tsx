@@ -6,13 +6,13 @@ import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils'
 import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringFileList from '../../legeerklæring-file-list/LegeerklæringFileList';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
-import { Field } from '../../../types/PleiepengesøknadFormData';
+import { Field } from '../../../types/OmsorgspengesøknadFormData';
 import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
 import { validateLegeerklæring } from '../../../validation/fieldValidations';
 import HelperTextPanel from '../../helper-text-panel/HelperTextPanel';
 import Box from '../../box/Box';
 import intlHelper from 'app/utils/intlUtils';
-import { CommonStepFormikProps } from '../../pleiepengesøknad-content/PleiepengesøknadContent';
+import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import { CustomFormikProps } from '../../../types/FormikProps';

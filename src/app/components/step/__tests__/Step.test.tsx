@@ -4,7 +4,7 @@ import { render, RenderResult } from '@testing-library/react';
 import { StepID } from '../../../config/stepConfig';
 import { MemoryRouter } from 'react-router';
 import MockIntlProvider from '../../intl-provider/MockIntlProvider';
-import { initialValues } from '../../../types/PleiepengesøknadFormData';
+import { initialValues } from '../../../types/OmsorgspengesøknadFormData';
 
 jest.mock('../../../utils/featureToggleUtils', () => {
     return {
@@ -35,7 +35,7 @@ describe('<Step>', () => {
 
     it('should render common <Step> content', () => {
         const { getByText } = renderResult;
-        expect(getByText('Søknad om pleiepenger')).toBeTruthy();
+        expect(getByText('Søknad om omsorgspenger')).toBeTruthy();
         expect(getByText('Barn')).toBeTruthy();
         expect(getByText('Fortsett')).toBeTruthy();
         expect(getByText('Tilbake')).toBeTruthy();

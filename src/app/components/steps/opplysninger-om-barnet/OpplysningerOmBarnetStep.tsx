@@ -13,7 +13,7 @@ import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { Søkerdata } from '../../../types/Søkerdata';
 import { CustomFormikProps } from '../../../types/FormikProps';
 import { formatName } from '../../../utils/personUtils';
-import { Field } from '../../../types/PleiepengesøknadFormData';
+import { Field } from '../../../types/OmsorgspengesøknadFormData';
 import Checkbox from '../../form-elements/checkbox/Checkbox';
 import Input from '../../form-elements/input/Input';
 import FormikStep from '../../formik-step/FormikStep';

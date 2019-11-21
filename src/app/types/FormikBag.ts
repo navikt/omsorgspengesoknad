@@ -1,4 +1,4 @@
 import { FormikBag as FormikBagType } from 'formik';
-import { PleiepengesøknadFormData } from './PleiepengesøknadFormData';
+import { OmsorgspengesøknadFormData } from './OmsorgspengesøknadFormData';
 
-export type FormikBag = FormikBagType<PleiepengesøknadFormData, PleiepengesøknadFormData>;
+export type FormikBag = FormikBagType<OmsorgspengesøknadFormData, OmsorgspengesøknadFormData>;
