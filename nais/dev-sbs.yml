@@ -44,7 +44,3 @@ spec:
           value: https://omsorgspengesoknad-api-q.nav.no
         - name: LOGIN_URL
           value: https://loginservice-q.nav.no/login?redirect=https://omsorgspengesoknad-q.nav.no/soknad
-        - name: TOGGLE_FJERN_GRAD
-          value: "on"
-        - name: TOGGLE_TILSYN
-          value: "on"

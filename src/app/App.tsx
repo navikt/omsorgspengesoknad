@@ -1,0 +1,46 @@
+import * as React from 'react';
+import ApplicationWrapper from './components/application-wrapper/ApplicationWrapper';
+import { Route, Switch } from 'react-router-dom';
+import RouteConfig from './config/routeConfig';
+import Omsorgspengesøknad from './components/omsorgspengesøknad/Omsorgspengesøknad';
+import IntroPage from './components/pages/intro-page/IntroPage';
+import { render } from 'react-dom';
+import Modal from 'nav-frontend-modal';
+import { Locale } from '../common/types/Locale';
+import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
+import '../common/styles/globalStyles.less';
+import { appIsRunningInDemoMode } from './utils/envUtils';
+import { isFeatureEnabled, Feature } from './utils/featureToggleUtils';
+import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
+
+const localeFromSessionStorage = getLocaleFromSessionStorage();
+
+const App: React.FunctionComponent = () => {
+    const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
+    return (
+        <ApplicationWrapper
+            locale={locale}
+            onChangeLocale={(activeLocale: Locale) => {
+                setLocaleInSessionStorage(activeLocale);
+                setLocale(activeLocale);
+            }}>
+            {appIsRunningInDemoMode() && <Omsorgspengesøknad />}
+            {appIsRunningInDemoMode() === false && (
+                <>
+                    {isFeatureEnabled(Feature.UTILGJENGELIG) ? (
+                        <UnavailablePage />
+                    ) : (
+                        <Switch>
+                            <Route path={RouteConfig.SØKNAD_ROUTE_PREFIX} component={Omsorgspengesøknad} />
+                            <Route path="/" component={IntroPage} />
+                        </Switch>
+                    )}
+                </>
+            )}
+        </ApplicationWrapper>
+    );
+};
+
+const root = document.getElementById('app');
+Modal.setAppElement('#app');
+render(<App />, root);
