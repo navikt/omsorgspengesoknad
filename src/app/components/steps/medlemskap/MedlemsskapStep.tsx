@@ -8,9 +8,9 @@ import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
 import { validateYesOrNoIsAnswered } from '../../../validation/fieldValidations';
 import intlHelper from 'app/utils/intlUtils';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
-import Box from 'app/components/box/Box';
+import Box from 'common/components/box/Box';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
-import CounsellorPanel from '../../counsellor-panel/CounsellorPanel';
+import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
 import Lenke from 'nav-frontend-lenker';
 import getLenker from '../../../lenker';
 

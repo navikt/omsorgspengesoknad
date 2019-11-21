@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Sidetittel } from 'nav-frontend-typografi';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import Page from '../../../components/page/Page';
+import Page from '../../../../common/components/page/Page';
 import bemHelper from '../../../utils/bemUtils';
-import Box from '../../../components/box/Box';
+import Box from '../../../../common/components/box/Box';
 import intlHelper from '../../../utils/intlUtils';
 import { HistoryProps } from '../../../types/History';
 import ConfirmationCheckboxPanel from '../../confirmation-checkbox-panel/ConfirmationCheckboxPanel';

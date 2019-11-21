@@ -5,8 +5,8 @@ import { Field } from '../../types/OmsorgspengesøknadFormData';
 import Datepicker from '../form-elements/datepicker/Datepicker';
 import bemHelper from '../../utils/bemUtils';
 import './dateIntervalPicker.less';
-import HelperTextButton from '../helper-text-button/HelperTextButton';
-import HelperTextPanel from '../helper-text-panel/HelperTextPanel';
+import HelperTextButton from '../../../common/components/helper-text-button/HelperTextButton';
+import HelperTextPanel from '../../../common/components/helper-text-panel/HelperTextPanel';
 
 interface DateIntervalPickerProps {
     legend: string;

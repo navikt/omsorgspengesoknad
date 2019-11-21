@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Page from '../../page/Page';
+import Page from '../../../../common/components/page/Page';
 import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
-import Box from '../../box/Box';
+import Box from '../../../../common/components/box/Box';
 import bemUtils from '../../../utils/bemUtils';
-import CheckmarkIcon from '../../checkmark-icon/CheckmarkIcon';
+import CheckmarkIcon from '../../../../common/components/checkmark-icon/CheckmarkIcon';
 import { FormattedMessage, injectIntl, InjectedIntlProps, FormattedHTMLMessage } from 'react-intl';
 import intlHelper from 'app/utils/intlUtils';
 import getLenker from 'app/lenker';

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { CheckboksPanel, CheckboksPanelProps, SkjemaGruppe } from 'nav-frontend-skjema';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
-import HelperTextPanel from '../helper-text-panel/HelperTextPanel';
-import HelperTextButton from '../helper-text-button/HelperTextButton';
+import HelperTextPanel from '../../../common/components/helper-text-panel/HelperTextPanel';
+import HelperTextButton from '../../../common/components/helper-text-button/HelperTextButton';
 import 'nav-frontend-skjema-style';
 import './checkboxPanelGroupBase.less';
 import intlHelper from 'app/utils/intlUtils';

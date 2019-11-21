@@ -9,14 +9,14 @@ import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import { Field } from '../../../types/OmsorgspengesøknadFormData';
 import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
 import { validateLegeerklæring } from '../../../validation/fieldValidations';
-import HelperTextPanel from '../../helper-text-panel/HelperTextPanel';
-import Box from '../../box/Box';
+import HelperTextPanel from '../../../../common/components/helper-text-panel/HelperTextPanel';
+import Box from '../../../../common/components/box/Box';
 import intlHelper from 'app/utils/intlUtils';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import { CustomFormikProps } from '../../../types/FormikProps';
-import CounsellorPanel from '../../counsellor-panel/CounsellorPanel';
+import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
 
 type Props = { formikProps: CustomFormikProps } & CommonStepFormikProps &
     HistoryProps &

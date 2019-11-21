@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { YesOrNo } from '../../../types/YesOrNo';
-import Page from '../../page/Page';
+import Page from '../../../../common/components/page/Page';
 import { default as YesOrNoQuestion } from '../../yes-or-no-question-base/YesOrNoQuestionBase';
-import CounsellorPanel from '../../counsellor-panel/CounsellorPanel';
+import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
 import bemUtils from '../../../utils/bemUtils';
-import Box from '../../box/Box';
+import Box from '../../../../common/components/box/Box';
 import StepBanner from '../../step-banner/StepBanner';
-import InformationPoster from '../../information-poster/InformationPoster';
+import InformationPoster from '../../../../common/components/information-poster/InformationPoster';
 import GoToApplicationLink from '../../go-to-application-link/GoToApplicationLink';
 import { FormattedMessage, InjectedIntlProps, injectIntl, FormattedHTMLMessage } from 'react-intl';
 import intlHelper from 'app/utils/intlUtils';

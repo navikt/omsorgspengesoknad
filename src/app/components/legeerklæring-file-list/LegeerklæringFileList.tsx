@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { connect } from 'formik';
 import { Field } from '../../types/OmsorgspengesøknadFormData';
-import AttachmentList from '../attachment-list/AttachmentList';
+import AttachmentList from '../../../common/components/attachment-list/AttachmentList';
 import { removeElementFromArray } from '../../utils/listUtils';
 import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
 import { deleteFile } from '../../api/api';
 import { containsAnyUploadedAttachments, fileExtensionIsValid } from '../../utils/attachmentUtils';
-import Box from '../box/Box';
+import Box from '../../../common/components/box/Box';
 import { Normaltekst } from 'nav-frontend-typografi';
-import AttachmentListWithDeletion from '../attachment-list-with-deletion/AttachmentListWithDeletion';
+import AttachmentListWithDeletion from '../../../common/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import { FormattedMessage } from 'react-intl';
 
 interface LegeerklæringAttachmentListProps {

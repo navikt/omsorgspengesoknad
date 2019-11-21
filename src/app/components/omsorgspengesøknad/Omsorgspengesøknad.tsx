@@ -8,7 +8,7 @@ const renderOmsorgspengesoknad = () => (
     <FormikWrapper contentRenderer={(formikProps) => <OmsorgspengesøknadContent formikProps={formikProps} />} />
 );
 
-const Omsorgspengesoknad = () => (
+const Omsorgspengesøknad = () => (
     <AppEssentialsLoader
         contentLoadedRenderer={(søkerdata) => {
             if (søkerdata) {
@@ -22,4 +22,4 @@ const Omsorgspengesoknad = () => (
     />
 );
 
-export default Omsorgspengesoknad;
+export default Omsorgspengesøknad;

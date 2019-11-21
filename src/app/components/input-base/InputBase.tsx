@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Input as NAVInput, NavFrontendInputProps as NAVInputProps } from 'nav-frontend-skjema';
-import LabelWithHelperText from '../label-with-helper-text/LabelWithHelperText';
+import LabelWithHelperText from '../../../common/components/label-with-helper-text/LabelWithHelperText';
 import { InputType } from '../../types/InputType';
 import bemUtils from '../../utils/bemUtils';
 import './inputBase.less';
