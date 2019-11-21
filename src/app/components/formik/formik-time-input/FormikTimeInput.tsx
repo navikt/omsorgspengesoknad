@@ -1,17 +1,21 @@
 import * as React from 'react';
 import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
-import { getValidationErrorPropsWithIntl } from '../../utils/navFrontendUtils';
+import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
 import { FormikValidationProps } from 'app/types/FormikProps';
-import TimefieldBase from '../timefield-base/TimefieldBase';
+import TimeInputBase from '../../time-input-base/TimeInputBase';
+import { Time } from 'app/types/Time';
 
-interface FormikTimefieldProps<T> {
+interface FormikTimeInputProps<T> {
     name: T;
-    label: React.ReactNode;
+    label: string;
     helperText?: string;
-    disabled?: boolean;
+    maxHours?: number;
+    maxMinutes?: number;
 }
 
-const FormikTimefield = <T extends {}>(): React.FunctionComponent<FormikTimefieldProps<T> & FormikValidationProps> => ({
+type Props = FormikValidationProps;
+
+const FormikTimeInput = <T extends {}>(): React.FunctionComponent<Props & FormikTimeInputProps<T>> => ({
     label,
     name,
     validate,
@@ -22,17 +26,19 @@ const FormikTimefield = <T extends {}>(): React.FunctionComponent<FormikTimefiel
         {({ field, form: { errors, submitCount, setFieldValue } }: FormikFieldProps) => {
             const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
             return (
-                <TimefieldBase
+                <TimeInputBase
                     label={label}
                     {...otherInputProps}
                     {...errorMsgProps}
                     {...field}
-                    value={field.value}
-                    onChange={(value) => setFieldValue(field.name, value)}
+                    time={field.value || undefined}
+                    onChange={(time: Time) => {
+                        setFieldValue(field.name, time);
+                    }}
                 />
             );
         }}
     </FormikField>
 );
 
-export default FormikTimefield;
+export default FormikTimeInput;

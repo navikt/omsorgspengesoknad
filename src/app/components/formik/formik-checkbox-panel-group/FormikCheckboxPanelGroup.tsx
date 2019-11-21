@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
-import { getValidationErrorPropsWithIntl } from '../../utils/navFrontendUtils';
+import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
 import CheckboxPanelGroupBase, {
     CheckboxPanelExpandedContentRenderer
-} from '../checkbox-panel-group-base/CheckboxPanelGroupBase';
-import { removeElementFromArray } from '../../utils/listUtils';
+} from '../../checkbox-panel-group-base/CheckboxPanelGroupBase';
+import { removeElementFromArray } from '../../../utils/listUtils';
 import { FormikValidateFunction, FormikValidationProps } from 'app/types/FormikProps';
 import { isCheckboxChecked } from 'app/utils/formikUtils';
 

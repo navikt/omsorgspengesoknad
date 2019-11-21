@@ -1,21 +1,17 @@
 import * as React from 'react';
 import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
-import { getValidationErrorPropsWithIntl } from '../../utils/navFrontendUtils';
+import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
 import { FormikValidationProps } from 'app/types/FormikProps';
-import TimeInputBase from '../time-input-base/TimeInputBase';
-import { Time } from 'app/types/Time';
+import TimefieldBase from '../../timefield-base/TimefieldBase';
 
-interface FormikTimeInputProps<T> {
+interface FormikTimefieldProps<T> {
     name: T;
-    label: string;
+    label: React.ReactNode;
     helperText?: string;
-    maxHours?: number;
-    maxMinutes?: number;
+    disabled?: boolean;
 }
 
-type Props = FormikValidationProps;
-
-const FormikTimeInput = <T extends {}>(): React.FunctionComponent<Props & FormikTimeInputProps<T>> => ({
+const FormikTimefield = <T extends {}>(): React.FunctionComponent<FormikTimefieldProps<T> & FormikValidationProps> => ({
     label,
     name,
     validate,
@@ -26,19 +22,17 @@ const FormikTimeInput = <T extends {}>(): React.FunctionComponent<Props & Formik
         {({ field, form: { errors, submitCount, setFieldValue } }: FormikFieldProps) => {
             const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
             return (
-                <TimeInputBase
+                <TimefieldBase
                     label={label}
                     {...otherInputProps}
                     {...errorMsgProps}
                     {...field}
-                    time={field.value || undefined}
-                    onChange={(time: Time) => {
-                        setFieldValue(field.name, time);
-                    }}
+                    value={field.value}
+                    onChange={(value) => setFieldValue(field.name, value)}
                 />
             );
         }}
     </FormikField>
 );
 
-export default FormikTimeInput;
+export default FormikTimefield;

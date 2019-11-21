@@ -1,4 +1,4 @@
-import FormikConfirmationCheckboxPanel from '../formik-confirmation-checkbox-panel/FormikConfirmationCheckboxPanel';
+import FormikConfirmationCheckboxPanel from '../formik/formik-confirmation-checkbox-panel/FormikConfirmationCheckboxPanel';
 import { Field } from '../../types/PleiepengesøknadFormData';
 import { injectIntl } from 'react-intl';
 

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
-import { getValidationErrorPropsWithIntl } from '../../utils/navFrontendUtils';
+import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
 import { FormikValidationProps } from 'app/types/FormikProps';
-import TextareaBase from '../textarea-base/TextareaBase';
+import TextareaBase from '../../textarea-base/TextareaBase';
 import { TextareaProps } from 'nav-frontend-skjema';
 
 interface FormikTextareaProps<T> {

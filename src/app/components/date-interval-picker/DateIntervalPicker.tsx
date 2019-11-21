@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Fieldset } from 'nav-frontend-skjema';
-import { FormikDatepickerProps } from '../formik-datepicker/FormikDatepicker';
+import { FormikDatepickerProps } from '../formik/formik-datepicker/FormikDatepicker';
 import { Field } from '../../types/PleiepengesøknadFormData';
 import Datepicker from '../datepicker/Datepicker';
 import bemHelper from '../../utils/bemUtils';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
-import DatepickerBase, { DateLimitiations } from '../datepicker-base/DatepickerBase';
+import DatepickerBase, { DateLimitiations } from '../../datepicker-base/DatepickerBase';
 import { FormikValidateFunction, FormikValidationProps } from 'app/types/FormikProps';
 import { getValidationErrorPropsWithIntl } from 'app/utils/navFrontendUtils';
 
