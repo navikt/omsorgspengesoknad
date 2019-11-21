@@ -192,25 +192,6 @@ class SummaryStep extends React.Component<Props, State> {
                                             />
                                         </ContentWithHeader>
                                     </Box>
-                                    {apiValues.har_medsoker && (
-                                        <Box margin="l">
-                                            <ContentWithHeader
-                                                header={intlHelper(intl, 'steg.oppsummering.samtidigHjemme.header')}>
-                                                <FormattedMessage id={apiValues.samtidig_hjemme ? 'Ja' : 'Nei'} />
-                                            </ContentWithHeader>
-                                        </Box>
-                                    )}
-
-                                    <Box margin="l">
-                                        <ContentWithHeader
-                                            header={intlHelper(
-                                                intl,
-                                                'steg.oppsummering.annenSøkerSammePeriode.header'
-                                            )}>
-                                            {apiValues.har_medsoker === true && intlHelper(intl, 'Ja')}
-                                            {apiValues.har_medsoker === false && intlHelper(intl, 'Nei')}
-                                        </ContentWithHeader>
-                                    </Box>
 
                                     <Box margin="l">
                                         <ContentWithHeader

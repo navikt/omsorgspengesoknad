@@ -11,11 +11,11 @@ import './confirmationPage.less';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import AlertStripe from 'nav-frontend-alertstriper';
 
-type Props = InjectedIntlProps & { numberOfAnsettelsesforhold: number };
+type Props = InjectedIntlProps;
 
 const bem = bemUtils('confirmationPage');
 
-const ConfirmationPage: React.FunctionComponent<Props> = ({ intl, numberOfAnsettelsesforhold }) => (
+const ConfirmationPage: React.FunctionComponent<Props> = ({ intl }) => (
     <Page title={intlHelper(intl, 'page.confirmation.sidetittel')} className={bem.block}>
         <div className={bem.element('centeredContent')}>
             <CheckmarkIcon />
@@ -30,11 +30,6 @@ const ConfirmationPage: React.FunctionComponent<Props> = ({ intl, numberOfAnsett
                 <FormattedMessage id="page.confirmation.undertittel" />
             </Ingress>
             <ul className="checklist">
-                {numberOfAnsettelsesforhold > 0 && (
-                    <li>
-                        <FormattedHTMLMessage id="page.confirmation.søker" values={{ numberOfAnsettelsesforhold }} />
-                    </li>
-                )}
                 <li>
                     <FormattedHTMLMessage
                         id="page.confirmation.nav.html"

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import LoadingPage from '../pages/loading-page/LoadingPage';
-import { Ansettelsesforhold, Søkerdata } from '../../types/Søkerdata';
+import { Søkerdata } from '../../types/Søkerdata';
 import * as apiUtils from '../../utils/apiUtils';
 import routeConfig from '../../config/routeConfig';
 import { navigateToLoginPage, userIsCurrentlyOnErrorPage } from '../../utils/navigationUtils';
@@ -24,7 +24,6 @@ class AppEssentialsLoader extends React.Component<Props, State> {
         super(props);
         this.state = { isLoading: true };
 
-        this.updateAnsettelsesforhold = this.updateAnsettelsesforhold.bind(this);
         this.updateSøkerdata = this.updateSøkerdata.bind(this);
         this.stopLoading = this.stopLoading.bind(this);
         this.handleSøkerdataFetchSuccess = this.handleSøkerdataFetchSuccess.bind(this);
@@ -51,8 +50,7 @@ class AppEssentialsLoader extends React.Component<Props, State> {
         this.setState({
             isLoading: false,
             søkerdata: {
-                ...(demoSøkerdata as Søkerdata),
-                setAnsettelsesforhold: this.updateAnsettelsesforhold
+                ...(demoSøkerdata as Søkerdata)
             }
         });
         this.stopLoading();
@@ -62,12 +60,7 @@ class AppEssentialsLoader extends React.Component<Props, State> {
         this.updateSøkerdata(
             {
                 person: søkerResponse.data,
-                barn: barnResponse ? barnResponse.data.barn : undefined,
-                setAnsettelsesforhold: this.updateAnsettelsesforhold,
-                ansettelsesforhold: [
-                    { navn: 'Arbeids- og velferdsetaten', organisasjonsnummer: '123451234' },
-                    { navn: 'Arbeids- og sosialdepartementet', organisasjonsnummer: '123451235' }
-                ]
+                barn: barnResponse ? barnResponse.data.barn : undefined
             },
             () => {
                 this.stopLoading();
@@ -104,18 +97,6 @@ class AppEssentialsLoader extends React.Component<Props, State> {
         // the contentLoadedRenderer() will be called while the user is still on the wrong route,
         // because the redirect to routeConfig.ERROR_PAGE_ROUTE will not have happened yet.
         setTimeout(this.stopLoading, 200);
-    }
-
-    updateAnsettelsesforhold(ansettelsesforhold: Ansettelsesforhold[]) {
-        const { barn, person, setAnsettelsesforhold } = this.state.søkerdata!;
-        this.setState({
-            søkerdata: {
-                barn,
-                setAnsettelsesforhold,
-                ansettelsesforhold,
-                person
-            }
-        });
     }
 
     render() {

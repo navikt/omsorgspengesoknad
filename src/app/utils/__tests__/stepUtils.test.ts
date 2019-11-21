@@ -7,7 +7,6 @@ jest.mock('./../../validation/stepValidations', () => {
         welcomingPageIsValid: jest.fn(() => true),
         opplysningerOmBarnetStepIsValid: jest.fn(() => true),
         opplysningerOmTidsromStepIsValid: jest.fn(() => true),
-        opplysningerOmAnsettelsesforholdStepIsValid: jest.fn(() => true),
         medlemskapStepIsValid: jest.fn(() => true),
         legeerklæringStepIsValid: jest.fn(() => true)
     };
@@ -42,12 +41,10 @@ describe('stepUtils', () => {
             expect(stepValidations.welcomingPageIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmBarnetStepIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmTidsromStepIsValid).toHaveBeenCalledWith(formData);
-            expect(stepValidations.opplysningerOmAnsettelsesforholdStepIsValid).toHaveBeenCalled();
             expect(returnValue).toEqual(
                 stepValidations.welcomingPageIsValid({} as any) &&
                     stepValidations.opplysningerOmBarnetStepIsValid({} as any) &&
-                    stepValidations.opplysningerOmTidsromStepIsValid({} as any) &&
-                    stepValidations.opplysningerOmAnsettelsesforholdStepIsValid()
+                    stepValidations.opplysningerOmTidsromStepIsValid({} as any)
             );
         });
     });
@@ -58,13 +55,11 @@ describe('stepUtils', () => {
             expect(stepValidations.welcomingPageIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmBarnetStepIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmTidsromStepIsValid).toHaveBeenCalledWith(formData);
-            expect(stepValidations.opplysningerOmAnsettelsesforholdStepIsValid).toHaveBeenCalled();
             expect(stepValidations.medlemskapStepIsValid).toHaveBeenCalledWith(formData);
             expect(returnValue).toEqual(
                 stepValidations.welcomingPageIsValid({} as any) &&
                     stepValidations.opplysningerOmBarnetStepIsValid({} as any) &&
                     stepValidations.opplysningerOmTidsromStepIsValid({} as any) &&
-                    stepValidations.opplysningerOmAnsettelsesforholdStepIsValid() &&
                     stepValidations.medlemskapStepIsValid({} as any)
             );
         });
@@ -76,14 +71,12 @@ describe('stepUtils', () => {
             expect(stepValidations.welcomingPageIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmBarnetStepIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.opplysningerOmTidsromStepIsValid).toHaveBeenCalledWith(formData);
-            expect(stepValidations.opplysningerOmAnsettelsesforholdStepIsValid).toHaveBeenCalled();
             expect(stepValidations.medlemskapStepIsValid).toHaveBeenCalledWith(formData);
             expect(stepValidations.legeerklæringStepIsValid).toHaveBeenCalled();
             expect(returnValue).toEqual(
                 stepValidations.welcomingPageIsValid({} as any) &&
                     stepValidations.opplysningerOmBarnetStepIsValid({} as any) &&
                     stepValidations.opplysningerOmTidsromStepIsValid({} as any) &&
-                    stepValidations.opplysningerOmAnsettelsesforholdStepIsValid() &&
                     stepValidations.medlemskapStepIsValid({} as any) &&
                     stepValidations.legeerklæringStepIsValid()
             );

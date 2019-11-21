@@ -1,7 +1,6 @@
 import {
     legeerklæringStepIsValid,
     medlemskapStepIsValid,
-    opplysningerOmAnsettelsesforholdStepIsValid,
     opplysningerOmBarnetStepIsValid,
     opplysningerOmTidsromStepIsValid,
     welcomingPageIsValid
@@ -103,12 +102,6 @@ describe('stepValidation tests', () => {
             formData[Field.periodeFra] = moment().toDate();
             formData[Field.periodeTil] = undefined;
             expect(opplysningerOmTidsromStepIsValid(formData as PleiepengesøknadFormData)).toBe(false);
-        });
-    });
-
-    describe('opplysningerOmTidsromStepIsValid', () => {
-        it('should always be valid', () => {
-            expect(opplysningerOmAnsettelsesforholdStepIsValid()).toBe(true);
         });
     });
 

@@ -1,27 +1,17 @@
 import * as React from 'react';
 import { HistoryProps } from '../../../types/History';
 import { StepID, StepConfigProps } from '../../../config/stepConfig';
-import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';
+import { navigateTo } from '../../../utils/navigationUtils';
 import { Field } from '../../../types/PleiepengesøknadFormData';
 import FormikStep from '../../formik-step/FormikStep';
 import DateIntervalPicker from '../../date-interval-picker/DateIntervalPicker';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { Søkerdata } from '../../../types/Søkerdata';
-import { date3YearsAgo, formatDate } from '../../../utils/dateUtils';
-import { getArbeidsgiver } from '../../../api/api';
-import { validateFradato, validateTildato, validateYesOrNoIsAnswered } from '../../../validation/fieldValidations';
-import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
-import Box from '../../box/Box';
-import { AxiosError } from 'axios';
-import * as apiUtils from '../../../utils/apiUtils';
+import { date3YearsAgo } from '../../../utils/dateUtils';
+import { validateFradato, validateTildato } from '../../../validation/fieldValidations';
 import intlHelper from 'app/utils/intlUtils';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
-import { YesOrNo } from 'app/types/YesOrNo';
 import { CustomFormikProps } from '../../../types/FormikProps';
-import demoSøkerdata from '../../../demo/demoData';
-import { appIsRunningInDemoMode } from '../../../utils/envUtils';
-
-import './dagerPerUkeBorteFraJobb.less';
 
 interface OpplysningerOmTidsromStepState {
     isLoadingNextStep: boolean;
@@ -37,7 +27,6 @@ class OpplysningerOmTidsromStep extends React.Component<Props, OpplysningerOmTid
     constructor(props: Props) {
         super(props);
 
-        this.getArbeidsforhold = this.getArbeidsforhold.bind(this);
         this.finishStep = this.finishStep.bind(this);
         this.validateFraDato = this.validateFraDato.bind(this);
         this.validateTilDato = this.validateTilDato.bind(this);
@@ -47,35 +36,8 @@ class OpplysningerOmTidsromStep extends React.Component<Props, OpplysningerOmTid
         };
     }
 
-    getArbeidsforhold() {
-        const values = this.props.formikProps.values;
-        const fromDateString = formatDate(values[Field.periodeFra]!);
-        const toDateString = formatDate(values[Field.periodeTil]!);
-        return getArbeidsgiver(fromDateString, toDateString);
-    }
-
-    handleArbeidsforholdFetchError(response: AxiosError) {
-        if (apiUtils.isForbidden(response) || apiUtils.isUnauthorized(response)) {
-            navigateToLoginPage();
-        }
-    }
-
     async finishStep(søkerdata: Søkerdata) {
         this.setState({ isLoadingNextStep: true });
-
-        if (appIsRunningInDemoMode()) {
-            søkerdata.setAnsettelsesforhold(demoSøkerdata.ansettelsesforhold);
-            navigateTo(this.props.nextStepRoute!, this.props.history);
-            return;
-        }
-
-        try {
-            const response = await this.getArbeidsforhold();
-            søkerdata.setAnsettelsesforhold!(response.data.organisasjoner);
-            this.props.formikProps.setFieldValue(Field.ansettelsesforhold, []);
-        } catch (error) {
-            this.handleArbeidsforholdFetchError(error);
-        }
 
         const { nextStepRoute } = this.props;
         if (nextStepRoute) {
@@ -99,7 +61,6 @@ class OpplysningerOmTidsromStep extends React.Component<Props, OpplysningerOmTid
 
         const fraDato = this.props.formikProps.values[Field.periodeFra];
         const tilDato = this.props.formikProps.values[Field.periodeTil];
-        const harMedsøker = this.props.formikProps.values[Field.harMedsøker];
 
         return (
             <SøkerdataContextConsumer>
@@ -134,22 +95,6 @@ class OpplysningerOmTidsromStep extends React.Component<Props, OpplysningerOmTid
                                 }
                             }}
                         />
-
-                        <Box margin="xl">
-                            <YesOrNoQuestion
-                                legend={intlHelper(intl, 'steg.tidsrom.annenSamtidig.spm')}
-                                name={Field.harMedsøker}
-                                validate={validateYesOrNoIsAnswered}
-                            />
-                        </Box>
-
-                        {harMedsøker === YesOrNo.YES && (
-                            <YesOrNoQuestion
-                                legend={intlHelper(intl, 'steg.tidsrom.samtidigHjemme.spm')}
-                                name={Field.samtidigHjemme}
-                                validate={validateYesOrNoIsAnswered}
-                            />
-                        )}
                     </FormikStep>
                 )}
             </SøkerdataContextConsumer>

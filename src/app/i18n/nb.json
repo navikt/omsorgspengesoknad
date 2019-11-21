@@ -55,10 +55,6 @@
     "step.tidsrom.stepTitle": "Periode",
     "step.tidsrom.stepIndicatorLabel": "Periode",
 
-    "step.ansettelsesforhold.pageTitle": "Pleiepengesøknad - opplysninger om ditt arbeidsforhold",
-    "step.ansettelsesforhold.stepTitle": "Arbeidsforhold",
-    "step.ansettelsesforhold.stepIndicatorLabel": "Om ditt arbeidsforhold",
-
     "step.omsorgstilbud.pageTitle": "Pleiepengesøknad - omsorgstilbud",
     "step.omsorgstilbud.stepTitle": "Omsorgstilbud",
     "step.omsorgstilbud.stepIndicatorLabel": "Omsorgstilbud",
@@ -157,7 +153,6 @@
     "steg.tidsrom.hvorMye.hjelp.part1": "Kan du jobbe noe? Da reduserer du prosenten tilsvarende.",
     "steg.tidsrom.hvorMye.hjelp.part2": "Jobber du deltid i utgangspunktet? Du kan likevel søke om 100 % pleiepenger hvis du mister hele inntekten fordi du pleier barnet.",
     "steg.tidsrom.annenSamtidig.spm": "Er det en annen person som søker om pleiepenger i samme periode som deg?",
-    "steg.tidsrom.samtidigHjemme.spm": "Skal dere være hjemme/på sykehus samtidig for å pleie barnet?",
     "steg.tidsrom.dagerPerUkeBorteFraJobb.spm": "Hvor mange dager per uke skal du være borte fra jobb for å ta hånd om barnet? Rund av til nærmeste halve dag.",
 
     "steg.medlemsskap.annetLandSiste12.spm": "Har du bodd i andre land enn Norge i hele eller deler av de siste 12 månedene?",
@@ -189,14 +184,9 @@
     "steg.oppsummering.bekrefterOpplysninger": "Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.",
     "steg.oppsummering.bekrefterOpplysninger.ikkeBekreftet": "Du må bekrefte opplysningene",
 
-    "steg.oppsummering.ansettelsesforhold.header": "Arbeidsforhold",
-    "steg.oppsummering.ansettelsesforhold.forhold": "{navn} (organisasjonsnummer: {organisasjonsnummer})",
-    "steg.oppsummering.ansettelsesforhold.ingenAnsettelsesforhold": "Ingen arbeidsforhold er valgt",
-
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
     "page.confirmation.tittel": "Vi har mottatt søknad fra deg om pleiepenger",
     "page.confirmation.undertittel": "Hva skjer videre nå?",
-    "page.confirmation.søker": "Du må be {numberOfAnsettelsesforhold, plural, one {arbeidsgiver} other {arbeidsgiverene dine}} din om å sende inntektsmelding til oss",
     "page.confirmation.nav.html": "<p>Vi starter behandlingen av søknaden, og den vil bli synlig på Ditt NAV innen en uke. Når søknaden er ferdig behandlet, får du et svarbrev fra oss. Du kan se <a href=\"{lenke}\" className=\"lenke\" rel=\"noopener\">saksbehandlingstiden for ditt fylke her</a>.</p><p>Vi tar kontakt med deg hvis vi trenger flere opplysninger i saken din.</p>",
 
     "page.generalErrorPage.sidetittel": "Feil",

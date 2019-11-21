@@ -1,19 +1,9 @@
-export enum HoursOrPercent {
-    'hours' = 'hours',
-    'percent' = 'percent'
-}
-
 export interface BarnReceivedFromApi {
     fornavn: string;
     etternavn: string;
     mellomnavn?: string;
     aktoer_id: string;
     fodselsdato: Date;
-}
-
-export interface Ansettelsesforhold {
-    navn: string;
-    organisasjonsnummer: string;
 }
 
 export interface Person {
@@ -28,6 +18,4 @@ export interface Person {
 export interface Søkerdata {
     person: Person;
     barn: BarnReceivedFromApi[];
-    setAnsettelsesforhold: (ansettelsesforhold: Ansettelsesforhold[]) => void;
-    ansettelsesforhold?: Ansettelsesforhold[];
 }
