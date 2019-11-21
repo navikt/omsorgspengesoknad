@@ -10,8 +10,7 @@ import {
     validateTildato,
     validateYesOrNoIsAnswered,
     FieldValidationErrors,
-    fieldValidationError,
-    validateNormaleArbeidstimer
+    fieldValidationError
 } from '../fieldValidations';
 import * as dateUtils from './../../utils/dateUtils';
 import Mock = jest.Mock;
@@ -245,14 +244,6 @@ describe('fieldValidations', () => {
             expect(
                 validateLegeerklæring([uploadedAttachment, uploadedAttachment, uploadedAttachment, uploadedAttachment])
             ).toEqual(fieldValidationError(FieldValidationErrors.legeerklæring_forMangeFiler));
-        });
-    });
-
-    describe('validate ansettelsesforhold', () => {
-        it('should only allow values from 1 and 150', () => {
-            expect(validateNormaleArbeidstimer({ hours: 0, minutes: 0 })).toEqual(
-                fieldValidationError(FieldValidationErrors.ansettelsesforhold_timerUgyldig, { min: 1, max: 150 })
-            );
         });
     });
 });

@@ -1,14 +1,8 @@
 import routeConfig from './routeConfig';
 import { getSøknadRoute } from '../utils/routeUtils';
-import { PleiepengesøknadFormData } from '../types/PleiepengesøknadFormData';
-import { YesOrNo } from '../types/YesOrNo';
 
 export enum StepID {
     'OPPLYSNINGER_OM_BARNET' = 'opplysninger-om-barnet',
-    'ANSETTELSESFORHOLD' = 'ansettelsesforhold',
-    'OMSORGSTILBUD' = 'omsorgstilbud',
-    'NATTEVÅK' = 'nattevåk',
-    'BEREDSKAP' = 'beredskap',
     'TIDSROM' = 'tidsrom',
     'MEDLEMSKAP' = 'medlemskap',
     'LEGEERKLÆRING' = 'legeerklaering',
@@ -42,14 +36,9 @@ const getStepConfigItemTextKeys = (stepId: StepID): StepConfigItemTexts => {
     };
 };
 
-export const getStepConfig = (formValues?: PleiepengesøknadFormData) => {
-    const includeNattevåkAndBeredskap =
-        formValues &&
-        formValues.tilsynsordning &&
-        (formValues.tilsynsordning.skalBarnHaTilsyn === YesOrNo.YES ||
-            formValues.tilsynsordning.skalBarnHaTilsyn === YesOrNo.DO_NOT_KNOW);
+export const getStepConfig = (): StepConfigInterface => {
     let idx = 0;
-    let config = {
+    const config = {
         [StepID.OPPLYSNINGER_OM_BARNET]: {
             ...getStepConfigItemTextKeys(StepID.OPPLYSNINGER_OM_BARNET),
             index: idx++,
@@ -59,62 +48,27 @@ export const getStepConfig = (formValues?: PleiepengesøknadFormData) => {
         [StepID.TIDSROM]: {
             ...getStepConfigItemTextKeys(StepID.TIDSROM),
             index: idx++,
-            nextStep: StepID.ANSETTELSESFORHOLD,
+            nextStep: StepID.MEDLEMSKAP,
             backLinkHref: getSøknadRoute(StepID.OPPLYSNINGER_OM_BARNET)
         },
-        [StepID.ANSETTELSESFORHOLD]: {
-            ...getStepConfigItemTextKeys(StepID.ANSETTELSESFORHOLD),
+        [StepID.MEDLEMSKAP]: {
+            ...getStepConfigItemTextKeys(StepID.MEDLEMSKAP),
             index: idx++,
-            nextStep: StepID.OMSORGSTILBUD,
+            nextStep: StepID.LEGEERKLÆRING,
             backLinkHref: getSøknadRoute(StepID.TIDSROM)
         },
-        [StepID.OMSORGSTILBUD]: {
-            ...getStepConfigItemTextKeys(StepID.OMSORGSTILBUD),
+        [StepID.LEGEERKLÆRING]: {
+            ...getStepConfigItemTextKeys(StepID.LEGEERKLÆRING),
             index: idx++,
-            nextStep: includeNattevåkAndBeredskap ? StepID.NATTEVÅK : StepID.MEDLEMSKAP,
-            backLinkHref: getSøknadRoute(StepID.ANSETTELSESFORHOLD)
-        }
-    };
-
-    let backLinkStep: StepID = StepID.OMSORGSTILBUD;
-    if (includeNattevåkAndBeredskap) {
-        config[StepID.NATTEVÅK] = {
-            ...getStepConfigItemTextKeys(StepID.NATTEVÅK),
+            nextStep: StepID.SUMMARY,
+            backLinkHref: getSøknadRoute(StepID.MEDLEMSKAP)
+        },
+        [StepID.SUMMARY]: {
+            ...getStepConfigItemTextKeys(StepID.SUMMARY),
             index: idx++,
-            nextStep: StepID.BEREDSKAP,
-            backLinkHref: getSøknadRoute(StepID.OMSORGSTILBUD)
-        };
-        config[StepID.BEREDSKAP] = {
-            ...getStepConfigItemTextKeys(StepID.BEREDSKAP),
-            index: idx++,
-            nextStep: StepID.MEDLEMSKAP,
-            backLinkHref: getSøknadRoute(StepID.NATTEVÅK)
-        };
-        backLinkStep = StepID.BEREDSKAP;
-    }
-
-    config = {
-        ...config,
-        ...{
-            [StepID.MEDLEMSKAP]: {
-                ...getStepConfigItemTextKeys(StepID.MEDLEMSKAP),
-                index: idx++,
-                nextStep: StepID.LEGEERKLÆRING,
-                backLinkHref: getSøknadRoute(backLinkStep)
-            },
-            [StepID.LEGEERKLÆRING]: {
-                ...getStepConfigItemTextKeys(StepID.LEGEERKLÆRING),
-                index: idx++,
-                nextStep: StepID.SUMMARY,
-                backLinkHref: getSøknadRoute(StepID.MEDLEMSKAP)
-            },
-            [StepID.SUMMARY]: {
-                ...getStepConfigItemTextKeys(StepID.SUMMARY),
-                index: idx++,
-                backLinkHref: getSøknadRoute(StepID.LEGEERKLÆRING),
-                nextButtonLabel: 'step.sendButtonLabel',
-                nextButtonAriaLabel: 'step.sendButtonAriaLabel'
-            }
+            backLinkHref: getSøknadRoute(StepID.LEGEERKLÆRING),
+            nextButtonLabel: 'step.sendButtonLabel',
+            nextButtonAriaLabel: 'step.sendButtonAriaLabel'
         }
     };
     return config;

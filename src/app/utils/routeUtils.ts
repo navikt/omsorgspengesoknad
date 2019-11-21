@@ -5,13 +5,9 @@ import { appIsRunningInDevEnvironment, appIsRunningInDemoMode } from './envUtils
 import {
     legeerklæringStepAvailable,
     medlemskapStepAvailable,
-    opplysningerOmAnsettelsesforholdStepAvailable,
     opplysningerOmBarnetStepAvailable,
     opplysningerOmTidsromStepAvailable,
-    summaryStepAvailable,
-    tilsynsordningStepAvailable,
-    nattevåkStepAvailable,
-    beredskapStepAvailable
+    summaryStepAvailable
 } from './stepUtils';
 
 export const getSøknadRoute = (stepId: StepID | undefined) => {
@@ -22,7 +18,7 @@ export const getSøknadRoute = (stepId: StepID | undefined) => {
 };
 
 export const getNextStepRoute = (stepId: StepID, formData?: PleiepengesøknadFormData): string | undefined => {
-    const stepConfig = getStepConfig(formData);
+    const stepConfig = getStepConfig();
     return stepConfig[stepId] ? getSøknadRoute(stepConfig[stepId].nextStep) : undefined;
 };
 
@@ -33,14 +29,6 @@ export const isAvailable = (path: StepID | RouteConfig, values: Pleiepengesøkna
                 return opplysningerOmBarnetStepAvailable(values);
             case StepID.TIDSROM:
                 return opplysningerOmTidsromStepAvailable(values);
-            case StepID.ANSETTELSESFORHOLD:
-                return opplysningerOmAnsettelsesforholdStepAvailable(values);
-            case StepID.OMSORGSTILBUD:
-                return tilsynsordningStepAvailable(values);
-            case StepID.NATTEVÅK:
-                return nattevåkStepAvailable(values);
-            case StepID.BEREDSKAP:
-                return beredskapStepAvailable(values);
             case StepID.LEGEERKLÆRING:
                 return legeerklæringStepAvailable(values);
             case StepID.MEDLEMSKAP:

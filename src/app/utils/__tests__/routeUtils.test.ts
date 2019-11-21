@@ -27,7 +27,7 @@ const formValues = {} as any;
 describe('routeUtils', () => {
     describe('getSøknadRoute', () => {
         it('should prefix provided string with a common prefix for routes', () => {
-            const s1 = StepID.ANSETTELSESFORHOLD;
+            const s1 = StepID.LEGEERKLÆRING;
             const s2 = StepID.SUMMARY;
             expect(getSøknadRoute(s1)).toEqual(`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${s1}`);
             expect(getSøknadRoute(s2)).toEqual(`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${s2}`);
@@ -45,12 +45,6 @@ describe('routeUtils', () => {
             const result = isAvailable(StepID.TIDSROM, formValues);
             expect(stepUtils.opplysningerOmBarnetStepAvailable).toHaveBeenCalledWith(formValues);
             expect(result).toEqual(stepUtils.opplysningerOmTidsromStepAvailable(formValues));
-        });
-
-        it('should return result from calling opplysningerOmAnsettelsesforholdStepAvailable if route=StepID.ANSETTELSESFORHOLD', () => {
-            const result = isAvailable(StepID.ANSETTELSESFORHOLD, formValues);
-            expect(stepUtils.opplysningerOmAnsettelsesforholdStepAvailable).toHaveBeenCalledWith(formValues);
-            expect(result).toEqual(stepUtils.opplysningerOmAnsettelsesforholdStepAvailable(formValues));
         });
 
         it('should return result from calling legeerklæringStepAvailable if route=StepID.LEGEERKLÆRING', () => {

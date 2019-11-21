@@ -12,11 +12,7 @@ import LegeerklæringStep from '../steps/legeerklæring/LegeerklæringStep';
 import SummaryStep from '../steps/summary/SummaryStep';
 import GeneralErrorPage from '../pages/general-error-page/GeneralErrorPage';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
-import OpplysningerOmAnsettelsesforholdGradertStep from '../steps/ansettelsesforhold/OpplysningerOmAnsettelsesforholdGradertStep';
-import TilsynsordningStep from '../steps/tilsynsordning/TilsynsordningStep';
-import NattevåkStep from '../steps/nattevåkStep/NattevåkStep';
 import { PleiepengesøknadFormData } from '../../types/PleiepengesøknadFormData';
-import BeredskapStep from '../steps/beredskapStep/BeredskapStep';
 
 interface PleiepengesøknadContentProps {
     formikProps: CustomFormikProps;
@@ -69,66 +65,6 @@ const PleiepengesøknadContent: React.FunctionComponent<PleiepengesøknadContent
                             {...props}
                         />
                     )}
-                />
-            )}
-
-            {isAvailable(StepID.ANSETTELSESFORHOLD, values) && (
-                <Route
-                    path={getSøknadRoute(StepID.ANSETTELSESFORHOLD)}
-                    render={(props) => (
-                        <OpplysningerOmAnsettelsesforholdGradertStep
-                            {...commonFormikProps}
-                            {...props}
-                            nextStepRoute={getNextStepRoute(StepID.ANSETTELSESFORHOLD, values)}
-                        />
-                    )}
-                />
-            )}
-
-            {isAvailable(StepID.OMSORGSTILBUD, values) && (
-                <Route
-                    path={getSøknadRoute(StepID.OMSORGSTILBUD)}
-                    render={(props) => {
-                        return (
-                            <TilsynsordningStep
-                                {...commonFormikProps}
-                                {...props}
-                                nextStepRoute={getNextStepRoute(StepID.OMSORGSTILBUD, values)}
-                            />
-                        );
-                    }}
-                />
-            )}
-
-            {isAvailable(StepID.NATTEVÅK, values) && (
-                <Route
-                    path={getSøknadRoute(StepID.NATTEVÅK)}
-                    render={(props) => {
-                        return (
-                            <NattevåkStep
-                                formikProps={formikProps}
-                                {...commonFormikProps}
-                                {...props}
-                                nextStepRoute={getNextStepRoute(StepID.NATTEVÅK, values)}
-                            />
-                        );
-                    }}
-                />
-            )}
-
-            {isAvailable(StepID.BEREDSKAP, values) && (
-                <Route
-                    path={getSøknadRoute(StepID.BEREDSKAP)}
-                    render={(props) => {
-                        return (
-                            <BeredskapStep
-                                formikProps={formikProps}
-                                {...commonFormikProps}
-                                {...props}
-                                nextStepRoute={getNextStepRoute(StepID.BEREDSKAP, values)}
-                            />
-                        );
-                    }}
                 />
             )}
 

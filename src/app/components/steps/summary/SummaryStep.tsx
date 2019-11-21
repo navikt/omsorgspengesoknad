@@ -23,9 +23,6 @@ import ContentSwitcher from '../../content-switcher/ContentSwitcher';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import intlHelper from 'app/utils/intlUtils';
 import { Locale } from 'app/types/Locale';
-import GradertAnsettelsesforholdSummary from 'app/components/gradert-ansettelsesforhold-summary/GradertAnsettelsesforholdSummary';
-import TilsynsordningSummary from './TilsynsordningSummary';
-import TextareaSummary from '../../textarea-summary/TextareaSummary';
 import { CommonStepFormikProps } from '../../pleiepengesøknad-content/PleiepengesøknadContent';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 
@@ -79,8 +76,6 @@ class SummaryStep extends React.Component<Props, State> {
             <SøkerdataContextConsumer>
                 {({ person: { fornavn, mellomnavn, etternavn, fodselsnummer }, barn }: Søkerdata) => {
                     const apiValues = mapFormDataToApiData(formValues, barn, intl.locale as Locale);
-
-                    const { tilsynsordning, nattevaak, beredskap } = apiValues;
 
                     return (
                         <FormikStep
@@ -216,51 +211,6 @@ class SummaryStep extends React.Component<Props, State> {
                                             {apiValues.har_medsoker === false && intlHelper(intl, 'Nei')}
                                         </ContentWithHeader>
                                     </Box>
-
-                                    <Box margin="l">
-                                        <ContentWithHeader
-                                            header={intlHelper(intl, 'steg.oppsummering.ansettelsesforhold.header')}>
-                                            {apiValues.arbeidsgivere.organisasjoner.length > 0 ? (
-                                                apiValues.arbeidsgivere.organisasjoner.map((forhold) => (
-                                                    <GradertAnsettelsesforholdSummary
-                                                        key={forhold.organisasjonsnummer}
-                                                        ansettelsesforhold={forhold}
-                                                    />
-                                                ))
-                                            ) : (
-                                                <FormattedMessage id="steg.oppsummering.ansettelsesforhold.ingenAnsettelsesforhold" />
-                                            )}
-                                        </ContentWithHeader>
-                                    </Box>
-
-                                    {tilsynsordning && <TilsynsordningSummary tilsynsordning={tilsynsordning} />}
-                                    {nattevaak && (
-                                        <>
-                                            <Box margin="l">
-                                                <ContentWithHeader
-                                                    header={intlHelper(intl, 'steg.oppsummering.nattevåk.header')}>
-                                                    {nattevaak.har_nattevaak === true && intlHelper(intl, 'Ja')}
-                                                    {nattevaak.har_nattevaak === false && intlHelper(intl, 'Nei')}
-                                                    {nattevaak.har_nattevaak === true &&
-                                                        nattevaak.tilleggsinformasjon && (
-                                                            <TextareaSummary text={nattevaak.tilleggsinformasjon} />
-                                                        )}
-                                                </ContentWithHeader>
-                                            </Box>
-                                        </>
-                                    )}
-                                    {beredskap && (
-                                        <Box margin="l">
-                                            <ContentWithHeader
-                                                header={intlHelper(intl, 'steg.oppsummering.beredskap.header')}>
-                                                {beredskap.i_beredskap === true && intlHelper(intl, 'Ja')}
-                                                {beredskap.i_beredskap === false && intlHelper(intl, 'Nei')}
-                                                {beredskap.tilleggsinformasjon && (
-                                                    <TextareaSummary text={beredskap.tilleggsinformasjon} />
-                                                )}
-                                            </ContentWithHeader>
-                                        </Box>
-                                    )}
 
                                     <Box margin="l">
                                         <ContentWithHeader

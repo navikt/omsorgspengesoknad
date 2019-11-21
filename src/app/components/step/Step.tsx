@@ -39,7 +39,7 @@ const Step: React.FunctionComponent<StepProps> = ({
     intl,
     children
 }) => {
-    const stepConfig = getStepConfig(formValues);
+    const stepConfig = getStepConfig();
     const conf = stepConfig[id];
     const stepTexts: StepConfigItemTexts = getStepTexts(intl, id, stepConfig);
     return (

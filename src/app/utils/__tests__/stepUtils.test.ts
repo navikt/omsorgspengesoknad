@@ -36,22 +36,6 @@ describe('stepUtils', () => {
         });
     });
 
-    describe('opplysningerOmAnsettelsesforholdStepAvailable', () => {
-        it('should call relevant stepValidator-functions to determine whether the step should be available', () => {
-            const returnValue = stepUtils.opplysningerOmAnsettelsesforholdStepAvailable(
-                formData as PleiepengesøknadFormData
-            );
-            expect(stepValidations.welcomingPageIsValid).toHaveBeenCalledWith(formData);
-            expect(stepValidations.opplysningerOmBarnetStepIsValid).toHaveBeenCalledWith(formData);
-            expect(stepValidations.opplysningerOmTidsromStepIsValid).toHaveBeenCalledWith(formData);
-            expect(returnValue).toEqual(
-                stepValidations.welcomingPageIsValid({} as any) &&
-                    stepValidations.opplysningerOmBarnetStepIsValid({} as any) &&
-                    stepValidations.opplysningerOmTidsromStepIsValid({} as any)
-            );
-        });
-    });
-
     describe('medlemskapStepAvailable', () => {
         it('should call relevant stepValidator-functions to determine whether the step should be available', () => {
             const returnValue = stepUtils.medlemskapStepAvailable(formData as PleiepengesøknadFormData);
