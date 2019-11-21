@@ -8,11 +8,11 @@ import { Field, TilsynVetIkkeHvorfor } from '../../../types/PleiepengesøknadFor
 import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
 import Box from '../../box/Box';
 import { YesOrNo } from '../../../types/YesOrNo';
-import Textarea from '../../textarea/Textarea';
+import Textarea from '../../file-upload-errors/textarea/Textarea';
 import Tilsynsuke from '../../tilsynsuke/Tilsynsuke';
-import InputGroup from '../../input-group/InputGroup';
+import InputGroup from '../../form-elements/input-group/InputGroup';
 import { validateSkalHaTilsynsordning, validateYesOrNoIsAnswered } from '../../../validation/fieldValidations';
-import RadioPanelGroup from '../../radio-panel-group/RadioPanelGroup';
+import RadioPanelGroup from '../../form-elements/radio-panel-group/RadioPanelGroup';
 import intlHelper from '../../../utils/intlUtils';
 import CounsellorPanel from '../../counsellor-panel/CounsellorPanel';
 import { CommonStepFormikProps } from '../../pleiepengesøknad-content/PleiepengesøknadContent';

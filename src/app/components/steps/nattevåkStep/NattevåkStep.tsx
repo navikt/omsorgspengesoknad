@@ -11,7 +11,7 @@ import { InjectedIntlProps, injectIntl } from 'react-intl';
 import Box from 'app/components/box/Box';
 import { CustomFormikProps } from '../../../types/FormikProps';
 import { YesOrNo } from '../../../types/YesOrNo';
-import Textarea from '../../textarea/Textarea';
+import Textarea from '../../file-upload-errors/textarea/Textarea';
 
 interface StepProps {
     formikProps: CustomFormikProps;

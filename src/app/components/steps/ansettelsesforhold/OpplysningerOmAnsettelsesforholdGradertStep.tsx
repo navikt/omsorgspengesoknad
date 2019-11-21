@@ -4,7 +4,7 @@ import { HistoryProps } from '../../../types/History';
 import { navigateTo } from '../../../utils/navigationUtils';
 import { Field } from '../../../types/PleiepengesøknadFormData';
 import FormikStep from '../../formik-step/FormikStep';
-import CheckboxPanelGroup from '../../checkbox-panel-group/CheckboxPanelGroup';
+import CheckboxPanelGroup from '../../form-elements/checkbox-panel-group/CheckboxPanelGroup';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { Søkerdata } from '../../../types/Søkerdata';
 import AlertStripe from 'nav-frontend-alertstriper';

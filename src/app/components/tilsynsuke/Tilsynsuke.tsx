@@ -1,5 +1,5 @@
 import React from 'react';
-import TimeInput from '../time-input/TimeInput';
+import TimeInput from '../form-elements/time-input/TimeInput';
 import { Field } from '../../types/PleiepengesøknadFormData';
 import { validateTilsynstimerEnDag } from '../../validation/fieldValidations';
 import { injectIntl, InjectedIntlProps } from 'react-intl';

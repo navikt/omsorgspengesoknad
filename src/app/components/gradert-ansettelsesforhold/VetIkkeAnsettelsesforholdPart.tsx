@@ -1,12 +1,12 @@
 import React from 'react';
 import Box from '../box/Box';
 import { SkjemaGruppe } from 'nav-frontend-skjema';
-import Input from '../input/Input';
+import Input from '../form-elements/input/Input';
 import { AnsettelsesforholdForm, AnsettelsesforholdField, Field } from '../../types/PleiepengesøknadFormData';
 import intlHelper from '../../utils/intlUtils';
 import { validateReduserteArbeidProsent, validateRequiredField } from '../../validation/fieldValidations';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
-import Textarea from '../textarea/Textarea';
+import Textarea from '../file-upload-errors/textarea/Textarea';
 
 interface Props {
     ansettelsesforhold: AnsettelsesforholdForm;

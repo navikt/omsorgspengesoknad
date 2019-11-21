@@ -1,11 +1,11 @@
 import React from 'react';
 import Box from '../box/Box';
 import { SkjemaGruppe } from 'nav-frontend-skjema';
-import Input from '../input/Input';
+import Input from '../form-elements/input/Input';
 import { AnsettelsesforholdForm, AnsettelsesforholdField, Field } from '../../types/PleiepengesøknadFormData';
 import intlHelper from '../../utils/intlUtils';
 import { validateReduserteArbeidProsent, validateRequiredField } from '../../validation/fieldValidations';
-import RadioPanelGroup from '../radio-panel-group/RadioPanelGroup';
+import RadioPanelGroup from '../form-elements/radio-panel-group/RadioPanelGroup';
 import { injectIntl, InjectedIntlProps, FormattedMessage, InjectedIntl } from 'react-intl';
 import CounsellorPanel from '../counsellor-panel/CounsellorPanel';
 import {

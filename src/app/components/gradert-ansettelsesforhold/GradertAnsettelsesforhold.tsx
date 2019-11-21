@@ -10,7 +10,7 @@ import {
 } from 'app/types/PleiepengesøknadFormData';
 import Box from '../box/Box';
 import { validateRequiredField } from 'app/validation/fieldValidations';
-import RadioPanelGroup from '../radio-panel-group/RadioPanelGroup';
+import RadioPanelGroup from '../form-elements/radio-panel-group/RadioPanelGroup';
 import intlHelper from '../../utils/intlUtils';
 import RedusertAnsettelsesforholdPart from './RedusertAnsettelsesforholdPart';
 

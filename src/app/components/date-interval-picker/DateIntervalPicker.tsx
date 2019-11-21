@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Fieldset } from 'nav-frontend-skjema';
 import { FormikDatepickerProps } from '../formik/formik-datepicker/FormikDatepicker';
 import { Field } from '../../types/PleiepengesøknadFormData';
-import Datepicker from '../datepicker/Datepicker';
+import Datepicker from '../form-elements/datepicker/Datepicker';
 import bemHelper from '../../utils/bemUtils';
 import './dateIntervalPicker.less';
 import HelperTextButton from '../helper-text-button/HelperTextButton';
