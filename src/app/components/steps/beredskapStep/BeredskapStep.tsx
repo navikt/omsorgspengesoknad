@@ -7,11 +7,12 @@ import { Field } from '../../../types/PleiepengesøknadFormData';
 import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
 import { validateYesOrNoIsAnswered, validateRequiredField } from '../../../validation/fieldValidations';
 import intlHelper from 'app/utils/intlUtils';
-import { InjectedIntlProps, injectIntl } from 'react-intl';
+import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
 import Box from 'app/components/box/Box';
 import { CustomFormikProps } from '../../../types/FormikProps';
 import { YesOrNo } from '../../../types/YesOrNo';
 import Textarea from '../../textarea/Textarea';
+import CounsellorPanel from '../../counsellor-panel/CounsellorPanel';
 
 interface StepProps {
     formikProps: CustomFormikProps;
@@ -36,6 +37,11 @@ const BeredskapStep: React.FunctionComponent<Props> = ({
             history={history}
             {...stepProps}
             formValues={values}>
+            <Box padBottom="xxl">
+                <CounsellorPanel>
+                    <FormattedMessage id="steg.beredskap.veileder" />
+                </CounsellorPanel>
+            </Box>
             <YesOrNoQuestion
                 legend={intlHelper(intl, 'steg.beredskap.spm')}
                 name={Field.harBeredskap}

@@ -5,7 +5,8 @@ import { Time } from './Time';
 export enum AnsettelsesforholdSkalJobbeSvar {
     'ja' = 'ja',
     'nei' = 'nei',
-    'redusert' = 'redusert'
+    'redusert' = 'redusert',
+    'vetIkke' = 'vetIkke'
 }
 
 export interface Tilsynsuke {
@@ -47,17 +48,13 @@ export enum Field {
     skalBoUtenforNorgeNeste12Mnd = 'skalBoUtenforNorgeNeste12Mnd',
     harMedsøker = 'harMedsøker',
     samtidigHjemme = 'samtidigHjemme',
-    grad = 'grad',
-    dagerPerUkeBorteFraJobb = 'dagerPerUkeBorteFraJobb',
     harNattevåk = 'harNattevåk',
-    harNattevåk_borteFraJobb = 'harNattevåk_borteFraJobb',
     harNattevåk_ekstrainfo = 'harNattevåk_ekstrainfo',
     harBeredskap = 'harBeredskap',
     harBeredskap_ekstrainfo = 'harBeredskap_ekstrainfo',
     tilsynsordning = 'tilsynsordning',
     tilsynsordning__skalBarnHaTilsyn = 'tilsynsordning.skalBarnHaTilsyn',
     tilsynsordning__ja__tilsyn = 'tilsynsordning.ja.tilsyn',
-    tilsynsordning__ja__harEkstrainfo = 'tilsynsordning.ja.harEkstrainfo',
     tilsynsordning__ja__ekstrainfo = 'tilsynsordning.ja.ekstrainfo',
     tilsynsordning__vetIkke__hvorfor = 'tilsynsordning.vetIkke.hvorfor',
     tilsynsordning__vetIkke__ekstrainfo = 'tilsynsordning.vetIkke.ekstrainfo'
@@ -67,6 +64,7 @@ export enum AnsettelsesforholdField {
     skalJobbe = 'skalJobbe',
     timerEllerProsent = 'timerEllerProsent',
     jobberNormaltTimer = 'jobberNormaltTimer',
+    vetIkkeEkstrainfo = 'vetIkkeEkstrainfo',
     skalJobbeTimer = 'skalJobbeTimer',
     skalJobbeProsent = 'skalJobbeProsent'
 }
@@ -75,6 +73,7 @@ export interface AnsettelsesforholdForm extends Ansettelsesforhold {
     [AnsettelsesforholdField.skalJobbe]?: AnsettelsesforholdSkalJobbeSvar;
     [AnsettelsesforholdField.timerEllerProsent]?: 'timer' | 'prosent';
     [AnsettelsesforholdField.jobberNormaltTimer]?: number;
+    [AnsettelsesforholdField.vetIkkeEkstrainfo]?: string;
     [AnsettelsesforholdField.skalJobbeTimer]?: number;
     [AnsettelsesforholdField.skalJobbeProsent]?: number;
 }
@@ -103,11 +102,8 @@ export interface PleiepengesøknadFormData {
     [Field.skalBoUtenforNorgeNeste12Mnd]: YesOrNo;
     [Field.harMedsøker]: YesOrNo;
     [Field.samtidigHjemme]: YesOrNo;
-    [Field.grad]?: number;
-    [Field.dagerPerUkeBorteFraJobb]?: number;
     [Field.tilsynsordning]?: Tilsynsordning;
     [Field.harNattevåk]: YesOrNo;
-    [Field.harNattevåk_borteFraJobb]: YesOrNo;
     [Field.harNattevåk_ekstrainfo]?: string;
     [Field.harBeredskap]: YesOrNo;
     [Field.harBeredskap_ekstrainfo]?: string;
@@ -129,10 +125,7 @@ export const initialValues: PleiepengesøknadFormData = {
     [Field.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.UNANSWERED,
     [Field.harMedsøker]: YesOrNo.UNANSWERED,
     [Field.samtidigHjemme]: YesOrNo.UNANSWERED,
-    [Field.grad]: undefined,
-    [Field.dagerPerUkeBorteFraJobb]: undefined,
     [Field.tilsynsordning]: undefined,
-    [Field.harNattevåk_borteFraJobb]: YesOrNo.UNANSWERED,
     [Field.harNattevåk]: YesOrNo.UNANSWERED,
     [Field.harBeredskap]: YesOrNo.UNANSWERED
 };

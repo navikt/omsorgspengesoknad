@@ -3,20 +3,19 @@ import Page from '../../page/Page';
 import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import Box from '../../box/Box';
 import bemUtils from '../../../utils/bemUtils';
-import Lenke from 'nav-frontend-lenker';
 import CheckmarkIcon from '../../checkmark-icon/CheckmarkIcon';
-import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl';
+import { FormattedMessage, injectIntl, InjectedIntlProps, FormattedHTMLMessage } from 'react-intl';
 import intlHelper from 'app/utils/intlUtils';
 import getLenker from 'app/lenker';
 import './confirmationPage.less';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import AlertStripe from 'nav-frontend-alertstriper';
 
-type Props = InjectedIntlProps;
+type Props = InjectedIntlProps & { numberOfAnsettelsesforhold: number };
 
 const bem = bemUtils('confirmationPage');
 
-const ConfirmationPage: React.FunctionComponent<Props> = ({ intl }) => (
+const ConfirmationPage: React.FunctionComponent<Props> = ({ intl, numberOfAnsettelsesforhold }) => (
     <Page title={intlHelper(intl, 'page.confirmation.sidetittel')} className={bem.block}>
         <div className={bem.element('centeredContent')}>
             <CheckmarkIcon />
@@ -28,17 +27,23 @@ const ConfirmationPage: React.FunctionComponent<Props> = ({ intl }) => (
         </div>
         <Box margin="xl">
             <Ingress>
-                <FormattedMessage id="page.confirmation.part1" />
+                <FormattedMessage id="page.confirmation.undertittel" />
             </Ingress>
-            <Box margin="l">
-                <Ingress>
-                    <FormattedMessage id="page.confirmation.part2" />{' '}
-                    <Lenke href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
-                        <FormattedMessage id="page.confirmation.saksbehandlingstid" />
-                    </Lenke>
-                    .
-                </Ingress>
-            </Box>
+            <ul className="checklist">
+                {numberOfAnsettelsesforhold > 0 && (
+                    <li>
+                        <FormattedHTMLMessage id="page.confirmation.søker" values={{ numberOfAnsettelsesforhold }} />
+                    </li>
+                )}
+                <li>
+                    <FormattedHTMLMessage
+                        id="page.confirmation.nav.html"
+                        values={{
+                            lenke: getLenker(intl.locale).saksbehandlingstider
+                        }}
+                    />
+                </li>
+            </ul>
         </Box>
         {appIsRunningInDemoMode() && (
             <Box margin="xxl">
