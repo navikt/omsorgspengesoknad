@@ -3,15 +3,16 @@ import ApplicationWrapper from './components/application-wrapper/ApplicationWrap
 import { Route, Switch } from 'react-router-dom';
 import RouteConfig from './config/routeConfig';
 import Omsorgspengesøknad from './components/omsorgspengesøknad/Omsorgspengesøknad';
-import IntroPage from './components/pages/intro-page/IntroPage';
 import { render } from 'react-dom';
 import Modal from 'nav-frontend-modal';
 import { Locale } from '../common/types/Locale';
 import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
-import '../common/styles/globalStyles.less';
 import { appIsRunningInDemoMode } from './utils/envUtils';
 import { isFeatureEnabled, Feature } from './utils/featureToggleUtils';
 import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
+import IntroHarRettPage from './components/pages/intro-har-rett-page/IntroHarRettPage';
+import IntroSkjemaPage from './components/pages/intro-skjema-page/IntroSkjemaPage';
+import '../common/styles/globalStyles.less';
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
 
@@ -32,7 +33,8 @@ const App: React.FunctionComponent = () => {
                     ) : (
                         <Switch>
                             <Route path={RouteConfig.SØKNAD_ROUTE_PREFIX} component={Omsorgspengesøknad} />
-                            <Route path="/" component={IntroPage} />
+                            <Route path="/skjema" component={IntroSkjemaPage} />
+                            <Route path="/" component={IntroHarRettPage} />
                         </Switch>
                     )}
                 </>

@@ -1,4 +1,4 @@
-import { Field, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
+import { AppFormField, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import { mapFormDataToApiData } from '../mapFormDataToApiData';
 import { OmsorgspengesøknadApiData } from '../../types/OmsorgspengesøknadApiData';
 import * as dateUtils from '../../../common/utils/dateUtils';
@@ -28,17 +28,17 @@ const attachmentMock1: Partial<AttachmentMock> = { url: 'nav.no/1', failed: true
 const attachmentMock2: Partial<AttachmentMock> = { url: 'nav.no/2', failed: false };
 
 const formDataMock: Partial<OmsorgspengesøknadFormData> = {
-    [Field.barnetsNavn]: 'Ola Foobar',
-    [Field.harBekreftetOpplysninger]: true,
-    [Field.harForståttRettigheterOgPlikter]: true,
-    [Field.søkersRelasjonTilBarnet]: 'mor',
-    [Field.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.YES,
-    [Field.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.NO,
-    [Field.periodeFra]: todaysDate,
-    [Field.periodeTil]: moment(todaysDate)
+    [AppFormField.barnetsNavn]: 'Ola Foobar',
+    [AppFormField.harBekreftetOpplysninger]: true,
+    [AppFormField.harForståttRettigheterOgPlikter]: true,
+    [AppFormField.søkersRelasjonTilBarnet]: 'mor',
+    [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.YES,
+    [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.NO,
+    [AppFormField.periodeFra]: todaysDate,
+    [AppFormField.periodeTil]: moment(todaysDate)
         .add(1, 'day')
         .toDate(),
-    [Field.legeerklæring]: [attachmentMock1 as AttachmentMock, attachmentMock2 as AttachmentMock]
+    [AppFormField.legeerklæring]: [attachmentMock1 as AttachmentMock, attachmentMock2 as AttachmentMock]
 };
 
 jest.mock('../../../common/utils/dateUtils', () => {
@@ -62,11 +62,11 @@ describe('mapFormDataToApiData', () => {
     });
 
     it("should set 'barnetsNavn' in api data correctly", () => {
-        expect(resultingApiData.barn.navn).toEqual(formDataMock[Field.barnetsNavn]);
+        expect(resultingApiData.barn.navn).toEqual(formDataMock[AppFormField.barnetsNavn]);
     });
 
     it("should set 'relasjon_til_barnet' in api data correctly", () => {
-        expect(resultingApiData.relasjon_til_barnet).toEqual(formDataMock[Field.søkersRelasjonTilBarnet]);
+        expect(resultingApiData.relasjon_til_barnet).toEqual(formDataMock[AppFormField.søkersRelasjonTilBarnet]);
     });
 
     it("should set 'medlemskap.skal_bo_i_utlandet_neste_12_mnd' in api data correctly", () => {
@@ -78,13 +78,13 @@ describe('mapFormDataToApiData', () => {
     });
 
     it("should set 'fra_og_med' in api data correctly", () => {
-        expect(dateUtils.formatDate).toHaveBeenCalledWith(formDataMock[Field.periodeFra]);
-        expect(resultingApiData.fra_og_med).toEqual(dateUtils.formatDate(formDataMock[Field.periodeFra]!));
+        expect(dateUtils.formatDate).toHaveBeenCalledWith(formDataMock[AppFormField.periodeFra]);
+        expect(resultingApiData.fra_og_med).toEqual(dateUtils.formatDate(formDataMock[AppFormField.periodeFra]!));
     });
 
     it("should set 'til_og_med' in api data correctly", () => {
-        expect(dateUtils.formatDate).toHaveBeenCalledWith(formDataMock[Field.periodeTil]);
-        expect(resultingApiData.til_og_med).toEqual(dateUtils.formatDate(formDataMock[Field.periodeTil]!));
+        expect(dateUtils.formatDate).toHaveBeenCalledWith(formDataMock[AppFormField.periodeTil]);
+        expect(resultingApiData.til_og_med).toEqual(dateUtils.formatDate(formDataMock[AppFormField.periodeTil]!));
     });
 
     it("should set 'vedlegg' in api data correctly by only including the urls of attachments that have been successfully uploaded", () => {
@@ -99,7 +99,7 @@ describe('mapFormDataToApiData', () => {
         expect(resultingApiData.barn.fodselsnummer).toBeNull();
         const formDataWithFnr: Partial<OmsorgspengesøknadFormData> = {
             ...formDataMock,
-            [Field.barnetsFødselsnummer]: fnr
+            [AppFormField.barnetsFødselsnummer]: fnr
         };
         const result = mapFormDataToApiData(formDataWithFnr as OmsorgspengesøknadFormData, barnMock, 'nb');
         expect(result.barn.fodselsnummer).toEqual(fnr);
@@ -110,7 +110,7 @@ describe('mapFormDataToApiData', () => {
         expect(resultingApiData.barn.alternativ_id).toBeNull();
         const formDataWithFnr: Partial<OmsorgspengesøknadFormData> = {
             ...formDataMock,
-            [Field.barnetsForeløpigeFødselsnummerEllerDNummer]: fnr
+            [AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer]: fnr
         };
         const result = mapFormDataToApiData(formDataWithFnr as OmsorgspengesøknadFormData, barnMock, 'nb');
         expect(result.barn.alternativ_id).toEqual(fnr);
@@ -121,8 +121,8 @@ describe('mapFormDataToApiData', () => {
         expect(resultingApiData.barn.alternativ_id).toBeNull();
         const formDataWithFnr: Partial<OmsorgspengesøknadFormData> = {
             ...formDataMock,
-            [Field.barnetsFødselsnummer]: fnr,
-            [Field.barnetsForeløpigeFødselsnummerEllerDNummer]: fnr
+            [AppFormField.barnetsFødselsnummer]: fnr,
+            [AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer]: fnr
         };
         const result = mapFormDataToApiData(formDataWithFnr as OmsorgspengesøknadFormData, barnMock, 'nb');
         expect(result.barn.alternativ_id).toBeNull();
@@ -130,12 +130,12 @@ describe('mapFormDataToApiData', () => {
     });
 
     it('should set har_bekreftet_opplysninger to value of harBekreftetOpplysninger in form data', () => {
-        expect(resultingApiData.har_bekreftet_opplysninger).toBe(formDataMock[Field.harBekreftetOpplysninger]);
+        expect(resultingApiData.har_bekreftet_opplysninger).toBe(formDataMock[AppFormField.harBekreftetOpplysninger]);
     });
 
     it('should set har_forstått_rettigheter_og_plikter to value of harForståttRettigheterOgPlikter in form data', () => {
         expect(resultingApiData.har_forstatt_rettigheter_og_plikter).toBe(
-            formDataMock[Field.harForståttRettigheterOgPlikter]
+            formDataMock[AppFormField.harForståttRettigheterOgPlikter]
         );
     });
 });

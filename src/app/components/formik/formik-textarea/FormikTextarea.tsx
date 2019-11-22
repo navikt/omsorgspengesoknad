@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
+import { Field, FieldProps } from 'formik';
 import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
 import { FormikValidationProps } from 'app/types/FormikProps';
 import TextareaBase from '../../../../common/form-components/textarea-base/TextareaBase';
@@ -22,8 +22,8 @@ const FormikTextarea = <T extends {}>(): React.FunctionComponent<Props & FormikT
     intl,
     ...otherTextareaProps
 }) => (
-    <FormikField validate={validate} name={name}>
-        {({ field, form: { errors, submitCount } }: FormikFieldProps) => {
+    <Field validate={validate} name={name}>
+        {({ field, form: { errors, submitCount } }: FieldProps) => {
             const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
             return (
                 <TextareaBase
@@ -35,7 +35,7 @@ const FormikTextarea = <T extends {}>(): React.FunctionComponent<Props & FormikT
                 />
             );
         }}
-    </FormikField>
+    </Field>
 );
 
 export default FormikTextarea;

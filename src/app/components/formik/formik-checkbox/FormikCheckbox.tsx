@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
+import { Field, FieldProps } from 'formik';
 import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
 import { Checkbox, CheckboxProps } from 'nav-frontend-skjema';
 import { FormikValidateFunction, FormikValidationProps } from 'app/types/FormikProps';
@@ -13,8 +13,8 @@ interface FormikCheckboxProps<T> {
 const FormikCheckbox = <T extends {}>(): React.FunctionComponent<
     CheckboxProps & FormikCheckboxProps<T> & FormikValidationProps
 > => ({ name, label, validate, afterOnChange, intl, ...otherInputProps }) => (
-    <FormikField validate={validate} name={name}>
-        {({ field, form: { errors, setFieldValue, submitCount } }: FormikFieldProps) => {
+    <Field validate={validate} name={name}>
+        {({ field, form: { errors, setFieldValue, submitCount } }: FieldProps) => {
             const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
             return (
                 <Checkbox
@@ -34,7 +34,7 @@ const FormikCheckbox = <T extends {}>(): React.FunctionComponent<
                 />
             );
         }}
-    </FormikField>
+    </Field>
 );
 
 export default FormikCheckbox;

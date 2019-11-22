@@ -6,7 +6,7 @@ import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils'
 import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringFileList from '../../legeerklæring-file-list/LegeerklæringFileList';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
-import { Field } from '../../../types/OmsorgspengesøknadFormData';
+import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
 import { validateLegeerklæring } from '../../../validation/fieldValidations';
 import HelperTextPanel from '../../../../common/components/helper-text-panel/HelperTextPanel';
@@ -61,7 +61,7 @@ const LegeerklæringStep = ({ history, intl, nextStepRoute, formikProps, ...step
                     </HelperTextPanel>
                     <Box margin="l">
                         <FormikFileUploader
-                            name={Field.legeerklæring}
+                            name={AppFormField.legeerklæring}
                             label={intlHelper(intl, 'steg.lege.vedlegg')}
                             onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
                             onFileInputClick={() => {

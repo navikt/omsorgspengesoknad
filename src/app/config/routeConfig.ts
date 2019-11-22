@@ -1,4 +1,5 @@
 enum RouteConfig {
+    SKJEMA = '/skjema',
     UTILGJENGELIG_ROUTE = '/utilgjengelig',
     SØKNAD_ROUTE_PREFIX = '/soknad',
     ERROR_PAGE_ROUTE = '/soknad/feil',

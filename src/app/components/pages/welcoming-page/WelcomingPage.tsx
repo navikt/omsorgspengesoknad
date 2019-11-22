@@ -7,7 +7,7 @@ import Box from '../../../../common/components/box/Box';
 import intlHelper from '../../../../common/utils/intlUtils';
 import { HistoryProps } from '../../../../common/types/History';
 import ConfirmationCheckboxPanel from '../../confirmation-checkbox-panel/ConfirmationCheckboxPanel';
-import { Field } from '../../../types/OmsorgspengesøknadFormData';
+import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateTo } from '../../../utils/navigationUtils';
 import { StepConfigProps } from '../../../config/stepConfig';
 import { userHasSubmittedValidForm } from '../../../utils/formikUtils';
@@ -17,8 +17,8 @@ import Lenke from 'nav-frontend-lenker';
 import DinePlikterModal from '../../dine-plikter-modal/DinePlikterModal';
 import BehandlingAvPersonopplysningerModal from '../../behandling-av-personopplysninger-modal/BehandlingAvPersonopplysningerModal';
 import LegeerklæringInformationPanel from '../../legeerklæring-information-panel/LegeerklæringInformationPanel';
-import './welcomingPage.less';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
+import './welcomingPage.less';
 
 const bem = bemHelper('welcomingPage');
 
@@ -115,7 +115,7 @@ class WelcomingPage extends React.Component<Props, WelcomingPageState> {
                         <Box margin="xl">
                             <ConfirmationCheckboxPanel
                                 label={intlHelper(intl, 'welcomingPage.samtykke.tekst')}
-                                name={Field.harForståttRettigheterOgPlikter}
+                                name={AppFormField.harForståttRettigheterOgPlikter}
                                 validate={(value) => {
                                     let result;
                                     if (value !== true) {

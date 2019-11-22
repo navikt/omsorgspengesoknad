@@ -1,6 +1,6 @@
 import { StepID, getStepConfig } from '../config/stepConfig';
 import RouteConfig from '../config/routeConfig';
-import { Field, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
+import { AppFormField, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import { appIsRunningInDevEnvironment, appIsRunningInDemoMode } from './envUtils';
 import {
     legeerklæringStepAvailable,
@@ -36,7 +36,7 @@ export const isAvailable = (path: StepID | RouteConfig, values: Omsorgspengesøk
             case StepID.SUMMARY:
                 return summaryStepAvailable(values);
             case RouteConfig.SØKNAD_SENDT_ROUTE:
-                return values[Field.harBekreftetOpplysninger];
+                return values[AppFormField.harBekreftetOpplysninger];
         }
     }
     return true;

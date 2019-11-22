@@ -3,7 +3,7 @@ import { navigateTo } from '../../../utils/navigationUtils';
 import { StepID, StepConfigProps } from '../../../config/stepConfig';
 import { HistoryProps } from '../../../../common/types/History';
 import FormikStep from '../../formik-step/FormikStep';
-import { Field } from '../../../types/OmsorgspengesøknadFormData';
+import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
 import { validateYesOrNoIsAnswered } from '../../../validation/fieldValidations';
 import intlHelper from 'common/utils/intlUtils';
@@ -32,14 +32,14 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
             </Box>
             <YesOrNoQuestion
                 legend={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.spm')}
-                name={Field.harBoddUtenforNorgeSiste12Mnd}
+                name={AppFormField.harBoddUtenforNorgeSiste12Mnd}
                 validate={validateYesOrNoIsAnswered}
                 helperText={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.hjelp')}
             />
             <Box margin="xl">
                 <YesOrNoQuestion
                     legend={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.spm')}
-                    name={Field.skalBoUtenforNorgeNeste12Mnd}
+                    name={AppFormField.skalBoUtenforNorgeNeste12Mnd}
                     validate={validateYesOrNoIsAnswered}
                     helperText={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
                 />

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { HistoryProps } from '../../../../common/types/History';
 import { StepID, StepConfigProps } from '../../../config/stepConfig';
 import { navigateTo } from '../../../utils/navigationUtils';
-import { Field } from '../../../types/OmsorgspengesøknadFormData';
+import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import FormikStep from '../../formik-step/FormikStep';
 import DateIntervalPicker from '../../date-interval-picker/DateIntervalPicker';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
@@ -59,8 +59,8 @@ class OpplysningerOmTidsromStep extends React.Component<Props, OpplysningerOmTid
         const { history, intl, formikProps, ...stepProps } = this.props;
         const { isLoadingNextStep } = this.state;
 
-        const fraDato = this.props.formikProps.values[Field.periodeFra];
-        const tilDato = this.props.formikProps.values[Field.periodeTil];
+        const fraDato = this.props.formikProps.values[AppFormField.periodeFra];
+        const tilDato = this.props.formikProps.values[AppFormField.periodeTil];
 
         return (
             <SøkerdataContextConsumer>
@@ -79,7 +79,7 @@ class OpplysningerOmTidsromStep extends React.Component<Props, OpplysningerOmTid
                             fromDatepickerProps={{
                                 label: intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.fom'),
                                 validate: this.validateFraDato,
-                                name: Field.periodeFra,
+                                name: AppFormField.periodeFra,
                                 dateLimitations: {
                                     minDato: date3YearsAgo.toDate(),
                                     maksDato: this.validateTilDato(tilDato) === undefined ? tilDato : undefined
@@ -88,7 +88,7 @@ class OpplysningerOmTidsromStep extends React.Component<Props, OpplysningerOmTid
                             toDatepickerProps={{
                                 label: intlHelper(intl, 'steg.tidsrom.hvilketTidsrom.tom'),
                                 validate: this.validateTilDato,
-                                name: Field.periodeTil,
+                                name: AppFormField.periodeTil,
                                 dateLimitations: {
                                     minDato:
                                         this.validateFraDato(fraDato) === undefined ? fraDato : date3YearsAgo.toDate()

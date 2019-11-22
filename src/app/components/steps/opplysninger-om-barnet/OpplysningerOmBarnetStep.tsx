@@ -13,7 +13,7 @@ import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { Søkerdata } from '../../../types/Søkerdata';
 import { CustomFormikProps } from '../../../types/FormikProps';
 import { formatName } from '../../../../common/utils/personUtils';
-import { Field } from '../../../types/OmsorgspengesøknadFormData';
+import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import Checkbox from '../../form-elements/checkbox/Checkbox';
 import Input from '../../form-elements/input/Input';
 import FormikStep from '../../formik-step/FormikStep';
@@ -24,7 +24,6 @@ import { prettifyDate } from '../../../../common/utils/dateUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import intlHelper from 'common/utils/intlUtils';
-import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 
 interface OpplysningerOmBarnetStepProps {
     formikProps: CustomFormikProps;
@@ -33,11 +32,12 @@ interface OpplysningerOmBarnetStepProps {
 type Props = OpplysningerOmBarnetStepProps & HistoryProps & InjectedIntlProps & StepConfigProps;
 
 const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
-    formikProps: { handleSubmit, setFieldValue, values },
+    formikProps,
     nextStepRoute,
     history,
     intl
 }: Props) => {
+    const { handleSubmit, setFieldValue, values } = formikProps;
     const navigate = nextStepRoute ? () => navigateTo(nextStepRoute, history) : undefined;
     const { søknadenGjelderEtAnnetBarn, barnetHarIkkeFåttFødselsnummerEnda } = values;
     return (
@@ -53,7 +53,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                         <>
                             <RadioPanelGroup
                                 legend={intlHelper(intl, 'steg.omBarnet.hvilketBarn.spm')}
-                                name={Field.barnetSøknadenGjelder}
+                                name={AppFormField.barnetSøknadenGjelder}
                                 radios={søkerdata.barn.map((barn) => {
                                     const { fornavn, mellomnavn, etternavn, fodselsdato, aktoer_id } = barn;
                                     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
@@ -81,28 +81,27 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                                     return validateValgtBarn(value);
                                 }}
                             />
-                            {appIsRunningInDemoMode() === false && (
-                                <Checkbox
-                                    label={intlHelper(intl, 'steg.omBarnet.gjelderAnnetBarn')}
-                                    name={Field.søknadenGjelderEtAnnetBarn}
-                                    afterOnChange={(newValue) => {
-                                        if (newValue) {
-                                            resetFieldValue(Field.barnetSøknadenGjelder, setFieldValue);
-                                        } else {
-                                            resetFieldValues(
-                                                [
-                                                    Field.barnetsFødselsnummer,
-                                                    Field.barnetHarIkkeFåttFødselsnummerEnda,
-                                                    Field.barnetsForeløpigeFødselsnummerEllerDNummer,
-                                                    Field.barnetsNavn,
-                                                    Field.søkersRelasjonTilBarnet
-                                                ],
-                                                setFieldValue
-                                            );
-                                        }
-                                    }}
-                                />
-                            )}
+
+                            <Checkbox
+                                label={intlHelper(intl, 'steg.omBarnet.gjelderAnnetBarn')}
+                                name={AppFormField.søknadenGjelderEtAnnetBarn}
+                                afterOnChange={(newValue) => {
+                                    if (newValue) {
+                                        resetFieldValue(AppFormField.barnetSøknadenGjelder, setFieldValue);
+                                    } else {
+                                        resetFieldValues(
+                                            [
+                                                AppFormField.barnetsFødselsnummer,
+                                                AppFormField.barnetHarIkkeFåttFødselsnummerEnda,
+                                                AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer,
+                                                AppFormField.barnetsNavn,
+                                                AppFormField.søkersRelasjonTilBarnet
+                                            ],
+                                            setFieldValue
+                                        );
+                                    }
+                                }}
+                            />
                         </>
                     )
                 }
@@ -114,7 +113,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                         <>
                             <Input
                                 label={intlHelper(intl, 'steg.omBarnet.fnr.spm')}
-                                name={Field.barnetsFødselsnummer}
+                                name={AppFormField.barnetsFødselsnummer}
                                 validate={(fnr) => {
                                     if (!barnetHarIkkeFåttFødselsnummerEnda) {
                                         return validateFødselsnummer(fnr);
@@ -128,17 +127,17 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                             />
                             <Checkbox
                                 label={intlHelper(intl, 'steg.omBarnet.fnr.ikkeFnrEnda')}
-                                name={Field.barnetHarIkkeFåttFødselsnummerEnda}
+                                name={AppFormField.barnetHarIkkeFåttFødselsnummerEnda}
                                 afterOnChange={(newValue) => {
                                     if (newValue) {
-                                        setFieldValue(Field.barnetsFødselsnummer, '');
+                                        setFieldValue(AppFormField.barnetsFødselsnummer, '');
                                     }
                                 }}
                             />
                             {barnetHarIkkeFåttFødselsnummerEnda && (
                                 <Input
                                     label={intlHelper(intl, 'steg.omBarnet.fnr.foreløpig')}
-                                    name={Field.barnetsForeløpigeFødselsnummerEllerDNummer}
+                                    name={AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer}
                                     validate={(foreløpigFnr) => {
                                         if (barnetHarIkkeFåttFødselsnummerEnda) {
                                             return validateForeløpigFødselsnummer(foreløpigFnr);
@@ -152,7 +151,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                             )}
                             <Input
                                 label={intlHelper(intl, 'steg.omBarnet.navn')}
-                                name={Field.barnetsNavn}
+                                name={AppFormField.barnetsNavn}
                                 validate={(navn) => {
                                     if (barnetHarIkkeFåttFødselsnummerEnda) {
                                         return validateNavn(navn, false);
@@ -164,7 +163,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                             />
                             <Input
                                 label={intlHelper(intl, 'steg.omBarnet.relasjon')}
-                                name={Field.søkersRelasjonTilBarnet}
+                                name={AppFormField.søkersRelasjonTilBarnet}
                                 validate={validateRelasjonTilBarnet}
                                 bredde="XL"
                                 helperText={intlHelper(intl, 'steg.omBarnet.relasjon.eksempel')}

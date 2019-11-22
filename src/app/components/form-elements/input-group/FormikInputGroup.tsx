@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
+import { Field, FieldProps } from 'formik';
 import { FormikValidateFunction, FormikValidationProps } from 'app/types/FormikProps';
 import { getValidationErrorPropsWithIntl } from 'app/utils/navFrontendUtils';
 import { SkjemaGruppe } from 'nav-frontend-skjema';
@@ -20,8 +20,8 @@ const FormikInputGroup = <T extends {}>(): React.FunctionComponent<Props<T> & Fo
     validate,
     intl
 }) => (
-    <FormikField validate={validate} name={name}>
-        {({ field, form: { errors, submitCount } }: FormikFieldProps) => {
+    <Field validate={validate} name={name}>
+        {({ field, form: { errors, submitCount } }: FieldProps) => {
             const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
             return (
                 <div className="formikInputGroupWrapper" id={field.name} tabIndex={errorMsgProps.feil ? -1 : undefined}>
@@ -31,7 +31,7 @@ const FormikInputGroup = <T extends {}>(): React.FunctionComponent<Props<T> & Fo
                 </div>
             );
         }}
-    </FormikField>
+    </Field>
 );
 
 export default FormikInputGroup;

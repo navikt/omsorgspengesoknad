@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArrayHelpers, Field as FormikField, FieldArray, FieldProps as FormikFieldProps } from 'formik';
+import { ArrayHelpers, Field, FieldArray, FieldProps } from 'formik';
 import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
 import FileInputBase from '../../../../common/form-components/file-input-base/FileInputBase';
 import { FormikValidationProps } from 'app/types/FormikProps';
@@ -24,8 +24,8 @@ const FormikFileInput = <T extends {}>(): React.FunctionComponent<FormikFileInpu
     <FieldArray
         name={`${name}`}
         render={(arrayHelpers) => (
-            <FormikField validate={validate} name={name}>
-                {({ field, form: { errors, submitCount } }: FormikFieldProps) => {
+            <Field validate={validate} name={name}>
+                {({ field, form: { errors, submitCount } }: FieldProps) => {
                     const errorMsgProps =
                         submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
                     return (
@@ -41,7 +41,7 @@ const FormikFileInput = <T extends {}>(): React.FunctionComponent<FormikFileInpu
                         />
                     );
                 }}
-            </FormikField>
+            </Field>
         )}
     />
 );

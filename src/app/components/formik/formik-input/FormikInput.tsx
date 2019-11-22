@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
+import { Field, FieldProps } from 'formik';
 import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
 import InputBase, { InputBaseProps } from '../../../../common/form-components/input-base/InputBase';
 import { NavFrontendInputProps } from 'nav-frontend-skjema';
@@ -18,8 +18,8 @@ const FormikInput = <T extends {}>(): React.FunctionComponent<Props & FormikInpu
     intl,
     ...otherInputProps
 }) => (
-    <FormikField validate={validate} name={name}>
-        {({ field, form: { errors, submitCount } }: FormikFieldProps) => {
+    <Field validate={validate} name={name}>
+        {({ field, form: { errors, submitCount } }: FieldProps) => {
             const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
             return (
                 <InputBase
@@ -31,7 +31,7 @@ const FormikInput = <T extends {}>(): React.FunctionComponent<Props & FormikInpu
                 />
             );
         }}
-    </FormikField>
+    </Field>
 );
 
 export default FormikInput;

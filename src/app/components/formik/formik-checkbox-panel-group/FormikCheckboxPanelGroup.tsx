@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
+import { Field, FieldProps } from 'formik';
 import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
 import CheckboxPanelGroupBase, {
     CheckboxPanelExpandedContentRenderer
@@ -29,8 +29,8 @@ interface FormikCheckboxPanelGroupProps<T> {
 const FormikCheckboxPanelGroup = <T extends {}>(): React.FunctionComponent<
     FormikCheckboxPanelGroupProps<T> & FormikValidationProps
 > => ({ name, validate, legend, checkboxes, singleColumn: columns, helperText, intl, valueKey }) => (
-    <FormikField validate={validate} name={name}>
-        {({ field, form: { errors, submitCount, setFieldValue } }: FormikFieldProps) => {
+    <Field validate={validate} name={name}>
+        {({ field, form: { errors, submitCount, setFieldValue } }: FieldProps) => {
             const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
             return (
                 <CheckboxPanelGroupBase
@@ -55,7 +55,7 @@ const FormikCheckboxPanelGroup = <T extends {}>(): React.FunctionComponent<
                 />
             );
         }}
-    </FormikField>
+    </Field>
 );
 
 export default FormikCheckboxPanelGroup;

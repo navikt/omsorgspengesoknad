@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Field as FormikField, FieldProps as FormikFieldProps } from 'formik';
+import { Field, FieldProps } from 'formik';
 import DatepickerBase, { DateLimitiations } from '../../../../common/form-components/datepicker-base/DatepickerBase';
 import { FormikValidateFunction, FormikValidationProps } from 'app/types/FormikProps';
 import { getValidationErrorPropsWithIntl } from 'app/utils/navFrontendUtils';
@@ -14,8 +14,8 @@ export interface FormikDatepickerProps<T> {
 const FormikDatepicker = <T extends {}>(): React.FunctionComponent<
     FormikDatepickerProps<T> & FormikValidationProps
 > => ({ name, validate, label, dateLimitations, intl, ...otherProps }) => (
-    <FormikField validate={validate} name={name}>
-        {({ field, form: { errors, submitCount, setFieldValue } }: FormikFieldProps) => {
+    <Field validate={validate} name={name}>
+        {({ field, form: { errors, submitCount, setFieldValue } }: FieldProps) => {
             const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
             return (
                 <DatepickerBase
@@ -32,7 +32,7 @@ const FormikDatepicker = <T extends {}>(): React.FunctionComponent<
                 />
             );
         }}
-    </FormikField>
+    </Field>
 );
 
 export default FormikDatepicker;

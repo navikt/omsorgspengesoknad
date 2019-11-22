@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Fieldset } from 'nav-frontend-skjema';
 import { FormikDatepickerProps } from '../formik/formik-datepicker/FormikDatepicker';
-import { Field } from '../../types/OmsorgspengesøknadFormData';
+import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import Datepicker from '../form-elements/datepicker/Datepicker';
 import bemHelper from '../../../common/utils/bemUtils';
 import './dateIntervalPicker.less';
@@ -10,8 +10,8 @@ import HelperTextPanel from '../../../common/components/helper-text-panel/Helper
 
 interface DateIntervalPickerProps {
     legend: string;
-    fromDatepickerProps: FormikDatepickerProps<Field>;
-    toDatepickerProps: FormikDatepickerProps<Field>;
+    fromDatepickerProps: FormikDatepickerProps<AppFormField>;
+    toDatepickerProps: FormikDatepickerProps<AppFormField>;
     helperText?: string;
 }
 
