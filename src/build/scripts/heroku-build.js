@@ -9,10 +9,8 @@ function createEnvSettingsFileForHeroku() {
         fsExtra.writeFileSync(
             settingsFile,
             `window.appSettings = {
-                API_URL: 'https://pleiepenger.herokuapp.com/',
-                LOGIN_URL: 'https://pleiepenger.herokuapp.com/',
-                TOGGLE_FJERN_GRAD: 'on',
-                TOGGLE_TILSYN: 'on',
+                API_URL: 'https://omsorgspengesoknad.herokuapp.com/',
+                LOGIN_URL: 'https://omsorgspengesoknad.herokuapp.com/',
                 DEMO_MODE: 'on'
             };`
         );

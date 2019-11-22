@@ -78,15 +78,15 @@
 
     "introHarRettPage.tittel": "Søknad om omsorgspenger",
     "introHarRettPage.stegTittel": "Har jeg rett til å søke om utvidet rett?",
-    "introHarRettPage.tekst": "Fusce convallis luctus varius. Donec egestas at nisi euismod imperdiet. Proin vulputate gravida felis, vel vestibulum tortor vestibulum vitae. Etiam vehicula, elit ac consequat rhoncus, urna neque iaculis tortor",
+    "introHarRettPage.tekst": "Informasjon om hvem som har rett",
     "introHarRettPage.yrkesaktiv.spm": "Er du yrkesaktiv",
-    "introHarRettPage.infoIkkeYrkesaktiv": "Sed varius sed felis quis varius. Donec eget congue erat, sed tincidunt lorem. Donec elit sem, imperdiet a tortor vitae, efficitur bibendum eros. Phasellus semper magna id erat aliquam finibus.",
+    "introHarRettPage.infoIkkeYrkesaktiv": "Informasjon om når en ikke har rett.",
 
     "introSkjemaPage.tittel": "Søknad om omsorgspenger",
     "introSkjemaPage.stegTittel": "Kan jeg bruke den digitale omsorgspengesøknaden?",
-    "introSkjemaPage.tekst": "Aliquam ultrices accumsan nunc, sit amet fringilla libero posuere vel. Nam mollis, lorem at commodo vulputate, erat sapien maximus or.",
+    "introSkjemaPage.tekst": "Informasjon om hvem denne søknaden er for",
     "introSkjemaPage.spm.kroniskEllerFunksjonshemmende": "Har du et barn som har en kronisk sykdom eller funksjonshemming?",
-    "introSkjemaPage.infoIkkeKroniskEllerFunksjonshemmende": "Etiam a lacinia libero. Sed volutpat mi ac dolor varius ultrices. Morbi sagittis metus lectus, in laoreet metus bibendum a. Nam orci magna.",
+    "introSkjemaPage.infoIkkeKroniskEllerFunksjonshemmende.html": "Du fyller i stedet ut <a href=\"{url}\" class=\"lenke\">søknaden på papir</a> og sender den i posten.",
 
     "welcomingPage.sidetittel": "Søknad om omsorgspenger",
     "welcomingPage.banner.tittel": "Hei,",

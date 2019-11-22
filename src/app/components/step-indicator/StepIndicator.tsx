@@ -22,7 +22,7 @@ const StepIndicator: React.FunctionComponent<StepIndicatorProps & InjectedIntlPr
     stepConfig,
     intl
 }) => (
-    <NAVStepIndicator visLabel={true} autoResponsiv={true} aktivtSteg={activeStep}>
+    <NAVStepIndicator visLabel={false} autoResponsiv={false} aktivtSteg={activeStep}>
         {renderSteps(stepConfig, intl)}
     </NAVStepIndicator>
 );

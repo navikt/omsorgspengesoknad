@@ -7,7 +7,6 @@ import { render } from 'react-dom';
 import Modal from 'nav-frontend-modal';
 import { Locale } from '../common/types/Locale';
 import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
-import { appIsRunningInDemoMode } from './utils/envUtils';
 import { isFeatureEnabled, Feature } from './utils/featureToggleUtils';
 import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
 import IntroHarRettPage from './components/pages/intro-har-rett-page/IntroHarRettPage';
@@ -25,20 +24,17 @@ const App: React.FunctionComponent = () => {
                 setLocaleInSessionStorage(activeLocale);
                 setLocale(activeLocale);
             }}>
-            {appIsRunningInDemoMode() && <Omsorgspengesøknad />}
-            {appIsRunningInDemoMode() === false && (
-                <>
-                    {isFeatureEnabled(Feature.UTILGJENGELIG) ? (
-                        <UnavailablePage />
-                    ) : (
-                        <Switch>
-                            <Route path={RouteConfig.SØKNAD_ROUTE_PREFIX} component={Omsorgspengesøknad} />
-                            <Route path="/skjema" component={IntroSkjemaPage} />
-                            <Route path="/" component={IntroHarRettPage} />
-                        </Switch>
-                    )}
-                </>
-            )}
+            <>
+                {isFeatureEnabled(Feature.UTILGJENGELIG) ? (
+                    <UnavailablePage />
+                ) : (
+                    <Switch>
+                        <Route path={RouteConfig.SØKNAD_ROUTE_PREFIX} component={Omsorgspengesøknad} />
+                        <Route path="/skjema" component={IntroSkjemaPage} />
+                        <Route path="/" component={IntroHarRettPage} />
+                    </Switch>
+                )}
+            </>
         </ApplicationWrapper>
     );
 };

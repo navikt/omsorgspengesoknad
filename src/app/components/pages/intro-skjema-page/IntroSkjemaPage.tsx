@@ -11,6 +11,7 @@ import { FormattedMessage, InjectedIntlProps, injectIntl, FormattedHTMLMessage }
 import intlHelper from 'common/utils/intlUtils';
 import Lenke from 'nav-frontend-lenker';
 import RouteConfig from '../../../config/routeConfig';
+import getLenker from '../../../lenker';
 
 const bem = bemUtils('introPage');
 
@@ -38,7 +39,10 @@ const IntroSkjemaPage: React.StatelessComponent<InjectedIntlProps> = ({ intl }) 
             <Box margin="xl" textAlignCenter={true}>
                 {kroniskEllerFunksjonshemmende === YesOrNo.NO && (
                     <CounsellorPanel>
-                        <FormattedHTMLMessage id={`introSkjemaPage.infoIkkeKroniskEllerFunksjonshemmende`} />
+                        <FormattedHTMLMessage
+                            id={`introSkjemaPage.infoIkkeKroniskEllerFunksjonshemmende.html`}
+                            values={{ url: getLenker(intl.locale).papirskjemaPrivat }}
+                        />
                     </CounsellorPanel>
                 )}
                 {kroniskEllerFunksjonshemmende === YesOrNo.YES && (
