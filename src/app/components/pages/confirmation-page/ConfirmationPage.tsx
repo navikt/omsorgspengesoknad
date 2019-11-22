@@ -40,7 +40,7 @@ const ConfirmationPage: React.FunctionComponent<Props> = ({ intl }) => (
                 </li>
             </ul>
         </Box>
-        {appIsRunningInDemoMode() && (
+        {appIsRunningInDemoMode() && 1 + 1 === 3 && (
             <Box margin="xxl">
                 <AlertStripe type="info">
                     <p>
