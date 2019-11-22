@@ -7,13 +7,14 @@ import {
     validateFødselsnummer,
     validateNavn,
     validateRelasjonTilBarnet,
-    validateValgtBarn
+    validateValgtBarn,
+    validateYesOrNoIsAnswered
 } from '../../../validation/fieldValidations';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { Søkerdata } from '../../../types/Søkerdata';
 import { CustomFormikProps } from '../../../types/FormikProps';
 import { formatName } from '../../../../common/utils/personUtils';
-import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
+import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import Checkbox from '../../form-elements/checkbox/Checkbox';
 import Input from '../../form-elements/input/Input';
 import FormikStep from '../../formik-step/FormikStep';
@@ -24,12 +25,23 @@ import { prettifyDate } from '../../../../common/utils/dateUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import intlHelper from 'common/utils/intlUtils';
+import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
+import { YesOrNo } from '../../../../common/types/YesOrNo';
+import Box from '../../../../common/components/box/Box';
+import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
 
 interface OpplysningerOmBarnetStepProps {
     formikProps: CustomFormikProps;
 }
 
 type Props = OpplysningerOmBarnetStepProps & HistoryProps & InjectedIntlProps & StepConfigProps;
+
+const canShowSubmitButton = (values: OmsorgspengesøknadFormData): boolean => {
+    if (values[AppFormField.sammeAdresse] === YesOrNo.NO && values[AppFormField.delerOmsorg] === YesOrNo.NO) {
+        return false;
+    }
+    return true;
+};
 
 const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
     formikProps,
@@ -40,13 +52,15 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
     const { handleSubmit, setFieldValue, values } = formikProps;
     const navigate = nextStepRoute ? () => navigateTo(nextStepRoute, history) : undefined;
     const { søknadenGjelderEtAnnetBarn, barnetHarIkkeFåttFødselsnummerEnda } = values;
+    const hasChosenRegisteredChild = values[AppFormField.barnetSøknadenGjelder].length > 0;
     return (
         <FormikStep
             id={StepID.OPPLYSNINGER_OM_BARNET}
             onValidFormSubmit={navigate}
             handleSubmit={handleSubmit}
             history={history}
-            formValues={values}>
+            formValues={values}
+            showSubmitButton={canShowSubmitButton(values)}>
             <SøkerdataContextConsumer>
                 {(søkerdata: Søkerdata) =>
                     harRegistrerteBarn(søkerdata) && (
@@ -81,7 +95,6 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                                     return validateValgtBarn(value);
                                 }}
                             />
-
                             <Checkbox
                                 label={intlHelper(intl, 'steg.omBarnet.gjelderAnnetBarn')}
                                 name={AppFormField.søknadenGjelderEtAnnetBarn}
@@ -172,6 +185,39 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                     )
                 }
             </SøkerdataContextConsumer>
+            {(hasChosenRegisteredChild ||
+                søknadenGjelderEtAnnetBarn === true ||
+                values[AppFormField.sammeAdresse] !== undefined) /** Do not hide if user has already answered */ && (
+                <>
+                    <Box margin="xl">
+                        <YesOrNoQuestion
+                            legend="Er du folkeregistrert på samme adresse som barnet?"
+                            name={AppFormField.sammeAdresse}
+                            validate={validateYesOrNoIsAnswered}
+                        />
+                    </Box>
+                    {values[AppFormField.sammeAdresse] === YesOrNo.NO && (
+                        <Box>
+                            <YesOrNoQuestion
+                                legend="Deler du omsorgen med den andre forelderen?"
+                                name={AppFormField.delerOmsorg}
+                                validate={validateYesOrNoIsAnswered}
+                            />
+                            {values[AppFormField.delerOmsorg] === YesOrNo.YES && (
+                                <Box>
+                                    <CounsellorPanel>Info om å laste opp avtale senere i prosessen</CounsellorPanel>
+                                </Box>
+                            )}
+
+                            {values[AppFormField.delerOmsorg] === YesOrNo.NO && (
+                                <Box>
+                                    <CounsellorPanel>Info om at dette er et krav</CounsellorPanel>
+                                </Box>
+                            )}
+                        </Box>
+                    )}
+                </>
+            )}
         </FormikStep>
     );
 };
