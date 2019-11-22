@@ -9,6 +9,10 @@ import { Locale } from 'common/types/Locale';
 
 export const mapFormDataToApiData = (
     {
+        kroniskEllerFunksjonshemming,
+        delerOmsorg,
+        sammeAdresse,
+        erYrkesaktiv,
         barnetsNavn,
         barnetsFødselsnummer,
         barnetsForeløpigeFødselsnummerEllerDNummer,
@@ -19,6 +23,7 @@ export const mapFormDataToApiData = (
         periodeFra,
         periodeTil,
         legeerklæring,
+        samværsavtale,
         harBoddUtenforNorgeSiste12Mnd,
         skalBoUtenforNorgeNeste12Mnd
     }: OmsorgspengesøknadFormData,
@@ -26,6 +31,7 @@ export const mapFormDataToApiData = (
     sprak: Locale
 ): OmsorgspengesøknadApiData => {
     const barnObject: BarnToSendToApi = { navn: null, fodselsnummer: null, alternativ_id: null, aktoer_id: null };
+
     if (barnetSøknadenGjelder) {
         const barnChosenFromList = barn.find((currentBarn) => currentBarn.aktoer_id === barnetSøknadenGjelder);
         const { fornavn, etternavn, mellomnavn, aktoer_id } = barnChosenFromList!;
@@ -43,6 +49,9 @@ export const mapFormDataToApiData = (
     const apiData: OmsorgspengesøknadApiData = {
         new_version: true,
         sprak,
+        kronisk_eller_funksjonshemming: kroniskEllerFunksjonshemming === YesOrNo.YES,
+        deler_omsorg: delerOmsorg === YesOrNo.YES,
+        er_yrkesaktiv: erYrkesaktiv === YesOrNo.YES,
         barn: barnObject,
         relasjon_til_barnet: barnObject.aktoer_id ? null : søkersRelasjonTilBarnet,
         medlemskap: {
@@ -52,6 +61,9 @@ export const mapFormDataToApiData = (
         fra_og_med: formatDate(periodeFra!),
         til_og_med: formatDate(periodeTil!),
         vedlegg: legeerklæring.filter((attachment) => !attachmentUploadHasFailed(attachment)).map(({ url }) => url!),
+        samvarsavtale: samværsavtale
+            ? samværsavtale.filter((attachment) => !attachmentUploadHasFailed(attachment)).map(({ url }) => url!)
+            : undefined,
         har_bekreftet_opplysninger: harBekreftetOpplysninger,
         har_forstatt_rettigheter_og_plikter: harForståttRettigheterOgPlikter
     };

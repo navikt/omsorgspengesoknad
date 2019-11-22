@@ -17,11 +17,16 @@ interface Medlemskap {
 export interface OmsorgspengesøknadApiData {
     new_version: boolean;
     sprak: Locale;
+    er_yrkesaktiv: boolean;
+    kronisk_eller_funksjonshemming: boolean;
     barn: BarnToSendToApi;
+    samme_adresse?: boolean;
+    deler_omsorg?: boolean;
     relasjon_til_barnet: string | null;
     fra_og_med: Date;
     til_og_med: Date;
     vedlegg: string[];
+    samvarsavtale?: string[];
     medlemskap: Medlemskap;
     har_forstatt_rettigheter_og_plikter: boolean;
     har_bekreftet_opplysninger: boolean;

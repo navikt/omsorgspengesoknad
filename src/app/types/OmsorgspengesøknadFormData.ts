@@ -15,17 +15,27 @@ export enum Field {
     periodeTil = 'periodeTil',
     legeerklæring = 'legeerklæring',
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
-    skalBoUtenforNorgeNeste12Mnd = 'skalBoUtenforNorgeNeste12Mnd'
+    skalBoUtenforNorgeNeste12Mnd = 'skalBoUtenforNorgeNeste12Mnd',
+
+    erYrkesaktiv = 'erYrkesaktiv',
+    kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
+    sammeAdresse = 'sammeAdresse',
+    delerOmsorg = 'delerOmsorg',
+    samværsavtale = 'samværsavtale'
 }
 
 export interface OmsorgspengesøknadFormData {
+    [Field.erYrkesaktiv]: YesOrNo;
     [Field.harForståttRettigheterOgPlikter]: boolean;
     [Field.harBekreftetOpplysninger]: boolean;
+    [Field.kroniskEllerFunksjonshemming]: YesOrNo;
     [Field.barnetsNavn]: string;
     [Field.barnetsFødselsnummer]: string;
     [Field.søkersRelasjonTilBarnet]: string;
     [Field.søknadenGjelderEtAnnetBarn]: boolean;
     [Field.barnetSøknadenGjelder]: string;
+    [Field.sammeAdresse]?: YesOrNo;
+    [Field.delerOmsorg]?: YesOrNo;
     [Field.periodeFra]?: Date;
     [Field.periodeTil]?: Date;
     [Field.legeerklæring]: Attachment[];
@@ -33,9 +43,12 @@ export interface OmsorgspengesøknadFormData {
     [Field.barnetsForeløpigeFødselsnummerEllerDNummer]: string;
     [Field.harBoddUtenforNorgeSiste12Mnd]: YesOrNo;
     [Field.skalBoUtenforNorgeNeste12Mnd]: YesOrNo;
+    [Field.samværsavtale]?: Attachment[];
 }
 
 export const initialValues: OmsorgspengesøknadFormData = {
+    [Field.erYrkesaktiv]: YesOrNo.UNANSWERED,
+    [Field.kroniskEllerFunksjonshemming]: YesOrNo.UNANSWERED,
     [Field.barnetsNavn]: '',
     [Field.barnetsFødselsnummer]: '',
     [Field.barnetSøknadenGjelder]: '',
