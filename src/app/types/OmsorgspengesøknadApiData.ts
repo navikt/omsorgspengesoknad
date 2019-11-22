@@ -24,9 +24,7 @@ export interface OmsorgspengesøknadApiData {
     samme_adresse?: boolean;
     deler_omsorg?: boolean;
     relasjon_til_barnet: SøkersRelasjonTilBarnet | undefined;
-    fra_og_med: Date;
-    til_og_med: Date;
-    vedlegg: string[];
+    legeerklaring: string[];
     samvarsavtale?: string[];
     medlemskap: Medlemskap;
     har_forstatt_rettigheter_og_plikter: boolean;

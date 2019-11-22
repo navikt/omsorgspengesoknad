@@ -1,12 +1,9 @@
 import { YesOrNo } from '../../common/types/YesOrNo';
 import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
-import { isMoreThan3YearsAgo } from '../../common/utils/dateUtils';
 import { attachmentHasBeenUploaded } from '../../common/utils/attachmentUtils';
 import { FieldValidationResult } from './types';
 import { Attachment } from '../../common/types/Attachment';
 import { SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
-
-const moment = require('moment');
 
 export enum FieldValidationErrors {
     'påkrevd' = 'fieldvalidation.påkrevd',
@@ -76,42 +73,6 @@ export const validateRelasjonTilBarnet = (v?: SøkersRelasjonTilBarnet | string)
     if (!hasValue(v)) {
         return fieldIsRequiredError();
     }
-    return undefined;
-};
-
-export const validateFradato = (fraDato?: Date, tilDato?: Date): FieldValidationResult => {
-    if (!hasValue(fraDato)) {
-        return fieldIsRequiredError();
-    }
-
-    if (isMoreThan3YearsAgo(fraDato!)) {
-        return fieldValidationError(FieldValidationErrors.fradato_merEnnTreÅr);
-    }
-
-    if (hasValue(tilDato)) {
-        if (moment(fraDato).isAfter(tilDato)) {
-            return fieldValidationError(FieldValidationErrors.fradato_erEtterTildato);
-        }
-    }
-
-    return undefined;
-};
-
-export const validateTildato = (tilDato?: Date, fraDato?: Date): FieldValidationResult => {
-    if (!hasValue(tilDato)) {
-        return fieldIsRequiredError();
-    }
-
-    if (isMoreThan3YearsAgo(tilDato!)) {
-        return fieldValidationError(FieldValidationErrors.tildato_merEnnTreÅr);
-    }
-
-    if (hasValue(fraDato)) {
-        if (moment(tilDato).isBefore(fraDato)) {
-            return fieldValidationError(FieldValidationErrors.tildato_erFørFradato);
-        }
-    }
-
     return undefined;
 };
 

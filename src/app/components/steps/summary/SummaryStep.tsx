@@ -168,7 +168,12 @@ class SummaryStep extends React.Component<Props, State> {
                                                         <Normaltekst>
                                                             <FormattedMessage
                                                                 id="steg.oppsummering.barnet.søkersRelasjonTilBarnet"
-                                                                values={{ relasjon: apiValues.relasjon_til_barnet }}
+                                                                values={{
+                                                                    relasjon: intlHelper(
+                                                                        intl,
+                                                                        `relasjonTilBarnet.${apiValues.relasjon_til_barnet}`
+                                                                    )
+                                                                }}
                                                             />
                                                         </Normaltekst>
                                                     </>
@@ -177,6 +182,22 @@ class SummaryStep extends React.Component<Props, State> {
                                                     !formValues.søknadenGjelderEtAnnetBarn && barn && barn.length > 0
                                                 }
                                             />
+                                        </ContentWithHeader>
+                                    </Box>
+
+                                    <Box margin="l">
+                                        <ContentWithHeader
+                                            header={intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.header')}>
+                                            {apiValues.samme_adresse === true && intlHelper(intl, 'Ja')}
+                                            {apiValues.samme_adresse === false && intlHelper(intl, 'Nei')}
+                                        </ContentWithHeader>
+                                    </Box>
+
+                                    <Box margin="l">
+                                        <ContentWithHeader
+                                            header={intlHelper(intl, 'steg.oppsummering.barnet.deltOmsorg.header')}>
+                                            {apiValues.deler_omsorg === true && intlHelper(intl, 'Ja')}
+                                            {apiValues.deler_omsorg === false && intlHelper(intl, 'Nei')}
                                         </ContentWithHeader>
                                     </Box>
 

@@ -186,7 +186,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                                 validate={validateRelasjonTilBarnet}>
                                 <option />
                                 {Object.keys(SøkersRelasjonTilBarnet).map((key) => (
-                                    <option key={key} value={key}>
+                                    <option key={key} value={SøkersRelasjonTilBarnet[key]}>
                                         {intlHelper(intl, `relasjonTilBarnet.${SøkersRelasjonTilBarnet[key]}`)}
                                     </option>
                                 ))}

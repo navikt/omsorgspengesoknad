@@ -2,23 +2,18 @@ import * as fødselsnummerValidator from './../fødselsnummerValidator';
 import {
     hasValue,
     validateForeløpigFødselsnummer,
-    validateFradato,
     validateFødselsnummer,
     validateLegeerklæring,
     validateNavn,
     validateRelasjonTilBarnet,
-    validateTildato,
     validateYesOrNoIsAnswered,
     FieldValidationErrors,
     fieldValidationError
 } from '../fieldValidations';
-import * as dateUtils from '../../../common/utils/dateUtils';
 import Mock = jest.Mock;
 import { YesOrNo } from '../../../common/types/YesOrNo';
 import { FieldValidationResult } from '../types';
 import { Attachment } from '../../../common/types/Attachment';
-
-const moment = require('moment');
 
 jest.mock('../fødselsnummerValidator', () => {
     return {
@@ -121,74 +116,6 @@ describe('fieldValidations', () => {
     describe('validateRelasjonTilBarnet', () => {
         it('should return an error message saying field is required if provided value is empty string', () => {
             expect(validateRelasjonTilBarnet('')).toEqual(fieldRequiredError);
-        });
-    });
-
-    describe('validateFradato', () => {
-        beforeEach(() => {
-            jest.resetAllMocks();
-        });
-
-        it('should return an error message saying field is required if provided value is undefined', () => {
-            expect(validateFradato(undefined)).toEqual(fieldRequiredError);
-        });
-
-        it('should return an error message saying date cannot be more than 3 years back in time, if date is more than 3 years back in time', () => {
-            (dateUtils.isMoreThan3YearsAgo as Mock).mockReturnValue(true);
-            expect(validateFradato(new Date())).toEqual(
-                fieldValidationError(FieldValidationErrors.fradato_merEnnTreÅr)
-            );
-        });
-
-        it('should return an error message saying that fraDato cannot be after tilDato, if fraDato is after tilDato', () => {
-            const today = moment();
-            const yesterday = today.clone().subtract(1, 'day');
-            const result = validateFradato(today.toDate(), yesterday.toDate());
-            expect(result).toEqual(fieldValidationError(FieldValidationErrors.fradato_erEtterTildato));
-        });
-
-        it('should return undefined if fraDato is inside the last 3 years and equal to or earlier than tilDato', () => {
-            const fraDato = moment();
-            const tilDato = fraDato.clone();
-            expect(validateFradato(fraDato.toDate(), tilDato.toDate())).toBeUndefined();
-            const date3YearsAgo = moment()
-                .subtract(3, 'years')
-                .toDate();
-            expect(validateFradato(date3YearsAgo)).toBeUndefined();
-        });
-    });
-
-    describe('validateTildato', () => {
-        beforeEach(() => {
-            jest.resetAllMocks();
-        });
-
-        it('should return an error message saying field is required if provided value is undefined', () => {
-            expect(validateTildato(undefined)).toEqual(fieldRequiredError);
-        });
-
-        it('should return an error message saying date cannot be more than 3 years back in time, if date is more than 3 years back in time', () => {
-            (dateUtils.isMoreThan3YearsAgo as Mock).mockReturnValue(true);
-            expect(validateTildato(new Date())).toEqual(
-                fieldValidationError(FieldValidationErrors.tildato_merEnnTreÅr)
-            );
-        });
-
-        it('should return an error message saying that tilDato cannot be before fraDato, if tilDato is before fraDato', () => {
-            const today = moment();
-            const yesterday = today.clone().subtract(1, 'day');
-            const result = validateTildato(yesterday.toDate(), today.toDate());
-            expect(result).toEqual(fieldValidationError(FieldValidationErrors.tildato_erFørFradato));
-        });
-
-        it('should return undefined if tilDato is inside the last 3 years and equal to or later than fraDato', () => {
-            const tilDato = moment();
-            const fraDato = tilDato.clone();
-            expect(validateTildato(tilDato.toDate(), fraDato.toDate())).toBeUndefined();
-            const date3YearsAgo = moment()
-                .subtract(3, 'years')
-                .toDate();
-            expect(validateTildato(date3YearsAgo)).toBeUndefined();
         });
     });
 

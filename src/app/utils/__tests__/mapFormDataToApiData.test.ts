@@ -5,7 +5,6 @@ import {
 } from '../../types/OmsorgspengesøknadFormData';
 import { mapFormDataToApiData } from '../mapFormDataToApiData';
 import { OmsorgspengesøknadApiData } from '../../types/OmsorgspengesøknadApiData';
-import * as dateUtils from '../../../common/utils/dateUtils';
 import * as attachmentUtils from '../../../common/utils/attachmentUtils';
 import { YesOrNo } from '../../../common/types/YesOrNo';
 import { BarnReceivedFromApi } from '../../types/Søkerdata';
@@ -81,21 +80,11 @@ describe('mapFormDataToApiData', () => {
         expect(resultingApiData.medlemskap.har_bodd_i_utlandet_siste_12_mnd).toBe(true);
     });
 
-    it("should set 'fra_og_med' in api data correctly", () => {
-        expect(dateUtils.formatDate).toHaveBeenCalledWith(formDataMock[AppFormField.periodeFra]);
-        expect(resultingApiData.fra_og_med).toEqual(dateUtils.formatDate(formDataMock[AppFormField.periodeFra]!));
-    });
-
-    it("should set 'til_og_med' in api data correctly", () => {
-        expect(dateUtils.formatDate).toHaveBeenCalledWith(formDataMock[AppFormField.periodeTil]);
-        expect(resultingApiData.til_og_med).toEqual(dateUtils.formatDate(formDataMock[AppFormField.periodeTil]!));
-    });
-
     it("should set 'vedlegg' in api data correctly by only including the urls of attachments that have been successfully uploaded", () => {
         expect(attachmentUtils.attachmentUploadHasFailed).toHaveBeenCalledWith(attachmentMock1);
         expect(attachmentUtils.attachmentUploadHasFailed).toHaveBeenCalledWith(attachmentMock2);
-        expect(resultingApiData.vedlegg).toHaveLength(1);
-        expect(resultingApiData.vedlegg[0]).toEqual(attachmentMock2.url);
+        expect(resultingApiData.legeerklaring).toHaveLength(1);
+        expect(resultingApiData.legeerklaring[0]).toEqual(attachmentMock2.url);
     });
 
     it("should set 'fodselsnummer' in api data to undefined if it doesnt exist, and otherwise it should assign value to 'fodselsnummer' in api data", () => {
