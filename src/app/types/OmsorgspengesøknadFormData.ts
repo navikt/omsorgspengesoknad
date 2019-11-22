@@ -66,6 +66,7 @@ export const initialValues: OmsorgspengesøknadFormData = {
     [AppFormField.søkersRelasjonTilBarnet]: undefined,
     [AppFormField.søknadenGjelderEtAnnetBarn]: false,
     [AppFormField.legeerklæring]: [],
+    [AppFormField.samværsavtale]: [],
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: false,
     [AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer]: '',
     [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.UNANSWERED,

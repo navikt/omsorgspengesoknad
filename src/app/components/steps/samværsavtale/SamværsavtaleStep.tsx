@@ -16,7 +16,6 @@ import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/Omsorgs
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import { CustomFormikProps } from '../../../types/FormikProps';
-import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
 
 type Props = { formikProps: CustomFormikProps } & CommonStepFormikProps &
     HistoryProps &
@@ -46,16 +45,6 @@ const SamværsavtaleStep = ({ history, intl, nextStepRoute, formikProps, ...step
             )}
             {false === isRunningDemoMode && (
                 <>
-                    <Box padBottom="xl">
-                        <CounsellorPanel>
-                            <p>
-                                <FormattedHTMLMessage id="steg.samværsavtale.intro.1.html" />
-                            </p>
-                            <p>
-                                <FormattedHTMLMessage id="steg.samværsavtale.intro.2.html" />
-                            </p>
-                        </CounsellorPanel>
-                    </Box>
                     <HelperTextPanel>
                         <FormattedHTMLMessage id="steg.samværsavtale.info.html" />
                     </HelperTextPanel>

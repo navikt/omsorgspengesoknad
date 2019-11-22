@@ -68,9 +68,9 @@
     "step.legeerklaering.stepTitle": "Legeerklæring",
     "step.legeerklaering.stepIndicatorLabel": "Last opp din legeerklæring",
 
-    "step.avtale.pageTitle": "Omsorgspengesøknad - samværsavtale",
-    "step.avtale.stepTitle": "Samværsavtale",
-    "step.avtale.stepIndicatorLabel": "Last opp din samværsavtale",
+    "step.samværsavtale.pageTitle": "Omsorgspengesøknad - samværsavtale",
+    "step.samværsavtale.stepTitle": "Samværsavtale/avtale om delt bosted",
+    "step.samværsavtale.stepIndicatorLabel": "Last opp din samværsavtale/avtale om delt bosted",
 
     "step.oppsummering.pageTitle": "Omsorgspengesøknad - oppsummering",
     "step.oppsummering.stepTitle": "Oppsummering",
@@ -151,6 +151,9 @@
     "steg.lege.intro.1.html": "For de første 8 ukene må legeerklæringen skrives av en sykehuslege. Etter de første 8 ukene kan legeerklæringen skrives av alle leger i spesialisthelsetjenesten.",
     "steg.lege.intro.2.html": "Disse yrkesgruppene kan <strong>ikke</strong> undertegne legeerklæringen: Sosionom, legesekretær, psykolog, psykologspesialist, fysioterapeut, fastlege og spesialist i allmennmedisin.",
 
+    "steg.samværsavtale.info.html": "Her skal du laste opp samværsavtalen/avtale om delt bosted for barnet. Avtalen må være signert av begge foreldrene.",
+    "steg.samværsavtale.vedlegg": "Last opp bilde av avtalen (maks 3 bilder)",
+
     "steg.oppsummering.info": "Les gjennom oppsummeringen før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.",
     "steg.oppsummering.søker.header": "Navn på søker",
     "steg.oppsummering.søker.fnr": "Fødselsnummer: {fodselsnummer}",
@@ -198,6 +201,8 @@
     "fieldvalidation.tildato.erFørFradato": "Til-datoen kan ikke være tidligere enn fra-datoen",
     "fieldvalidation.legeerklæring.mangler": "Du må laste opp en legeerklæring",
     "fieldvalidation.legeerklæring.forMangeFiler": "Du kan maksimalt laste opp 3 bilder",
+    "fieldvalidation.samværsavtale.mangler": "Du må laste opp en avtale",
+    "fieldvalidation.samværsavtale.forMangeFiler": "Du kan maksimalt laste opp 3 bilder",
 
     "demoInfo.html": "Dette er en <strong>demoversjon</strong> av søknadsskjemaet for omsorgspenger, og blir kun brukt i sammenheng med brukertest på <a href=\"http://navlab.no/\">http://navlab.no/</a>"
 }

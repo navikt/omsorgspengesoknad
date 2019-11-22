@@ -40,7 +40,7 @@ const getStepConfigItemTextKeys = (stepId: StepID): StepConfigItemTexts => {
 
 export const getStepConfig = (formData?: OmsorgspengesøknadFormData): StepConfigInterface => {
     let idx = 0;
-    const avtaleStepIsIncluded = formData ? includeAvtaleStep(formData) : false;
+    const avtaleStepIsIncluded = formData ? includeAvtaleStep(formData) : true;
     const config = {
         [StepID.OPPLYSNINGER_OM_BARNET]: {
             ...getStepConfigItemTextKeys(StepID.OPPLYSNINGER_OM_BARNET),
