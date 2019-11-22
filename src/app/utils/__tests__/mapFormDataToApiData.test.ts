@@ -29,6 +29,7 @@ const barnMock: BarnReceivedFromApi[] = [
 type AttachmentMock = Attachment & { failed: boolean };
 const attachmentMock1: Partial<AttachmentMock> = { url: 'nav.no/1', failed: true };
 const attachmentMock2: Partial<AttachmentMock> = { url: 'nav.no/2', failed: false };
+const attachmentMock3: Partial<AttachmentMock> = { url: 'nav.no/3', failed: false };
 
 const formDataMock: Partial<OmsorgspengesøknadFormData> = {
     [AppFormField.barnetsNavn]: 'Ola Foobar',
@@ -37,11 +38,8 @@ const formDataMock: Partial<OmsorgspengesøknadFormData> = {
     [AppFormField.søkersRelasjonTilBarnet]: SøkersRelasjonTilBarnet.MOR,
     [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.YES,
     [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.NO,
-    [AppFormField.periodeFra]: todaysDate,
-    [AppFormField.periodeTil]: moment(todaysDate)
-        .add(1, 'day')
-        .toDate(),
-    [AppFormField.legeerklæring]: [attachmentMock1 as AttachmentMock, attachmentMock2 as AttachmentMock]
+    [AppFormField.legeerklæring]: [attachmentMock1 as AttachmentMock, attachmentMock2 as AttachmentMock],
+    [AppFormField.samværsavtale]: [attachmentMock3 as AttachmentMock]
 };
 
 jest.mock('../../../common/utils/dateUtils', () => {

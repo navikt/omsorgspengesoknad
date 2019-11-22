@@ -20,8 +20,6 @@ export enum AppFormField {
     barnetSøknadenGjelder = 'barnetSøknadenGjelder',
     søkersRelasjonTilBarnet = 'søkersRelasjonTilBarnet',
     søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
-    periodeFra = 'periodeFra',
-    periodeTil = 'periodeTil',
     legeerklæring = 'legeerklæring',
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
     skalBoUtenforNorgeNeste12Mnd = 'skalBoUtenforNorgeNeste12Mnd',
@@ -45,8 +43,6 @@ export interface OmsorgspengesøknadFormData {
     [AppFormField.barnetSøknadenGjelder]: string;
     [AppFormField.sammeAdresse]?: YesOrNo;
     [AppFormField.delerOmsorg]?: YesOrNo;
-    [AppFormField.periodeFra]?: Date;
-    [AppFormField.periodeTil]?: Date;
     [AppFormField.legeerklæring]: Attachment[];
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: boolean;
     [AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer]: string;

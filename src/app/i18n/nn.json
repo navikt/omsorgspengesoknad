@@ -1,1 +1,14 @@
-{}
+{
+    "new_version": true,
+    "sprak": "nb",
+    "kronisk_eller_funksjonshemming": true,
+    "er_yrkesaktiv": true,
+    "barn": { "navn": "Mock Mocknes", "fodselsnummer": null, "alternativ_id": null, "aktoer_id": "2" },
+    "deler_omsorg": true,
+    "samme_adresse": false,
+    "medlemskap": { "har_bodd_i_utlandet_siste_12_mnd": false, "skal_bo_i_utlandet_neste_12_mnd": false },
+    "legeerklaring": ["/vedlegg1"],
+    "samvarsavtale": ["/vedlegg2"],
+    "har_bekreftet_opplysninger": true,
+    "har_forstatt_rettigheter_og_plikter": true
+}

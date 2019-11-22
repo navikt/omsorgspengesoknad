@@ -19,8 +19,6 @@ export const mapFormDataToApiData = (
         harBekreftetOpplysninger,
         harForståttRettigheterOgPlikter,
         søkersRelasjonTilBarnet,
-        periodeFra,
-        periodeTil,
         legeerklæring,
         samværsavtale,
         harBoddUtenforNorgeSiste12Mnd,
