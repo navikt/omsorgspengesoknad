@@ -4,7 +4,6 @@ import { StepID, StepConfigProps } from '../../../config/stepConfig';
 import { HistoryProps } from '../../../../common/types/History';
 import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';
 import FormikStep from '../../formik-step/FormikStep';
-import LegeerklæringFileList from '../../legeerklæring-file-list/LegeerklæringFileList';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
@@ -16,6 +15,7 @@ import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/Omsorgs
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import { CustomFormikProps } from '../../../types/FormikProps';
+import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
 
 type Props = { formikProps: CustomFormikProps } & CommonStepFormikProps &
     HistoryProps &
@@ -61,7 +61,7 @@ const SamværsavtaleStep = ({ history, intl, nextStepRoute, formikProps, ...step
                         />
                     </Box>
                     <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
-                    <LegeerklæringFileList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
+                    <SamværsavtaleAttachmentList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
                 </>
             )}
         </FormikStep>

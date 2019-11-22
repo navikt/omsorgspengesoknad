@@ -4,7 +4,7 @@ import { StepID, StepConfigProps } from '../../../config/stepConfig';
 import { HistoryProps } from '../../../../common/types/History';
 import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';
 import FormikStep from '../../formik-step/FormikStep';
-import LegeerklæringFileList from '../../legeerklæring-file-list/LegeerklæringFileList';
+import LegeerklæringFileList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';

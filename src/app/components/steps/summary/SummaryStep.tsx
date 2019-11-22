@@ -10,7 +10,7 @@ import FormikStep from '../../formik-step/FormikStep';
 import { mapFormDataToApiData } from '../../../utils/mapFormDataToApiData';
 import Panel from '../../../../common/components/panel/Panel';
 import ContentWithHeader from '../../../../common/components/content-with-header/ContentWithHeader';
-import LegeerklæringAttachmentList from '../../legeerklæring-file-list/LegeerklæringFileList';
+import LegeerklæringAttachmentList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
 import { prettifyDate } from '../../../../common/utils/dateUtils';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { BarnReceivedFromApi, Søkerdata } from '../../../types/Søkerdata';
@@ -25,6 +25,7 @@ import intlHelper from 'common/utils/intlUtils';
 import { Locale } from 'common/types/Locale';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
+import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
 
 interface State {
     sendingInProgress: boolean;
@@ -204,6 +205,14 @@ class SummaryStep extends React.Component<Props, State> {
                                             <LegeerklæringAttachmentList includeDeletionFunctionality={false} />
                                         </ContentWithHeader>
                                     </Box>
+                                    {apiValues.samvarsavtale && (
+                                        <Box margin="l">
+                                            <ContentWithHeader
+                                                header={intlHelper(intl, 'steg.oppsummering.samværsavtale.header')}>
+                                                <SamværsavtaleAttachmentList includeDeletionFunctionality={false} />
+                                            </ContentWithHeader>
+                                        </Box>
+                                    )}
                                 </Panel>
                             </Box>
                             <Box margin="l">
