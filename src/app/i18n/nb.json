@@ -44,6 +44,13 @@
     "fileUploadErrors.part1": "Det har dessverre skjedd en feil under opplasting av følgende vedlegg:",
     "formikValidationErrorSummary.tittel": "Du må rette opp i følgende feil:",
 
+    "relasjonTilBarnet.mor": "Mor",
+    "relasjonTilBarnet.far": "Far",
+    "relasjonTilBarnet.adoptivforelder": "Adoptivforelder",
+    "relasjonTilBarnet.samværsforelder": "Samværsforelder",
+    "relasjonTilBarnet.steforelder": "Steforelder",
+    "relasjonTilBarnet.fosterforelder": "Fosterforelder",
+
     "step.nextButtonLabel": "Fortsett",
     "step.nextButtonAriaLabel": "Gå til neste steg",
     "step.sendButtonLabel": "Send inn søknaden",
@@ -133,7 +140,6 @@
     "steg.omBarnet.fnr.foreløpig": "Barnets foreløpige fødselsnummer eller D-nummer",
     "steg.omBarnet.navn": "Barnets navn",
     "steg.omBarnet.relasjon": "Min relasjon til barnet",
-    "steg.omBarnet.relasjon.eksempel": "Eksempler: mor, far, tante, onkel eller andre som står barnet nær",
 
     "steg.tidsrom.hjelpetekst": "Søknaden er under utvikling: Hvis du skal søke for flere perioder må du sende én søknad for hver periode.",
     "steg.tidsrom.hvilketTidsrom.spm": "Hvilken periode søker du omsorgspenger for?",

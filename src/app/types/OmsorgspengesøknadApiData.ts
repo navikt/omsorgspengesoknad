@@ -1,4 +1,5 @@
 import { Locale } from '../../common/types/Locale';
+import { SøkersRelasjonTilBarnet } from './OmsorgspengesøknadFormData';
 
 export type ISO8601Duration = string;
 
@@ -22,7 +23,7 @@ export interface OmsorgspengesøknadApiData {
     barn: BarnToSendToApi;
     samme_adresse?: boolean;
     deler_omsorg?: boolean;
-    relasjon_til_barnet: string | null;
+    relasjon_til_barnet: SøkersRelasjonTilBarnet | undefined;
     fra_og_med: Date;
     til_og_med: Date;
     vedlegg: string[];

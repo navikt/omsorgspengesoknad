@@ -1,6 +1,15 @@
 import { YesOrNo } from '../../common/types/YesOrNo';
 import { Attachment } from '../../common/types/Attachment';
 
+export enum SøkersRelasjonTilBarnet {
+    'MOR' = 'mor',
+    'FAR' = 'far',
+    'ADOPTIVFORELDER' = 'adoptivforelder',
+    'SAMVÆRSFORELDER' = 'samværsforelder',
+    'STEFORELDER' = 'steforelder',
+    'FOSTERFORELDER' = 'fosterforelder'
+}
+
 export enum AppFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -31,7 +40,7 @@ export interface OmsorgspengesøknadFormData {
     [AppFormField.kroniskEllerFunksjonshemming]: YesOrNo;
     [AppFormField.barnetsNavn]: string;
     [AppFormField.barnetsFødselsnummer]: string;
-    [AppFormField.søkersRelasjonTilBarnet]: string;
+    [AppFormField.søkersRelasjonTilBarnet]?: SøkersRelasjonTilBarnet;
     [AppFormField.søknadenGjelderEtAnnetBarn]: boolean;
     [AppFormField.barnetSøknadenGjelder]: string;
     [AppFormField.sammeAdresse]?: YesOrNo;
@@ -54,7 +63,7 @@ export const initialValues: OmsorgspengesøknadFormData = {
     [AppFormField.barnetSøknadenGjelder]: '',
     [AppFormField.harForståttRettigheterOgPlikter]: false,
     [AppFormField.harBekreftetOpplysninger]: false,
-    [AppFormField.søkersRelasjonTilBarnet]: '',
+    [AppFormField.søkersRelasjonTilBarnet]: undefined,
     [AppFormField.søknadenGjelderEtAnnetBarn]: false,
     [AppFormField.legeerklæring]: [],
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: false,

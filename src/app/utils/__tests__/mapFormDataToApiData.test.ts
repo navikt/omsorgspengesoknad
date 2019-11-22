@@ -1,4 +1,8 @@
-import { AppFormField, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
+import {
+    AppFormField,
+    OmsorgspengesøknadFormData,
+    SøkersRelasjonTilBarnet
+} from '../../types/OmsorgspengesøknadFormData';
 import { mapFormDataToApiData } from '../mapFormDataToApiData';
 import { OmsorgspengesøknadApiData } from '../../types/OmsorgspengesøknadApiData';
 import * as dateUtils from '../../../common/utils/dateUtils';
@@ -31,7 +35,7 @@ const formDataMock: Partial<OmsorgspengesøknadFormData> = {
     [AppFormField.barnetsNavn]: 'Ola Foobar',
     [AppFormField.harBekreftetOpplysninger]: true,
     [AppFormField.harForståttRettigheterOgPlikter]: true,
-    [AppFormField.søkersRelasjonTilBarnet]: 'mor',
+    [AppFormField.søkersRelasjonTilBarnet]: SøkersRelasjonTilBarnet.MOR,
     [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.YES,
     [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.NO,
     [AppFormField.periodeFra]: todaysDate,

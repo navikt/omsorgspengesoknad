@@ -4,6 +4,7 @@ import { isMoreThan3YearsAgo } from '../../common/utils/dateUtils';
 import { attachmentHasBeenUploaded } from '../../common/utils/attachmentUtils';
 import { FieldValidationResult } from './types';
 import { Attachment } from '../../common/types/Attachment';
+import { SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
 
 const moment = require('moment');
 
@@ -69,17 +70,11 @@ export const validateNavn = (v: string, isRequired?: boolean): FieldValidationRe
         : fieldValidationError(FieldValidationErrors.navn_maksAntallTegn, { maxNumOfLetters });
 };
 
-export const validateRelasjonTilBarnet = (v: string): FieldValidationResult => {
+export const validateRelasjonTilBarnet = (v?: SøkersRelasjonTilBarnet | string): FieldValidationResult => {
     if (!hasValue(v)) {
         return fieldIsRequiredError();
     }
-
-    const maxNumOfLetters = 15;
-    const relasjonIsValid = v.length <= maxNumOfLetters;
-
-    return relasjonIsValid
-        ? undefined
-        : fieldValidationError(FieldValidationErrors.relasjon_maksAntallTegn, { maxNumOfLetters });
+    return undefined;
 };
 
 export const validateFradato = (fraDato?: Date, tilDato?: Date): FieldValidationResult => {

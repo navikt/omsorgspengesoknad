@@ -14,7 +14,11 @@ import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { Søkerdata } from '../../../types/Søkerdata';
 import { CustomFormikProps } from '../../../types/FormikProps';
 import { formatName } from '../../../../common/utils/personUtils';
-import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
+import {
+    AppFormField,
+    OmsorgspengesøknadFormData,
+    SøkersRelasjonTilBarnet
+} from '../../../types/OmsorgspengesøknadFormData';
 import Checkbox from '../../form-elements/checkbox/Checkbox';
 import Input from '../../form-elements/input/Input';
 import FormikStep from '../../formik-step/FormikStep';
@@ -29,6 +33,7 @@ import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
 import { YesOrNo } from '../../../../common/types/YesOrNo';
 import Box from '../../../../common/components/box/Box';
 import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
+import Select from '../../form-elements/select/Select';
 
 interface OpplysningerOmBarnetStepProps {
     formikProps: CustomFormikProps;
@@ -174,13 +179,18 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                                 }}
                                 bredde="XL"
                             />
-                            <Input
+                            <Select
+                                bredde="xl"
                                 label={intlHelper(intl, 'steg.omBarnet.relasjon')}
                                 name={AppFormField.søkersRelasjonTilBarnet}
-                                validate={validateRelasjonTilBarnet}
-                                bredde="XL"
-                                helperText={intlHelper(intl, 'steg.omBarnet.relasjon.eksempel')}
-                            />
+                                validate={validateRelasjonTilBarnet}>
+                                <option />
+                                {Object.keys(SøkersRelasjonTilBarnet).map((key) => (
+                                    <option key={key} value={key}>
+                                        {intlHelper(intl, `relasjonTilBarnet.${SøkersRelasjonTilBarnet[key]}`)}
+                                    </option>
+                                ))}
+                            </Select>
                         </>
                     )
                 }

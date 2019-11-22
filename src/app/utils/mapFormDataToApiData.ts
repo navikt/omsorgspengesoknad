@@ -53,7 +53,7 @@ export const mapFormDataToApiData = (
         deler_omsorg: delerOmsorg === YesOrNo.YES,
         er_yrkesaktiv: erYrkesaktiv === YesOrNo.YES,
         barn: barnObject,
-        relasjon_til_barnet: barnObject.aktoer_id ? null : søkersRelasjonTilBarnet,
+        relasjon_til_barnet: barnObject.aktoer_id ? undefined : søkersRelasjonTilBarnet,
         medlemskap: {
             har_bodd_i_utlandet_siste_12_mnd: harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES,
             skal_bo_i_utlandet_neste_12_mnd: skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES
