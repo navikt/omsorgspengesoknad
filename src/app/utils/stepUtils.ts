@@ -1,14 +1,17 @@
-import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
+import { OmsorgspengesøknadFormData, AppFormField } from '../types/OmsorgspengesøknadFormData';
 import {
     legeerklæringStepIsValid,
     medlemskapStepIsValid,
     opplysningerOmBarnetStepIsValid,
-    opplysningerOmTidsromStepIsValid,
     welcomingPageIsValid
 } from '../validation/stepValidations';
 import { StepConfigItemTexts, StepID, StepConfigInterface } from 'app/config/stepConfig';
 import { InjectedIntl } from 'react-intl';
 import intlHelper from '../../common/utils/intlUtils';
+import { YesOrNo } from '../../common/types/YesOrNo';
+
+export const includeAvtaleStep = (formData: Partial<OmsorgspengesøknadFormData>): boolean =>
+    formData !== undefined && formData[AppFormField.delerOmsorg] === YesOrNo.YES;
 
 export const getStepTexts = (
     intl: InjectedIntl,
@@ -28,23 +31,17 @@ export const getStepTexts = (
 export const opplysningerOmBarnetStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     welcomingPageIsValid(formData);
 
-export const opplysningerOmTidsromStepAvailable = (formData: OmsorgspengesøknadFormData) =>
+export const medlemskapStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     welcomingPageIsValid(formData) && opplysningerOmBarnetStepIsValid(formData);
 
-export const medlemskapStepAvailable = (formData: OmsorgspengesøknadFormData) =>
-    welcomingPageIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    opplysningerOmTidsromStepIsValid(formData);
-
 export const legeerklæringStepAvailable = (formData: OmsorgspengesøknadFormData) =>
-    welcomingPageIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    opplysningerOmTidsromStepIsValid(formData) &&
-    medlemskapStepIsValid(formData);
+    welcomingPageIsValid(formData) && opplysningerOmBarnetStepIsValid(formData) && medlemskapStepIsValid(formData);
+
+export const samværsavtaleStepAvailable = (formData: OmsorgspengesøknadFormData) =>
+    welcomingPageIsValid(formData) && opplysningerOmBarnetStepIsValid(formData) && medlemskapStepIsValid(formData);
 
 export const summaryStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     welcomingPageIsValid(formData) &&
     opplysningerOmBarnetStepIsValid(formData) &&
-    opplysningerOmTidsromStepIsValid(formData) &&
     medlemskapStepIsValid(formData) &&
     legeerklæringStepIsValid();

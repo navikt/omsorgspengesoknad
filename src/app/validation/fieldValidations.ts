@@ -20,7 +20,9 @@ export enum FieldValidationErrors {
     'tildato_merEnnTreÅr' = 'fieldvalidation.tildato.merEnnTreÅr',
     'tildato_erFørFradato' = 'fieldvalidation.tildato.erFørFradato',
     'legeerklæring_mangler' = 'fieldvalidation.legeerklæring.mangler',
-    'legeerklæring_forMangeFiler' = 'fieldvalidation.legeerklæring.forMangeFiler'
+    'legeerklæring_forMangeFiler' = 'fieldvalidation.legeerklæring.forMangeFiler',
+    'samværsavtale_mangler' = 'fieldvalidation.samværsavtale.mangler',
+    'samværsavtale_forMangeFiler' = 'fieldvalidation.samværsavtale.forMangeFiler'
 }
 
 export const hasValue = (v: any) => v !== '' && v !== undefined && v !== null;
@@ -127,6 +129,17 @@ export const validateLegeerklæring = (attachments: Attachment[]): FieldValidati
     }
     if (uploadedAttachments.length > 3) {
         return fieldValidationError(FieldValidationErrors.legeerklæring_forMangeFiler);
+    }
+    return undefined;
+};
+
+export const validateSamværsavtale = (attachments: Attachment[]): FieldValidationResult => {
+    const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
+    if (uploadedAttachments.length === 0) {
+        return fieldValidationError(FieldValidationErrors.samværsavtale_mangler);
+    }
+    if (uploadedAttachments.length > 3) {
+        return fieldValidationError(FieldValidationErrors.samværsavtale_forMangeFiler);
     }
     return undefined;
 };

@@ -100,20 +100,6 @@ class SummaryStep extends React.Component<Props, State> {
                                     </ContentWithHeader>
 
                                     <Box margin="l">
-                                        <ContentWithHeader
-                                            header={intlHelper(intl, 'steg.oppsummering.tidsrom.header')}>
-                                            <Normaltekst>
-                                                <FormattedMessage
-                                                    id="steg.oppsummering.tidsrom.fomtom"
-                                                    values={{
-                                                        fom: prettifyDate(apiValues.fra_og_med),
-                                                        tom: prettifyDate(apiValues.til_og_med)
-                                                    }}
-                                                />
-                                            </Normaltekst>
-                                        </ContentWithHeader>
-                                    </Box>
-                                    <Box margin="l">
                                         <ContentWithHeader header={intlHelper(intl, 'steg.oppsummering.barnet.header')}>
                                             <ContentSwitcher
                                                 firstContent={() => {

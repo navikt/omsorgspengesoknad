@@ -14,8 +14,8 @@ jest.mock('../featureToggleUtils', () => {
 jest.mock('./../stepUtils', () => {
     return {
         opplysningerOmBarnetStepAvailable: jest.fn(() => 'barn step available'),
-        opplysningerOmTidsromStepAvailable: jest.fn(() => 'tidsrom step available'),
         legeerklæringStepAvailable: jest.fn(() => 'legeerklæring step available'),
+        samværsavtaleStepAvailable: jest.fn(() => 'samværsavtale step available'),
         medlemskapStepAvailable: jest.fn(() => 'medlemskap step available'),
         summaryStepAvailable: jest.fn(() => 'summary step available')
     };
@@ -40,16 +40,16 @@ describe('routeUtils', () => {
             expect(result).toEqual(stepUtils.opplysningerOmBarnetStepAvailable(formValues));
         });
 
-        it('should return result from calling opplysningerOmTidsromStepAvailable if route=StepID.TIDSROM', () => {
-            const result = isAvailable(StepID.TIDSROM, formValues);
-            expect(stepUtils.opplysningerOmBarnetStepAvailable).toHaveBeenCalledWith(formValues);
-            expect(result).toEqual(stepUtils.opplysningerOmTidsromStepAvailable(formValues));
-        });
-
         it('should return result from calling legeerklæringStepAvailable if route=StepID.LEGEERKLÆRING', () => {
             const result = isAvailable(StepID.LEGEERKLÆRING, formValues);
             expect(stepUtils.legeerklæringStepAvailable).toHaveBeenCalledWith(formValues);
             expect(result).toEqual(stepUtils.legeerklæringStepAvailable(formValues));
+        });
+
+        it('should return result from calling samværsavtaleAvailable if route=StepID.SAMVÆRSAVTALE', () => {
+            const result = isAvailable(StepID.SAMVÆRSAVTALE, formValues);
+            expect(stepUtils.samværsavtaleStepAvailable).toHaveBeenCalledWith(formValues);
+            expect(result).toEqual(stepUtils.samværsavtaleStepAvailable(formValues));
         });
 
         it('should return result from calling medlemskapStepAvailable if route=StepID.MEDLEMSKAP', () => {

@@ -60,10 +60,6 @@
     "step.opplysninger-om-barnet.stepTitle": "Barn",
     "step.opplysninger-om-barnet.stepIndicatorLabel": "Om barnet",
 
-    "step.tidsrom.pageTitle": "Omsorgspengesøknad - periode",
-    "step.tidsrom.stepTitle": "Periode",
-    "step.tidsrom.stepIndicatorLabel": "Periode",
-
     "step.medlemskap.pageTitle": "Omsorgspengesøknad - medlemskap",
     "step.medlemskap.stepTitle": "Medlemskap",
     "step.medlemskap.stepIndicatorLabel": "Om medlemskap i folketrygden",
@@ -71,6 +67,10 @@
     "step.legeerklaering.pageTitle": "Omsorgspengesøknad - legeerklæring",
     "step.legeerklaering.stepTitle": "Legeerklæring",
     "step.legeerklaering.stepIndicatorLabel": "Last opp din legeerklæring",
+
+    "step.avtale.pageTitle": "Omsorgspengesøknad - samværsavtale",
+    "step.avtale.stepTitle": "Samværsavtale",
+    "step.avtale.stepIndicatorLabel": "Last opp din samværsavtale",
 
     "step.oppsummering.pageTitle": "Omsorgspengesøknad - oppsummering",
     "step.oppsummering.stepTitle": "Oppsummering",
@@ -141,16 +141,6 @@
     "steg.omBarnet.navn": "Barnets navn",
     "steg.omBarnet.relasjon": "Min relasjon til barnet",
 
-    "steg.tidsrom.hjelpetekst": "Søknaden er under utvikling: Hvis du skal søke for flere perioder må du sende én søknad for hver periode.",
-    "steg.tidsrom.hvilketTidsrom.spm": "Hvilken periode søker du omsorgspenger for?",
-    "steg.tidsrom.hvilketTidsrom.fom": "Fra og med",
-    "steg.tidsrom.hvilketTidsrom.tom": "Til og med",
-    "steg.tidsrom.hvorMye.spm": "Hvor mye søker du om?",
-    "steg.tidsrom.hvorMye.hjelp.part1": "Kan du jobbe noe? Da reduserer du prosenten tilsvarende.",
-    "steg.tidsrom.hvorMye.hjelp.part2": "Jobber du deltid i utgangspunktet? Du kan likevel søke om 100 % omsorgspenger hvis du mister hele inntekten fordi du pleier barnet.",
-    "steg.tidsrom.annenSamtidig.spm": "Er det en annen person som søker om omsorgspenger i samme periode som deg?",
-    "steg.tidsrom.dagerPerUkeBorteFraJobb.spm": "Hvor mange dager per uke skal du være borte fra jobb for å ta hånd om barnet? Rund av til nærmeste halve dag.",
-
     "steg.medlemsskap.annetLandSiste12.spm": "Har du bodd i andre land enn Norge i hele eller deler av de siste 12 månedene?",
     "steg.medlemsskap.annetLandSiste12.hjelp": "Du svarer ja bare hvis du har oppholdt deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.",
     "steg.medlemsskap.annetLandNeste12.spm": "Planlegger du å bo i andre land enn Norge i hele eller deler av de neste 12 månedene?",
@@ -164,8 +154,6 @@
     "steg.oppsummering.info": "Les gjennom oppsummeringen før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.",
     "steg.oppsummering.søker.header": "Navn på søker",
     "steg.oppsummering.søker.fnr": "Fødselsnummer: {fodselsnummer}",
-    "steg.oppsummering.tidsrom.header": "Periode",
-    "steg.oppsummering.tidsrom.fomtom": "Fra {fom} til {tom}",
 
     "steg.oppsummering.barnet.header": "Om barnet",
     "steg.oppsummering.barnet.navn": "Navn: {navn}",

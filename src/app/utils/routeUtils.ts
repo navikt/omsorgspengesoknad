@@ -6,7 +6,6 @@ import {
     legeerklæringStepAvailable,
     medlemskapStepAvailable,
     opplysningerOmBarnetStepAvailable,
-    opplysningerOmTidsromStepAvailable,
     summaryStepAvailable
 } from './stepUtils';
 
@@ -18,7 +17,7 @@ export const getSøknadRoute = (stepId: StepID | undefined) => {
 };
 
 export const getNextStepRoute = (stepId: StepID, formData?: OmsorgspengesøknadFormData): string | undefined => {
-    const stepConfig = getStepConfig();
+    const stepConfig = getStepConfig(formData);
     return stepConfig[stepId] ? getSøknadRoute(stepConfig[stepId].nextStep) : undefined;
 };
 
@@ -27,8 +26,6 @@ export const isAvailable = (path: StepID | RouteConfig, values: Omsorgspengesøk
         switch (path) {
             case StepID.OPPLYSNINGER_OM_BARNET:
                 return opplysningerOmBarnetStepAvailable(values);
-            case StepID.TIDSROM:
-                return opplysningerOmTidsromStepAvailable(values);
             case StepID.LEGEERKLÆRING:
                 return legeerklæringStepAvailable(values);
             case StepID.MEDLEMSKAP:

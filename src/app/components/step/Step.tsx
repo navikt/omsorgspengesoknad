@@ -31,6 +31,7 @@ export interface StepProps {
 
 const Step: React.FunctionComponent<StepProps> = ({
     id,
+    formValues,
     handleSubmit,
     showSubmitButton,
     showButtonSpinner,
@@ -39,7 +40,7 @@ const Step: React.FunctionComponent<StepProps> = ({
     intl,
     children
 }) => {
-    const stepConfig = getStepConfig();
+    const stepConfig = getStepConfig(formValues);
     const conf = stepConfig[id];
     const stepTexts: StepConfigItemTexts = getStepTexts(intl, id, stepConfig);
     return (

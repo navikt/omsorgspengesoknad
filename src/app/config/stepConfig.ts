@@ -1,11 +1,13 @@
 import routeConfig from './routeConfig';
 import { getSøknadRoute } from '../utils/routeUtils';
+import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
+import { includeAvtaleStep } from '../utils/stepUtils';
 
 export enum StepID {
     'OPPLYSNINGER_OM_BARNET' = 'opplysninger-om-barnet',
-    'TIDSROM' = 'tidsrom',
     'MEDLEMSKAP' = 'medlemskap',
     'LEGEERKLÆRING' = 'legeerklaering',
+    'SAMVÆRSAVTALE' = 'samværsavtale',
     'SUMMARY' = 'oppsummering'
 }
 
@@ -36,41 +38,49 @@ const getStepConfigItemTextKeys = (stepId: StepID): StepConfigItemTexts => {
     };
 };
 
-export const getStepConfig = (): StepConfigInterface => {
+export const getStepConfig = (formData?: OmsorgspengesøknadFormData): StepConfigInterface => {
     let idx = 0;
+    const avtaleStepIsIncluded = formData ? includeAvtaleStep(formData) : false;
     const config = {
         [StepID.OPPLYSNINGER_OM_BARNET]: {
             ...getStepConfigItemTextKeys(StepID.OPPLYSNINGER_OM_BARNET),
             index: idx++,
-            nextStep: StepID.TIDSROM,
-            backLinkHref: routeConfig.WELCOMING_PAGE_ROUTE
-        },
-        [StepID.TIDSROM]: {
-            ...getStepConfigItemTextKeys(StepID.TIDSROM),
-            index: idx++,
             nextStep: StepID.MEDLEMSKAP,
-            backLinkHref: getSøknadRoute(StepID.OPPLYSNINGER_OM_BARNET)
+            backLinkHref: routeConfig.WELCOMING_PAGE_ROUTE
         },
         [StepID.MEDLEMSKAP]: {
             ...getStepConfigItemTextKeys(StepID.MEDLEMSKAP),
             index: idx++,
             nextStep: StepID.LEGEERKLÆRING,
-            backLinkHref: getSøknadRoute(StepID.TIDSROM)
+            backLinkHref: getSøknadRoute(StepID.OPPLYSNINGER_OM_BARNET)
         },
         [StepID.LEGEERKLÆRING]: {
             ...getStepConfigItemTextKeys(StepID.LEGEERKLÆRING),
             index: idx++,
-            nextStep: StepID.SUMMARY,
+            nextStep: avtaleStepIsIncluded ? StepID.SAMVÆRSAVTALE : StepID.SUMMARY,
             backLinkHref: getSøknadRoute(StepID.MEDLEMSKAP)
-        },
-        [StepID.SUMMARY]: {
-            ...getStepConfigItemTextKeys(StepID.SUMMARY),
-            index: idx++,
-            backLinkHref: getSøknadRoute(StepID.LEGEERKLÆRING),
-            nextButtonLabel: 'step.sendButtonLabel',
-            nextButtonAriaLabel: 'step.sendButtonAriaLabel'
         }
     };
+
+    if (avtaleStepIsIncluded) {
+        config[StepID.SAMVÆRSAVTALE] = {
+            ...getStepConfigItemTextKeys(StepID.SAMVÆRSAVTALE),
+            index: idx++,
+            nextStep: StepID.SUMMARY,
+            backLinkHref: getSøknadRoute(StepID.LEGEERKLÆRING)
+        };
+    }
+
+    config[StepID.SUMMARY] = {
+        ...getStepConfigItemTextKeys(StepID.SUMMARY),
+        index: idx++,
+        backLinkHref: avtaleStepIsIncluded
+            ? getSøknadRoute(StepID.SAMVÆRSAVTALE)
+            : getSøknadRoute(StepID.LEGEERKLÆRING),
+        nextButtonLabel: 'step.sendButtonLabel',
+        nextButtonAriaLabel: 'step.sendButtonAriaLabel'
+    };
+
     return config;
 };
 

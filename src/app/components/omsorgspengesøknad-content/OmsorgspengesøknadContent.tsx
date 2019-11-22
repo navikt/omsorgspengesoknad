@@ -6,13 +6,13 @@ import { getSøknadRoute, isAvailable, getNextStepRoute } from '../../utils/rout
 import { Redirect, Route, Switch } from 'react-router-dom';
 import WelcomingPage from '../pages/welcoming-page/WelcomingPage';
 import RouteConfig from '../../config/routeConfig';
-import OpplysningerOmTidsromStep from '../steps/tidsrom/OpplysningerOmTidsromStep';
 import MedlemsskapStep from '../steps/medlemskap/MedlemsskapStep';
 import LegeerklæringStep from '../steps/legeerklæring/LegeerklæringStep';
 import SummaryStep from '../steps/summary/SummaryStep';
 import GeneralErrorPage from '../pages/general-error-page/GeneralErrorPage';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
+import SamværsavtaleStep from '../steps/samværsavtale/SamværsavtaleStep';
 
 interface OmsorgspengesøknadContentProps {
     formikProps: CustomFormikProps;
@@ -55,19 +55,6 @@ const OmsorgspengesøknadContent: React.FunctionComponent<OmsorgspengesøknadCon
                 />
             )}
 
-            {isAvailable(StepID.TIDSROM, values) && (
-                <Route
-                    path={getSøknadRoute(StepID.TIDSROM)}
-                    render={(props) => (
-                        <OpplysningerOmTidsromStep
-                            formikProps={formikProps}
-                            nextStepRoute={getNextStepRoute(StepID.TIDSROM, values)}
-                            {...props}
-                        />
-                    )}
-                />
-            )}
-
             {isAvailable(StepID.MEDLEMSKAP, values) && (
                 <Route
                     path={getSøknadRoute(StepID.MEDLEMSKAP)}
@@ -90,6 +77,20 @@ const OmsorgspengesøknadContent: React.FunctionComponent<OmsorgspengesøknadCon
                             {...commonFormikProps}
                             {...props}
                             nextStepRoute={getNextStepRoute(StepID.LEGEERKLÆRING, values)}
+                        />
+                    )}
+                />
+            )}
+
+            {isAvailable(StepID.SAMVÆRSAVTALE, values) && (
+                <Route
+                    path={getSøknadRoute(StepID.SAMVÆRSAVTALE)}
+                    render={(props) => (
+                        <SamværsavtaleStep
+                            formikProps={formikProps}
+                            {...commonFormikProps}
+                            {...props}
+                            nextStepRoute={getNextStepRoute(StepID.SAMVÆRSAVTALE, values)}
                         />
                     )}
                 />

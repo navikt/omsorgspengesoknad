@@ -28,10 +28,6 @@ export const opplysningerOmBarnetStepIsValid = ({
     return formIsValid;
 };
 
-export const opplysningerOmTidsromStepIsValid = ({ periodeFra, periodeTil }: OmsorgspengesøknadFormData) => {
-    return periodeFra !== undefined && periodeTil !== undefined;
-};
-
 export const medlemskapStepIsValid = ({
     harBoddUtenforNorgeSiste12Mnd,
     skalBoUtenforNorgeNeste12Mnd

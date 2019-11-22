@@ -2,14 +2,12 @@ import {
     legeerklæringStepIsValid,
     medlemskapStepIsValid,
     opplysningerOmBarnetStepIsValid,
-    opplysningerOmTidsromStepIsValid,
     welcomingPageIsValid
 } from '../stepValidations';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import * as fieldValidations from './../fieldValidations';
 import Mock = jest.Mock;
 import { YesOrNo } from '../../../common/types/YesOrNo';
-const moment = require('moment');
 
 jest.mock('./../fieldValidations', () => {
     return {
@@ -82,26 +80,6 @@ describe('stepValidation tests', () => {
                 (fieldValidations.validateRelasjonTilBarnet as Mock).mockReturnValue('some error message');
                 expect(opplysningerOmBarnetStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
             });
-        });
-    });
-
-    describe('opplysningerOmTidsromStepIsValid', () => {
-        it(`should be valid if both ${AppFormField.periodeFra} and ${AppFormField.periodeTil} are defined`, () => {
-            formData[AppFormField.periodeFra] = moment().toDate();
-            formData[AppFormField.periodeTil] = moment().toDate();
-            expect(opplysningerOmTidsromStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
-        });
-
-        it(`should be invalid if ${AppFormField.periodeFra} is undefined`, () => {
-            formData[AppFormField.periodeFra] = undefined;
-            formData[AppFormField.periodeTil] = moment().toDate();
-            expect(opplysningerOmTidsromStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
-        });
-
-        it(`should be invalid if ${AppFormField.periodeTil} is undefined`, () => {
-            formData[AppFormField.periodeFra] = moment().toDate();
-            formData[AppFormField.periodeTil] = undefined;
-            expect(opplysningerOmTidsromStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
         });
     });
 
