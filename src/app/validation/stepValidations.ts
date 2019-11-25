@@ -28,6 +28,9 @@ export const opplysningerOmBarnetStepIsValid = ({
     return formIsValid;
 };
 
+export const arbeidStepIsValid = ({ arbeidssituasjon }: OmsorgspengesøknadFormData) =>
+    arbeidssituasjon !== undefined && arbeidssituasjon.length > 0;
+
 export const medlemskapStepIsValid = ({
     harBoddUtenforNorgeSiste12Mnd,
     skalBoUtenforNorgeNeste12Mnd

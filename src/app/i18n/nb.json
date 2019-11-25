@@ -60,6 +60,10 @@
     "step.opplysninger-om-barnet.stepTitle": "Barn",
     "step.opplysninger-om-barnet.stepIndicatorLabel": "Om barnet",
 
+    "step.arbeid.pageTitle": "Omsorgspengesøknad - arbeidssituasjon",
+    "step.arbeid.stepTitle": "Arbeidssituasjon",
+    "step.arbeid.stepIndicatorLabel": "Arbeidssituasjon",
+
     "step.medlemskap.pageTitle": "Omsorgspengesøknad - medlemskap",
     "step.medlemskap.stepTitle": "Medlemskap",
     "step.medlemskap.stepIndicatorLabel": "Om medlemskap i folketrygden",
@@ -76,17 +80,13 @@
     "step.oppsummering.stepTitle": "Oppsummering",
     "step.oppsummering.stepIndicatorLabel": "Oppsummering",
 
-    "introHarRettPage.tittel": "Søknad om omsorgspenger",
-    "introHarRettPage.stegTittel": "Har jeg rett til å søke om utvidet rett?",
-    "introHarRettPage.tekst": "Informasjon om hvem som har rett",
-    "introHarRettPage.yrkesaktiv.spm": "Er du yrkesaktiv",
-    "introHarRettPage.infoIkkeYrkesaktiv": "Informasjon om når en ikke har rett.",
-
-    "introSkjemaPage.tittel": "Søknad om omsorgspenger",
-    "introSkjemaPage.stegTittel": "Kan jeg bruke den digitale omsorgspengesøknaden?",
-    "introSkjemaPage.tekst": "Informasjon om hvem denne søknaden er for",
-    "introSkjemaPage.spm.kroniskEllerFunksjonshemmende": "Har du et barn som har en kronisk sykdom eller funksjonshemming?",
-    "introSkjemaPage.infoIkkeKroniskEllerFunksjonshemmende.html": "Du fyller i stedet ut <a href=\"{url}\" class=\"lenke\">søknaden på papir</a> og sender den i posten.",
+    "introPage.tittel": "Søknad om omsorgspenger",
+    "introPage.stegTittel": "Kan jeg bruke den digitale omsorgspengesøknaden?",
+    "introPage.tekst": "Informasjon om hvem denne søknaden er for",
+    "introPage.arbeidssituasjon.html": "For å kunne ha rett til utvidet omsorgspenger må din arbeidssituasjon være en eller flere av disse: <ul><li>arbeidstaker</li><li>selvstendig næringsdrivende</li><li>frilanser</li></ul>",
+    "introPage.legeerklæring.html": "Du må ha legeerklæring klar for å laste opp når du fyller ut den digitale søknaden.",
+    "introPage.spm.kroniskEllerFunksjonshemmende": "Har du et barn som har en kronisk sykdom eller funksjonshemming?",
+    "introPage.infoIkkeKroniskEllerFunksjonshemmende.html": "Den digitale søknaden er under utvikling. Hvis du skal søke fordi: <ul><li>den andre omsorgspersonen er syk, og ikke kan ta seg av barnet</li><li>du skal fordele dager med en samværsforelder</li><li>du skal overføre dager til en ny partner</li></ul> må du <a href=\"{url}\" class=\"lenke\">søke på papir</a>.",
 
     "welcomingPage.sidetittel": "Søknad om omsorgspenger",
     "welcomingPage.banner.tittel": "Hei,",
@@ -140,6 +140,11 @@
     "steg.omBarnet.fnr.foreløpig": "Barnets foreløpige fødselsnummer eller D-nummer",
     "steg.omBarnet.navn": "Barnets navn",
     "steg.omBarnet.relasjon": "Min relasjon til barnet",
+
+    "steg.arbeid.spm": "Hva er din arbeidssituasjon?",
+    "steg.arbeid.arbeidstaker": "Arbeidstaker",
+    "steg.arbeid.selvstendigNæringsdrivende": "Selvstendig næringsdrivende",
+    "steg.arbeid.frilanser": "Frilanser",
 
     "steg.medlemsskap.annetLandSiste12.spm": "Har du bodd i andre land enn Norge i hele eller deler av de siste 12 månedene?",
     "steg.medlemsskap.annetLandSiste12.hjelp": "Du svarer ja bare hvis du har oppholdt deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.",

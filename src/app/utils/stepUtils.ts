@@ -3,7 +3,8 @@ import {
     legeerklæringStepIsValid,
     medlemskapStepIsValid,
     opplysningerOmBarnetStepIsValid,
-    welcomingPageIsValid
+    welcomingPageIsValid,
+    arbeidStepIsValid
 } from '../validation/stepValidations';
 import { StepConfigItemTexts, StepID, StepConfigInterface } from 'app/config/stepConfig';
 import { InjectedIntl } from 'react-intl';
@@ -31,17 +32,28 @@ export const getStepTexts = (
 export const opplysningerOmBarnetStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     welcomingPageIsValid(formData);
 
+export const arbeidStepIsAvailable = (formData: OmsorgspengesøknadFormData) =>
+    opplysningerOmBarnetStepIsValid(formData);
+
 export const medlemskapStepAvailable = (formData: OmsorgspengesøknadFormData) =>
-    welcomingPageIsValid(formData) && opplysningerOmBarnetStepIsValid(formData);
+    welcomingPageIsValid(formData) && arbeidStepIsValid(formData) && opplysningerOmBarnetStepIsValid(formData);
 
 export const legeerklæringStepAvailable = (formData: OmsorgspengesøknadFormData) =>
-    welcomingPageIsValid(formData) && opplysningerOmBarnetStepIsValid(formData) && medlemskapStepIsValid(formData);
+    welcomingPageIsValid(formData) &&
+    arbeidStepIsValid(formData) &&
+    opplysningerOmBarnetStepIsValid(formData) &&
+    medlemskapStepIsValid(formData);
 
 export const samværsavtaleStepAvailable = (formData: OmsorgspengesøknadFormData) =>
-    welcomingPageIsValid(formData) && opplysningerOmBarnetStepIsValid(formData) && medlemskapStepIsValid(formData);
+    welcomingPageIsValid(formData) &&
+    opplysningerOmBarnetStepIsValid(formData) &&
+    arbeidStepIsValid(formData) &&
+    medlemskapStepIsValid(formData) &&
+    legeerklæringStepIsValid();
 
 export const summaryStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     welcomingPageIsValid(formData) &&
     opplysningerOmBarnetStepIsValid(formData) &&
+    arbeidStepIsValid(formData) &&
     medlemskapStepIsValid(formData) &&
     legeerklæringStepIsValid();

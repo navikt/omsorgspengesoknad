@@ -7,7 +7,8 @@ import {
     medlemskapStepAvailable,
     opplysningerOmBarnetStepAvailable,
     summaryStepAvailable,
-    samværsavtaleStepAvailable
+    samværsavtaleStepAvailable,
+    arbeidStepIsAvailable
 } from './stepUtils';
 
 export const getSøknadRoute = (stepId: StepID | undefined) => {
@@ -29,6 +30,8 @@ export const isAvailable = (path: StepID | RouteConfig, values: Omsorgspengesøk
                 return opplysningerOmBarnetStepAvailable(values);
             case StepID.LEGEERKLÆRING:
                 return legeerklæringStepAvailable(values);
+            case StepID.ARBEID:
+                return arbeidStepIsAvailable(values);
             case StepID.MEDLEMSKAP:
                 return medlemskapStepAvailable(values);
             case StepID.SAMVÆRSAVTALE:

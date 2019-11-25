@@ -22,6 +22,7 @@ export const mapFormDataToApiData = (
         legeerklæring,
         samværsavtale,
         harBoddUtenforNorgeSiste12Mnd,
+        arbeidssituasjon,
         skalBoUtenforNorgeNeste12Mnd
     }: OmsorgspengesøknadFormData,
     barn: BarnReceivedFromApi[],
@@ -52,6 +53,7 @@ export const mapFormDataToApiData = (
         relasjon_til_barnet: barnObject.aktoer_id ? undefined : søkersRelasjonTilBarnet,
         deler_omsorg: delerOmsorg === YesOrNo.YES,
         samme_adresse: sammeAdresse === YesOrNo.YES,
+        arbeidssituasjon,
         medlemskap: {
             har_bodd_i_utlandet_siste_12_mnd: harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES,
             skal_bo_i_utlandet_neste_12_mnd: skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES

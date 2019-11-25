@@ -13,6 +13,7 @@ import GeneralErrorPage from '../pages/general-error-page/GeneralErrorPage';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import SamværsavtaleStep from '../steps/samværsavtale/SamværsavtaleStep';
+import ArbeidStep from '../steps/arbeid/ArbeidStep';
 
 interface OmsorgspengesøknadContentProps {
     formikProps: CustomFormikProps;
@@ -50,6 +51,19 @@ const OmsorgspengesøknadContent: React.FunctionComponent<OmsorgspengesøknadCon
                             formikProps={formikProps}
                             {...props}
                             nextStepRoute={getNextStepRoute(StepID.OPPLYSNINGER_OM_BARNET, values)}
+                        />
+                    )}
+                />
+            )}
+
+            {isAvailable(StepID.ARBEID, values) && (
+                <Route
+                    path={getSøknadRoute(StepID.ARBEID)}
+                    render={(props) => (
+                        <ArbeidStep
+                            {...commonFormikProps}
+                            {...props}
+                            nextStepRoute={getNextStepRoute(StepID.ARBEID, values)}
                         />
                     )}
                 />

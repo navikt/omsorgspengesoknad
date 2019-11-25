@@ -3,7 +3,7 @@ import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './f�
 import { attachmentHasBeenUploaded } from '../../common/utils/attachmentUtils';
 import { FieldValidationResult } from './types';
 import { Attachment } from '../../common/types/Attachment';
-import { SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
+import { SøkersRelasjonTilBarnet, Arbeidssituasjon } from '../types/OmsorgspengesøknadFormData';
 
 export enum FieldValidationErrors {
     'påkrevd' = 'fieldvalidation.påkrevd',
@@ -107,6 +107,13 @@ export const validateSamværsavtale = (attachments: Attachment[]): FieldValidati
 
 export const validateRequiredField = (value: any): FieldValidationResult => {
     if (!hasValue(value)) {
+        return fieldIsRequiredError();
+    }
+    return undefined;
+};
+
+export const validateArbeid = (value: Arbeidssituasjon[]): FieldValidationResult => {
+    if (value === undefined || value.length === 0) {
         return fieldIsRequiredError();
     }
     return undefined;

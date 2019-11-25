@@ -9,8 +9,7 @@ import { Locale } from '../common/types/Locale';
 import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
 import { isFeatureEnabled, Feature } from './utils/featureToggleUtils';
 import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
-import IntroHarRettPage from './components/pages/intro-har-rett-page/IntroHarRettPage';
-import IntroSkjemaPage from './components/pages/intro-skjema-page/IntroSkjemaPage';
+import IntroPage from './components/pages/intro-page/IntroPage';
 import '../common/styles/globalStyles.less';
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
@@ -30,8 +29,7 @@ const App: React.FunctionComponent = () => {
                 ) : (
                     <Switch>
                         <Route path={RouteConfig.SØKNAD_ROUTE_PREFIX} component={Omsorgspengesøknad} />
-                        <Route path="/skjema" component={IntroSkjemaPage} />
-                        <Route path="/" component={IntroHarRettPage} />
+                        <Route path="/" component={IntroPage} />
                     </Switch>
                 )}
             </>

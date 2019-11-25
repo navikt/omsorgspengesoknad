@@ -6,6 +6,7 @@ import { includeAvtaleStep } from '../utils/stepUtils';
 export enum StepID {
     'OPPLYSNINGER_OM_BARNET' = 'opplysninger-om-barnet',
     'MEDLEMSKAP' = 'medlemskap',
+    'ARBEID' = 'arbeid',
     'LEGEERKLÆRING' = 'legeerklaering',
     'SAMVÆRSAVTALE' = 'samværsavtale',
     'SUMMARY' = 'oppsummering'
@@ -45,14 +46,20 @@ export const getStepConfig = (formData?: OmsorgspengesøknadFormData): StepConfi
         [StepID.OPPLYSNINGER_OM_BARNET]: {
             ...getStepConfigItemTextKeys(StepID.OPPLYSNINGER_OM_BARNET),
             index: idx++,
-            nextStep: StepID.MEDLEMSKAP,
+            nextStep: StepID.ARBEID,
             backLinkHref: routeConfig.WELCOMING_PAGE_ROUTE
+        },
+        [StepID.ARBEID]: {
+            ...getStepConfigItemTextKeys(StepID.ARBEID),
+            index: idx++,
+            nextStep: StepID.MEDLEMSKAP,
+            backLinkHref: getSøknadRoute(StepID.OPPLYSNINGER_OM_BARNET)
         },
         [StepID.MEDLEMSKAP]: {
             ...getStepConfigItemTextKeys(StepID.MEDLEMSKAP),
             index: idx++,
             nextStep: StepID.LEGEERKLÆRING,
-            backLinkHref: getSøknadRoute(StepID.OPPLYSNINGER_OM_BARNET)
+            backLinkHref: getSøknadRoute(StepID.ARBEID)
         },
         [StepID.LEGEERKLÆRING]: {
             ...getStepConfigItemTextKeys(StepID.LEGEERKLÆRING),

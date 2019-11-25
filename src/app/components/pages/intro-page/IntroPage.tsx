@@ -15,22 +15,22 @@ import getLenker from '../../../lenker';
 
 const bem = bemUtils('introPage');
 
-const IntroSkjemaPage: React.StatelessComponent<InjectedIntlProps> = ({ intl }) => {
+const IntroPage: React.StatelessComponent<InjectedIntlProps> = ({ intl }) => {
     const [kroniskEllerFunksjonshemmende, setKroniskEllerFunksjonshemmende] = React.useState(YesOrNo.UNANSWERED);
 
     return (
         <Page
             className={bem.block}
-            title={intlHelper(intl, 'introSkjemaPage.tittel')}
-            topContentRenderer={() => <StepBanner text={intlHelper(intl, 'introSkjemaPage.stegTittel')} />}>
+            title={intlHelper(intl, 'introPage.tittel')}
+            topContentRenderer={() => <StepBanner text={intlHelper(intl, 'introPage.stegTittel')} />}>
             <Box margin="xxxl">
                 <InformationPoster>
-                    <FormattedMessage id={`introSkjemaPage.tekst`} />
+                    <FormattedHTMLMessage id={`introPage.arbeidssituasjon.html`} />
                 </InformationPoster>
             </Box>
             <Box margin="xl">
                 <YesOrNoQuestion
-                    legend={intlHelper(intl, 'introSkjemaPage.spm.kroniskEllerFunksjonshemmende')}
+                    legend={intlHelper(intl, 'introPage.spm.kroniskEllerFunksjonshemmende')}
                     name="kroniskEllerFunksjonshemmende"
                     checked={kroniskEllerFunksjonshemmende}
                     onChange={(value) => setKroniskEllerFunksjonshemmende(value)}
@@ -40,19 +40,26 @@ const IntroSkjemaPage: React.StatelessComponent<InjectedIntlProps> = ({ intl }) 
                 {kroniskEllerFunksjonshemmende === YesOrNo.NO && (
                     <CounsellorPanel>
                         <FormattedHTMLMessage
-                            id={`introSkjemaPage.infoIkkeKroniskEllerFunksjonshemmende.html`}
+                            id={`introPage.infoIkkeKroniskEllerFunksjonshemmende.html`}
                             values={{ url: getLenker(intl.locale).papirskjemaPrivat }}
                         />
                     </CounsellorPanel>
                 )}
                 {kroniskEllerFunksjonshemmende === YesOrNo.YES && (
-                    <Lenke href={RouteConfig.WELCOMING_PAGE_ROUTE}>
-                        <FormattedMessage id="gotoApplicationLink.lenketekst" />
-                    </Lenke>
+                    <>
+                        <Box padBottom="xxl">
+                            <CounsellorPanel>
+                                <FormattedHTMLMessage id={`introPage.legeerklæring.html`} />
+                            </CounsellorPanel>
+                        </Box>
+                        <Lenke href={RouteConfig.WELCOMING_PAGE_ROUTE}>
+                            <FormattedMessage id="gotoApplicationLink.lenketekst" />
+                        </Lenke>
+                    </>
                 )}
             </Box>
         </Page>
     );
 };
 
-export default injectIntl(IntroSkjemaPage);
+export default injectIntl(IntroPage);

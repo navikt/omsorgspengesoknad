@@ -32,7 +32,6 @@ import intlHelper from 'common/utils/intlUtils';
 import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
 import { YesOrNo } from '../../../../common/types/YesOrNo';
 import Box from '../../../../common/components/box/Box';
-import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
 import Select from '../../form-elements/select/Select';
 
 interface OpplysningerOmBarnetStepProps {
@@ -40,13 +39,6 @@ interface OpplysningerOmBarnetStepProps {
 }
 
 type Props = OpplysningerOmBarnetStepProps & HistoryProps & InjectedIntlProps & StepConfigProps;
-
-const canShowSubmitButton = (values: OmsorgspengesøknadFormData): boolean => {
-    if (values[AppFormField.sammeAdresse] === YesOrNo.NO && values[AppFormField.delerOmsorg] === YesOrNo.NO) {
-        return false;
-    }
-    return true;
-};
 
 const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
     formikProps,
@@ -64,8 +56,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
             onValidFormSubmit={navigate}
             handleSubmit={handleSubmit}
             history={history}
-            formValues={values}
-            showSubmitButton={canShowSubmitButton(values)}>
+            formValues={values}>
             <SøkerdataContextConsumer>
                 {(søkerdata: Søkerdata) =>
                     harRegistrerteBarn(søkerdata) && (
@@ -213,17 +204,6 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                                 name={AppFormField.delerOmsorg}
                                 validate={validateYesOrNoIsAnswered}
                             />
-                            {values[AppFormField.delerOmsorg] === YesOrNo.YES && (
-                                <Box>
-                                    <CounsellorPanel>Info om å laste opp avtale senere i prosessen</CounsellorPanel>
-                                </Box>
-                            )}
-
-                            {values[AppFormField.delerOmsorg] === YesOrNo.NO && (
-                                <Box>
-                                    <CounsellorPanel>Info om at dette er et krav</CounsellorPanel>
-                                </Box>
-                            )}
                         </Box>
                     )}
                 </>

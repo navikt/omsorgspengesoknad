@@ -1,5 +1,5 @@
 import { Locale } from '../../common/types/Locale';
-import { SøkersRelasjonTilBarnet } from './OmsorgspengesøknadFormData';
+import { SøkersRelasjonTilBarnet, Arbeidssituasjon } from './OmsorgspengesøknadFormData';
 
 export type ISO8601Duration = string;
 
@@ -24,6 +24,7 @@ export interface OmsorgspengesøknadApiData {
     samme_adresse?: boolean;
     deler_omsorg?: boolean;
     relasjon_til_barnet: SøkersRelasjonTilBarnet | undefined;
+    arbeidssituasjon: Arbeidssituasjon[];
     legeerklaring: string[];
     samvarsavtale?: string[];
     medlemskap: Medlemskap;
