@@ -12,7 +12,7 @@ jobs:
     - name: Run a one-line script
       run: echo ${secrets.GITHUB_TOKEN}
       env:
-        GITHUB_TOKEN: ${GITHUB_TOKEN}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Run a multi-line script
       run: |
         echo Add other actions to build,
