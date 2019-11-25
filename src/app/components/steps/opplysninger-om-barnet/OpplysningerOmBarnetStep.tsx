@@ -14,11 +14,7 @@ import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { Søkerdata } from '../../../types/Søkerdata';
 import { CustomFormikProps } from '../../../types/FormikProps';
 import { formatName } from '../../../../common/utils/personUtils';
-import {
-    AppFormField,
-    OmsorgspengesøknadFormData,
-    SøkersRelasjonTilBarnet
-} from '../../../types/OmsorgspengesøknadFormData';
+import { AppFormField, SøkersRelasjonTilBarnet } from '../../../types/OmsorgspengesøknadFormData';
 import Checkbox from '../../form-elements/checkbox/Checkbox';
 import Input from '../../form-elements/input/Input';
 import FormikStep from '../../formik-step/FormikStep';
