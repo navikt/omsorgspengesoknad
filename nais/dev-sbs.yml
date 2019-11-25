@@ -6,16 +6,16 @@ metadata:
     labels:
         team: {{team}}
 spec:
-    image: {{version}}
+    image: {{ image }}:{{ tag }}
     port: 8080
     liveness:
-        path: isalive
+        path: /health/isAlive
         initialDelay: 20
         periodSeconds: 5
         timeout: 1
         failureThreshold: 10
     readiness:
-        path: isready
+        path: /health/isReady
         initialDelay: 20
         timeout: 1
     resources:
@@ -39,8 +39,8 @@ spec:
         enabled: false
     env:
         - name: APPRES_CMS_URL
-          value: http://appres-q1.nav.no
+          value: http://appres.nav.no
         - name: API_URL
-          value: https://omsorgspengesoknad-api-q.nav.no
+          value: https://omsorgspenger-api.nais.oera-q.local
         - name: LOGIN_URL
           value: https://loginservice-q.nav.no/login?redirect=https://omsorgspengesoknad-q.nav.no/soknad
