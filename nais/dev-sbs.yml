@@ -41,6 +41,6 @@ spec:
         - name: APPRES_CMS_URL
           value: http://appres.nav.no
         - name: API_URL
-          value: https://omsorgspengesoknad-api-q.nav.no
+          value: https://omsorgspenger-api.nais.oera-q.local
         - name: LOGIN_URL
           value: https://loginservice-q.nav.no/login?redirect=https://omsorgspengesoknad-q.nav.no/soknad
