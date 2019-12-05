@@ -13,7 +13,7 @@ import Box from '../../../../common/components/box/Box';
 import intlHelper from 'common/utils/intlUtils';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { appIsRunningInDemoMode } from '../../../utils/envUtils';
+import { appIsRunningInDemoMode, enableDemoModeUpload } from '../../../utils/envUtils';
 import { CustomFormikProps } from '../../../types/FormikProps';
 import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
 
@@ -27,6 +27,7 @@ const SamværsavtaleStep = ({ history, intl, nextStepRoute, formikProps, ...step
 
     const navigate = nextStepRoute ? () => navigateTo(nextStepRoute, history) : undefined;
     const isRunningDemoMode = appIsRunningInDemoMode();
+    const showUploadForm = enableDemoModeUpload() === false;
 
     return (
         <FormikStep
@@ -36,14 +37,14 @@ const SamværsavtaleStep = ({ history, intl, nextStepRoute, formikProps, ...step
             useValidationErrorSummary={false}
             skipValidation={isRunningDemoMode}
             {...stepProps}>
-            {isRunningDemoMode && (
+            {!showUploadForm && (
                 <Box>
                     <AlertStripeInfo>
                         Opplasting av samværsavtalen er ikke tilgjengelig i demo versjon. Du kan klikke Fortsett.
                     </AlertStripeInfo>
                 </Box>
             )}
-            {false === isRunningDemoMode && (
+            {showUploadForm && (
                 <>
                     <HelperTextPanel>
                         <FormattedHTMLMessage id="steg.samværsavtale.info.html" />

@@ -105,12 +105,6 @@ class WelcomingPage extends React.Component<Props, WelcomingPageState> {
                         </Sidetittel>
                     </Box>
 
-                    {/* {appIsRunningInDemoMode() === false && (
-                        <Box margin="xl">
-                            <LegeerklæringInformationPanel text={intlHelper(intl, 'welcomingPage.legeerklæring')} />
-                        </Box>
-                    )} */}
-
                     <form onSubmit={handleSubmit}>
                         <Box margin="xl">
                             <ConfirmationCheckboxPanel

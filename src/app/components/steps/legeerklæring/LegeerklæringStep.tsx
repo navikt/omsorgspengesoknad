@@ -14,8 +14,8 @@ import Box from '../../../../common/components/box/Box';
 import intlHelper from 'common/utils/intlUtils';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import { CustomFormikProps } from '../../../types/FormikProps';
+import { appIsRunningInDemoMode, enableDemoModeUpload } from '../../../utils/envUtils';
 
 type Props = { formikProps: CustomFormikProps } & CommonStepFormikProps &
     HistoryProps &
@@ -27,6 +27,7 @@ const LegeerklæringStep = ({ history, intl, nextStepRoute, formikProps, ...step
 
     const navigate = nextStepRoute ? () => navigateTo(nextStepRoute, history) : undefined;
     const isRunningDemoMode = appIsRunningInDemoMode();
+    const showUploadForm = enableDemoModeUpload() === false;
 
     return (
         <FormikStep
@@ -36,25 +37,15 @@ const LegeerklæringStep = ({ history, intl, nextStepRoute, formikProps, ...step
             useValidationErrorSummary={false}
             skipValidation={isRunningDemoMode}
             {...stepProps}>
-            {isRunningDemoMode && (
+            {!showUploadForm && (
                 <Box>
                     <AlertStripeInfo>
                         Opplasting av legeerklæring er ikke tilgjengelig i demo versjon. Du kan klikke Fortsett.
                     </AlertStripeInfo>
                 </Box>
             )}
-            {false === isRunningDemoMode && (
+            {showUploadForm && (
                 <>
-                    {/* <Box padBottom="xl">
-                        <CounsellorPanel>
-                            <p>
-                                <FormattedHTMLMessage id="steg.lege.intro.1.html" />
-                            </p>
-                            <p>
-                                <FormattedHTMLMessage id="steg.lege.intro.2.html" />
-                            </p>
-                        </CounsellorPanel>
-                    </Box> */}
                     <HelperTextPanel>
                         <FormattedHTMLMessage id="steg.lege.info.html" />
                     </HelperTextPanel>
