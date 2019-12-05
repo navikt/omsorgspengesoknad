@@ -12,7 +12,7 @@ import intlHelper from '../../common/utils/intlUtils';
 import { YesOrNo } from '../../common/types/YesOrNo';
 
 export const includeAvtaleStep = (formData: Partial<OmsorgspengesøknadFormData>): boolean =>
-    formData !== undefined && formData[AppFormField.delerOmsorg] === YesOrNo.YES;
+    formData !== undefined && formData[AppFormField.sammeAdresse] === YesOrNo.NO;
 
 export const getStepTexts = (
     intl: InjectedIntl,

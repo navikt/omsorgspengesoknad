@@ -9,7 +9,6 @@ import { Locale } from 'common/types/Locale';
 export const mapFormDataToApiData = (
     {
         kroniskEllerFunksjonshemming,
-        delerOmsorg,
         sammeAdresse,
         erYrkesaktiv,
         barnetsNavn,
@@ -51,7 +50,6 @@ export const mapFormDataToApiData = (
         er_yrkesaktiv: erYrkesaktiv === YesOrNo.YES,
         barn: barnObject,
         relasjon_til_barnet: barnObject.aktoer_id ? undefined : søkersRelasjonTilBarnet,
-        deler_omsorg: delerOmsorg === YesOrNo.YES,
         samme_adresse: sammeAdresse === YesOrNo.YES,
         arbeidssituasjon,
         medlemskap: {

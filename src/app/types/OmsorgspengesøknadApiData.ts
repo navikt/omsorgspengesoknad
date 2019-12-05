@@ -22,7 +22,6 @@ export interface OmsorgspengesøknadApiData {
     kronisk_eller_funksjonshemming: boolean;
     barn: BarnToSendToApi;
     samme_adresse?: boolean;
-    deler_omsorg?: boolean;
     relasjon_til_barnet: SøkersRelasjonTilBarnet | undefined;
     arbeidssituasjon: Arbeidssituasjon[];
     legeerklaring: string[];

@@ -16,10 +16,10 @@ const formData: Partial<OmsorgspengesøknadFormData> = {};
 
 describe('stepUtils', () => {
     it('should include avtalestep if deltOmsorg is YES', () => {
-        expect(stepUtils.includeAvtaleStep({ delerOmsorg: YesOrNo.YES })).toBeTruthy();
-        expect(stepUtils.includeAvtaleStep({ delerOmsorg: undefined })).toBeFalsy();
-        expect(stepUtils.includeAvtaleStep({ delerOmsorg: YesOrNo.NO })).toBeFalsy();
-        expect(stepUtils.includeAvtaleStep({ delerOmsorg: YesOrNo.DO_NOT_KNOW })).toBeFalsy();
+        expect(stepUtils.includeAvtaleStep({ sammeAdresse: YesOrNo.NO })).toBeTruthy();
+        expect(stepUtils.includeAvtaleStep({ sammeAdresse: undefined })).toBeFalsy();
+        expect(stepUtils.includeAvtaleStep({ sammeAdresse: YesOrNo.YES })).toBeFalsy();
+        expect(stepUtils.includeAvtaleStep({ sammeAdresse: YesOrNo.DO_NOT_KNOW })).toBeFalsy();
     });
 
     describe('opplysningerOmBarnetStepAvailable', () => {

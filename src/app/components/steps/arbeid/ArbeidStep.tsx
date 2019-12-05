@@ -19,19 +19,20 @@ const ArbeidStep: React.FunctionComponent<Props> = ({ history, intl, nextStepRou
             <CheckboxPanelGroup
                 legend={intlHelper(intl, 'steg.arbeid.spm')}
                 name={AppFormField.arbeidssituasjon}
+                singleColumn={true}
                 checkboxes={[
                     {
-                        label: intlHelper(intl, 'steg.arbeid.arbeidstaker'),
+                        label: intlHelper(intl, 'arbeidssituasjon.arbeidstaker'),
                         value: Arbeidssituasjon.arbeidstaker,
                         key: Arbeidssituasjon.arbeidstaker
                     },
                     {
-                        label: intlHelper(intl, 'steg.arbeid.selvstendigNæringsdrivende'),
+                        label: intlHelper(intl, 'arbeidssituasjon.selvstendigNæringsdrivende'),
                         value: Arbeidssituasjon.selvstendigNæringsdrivende,
                         key: Arbeidssituasjon.selvstendigNæringsdrivende
                     },
                     {
-                        label: intlHelper(intl, 'steg.arbeid.frilanser'),
+                        label: intlHelper(intl, 'arbeidssituasjon.frilanser'),
                         value: Arbeidssituasjon.frilanser,
                         key: Arbeidssituasjon.frilanser
                     }
@@ -41,5 +42,7 @@ const ArbeidStep: React.FunctionComponent<Props> = ({ history, intl, nextStepRou
         </FormikStep>
     );
 };
+
+// Todo - kommer ikke videre ved første valg
 
 export default injectIntl(ArbeidStep);

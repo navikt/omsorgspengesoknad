@@ -16,7 +16,6 @@ import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/Omsorgs
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import { CustomFormikProps } from '../../../types/FormikProps';
-import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
 
 type Props = { formikProps: CustomFormikProps } & CommonStepFormikProps &
     HistoryProps &
@@ -46,7 +45,7 @@ const LegeerklæringStep = ({ history, intl, nextStepRoute, formikProps, ...step
             )}
             {false === isRunningDemoMode && (
                 <>
-                    <Box padBottom="xl">
+                    {/* <Box padBottom="xl">
                         <CounsellorPanel>
                             <p>
                                 <FormattedHTMLMessage id="steg.lege.intro.1.html" />
@@ -55,7 +54,7 @@ const LegeerklæringStep = ({ history, intl, nextStepRoute, formikProps, ...step
                                 <FormattedHTMLMessage id="steg.lege.intro.2.html" />
                             </p>
                         </CounsellorPanel>
-                    </Box>
+                    </Box> */}
                     <HelperTextPanel>
                         <FormattedHTMLMessage id="steg.lege.info.html" />
                     </HelperTextPanel>

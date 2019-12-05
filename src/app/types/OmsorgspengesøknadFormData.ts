@@ -5,8 +5,6 @@ export enum SøkersRelasjonTilBarnet {
     'MOR' = 'mor',
     'FAR' = 'far',
     'ADOPTIVFORELDER' = 'adoptivforelder',
-    'SAMVÆRSFORELDER' = 'samværsforelder',
-    'STEFORELDER' = 'steforelder',
     'FOSTERFORELDER' = 'fosterforelder'
 }
 export enum Arbeidssituasjon {
@@ -33,7 +31,6 @@ export enum AppFormField {
     erYrkesaktiv = 'erYrkesaktiv',
     kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
     sammeAdresse = 'sammeAdresse',
-    delerOmsorg = 'delerOmsorg',
     samværsavtale = 'samværsavtale'
 }
 
@@ -48,7 +45,6 @@ export interface OmsorgspengesøknadFormData {
     [AppFormField.søknadenGjelderEtAnnetBarn]: boolean;
     [AppFormField.barnetSøknadenGjelder]: string;
     [AppFormField.sammeAdresse]?: YesOrNo;
-    [AppFormField.delerOmsorg]?: YesOrNo;
     [AppFormField.arbeidssituasjon]: Arbeidssituasjon[];
     [AppFormField.legeerklæring]: Attachment[];
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: boolean;

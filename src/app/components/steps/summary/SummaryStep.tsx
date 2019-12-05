@@ -195,9 +195,12 @@ class SummaryStep extends React.Component<Props, State> {
 
                                     <Box margin="l">
                                         <ContentWithHeader
-                                            header={intlHelper(intl, 'steg.oppsummering.barnet.deltOmsorg.header')}>
-                                            {apiValues.deler_omsorg === true && intlHelper(intl, 'Ja')}
-                                            {apiValues.deler_omsorg === false && intlHelper(intl, 'Nei')}
+                                            header={intlHelper(intl, 'steg.oppsummering.arbeidssituasjon.header')}>
+                                            {apiValues.arbeidssituasjon.map((a) => (
+                                                <li key={a}>
+                                                    <FormattedMessage id={`arbeidssituasjon.${a}`} />
+                                                </li>
+                                            ))}
                                         </ContentWithHeader>
                                     </Box>
 

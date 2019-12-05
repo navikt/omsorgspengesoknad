@@ -29,6 +29,8 @@ import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
 import { YesOrNo } from '../../../../common/types/YesOrNo';
 import Box from '../../../../common/components/box/Box';
 import Select from '../../form-elements/select/Select';
+import Veilederpanel from 'nav-frontend-veilederpanel';
+import LegeerklæringWithArmIcon from '../../legeerklæring-icon/LegeerklæringWithArmIcon';
 
 interface OpplysningerOmBarnetStepProps {
     formikProps: CustomFormikProps;
@@ -194,13 +196,10 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                         />
                     </Box>
                     {values[AppFormField.sammeAdresse] === YesOrNo.NO && (
-                        <Box>
-                            <YesOrNoQuestion
-                                legend="Deler du omsorgen med den andre forelderen?"
-                                name={AppFormField.delerOmsorg}
-                                validate={validateYesOrNoIsAnswered}
-                            />
-                        </Box>
+                        <Veilederpanel svg={<LegeerklæringWithArmIcon />} kompakt={true}>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        </Veilederpanel>
                     )}
                 </>
             )}

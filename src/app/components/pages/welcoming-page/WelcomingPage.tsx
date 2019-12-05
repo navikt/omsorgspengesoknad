@@ -16,8 +16,8 @@ import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
 import Lenke from 'nav-frontend-lenker';
 import DinePlikterModal from '../../dine-plikter-modal/DinePlikterModal';
 import BehandlingAvPersonopplysningerModal from '../../behandling-av-personopplysninger-modal/BehandlingAvPersonopplysningerModal';
-import LegeerklæringInformationPanel from '../../legeerklæring-information-panel/LegeerklæringInformationPanel';
-import { appIsRunningInDemoMode } from '../../../utils/envUtils';
+// import LegeerklæringInformationPanel from '../../legeerklæring-information-panel/LegeerklæringInformationPanel';
+// import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import './welcomingPage.less';
 
 const bem = bemHelper('welcomingPage');
@@ -105,11 +105,11 @@ class WelcomingPage extends React.Component<Props, WelcomingPageState> {
                         </Sidetittel>
                     </Box>
 
-                    {appIsRunningInDemoMode() === false && (
+                    {/* {appIsRunningInDemoMode() === false && (
                         <Box margin="xl">
                             <LegeerklæringInformationPanel text={intlHelper(intl, 'welcomingPage.legeerklæring')} />
                         </Box>
-                    )}
+                    )} */}
 
                     <form onSubmit={handleSubmit}>
                         <Box margin="xl">

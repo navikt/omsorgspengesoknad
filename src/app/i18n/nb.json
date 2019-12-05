@@ -44,12 +44,14 @@
     "fileUploadErrors.part1": "Det har dessverre skjedd en feil under opplasting av følgende vedlegg:",
     "formikValidationErrorSummary.tittel": "Du må rette opp i følgende feil:",
 
+    "arbeidssituasjon.arbeidstaker": "Arbeidstaker",
+    "arbeidssituasjon.selvstendigNæringsdrivende": "Selvstendig næringsdrivende",
+    "arbeidssituasjon.frilanser": "Frilanser",
+
     "relasjonTilBarnet.mor": "Mor",
     "relasjonTilBarnet.far": "Far",
     "relasjonTilBarnet.adoptivforelder": "Adoptivforelder",
     "relasjonTilBarnet.samværsforelder": "Samværsforelder",
-    "relasjonTilBarnet.steforelder": "Steforelder",
-    "relasjonTilBarnet.fosterforelder": "Fosterforelder",
 
     "step.nextButtonLabel": "Fortsett",
     "step.nextButtonAriaLabel": "Gå til neste steg",
@@ -141,11 +143,7 @@
     "steg.omBarnet.navn": "Barnets navn",
     "steg.omBarnet.relasjon": "Min relasjon til barnet",
 
-    "steg.arbeid.spm": "Hva er din arbeidssituasjon?",
-    "steg.arbeid.arbeidstaker": "Arbeidstaker",
-    "steg.arbeid.selvstendigNæringsdrivende": "Selvstendig næringsdrivende",
-    "steg.arbeid.frilanser": "Frilanser",
-
+    "steg.arbeid.spm": "Hva er din arbeidssituasjon? Du kan velge flere.",
     "steg.medlemsskap.annetLandSiste12.spm": "Har du bodd i andre land enn Norge i hele eller deler av de siste 12 månedene?",
     "steg.medlemsskap.annetLandSiste12.hjelp": "Du svarer ja bare hvis du har oppholdt deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.",
     "steg.medlemsskap.annetLandNeste12.spm": "Planlegger du å bo i andre land enn Norge i hele eller deler av de neste 12 månedene?",
@@ -171,6 +169,8 @@
     "steg.oppsummering.barnet.søkersRelasjonTilBarnet": "Din relasjon til barnet: {relasjon}",
     "steg.oppsummering.barnet.sammeAdresse.header": "Er du folkeregistrert på samme adresse som barnet?",
     "steg.oppsummering.barnet.deltOmsorg.header": "Deler du omsorgen med den andre forelderen?",
+
+    "steg.oppsummering.arbeidssituasjon.header": "Din arbeidssituasjon",
 
     "steg.oppsummering.utlandetSiste12.header": "Bodd i utlandet siste 12 måneder",
     "steg.oppsummering.utlandetNeste12.header": "Skal bo i utlandet neste 12 måneder",
