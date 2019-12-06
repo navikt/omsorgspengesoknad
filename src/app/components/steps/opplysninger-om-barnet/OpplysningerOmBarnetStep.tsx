@@ -26,10 +26,8 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
 import intlHelper from 'common/utils/intlUtils';
 import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
-import { YesOrNo } from '../../../../common/types/YesOrNo';
 import Box from '../../../../common/components/box/Box';
 import Select from '../../form-elements/select/Select';
-import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
 
 interface OpplysningerOmBarnetStepProps {
     formikProps: CustomFormikProps;
@@ -195,11 +193,6 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                             validate={validateYesOrNoIsAnswered}
                         />
                     </Box>
-                    {values[AppFormField.sammeAdresse] === YesOrNo.NO && (
-                        <CounsellorPanel>
-                            <FormattedMessage id="steg.omBarnet.veileder.samværsavtale" />
-                        </CounsellorPanel>
-                    )}
                 </>
             )}
         </FormikStep>

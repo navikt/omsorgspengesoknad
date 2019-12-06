@@ -25,7 +25,7 @@ const IntroPage: React.StatelessComponent<InjectedIntlProps> = ({ intl }) => {
             topContentRenderer={() => <StepBanner text={intlHelper(intl, 'introPage.stegTittel')} />}>
             <Box margin="xxxl">
                 <InformationPoster>
-                    <FormattedHTMLMessage id={`introPage.arbeidssituasjon.html`} />
+                    <FormattedHTMLMessage id={`introPage.intro.html`} />
                 </InformationPoster>
             </Box>
             <Box margin="xl">
