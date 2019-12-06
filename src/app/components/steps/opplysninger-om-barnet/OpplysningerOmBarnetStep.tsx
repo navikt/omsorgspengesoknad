@@ -29,8 +29,7 @@ import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
 import { YesOrNo } from '../../../../common/types/YesOrNo';
 import Box from '../../../../common/components/box/Box';
 import Select from '../../form-elements/select/Select';
-import Veilederpanel from 'nav-frontend-veilederpanel';
-import LegeerklæringWithArmIcon from '../../legeerklæring-icon/LegeerklæringWithArmIcon';
+import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
 
 interface OpplysningerOmBarnetStepProps {
     formikProps: CustomFormikProps;
@@ -61,6 +60,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                         <>
                             <RadioPanelGroup
                                 legend={intlHelper(intl, 'steg.omBarnet.hvilketBarn.spm')}
+                                description={intlHelper(intl, 'steg.omBarnet.hvilketBarn.info')}
                                 name={AppFormField.barnetSøknadenGjelder}
                                 radios={søkerdata.barn.map((barn) => {
                                     const { fornavn, mellomnavn, etternavn, fodselsdato, aktoer_id } = barn;
@@ -196,10 +196,9 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                         />
                     </Box>
                     {values[AppFormField.sammeAdresse] === YesOrNo.NO && (
-                        <Veilederpanel svg={<LegeerklæringWithArmIcon />} kompakt={true}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        </Veilederpanel>
+                        <CounsellorPanel>
+                            <FormattedMessage id="steg.omBarnet.veileder.samværsavtale" />
+                        </CounsellorPanel>
                     )}
                 </>
             )}

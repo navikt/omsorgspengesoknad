@@ -15,6 +15,7 @@ export type RadioPanelGroupStyle = 'panel' | 'radio';
 
 interface RadioPanelGroupBaseProps {
     legend: string;
+    description?: string;
     radios: RadioPanelBaseProps[];
     feil?: SkjemaelementFeil;
     helperText?: string;
@@ -27,6 +28,7 @@ const bem = bemUtils('radioPanelGruppe');
 
 const RadioPanelGroupBase = ({
     legend,
+    description,
     radios,
     feil,
     helperText,
@@ -59,6 +61,7 @@ const RadioPanelGroupBase = ({
                             </>
                         )}
                     </legend>
+                    { description && <p className={bem.element("description")}>{description}</p>}
                     <div className={`radioPanelGroup--responsive radioPanelGroup--${style}`}>
                         {radios.map(({ onChange, value, key, ...otherRadioProps }: RadioPanelBaseProps) => (
                             <div className={`radioPanelWrapper radioPanelWrapper--${style}`} key={`${key}${value}`}>

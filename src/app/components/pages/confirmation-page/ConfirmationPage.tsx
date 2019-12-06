@@ -32,7 +32,17 @@ const ConfirmationPage: React.FunctionComponent<Props> = ({ intl }) => (
             <ul className="checklist">
                 <li>
                     <FormattedHTMLMessage
-                        id="page.confirmation.nav.html"
+                        id="page.confirmation.hvaSkjer1"
+                    />
+                </li>
+                <li>
+                    <FormattedHTMLMessage
+                        id="page.confirmation.hvaSkjer2"
+                    />
+                </li>
+                <li>
+                    <FormattedHTMLMessage
+                        id="page.confirmation.hvaSkjer3"
                         values={{
                             lenke: getLenker(intl.locale).saksbehandlingstider
                         }}

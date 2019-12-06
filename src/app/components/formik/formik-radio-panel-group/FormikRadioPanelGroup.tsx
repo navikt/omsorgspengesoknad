@@ -16,6 +16,7 @@ interface FormikRadioPanelProps {
 interface FormikRadioPanelGroupProps<T> {
     legend: string;
     name: T;
+    description?: string;
     radios: FormikRadioPanelProps[];
     validate?: FormikValidateFunction;
     helperText?: string;
@@ -24,9 +25,19 @@ interface FormikRadioPanelGroupProps<T> {
     style?: RadioPanelGroupStyle;
 }
 
-const FormikRadioPanelGroup = <T extends {}>(): React.FunctionComponent<
-    FormikRadioPanelGroupProps<T> & FormikValidationProps
-> => ({ name, validate, legend, radios, helperText, style, singleColumn, expandedContentRenderer, intl }) => (
+const FormikRadioPanelGroup = <T extends {}>(): React.FunctionComponent<FormikRadioPanelGroupProps<T> &
+    FormikValidationProps> => ({
+    name,
+    validate,
+    legend,
+    radios,
+    helperText,
+    style,
+    singleColumn,
+    description,
+    expandedContentRenderer,
+    intl
+}) => (
     <Field validate={validate} name={name}>
         {({ field, form: { errors, submitCount, setFieldValue } }: FieldProps) => {
             const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
@@ -40,6 +51,7 @@ const FormikRadioPanelGroup = <T extends {}>(): React.FunctionComponent<
                         value,
                         ...otherProps
                     }))}
+                    description={description}
                     helperText={helperText}
                     expandedContentRenderer={expandedContentRenderer}
                     style={style}
