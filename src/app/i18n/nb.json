@@ -51,7 +51,7 @@
     "relasjonTilBarnet.mor": "Mor",
     "relasjonTilBarnet.far": "Far",
     "relasjonTilBarnet.adoptivforelder": "Adoptivforelder",
-    "relasjonTilBarnet.samværsforelder": "Samværsforelder",
+    "relasjonTilBarnet.fosterforelder": "Fosterforelder",
 
     "step.nextButtonLabel": "Fortsett",
     "step.nextButtonAriaLabel": "Gå til neste steg",
@@ -85,16 +85,15 @@
     "introPage.tittel": "Søknad om omsorgspenger",
     "introPage.stegTittel": "Kan jeg bruke den digitale omsorgspengesøknaden?",
     "introPage.tekst": "Informasjon om hvem denne søknaden er for",
-    "introPage.arbeidssituasjon.html": "For å kunne ha rett til utvidet omsorgspenger må din arbeidssituasjon være en eller flere av disse: <ul><li>arbeidstaker</li><li>selvstendig næringsdrivende</li><li>frilanser</li></ul>",
-    "introPage.legeerklæring.html": "Du må ha legeerklæring klar for å laste opp når du fyller ut den digitale søknaden.",
+    "introPage.arbeidssituasjon.html": "<p>Den digitale søknaden er under utvikling og kan foreløpig kun brukes til å søke om utvidet rett til omsorgspenger for et barn som har en funksjonshemming eller kronisk sykdom. </p><div>For å søke må du være i én eller flere av disse arbeidssituasjonene:<ul><li>arbeidstaker</li><li>selvstendig næringsdrivende</li><li>frilanser</li></ul></div>",
+    "introPage.legeerklæring.html": "Har du legeerklæringen klar? Du trenger den når du skal fylle ut søknaden. Da tar du bare et bilde av den og laster opp.",
     "introPage.spm.kroniskEllerFunksjonshemmende": "Har du et barn som har en kronisk sykdom eller funksjonshemming?",
-    "introPage.infoIkkeKroniskEllerFunksjonshemmende.html": "Den digitale søknaden er under utvikling. Hvis du skal søke fordi: <ul><li>den andre omsorgspersonen er syk, og ikke kan ta seg av barnet</li><li>du skal fordele dager med en samværsforelder</li><li>du skal overføre dager til en ny partner</li></ul> må du <a href=\"{url}\" class=\"lenke\">søke på papir</a>.",
+    "introPage.infoIkkeKroniskEllerFunksjonshemmende.html": "Du må foreløpig bruke <a href=\"{url}\" class=\"lenke\">papirsøknaden</a> hvis du skal<ol><li>søke om å ta over dager fra en annen omsorgsperson</li><li>fordele dager med en annen omsorgsperson</li><li>overføre dager til en ny samlivspartner</li></ol>",
 
     "welcomingPage.sidetittel": "Søknad om omsorgspenger",
     "welcomingPage.banner.tittel": "Hei,",
     "welcomingPage.banner.tekst": "jeg vil hjelpe deg med å fylle ut søknaden!",
     "welcomingPage.introtittel": "Søknad om omsorgspenger",
-    "welcomingPage.legeerklæring": "Har du legeerklæringen klar? Du trenger den senere i søknaden. Da tar du bare et bilde av den og laster opp. Legeerklæringen må bekrefte at barnets sykdom gjør at du har økt sannsynlighet for fravær.",
     "welcomingPage.samtykke.tekst": "Jeg bekrefter at jeg har lest og forstått",
     "welcomingPage.samtykke.harIkkeGodkjentVilkår": "Du må godkjenne vilkårene",
     "welcomingPage.samtykke.harForståttLabel": "For å gå videre med søknaden må du bekrefte at du har lest og forstått {plikterLink}.",
@@ -134,7 +133,8 @@
     "modal.minePlikter.part2a": "Jeg har lest og forstått det som står på",
     "modal.minePlikter.part2b": "nav.no/rettogplikt",
 
-    "steg.omBarnet.hvilketBarn.spm": "Hvilket barn gjelder søknaden?",
+    "steg.omBarnet.hvilketBarn.spm": "Hvilket barn gjelder søknaden for?",
+    "steg.omBarnet.hvilketBarn.info": "Hvis du skal søke for flere barn, må du sende én søknad for hvert barn.",
     "steg.omBarnet.hvilketBarn.født": "Født {dato}",
     "steg.omBarnet.gjelderAnnetBarn": "Søknaden gjelder et annet barn",
     "steg.omBarnet.fnr.spm": "Barnets fødselsnummer",
@@ -142,6 +142,7 @@
     "steg.omBarnet.fnr.foreløpig": "Barnets foreløpige fødselsnummer eller D-nummer",
     "steg.omBarnet.navn": "Barnets navn",
     "steg.omBarnet.relasjon": "Min relasjon til barnet",
+    "steg.omBarnet.veileder.samværsavtale": "Senere i søknaden laster du opp samværsavtale eller avtale om delt bosted for barnet.",
 
     "steg.arbeid.spm": "Hva er din arbeidssituasjon? Du kan velge flere.",
     "steg.medlemsskap.annetLandSiste12.spm": "Har du bodd i andre land enn Norge i hele eller deler av de siste 12 månedene?",
@@ -149,12 +150,12 @@
     "steg.medlemsskap.annetLandNeste12.spm": "Planlegger du å bo i andre land enn Norge i hele eller deler av de neste 12 månedene?",
     "steg.medlemsskap.annetLandNeste12.hjelp": "Du svarer ja bare hvis du planlegger å oppholde deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.",
 
-    "steg.lege.info.html": "Ta bilde av feltene i papirsøknaden som legen har fylt ut om barnet. Vær nøye med at <strong>all tekst</strong> på bildet er med, og at bildet er leselig.",
+    "steg.lege.info.html": "Ta bilde av feltene i papirsøknaden som legen har fylt ut om barnet. Vær nøye med at <strong>all tekst</strong> er med på bildet, inkludert legens signatur.",
     "steg.lege.vedlegg": "Last opp bilde av legeerklæringen (maks 3 bilder)",
     "steg.lege.intro.1.html": "For de første 8 ukene må legeerklæringen skrives av en sykehuslege. Etter de første 8 ukene kan legeerklæringen skrives av alle leger i spesialisthelsetjenesten.",
     "steg.lege.intro.2.html": "Disse yrkesgruppene kan <strong>ikke</strong> undertegne legeerklæringen: Sosionom, legesekretær, psykolog, psykologspesialist, fysioterapeut, fastlege og spesialist i allmennmedisin.",
 
-    "steg.samværsavtale.info.html": "Her skal du laste opp samværsavtalen/avtale om delt bosted for barnet. Avtalen må være signert av begge foreldrene.",
+    "steg.samværsavtale.info.html": "<p>Ta bilde av avtalen du og den andre forelderen har om samvær med barnet. Det kan for eksempel være en samværsavtale eller en avtale om delt bosted. </p>Vær nøye med:<ul><li>å få all tekst med på bildet</li><li>at signaturen fra begge parter er synlig på bildet</li><li>at bildet er leselig</li></ul>",
     "steg.samværsavtale.vedlegg": "Last opp bilde av avtalen (maks 3 bilder)",
 
     "steg.oppsummering.info": "Les gjennom oppsummeringen før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.",
@@ -182,7 +183,9 @@
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
     "page.confirmation.tittel": "Vi har mottatt søknad fra deg om omsorgspenger",
     "page.confirmation.undertittel": "Hva skjer videre nå?",
-    "page.confirmation.nav.html": "<p>Vi starter behandlingen av søknaden, og den vil bli synlig på Ditt NAV innen en uke. Når søknaden er ferdig behandlet, får du et svarbrev fra oss. Du kan se <a href=\"{lenke}\" className=\"lenke\" rel=\"noopener\">saksbehandlingstiden for ditt fylke her</a>.</p><p>Vi tar kontakt med deg hvis vi trenger flere opplysninger i saken din.</p>",
+    "page.confirmation.hvaSkjer1": "Søknaden din vil bli synlig på Ditt NAV etter omkring en uke. Da vil du også kunne se hva slags dokumentasjon vi har fått fra deg.",
+    "page.confirmation.hvaSkjer2": "Vi starter behandlingen av søknaden din når vi har mottatt all nødvendig dokumentasjon. Vi kontakter deg hvis vi trenger flere opplysninger i saken din.",
+    "page.confirmation.hvaSkjer3": "Når søknaden er ferdig behandlet, får du et svarbrev fra oss. Du kan se <a href=\"{lenke}\" className=\"lenke\" rel=\"noopener\">saksbehandlingstiden</a> for ditt fylke her.",
 
     "page.generalErrorPage.sidetittel": "Feil",
     "page.generalErrorPage.tittel": "Noe gikk galt...",
