@@ -11,7 +11,6 @@ export enum FieldValidationErrors {
     'fødselsnummer_ugyldig' = 'fieldvalidation.fødselsnummer.ugyldig',
     'foreløpigFødselsnummer_ugyldig' = 'fieldvalidation.foreløpigFødselsnummer.ugyldig',
     'navn_maksAntallTegn' = 'fieldvalidation.navn.maksAntallTegn',
-    'relasjon_maksAntallTegn' = 'fieldvalidation.relasjon.maksAntallTegn',
     'fradato_merEnnTreÅr' = 'fieldvalidation.fradato.merEnnTreÅr',
     'fradato_erEtterTildato' = 'fieldvalidation.fradato.erEtterTildato',
     'tildato_merEnnTreÅr' = 'fieldvalidation.tildato.merEnnTreÅr',

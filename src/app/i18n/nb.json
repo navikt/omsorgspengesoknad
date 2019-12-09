@@ -84,7 +84,6 @@
 
     "introPage.tittel": "Søknad om omsorgspenger",
     "introPage.stegTittel": "Kan jeg bruke den digitale omsorgspengesøknaden?",
-    "introPage.tekst": "Informasjon om hvem denne søknaden er for",
     "introPage.intro.html": "<p>Den digitale søknaden er under utvikling og kan foreløpig kun brukes til å søke om utvidet rett til omsorgspenger for et barn som har en funksjonshemming eller kronisk sykdom. </p><div>For å søke må du være i én eller flere av disse arbeidssituasjonene:<ul><li>arbeidstaker</li><li>selvstendig næringsdrivende</li><li>frilanser</li></ul></div>",
     "introPage.legeerklæring.html": "<p>Har du legeerklæringen klar? Du trenger den når du skal fylle ut søknaden. Da tar du bare et bilde av den og laster den opp.</p>Hvis du ikke bor fast sammen med barnet, må du også laste opp avtalen du og den andre forelderen har om samværet med barnet. Det kan for eksempel være en samværsavtale eller en avtale om delt bosted.",
     "introPage.spm.kroniskEllerFunksjonshemmende": "Har du et barn som har en kronisk sykdom eller funksjonshemming?",
@@ -145,6 +144,7 @@
     "steg.omBarnet.veileder.samværsavtale": "Senere i søknaden laster du opp samværsavtale eller avtale om delt bosted for barnet.",
 
     "steg.arbeid.spm": "Hva er din arbeidssituasjon? Du kan velge flere.",
+
     "steg.medlemsskap.annetLandSiste12.spm": "Har du bodd i andre land enn Norge i hele eller deler av de siste 12 månedene?",
     "steg.medlemsskap.annetLandSiste12.hjelp": "Du svarer ja bare hvis du har oppholdt deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.",
     "steg.medlemsskap.annetLandNeste12.spm": "Planlegger du å bo i andre land enn Norge i hele eller deler av de neste 12 månedene?",
