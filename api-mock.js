@@ -4,7 +4,7 @@ const Busboy = require('busboy');
 const server = express();
 
 server.use((req, res, next) => {
-    const allowedOrigins = ['https://omsorgspengesoknad-mock.nais.oera.no', 'http://localhost:8080'];
+    const allowedOrigins = ['https://omsorgspengesoknad-mock.nais.oera.no', 'http://localhost:8083'];
     const requestOrigin = req.headers.origin;
     if (allowedOrigins.indexOf(requestOrigin) >= 0) {
         res.set('Access-Control-Allow-Origin', requestOrigin);
@@ -46,7 +46,7 @@ const barnMock = {
 };
 
 const startServer = () => {
-    const port = process.env.PORT || 8082;
+    const port = process.env.PORT || 8088;
 
     server.get('/health/isAlive', (req, res) => res.sendStatus(200));
     server.get('/health/isReady', (req, res) => res.sendStatus(200));

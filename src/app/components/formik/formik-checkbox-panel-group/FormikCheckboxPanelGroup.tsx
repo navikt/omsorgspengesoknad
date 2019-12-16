@@ -6,7 +6,7 @@ import CheckboxPanelGroupBase, {
 } from '../../../../common/form-components/checkbox-panel-group-base/CheckboxPanelGroupBase';
 import { removeElementFromArray } from '../../../../common/utils/listUtils';
 import { FormikValidateFunction, FormikValidationProps } from 'app/types/FormikProps';
-import { isCheckboxChecked } from 'app/utils/formikUtils';
+import { isCheckboxChecked, showValidationErrors } from 'app/utils/formikUtils';
 
 interface FormikCheckboxPanelProps {
     label: string;
@@ -26,12 +26,22 @@ interface FormikCheckboxPanelGroupProps<T> {
     singleColumn?: boolean;
 }
 
-const FormikCheckboxPanelGroup = <T extends {}>(): React.FunctionComponent<
-    FormikCheckboxPanelGroupProps<T> & FormikValidationProps
-> => ({ name, validate, legend, checkboxes, singleColumn: columns, helperText, intl, valueKey }) => (
+const FormikCheckboxPanelGroup = <T extends {}>(): React.FunctionComponent<FormikCheckboxPanelGroupProps<T> &
+    FormikValidationProps> => ({
+    name,
+    validate,
+    legend,
+    checkboxes,
+    singleColumn: columns,
+    helperText,
+    intl,
+    valueKey
+}) => (
     <Field validate={validate} name={name}>
-        {({ field, form: { errors, submitCount, setFieldValue } }: FieldProps) => {
-            const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
+        {({ field, form: { errors, status, submitCount, setFieldValue } }: FieldProps) => {
+            const errorMsgProps = showValidationErrors(status, submitCount)
+                ? getValidationErrorPropsWithIntl(intl, errors, field.name)
+                : {};
             return (
                 <CheckboxPanelGroupBase
                     legend={legend}

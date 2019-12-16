@@ -13,7 +13,6 @@ const FormikWrapper: React.FunctionComponent<FormikWrapperProps> = ({ contentRen
         initialValues={initialValues}
         onSubmit={(values: OmsorgspengesøknadFormData, { setSubmitting, setFormikState, setTouched }: FormikBag) => {
             setSubmitting(false);
-            setFormikState({ submitCount: 0 });
             setTouched({});
         }}
         render={contentRenderer}

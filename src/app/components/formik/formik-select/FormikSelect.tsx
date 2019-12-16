@@ -4,6 +4,7 @@ import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils
 import { FormikValidationProps } from 'app/types/FormikProps';
 import SelectBase, { SelectBaseProps } from '../../../../common/form-components/select-base/SelectBase';
 import { SelectProps } from 'nav-frontend-skjema';
+import { showValidationErrors } from 'app/utils/formikUtils';
 
 interface FormikSelectProps<T> extends SelectBaseProps {
     name: T;
@@ -20,8 +21,10 @@ const FormikSelect = <T extends {}>(): React.FunctionComponent<Props & FormikSel
     ...otherInputProps
 }) => (
     <Field validate={validate} name={name}>
-        {({ field, form: { errors, submitCount } }: FieldProps) => {
-            const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
+        {({ field, form: { errors, status, submitCount } }: FieldProps) => {
+            const errorMsgProps = showValidationErrors(status, submitCount)
+                ? getValidationErrorPropsWithIntl(intl, errors, field.name)
+                : {};
             return (
                 <SelectBase
                     label={label}
