@@ -11,7 +11,7 @@
         "start": "node ./src/build/scripts/start-dev.js",
         "start-no-decorator": "node ./src/build/scripts/start-dev-no-decorator.js",
         "start-express": "node ./server.js",
-        "start-api-mock": "PORT=8082 node ./api-mock.js",
+        "start-api-mock": "PORT=8083 node ./api-mock.js",
         "test": "jest --maxWorkers=2 --config ./jest/jest.config.js",
         "snyk-protect": "snyk protect",
         "prepare": "npm run snyk-protect"
@@ -29,7 +29,7 @@
         "dotenv": "^8.1.0",
         "express": "^4.17.1",
         "flat": "^4.1.0",
-        "formik": "^1.5.8",
+        "formik": "^2.0.8",
         "fs-extra": "^8.1.0",
         "helmet": "^3.21.1",
         "history": "^4.10.1",
