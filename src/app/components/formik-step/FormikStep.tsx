@@ -20,13 +20,10 @@ type PropsWithFormik = Props & ConnectedFormikProps<AppFormField>;
 class FormikStep extends React.Component<PropsWithFormik & InjectedIntlProps> {
     constructor(props: PropsWithFormik) {
         super(props);
-
-        const {
-            history,
-            formik: { setFormikState }
-        } = props;
+        this.props.formik.setStatus({ stepSubmitCount: this.props.formik.submitCount });
+        const { history } = props;
         history.listen(() => {
-            setFormikState({ submitCount: 0 });
+            this.props.formik.setStatus({ stepSubmitCount: this.props.formik.submitCount });
         });
     }
 

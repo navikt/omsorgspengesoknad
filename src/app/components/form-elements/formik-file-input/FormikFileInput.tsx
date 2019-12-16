@@ -3,6 +3,7 @@ import { ArrayHelpers, Field, FieldArray, FieldProps } from 'formik';
 import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
 import FileInputBase from '../../../../common/form-components/file-input-base/FileInputBase';
 import { FormikValidationProps } from 'app/types/FormikProps';
+import { showValidationErrors } from 'app/utils/formikUtils';
 
 export interface FormikFileInputProps<T> {
     name: T;
@@ -25,9 +26,10 @@ const FormikFileInput = <T extends {}>(): React.FunctionComponent<FormikFileInpu
         name={`${name}`}
         render={(arrayHelpers) => (
             <Field validate={validate} name={name}>
-                {({ field, form: { errors, submitCount } }: FieldProps) => {
-                    const errorMsgProps =
-                        submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
+                {({ field, form: { errors, status, submitCount } }: FieldProps) => {
+                    const errorMsgProps = showValidationErrors(status, submitCount)
+                        ? getValidationErrorPropsWithIntl(intl, errors, field.name)
+                        : {};
                     return (
                         <FileInputBase
                             id={field.name}

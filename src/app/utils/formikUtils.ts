@@ -6,6 +6,11 @@ interface HasSubmittedValidFormProps {
     isValid: boolean;
 }
 
+export const showValidationErrors = (
+    formikStatus: undefined | { stepSubmitCount: number },
+    submitCount: number
+): boolean => formikStatus !== undefined && submitCount > formikStatus.stepSubmitCount;
+
 export const userHasSubmittedValidForm = (
     oldProps: HasSubmittedValidFormProps,
     currentProps: HasSubmittedValidFormProps

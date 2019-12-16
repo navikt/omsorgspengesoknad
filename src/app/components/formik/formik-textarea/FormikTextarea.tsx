@@ -4,6 +4,7 @@ import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils
 import { FormikValidationProps } from 'app/types/FormikProps';
 import TextareaBase from '../../../../common/form-components/textarea-base/TextareaBase';
 import { TextareaProps } from 'nav-frontend-skjema';
+import { showValidationErrors } from 'app/utils/formikUtils';
 
 interface FormikTextareaProps<T> {
     name: T;
@@ -23,8 +24,10 @@ const FormikTextarea = <T extends {}>(): React.FunctionComponent<Props & FormikT
     ...otherTextareaProps
 }) => (
     <Field validate={validate} name={name}>
-        {({ field, form: { errors, submitCount } }: FieldProps) => {
-            const errorMsgProps = submitCount > 0 ? getValidationErrorPropsWithIntl(intl, errors, field.name) : {};
+        {({ field, form: { errors, submitCount, status } }: FieldProps) => {
+            const errorMsgProps = showValidationErrors(status, submitCount)
+                ? getValidationErrorPropsWithIntl(intl, errors, field.name)
+                : {};
             return (
                 <TextareaBase
                     label={label}

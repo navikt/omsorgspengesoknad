@@ -8,7 +8,7 @@ import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import intlHelper from '../../../common/utils/intlUtils';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 import { renderFieldValidationError, isFieldValidationError } from '../../validation/fieldValidationRenderUtils';
-import { flattenFieldArrayErrors } from 'app/utils/formikUtils';
+import { flattenFieldArrayErrors, showValidationErrors } from 'app/utils/formikUtils';
 
 interface FormikValidationErrorSummaryProps {
     className?: string;
@@ -17,7 +17,7 @@ interface FormikValidationErrorSummaryProps {
 type Props = FormikValidationErrorSummaryProps & ConnectedFormikProps<AppFormField> & InjectedIntlProps;
 
 const FormikValidationErrorSummary: React.FunctionComponent<Props> = ({
-    formik: { errors, submitCount, ...otherFormik },
+    formik: { errors, status, submitCount, ...otherFormik },
     intl,
     className
 }) => {
@@ -25,7 +25,7 @@ const FormikValidationErrorSummary: React.FunctionComponent<Props> = ({
         const numberOfErrors = Object.keys(errors).length;
         const errorMessages: ValidationSummaryError[] = [];
 
-        if (numberOfErrors > 0 && submitCount > 0) {
+        if (numberOfErrors > 0 && showValidationErrors(status, submitCount)) {
             const allErrors = flattenFieldArrayErrors(errors);
             Object.keys(allErrors).forEach((key) => {
                 const error = allErrors[key];
