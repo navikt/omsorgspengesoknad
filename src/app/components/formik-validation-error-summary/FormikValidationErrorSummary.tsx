@@ -16,11 +16,11 @@ interface FormikValidationErrorSummaryProps {
 
 type Props = FormikValidationErrorSummaryProps & ConnectedFormikProps<AppFormField> & InjectedIntlProps;
 
-const FormikValidationErrorSummary: React.FunctionComponent<Props> = ({
-    formik: { errors, status, submitCount, ...otherFormik },
-    intl,
-    className
-}) => {
+const FormikValidationErrorSummary: React.FunctionComponent<Props> = ({ formik, intl, className }) => {
+    if (formik === undefined) {
+        return null;
+    }
+    const { errors, submitCount, status } = formik;
     if (errors) {
         const numberOfErrors = Object.keys(errors).length;
         const errorMessages: ValidationSummaryError[] = [];
