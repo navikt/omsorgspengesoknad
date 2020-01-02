@@ -1,5 +1,5 @@
+import moment from 'moment';
 import { date3YearsAgo, formatDate, isMoreThan3YearsAgo, prettifyDate } from '../dateUtils';
-const moment = require('moment');
 
 const mockedDate = moment('20111031', 'YYYYMMDD').toDate();
 
@@ -24,7 +24,7 @@ describe('dateUtils', () => {
         });
 
         it('should return false if date is less or equal to date 3 years ago ', () => {
-            expect(isMoreThan3YearsAgo(date3YearsAgo)).toBe(false);
+            expect(isMoreThan3YearsAgo(date3YearsAgo.toDate())).toBe(false);
             expect(isMoreThan3YearsAgo(moment().toDate())).toBe(false);
         });
     });
