@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import * as countries from 'i18n-iso-countries';
 import { injectIntl, InjectedIntlProps, InjectedIntl } from 'react-intl';
 import { Select } from 'nav-frontend-skjema';
 
@@ -12,7 +11,7 @@ interface StateProps {
     label: React.ReactNode;
     name: string;
     defaultValue?: string;
-    onChange: (value: string) => void;
+    onChange: (countryCode: string) => void;
     showOnlyEuAndEftaCountries?: boolean;
     feil?: SkjemaelementFeil;
 }
@@ -25,6 +24,9 @@ interface CountryOptionsCache {
     locale: string;
     options: React.ReactNode[];
 }
+
+const isoCodeIndex = 0;
+const countryNameIndex = 1;
 
 class CountrySelect extends React.Component<Props> {
     countryOptionsCache: CountryOptionsCache;
@@ -108,8 +110,6 @@ const filteredListEØSCountries = (countryOptionValue: string, shouldFilter?: bo
 
 const createCountryOptions = (onluEuAndEftaCountries: boolean, intl: InjectedIntl): React.ReactNode[] => {
     const locale = intl.locale;
-    const isoCodeIndex = 0;
-    const countryNameIndex = 1;
 
     return Object.entries(countries.getNames(locale))
         .sort((a: string[], b: string[]) => a[1].localeCompare(b[1], locale))
@@ -121,6 +121,11 @@ const createCountryOptions = (onluEuAndEftaCountries: boolean, intl: InjectedInt
                 {countryOptionValue[countryNameIndex]}
             </option>
         ));
+};
+
+export const getCountryName = (isoCode: string, intl: InjectedIntl): string => {
+    const names = countries.getNames(intl.locale);
+    return names[isoCode];
 };
 
 export default injectIntl(CountrySelect);

@@ -1,5 +1,6 @@
 import { YesOrNo } from '../../common/types/YesOrNo';
 import { Attachment } from '../../common/types/Attachment';
+import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 
 export enum SøkersRelasjonTilBarnet {
     'MOR' = 'mor',
@@ -25,8 +26,9 @@ export enum AppFormField {
     søknadenGjelderEtAnnetBarn = 'søknadenGjelderEtAnnetBarn',
     legeerklæring = 'legeerklæring',
     harBoddUtenforNorgeSiste12Mnd = 'harBoddUtenforNorgeSiste12Mnd',
+    utenlandsoppholdSiste12Mnd = 'utenlandsoppholdSiste12Mnd',
     skalBoUtenforNorgeNeste12Mnd = 'skalBoUtenforNorgeNeste12Mnd',
-
+    utenlandsoppholdNeste12Mnd = 'utenlandsoppholdNeste12Mnd',
     arbeidssituasjon = 'arbeidssituasjon',
     erYrkesaktiv = 'erYrkesaktiv',
     kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
@@ -50,7 +52,9 @@ export interface OmsorgspengesøknadFormData {
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: boolean;
     [AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer]: string;
     [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo;
+    [AppFormField.utenlandsoppholdSiste12Mnd]: Utenlandsopphold[];
     [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo;
+    [AppFormField.utenlandsoppholdNeste12Mnd]: Utenlandsopphold[];
     [AppFormField.samværsavtale]?: Attachment[];
 }
 
@@ -70,5 +74,7 @@ export const initialValues: OmsorgspengesøknadFormData = {
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: false,
     [AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer]: '',
     [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.UNANSWERED,
-    [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.UNANSWERED
+    [AppFormField.utenlandsoppholdSiste12Mnd]: [],
+    [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.UNANSWERED,
+    [AppFormField.utenlandsoppholdNeste12Mnd]: []
 };

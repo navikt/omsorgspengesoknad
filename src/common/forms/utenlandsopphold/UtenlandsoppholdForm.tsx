@@ -9,6 +9,7 @@ import bemUtils from 'common/utils/bemUtils';
 import { Systemtittel } from 'nav-frontend-typografi';
 import Box from 'common/components/box/Box';
 import validation from './utenlandsoppholdFormValidation';
+import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 
 import './utenlandsoppholdForm.less';
 
@@ -24,22 +25,16 @@ interface FormLabels {
 interface Props {
     minDate: Date;
     maxDate: Date;
-    values?: UtenlandsoppholdFormValues;
+    values?: Utenlandsopphold;
     labels?: FormLabels;
-    onSubmit: (values: UtenlandsoppholdFormValues) => void;
+    onSubmit: (values: Utenlandsopphold) => void;
     onCancel: () => void;
-}
-
-export interface UtenlandsoppholdFormValues {
-    fromDate: Date;
-    toDate: Date;
-    country: string;
 }
 
 export enum UtenlandsoppholdFields {
     fromDate = 'fromDate',
     toDate = 'toDate',
-    country = 'country'
+    countryCode = 'countryCode'
 }
 
 const defaultLabels: FormLabels = {
@@ -53,7 +48,7 @@ const defaultLabels: FormLabels = {
 
 const bem = bemUtils('utenlandsoppholdForm');
 
-const defaultFormValues: Partial<UtenlandsoppholdFormValues> = {};
+const defaultFormValues: Partial<Utenlandsopphold> = {};
 
 const UtenlandsoppholdForm: React.FunctionComponent<Props & InjectedIntlProps> = ({
     intl,
@@ -66,7 +61,7 @@ const UtenlandsoppholdForm: React.FunctionComponent<Props & InjectedIntlProps> =
 }) => {
     const [showErrors, setShowErrors] = useState(false);
 
-    const onFormikSubmit = (formValues: UtenlandsoppholdFormValues) => {
+    const onFormikSubmit = (formValues: Utenlandsopphold) => {
         onSubmit(formValues);
     };
 
@@ -80,7 +75,9 @@ const UtenlandsoppholdForm: React.FunctionComponent<Props & InjectedIntlProps> =
                         </Box>
                         <Field
                             name={UtenlandsoppholdFields.fromDate}
-                            validate={(date: Date) => validation.validateFom(date, values)}>
+                            validate={(date: Date) =>
+                                validation.validateFromDate(date, minDate, maxDate, values.toDate)
+                            }>
                             {({ field, form: { setFieldValue } }: FieldProps) => {
                                 const errorMsgProps = showErrors
                                     ? getValidationErrorPropsWithIntl(intl, errors, field.name)
@@ -106,7 +103,9 @@ const UtenlandsoppholdForm: React.FunctionComponent<Props & InjectedIntlProps> =
                         </Field>
                         <Field
                             name={UtenlandsoppholdFields.toDate}
-                            validate={(date: Date) => validation.validateTom(date, values)}>
+                            validate={(date: Date) =>
+                                validation.validateToDate(date, minDate, maxDate, values.fromDate)
+                            }>
                             {({ field, form: { setFieldValue } }: FieldProps) => {
                                 const errorMsgProps = showErrors
                                     ? getValidationErrorPropsWithIntl(intl, errors, field.name)
@@ -128,7 +127,7 @@ const UtenlandsoppholdForm: React.FunctionComponent<Props & InjectedIntlProps> =
                             }}
                         </Field>
 
-                        <Field name={UtenlandsoppholdFields.country} validate={validation.validateCountry}>
+                        <Field name={UtenlandsoppholdFields.countryCode} validate={validation.validateCountry}>
                             {({ field, form: { setFieldValue } }: FieldProps) => {
                                 const errorMsgProps = showErrors
                                     ? getValidationErrorPropsWithIntl(intl, errors, field.name)
@@ -138,7 +137,9 @@ const UtenlandsoppholdForm: React.FunctionComponent<Props & InjectedIntlProps> =
                                         name={field.name}
                                         label={labels.country}
                                         defaultValue={field.value}
-                                        onChange={(country) => setFieldValue(UtenlandsoppholdFields.country, country)}
+                                        onChange={(country) =>
+                                            setFieldValue(UtenlandsoppholdFields.countryCode, country)
+                                        }
                                         {...errorMsgProps}
                                     />
                                 );
@@ -151,7 +152,7 @@ const UtenlandsoppholdForm: React.FunctionComponent<Props & InjectedIntlProps> =
                                 onClick={() => {
                                     setShowErrors(true);
                                     if (isValid) {
-                                        onFormikSubmit(values as UtenlandsoppholdFormValues);
+                                        onFormikSubmit(values as Utenlandsopphold);
                                     }
                                 }}>
                                 {labels.okButton}
