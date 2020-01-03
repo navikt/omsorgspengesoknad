@@ -13,6 +13,10 @@ import moment from 'moment';
 import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
+    labels: {
+        tittel: string;
+        helpertext?: string;
+    };
     utenlandsopphold: Utenlandsopphold[];
     onChange: (utenlandsopphold: Utenlandsopphold[]) => void;
 }
@@ -24,6 +28,7 @@ const sortUtenlandsopphold = (u1: Utenlandsopphold, u2: Utenlandsopphold): numbe
     return 1;
 };
 const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> = ({
+    labels,
     utenlandsopphold,
     onChange,
     intl
@@ -66,7 +71,7 @@ const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> 
                     values={modalState.utenlandsopphold}
                 />
             </Modal>
-            <FieldsetBase legend="Hvor har du vært?" helperText="Aasdf">
+            <FieldsetBase legend={labels.tittel} helperText={labels.helpertext}>
                 <ItemList
                     onDelete={handleDeleteUtenlandsopphold}
                     onEdit={handleEditUtenlandsopphold}

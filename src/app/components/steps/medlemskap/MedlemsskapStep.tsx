@@ -16,11 +16,13 @@ import getLenker from '../../../lenker';
 import { Field, FieldProps } from 'formik';
 import UtenlandsoppholdListe from 'common/forms/utenlandsopphold/UtenlandsoppholdListe';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
+import { YesOrNo } from 'common/types/YesOrNo';
 
 type Props = CommonStepFormikProps & HistoryProps & InjectedIntlProps & StepConfigProps;
 
 const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextStepRoute, ...stepProps }) => {
     const navigate = nextStepRoute ? () => navigateTo(nextStepRoute, history) : undefined;
+    const { formValues } = stepProps;
     return (
         <FormikStep id={StepID.MEDLEMSKAP} onValidFormSubmit={navigate} history={history} {...stepProps}>
             <Box padBottom="xxl">
@@ -33,25 +35,28 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                     .
                 </CounsellorPanel>
             </Box>
+
             <YesOrNoQuestion
                 legend={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.spm')}
                 name={AppFormField.harBoddUtenforNorgeSiste12Mnd}
                 validate={validateYesOrNoIsAnswered}
                 helperText={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.hjelp')}
             />
-
-            <Field name={AppFormField.utenlandsoppholdSiste12Mnd}>
-                {({ field, form: { errors, submitCount, status, setFieldValue } }: FieldProps) => (
-                    <UtenlandsoppholdListe
-                        utenlandsopphold={field.value}
-                        onChange={(utenlandsopphold: Utenlandsopphold[]) => {
-                            console.log(utenlandsopphold);
-
-                            setFieldValue(field.name, utenlandsopphold);
-                        }}
-                    />
-                )}
-            </Field>
+            {formValues.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
+                <Box margin="m">
+                    <Field name={AppFormField.utenlandsoppholdSiste12Mnd}>
+                        {({ field, form: { setFieldValue } }: FieldProps) => (
+                            <UtenlandsoppholdListe
+                                labels={{ tittel: 'Utenlandsopphold siste 12 måneder' }}
+                                utenlandsopphold={field.value}
+                                onChange={(utenlandsopphold: Utenlandsopphold[]) => {
+                                    setFieldValue(field.name, utenlandsopphold);
+                                }}
+                            />
+                        )}
+                    </Field>
+                </Box>
+            )}
 
             <Box margin="xl">
                 <YesOrNoQuestion
