@@ -1,7 +1,7 @@
 import { YesOrNo } from '../../common/types/YesOrNo';
 import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
 import { attachmentHasBeenUploaded } from '../../common/utils/attachmentUtils';
-import { FieldValidationResult } from './types';
+import { FieldValidationResult } from '../../common/validation/types';
 import { Attachment } from '../../common/types/Attachment';
 import { SøkersRelasjonTilBarnet, Arbeidssituasjon } from '../types/OmsorgspengesøknadFormData';
 

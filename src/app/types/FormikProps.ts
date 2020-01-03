@@ -1,7 +1,7 @@
 import { FormikProps } from 'formik';
 import { OmsorgspengesøknadFormData } from './OmsorgspengesøknadFormData';
 import { InjectedIntlProps } from 'react-intl';
-import { FieldValidationResult } from 'app/validation/types';
+import { FieldValidationResult } from 'common/validation/types';
 
 export type CustomFormikProps = FormikProps<OmsorgspengesøknadFormData> & { submitForm: () => Promise<void> };
 

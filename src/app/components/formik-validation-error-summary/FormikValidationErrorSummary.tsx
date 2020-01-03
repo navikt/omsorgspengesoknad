@@ -7,7 +7,10 @@ import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import intlHelper from '../../../common/utils/intlUtils';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
-import { renderFieldValidationError, isFieldValidationError } from '../../validation/fieldValidationRenderUtils';
+import {
+    renderFieldValidationError,
+    isFieldValidationError
+} from '../../../common/validation/fieldValidationRenderUtils';
 import { flattenFieldArrayErrors, showValidationErrors } from 'app/utils/formikUtils';
 
 interface FormikValidationErrorSummaryProps {

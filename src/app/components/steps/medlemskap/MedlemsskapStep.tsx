@@ -52,7 +52,6 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                     maxDate={dateToday}
                     onCancel={() => setModalState({ isVisible: false })}
                     onSubmit={(values) => {
-                        console.log('Dialog submitted', values);
                         setModalState({ isVisible: false });
                     }}
                 />
