@@ -5,7 +5,7 @@ import { HistoryProps } from '../../../../common/types/History';
 import FormikStep from '../../formik-step/FormikStep';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
-import { validateYesOrNoIsAnswered } from '../../../validation/fieldValidations';
+import { validateYesOrNoIsAnswered, validateUtenlandsoppholdSiste12Mnd } from '../../../validation/fieldValidations';
 import intlHelper from 'common/utils/intlUtils';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
 import Box from 'common/components/box/Box';
@@ -17,6 +17,8 @@ import { Field, FieldProps } from 'formik';
 import UtenlandsoppholdListe from 'common/forms/utenlandsopphold/UtenlandsoppholdListe';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { YesOrNo } from 'common/types/YesOrNo';
+import { showValidationErrors } from 'app/utils/formikUtils';
+import { getValidationErrorPropsWithIntl } from 'app/utils/navFrontendUtils';
 
 type Props = CommonStepFormikProps & HistoryProps & InjectedIntlProps & StepConfigProps;
 
@@ -44,16 +46,22 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
             />
             {formValues.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
                 <Box margin="m">
-                    <Field name={AppFormField.utenlandsoppholdSiste12Mnd}>
-                        {({ field, form: { setFieldValue } }: FieldProps) => (
-                            <UtenlandsoppholdListe
-                                labels={{ tittel: 'Utenlandsopphold siste 12 måneder' }}
-                                utenlandsopphold={field.value}
-                                onChange={(utenlandsopphold: Utenlandsopphold[]) => {
-                                    setFieldValue(field.name, utenlandsopphold);
-                                }}
-                            />
-                        )}
+                    <Field name={AppFormField.utenlandsoppholdSiste12Mnd} validate={validateUtenlandsoppholdSiste12Mnd}>
+                        {({ field, form: { errors, setFieldValue, status, submitCount } }: FieldProps) => {
+                            const errorMsgProps = showValidationErrors(status, submitCount)
+                                ? getValidationErrorPropsWithIntl(intl, errors, field.name)
+                                : {};
+                            return (
+                                <UtenlandsoppholdListe
+                                    labels={{ tittel: 'Utenlandsopphold siste 12 måneder' }}
+                                    utenlandsopphold={field.value}
+                                    onChange={(utenlandsopphold: Utenlandsopphold[]) => {
+                                        setFieldValue(field.name, utenlandsopphold);
+                                    }}
+                                    {...errorMsgProps}
+                                />
+                            );
+                        }}
                     </Field>
                 </Box>
             )}

@@ -13,6 +13,7 @@ import moment from 'moment';
 import { guid } from 'nav-frontend-js-utils';
 import ActionLink from '../../components/action-link/ActionLink';
 import bemUtils from '../../utils/bemUtils';
+import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 
 import './utenlandsoppholdListe.less';
 
@@ -21,6 +22,7 @@ interface Props {
         tittel: string;
         helpertext?: string;
     };
+    feil?: SkjemaelementFeil;
     utenlandsopphold: Utenlandsopphold[];
     onChange: (utenlandsopphold: Utenlandsopphold[]) => void;
 }
@@ -38,6 +40,7 @@ const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> 
     labels,
     utenlandsopphold,
     onChange,
+    feil,
     intl
 }) => {
     const [modalState, setModalState] = React.useState<{ isVisible: boolean; utenlandsopphold?: Utenlandsopphold }>({
@@ -101,7 +104,7 @@ const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> 
                     values={modalState.utenlandsopphold}
                 />
             </Modal>
-            <FieldsetBase legend={labels.tittel} helperText={labels.helpertext}>
+            <FieldsetBase legend={labels.tittel} helperText={labels.helpertext} feil={feil}>
                 <ItemList
                     onDelete={handleDeleteUtenlandsopphold}
                     onEdit={handleEditUtenlandsopphold}

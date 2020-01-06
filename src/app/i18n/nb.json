@@ -215,6 +215,8 @@
     "fieldvalidation.legeerklæring.forMangeFiler": "Du kan maksimalt laste opp 3 bilder",
     "fieldvalidation.samværsavtale.mangler": "Du må laste opp en avtale",
     "fieldvalidation.samværsavtale.forMangeFiler": "Du kan maksimalt laste opp 3 bilder",
+    "fieldvalidation.utenlandsopphold_ikke_registrert": "Du har ikke registrert noen utenlandsopphold for perioden",
+    "fieldvalidation.utenlandsopphold_overlapper": "Ett eller flere av utenlandsoppholdene har datoer som overlapper",
 
     "demoInfo.html": "Dette er en <strong>demoversjon</strong> av søknadsskjemaet for omsorgspenger, og blir kun brukt i sammenheng med brukertest på <a href=\"http://navlab.no/\">http://navlab.no/</a>"
 }

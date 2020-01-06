@@ -4,6 +4,8 @@ import { attachmentHasBeenUploaded } from '../../common/utils/attachmentUtils';
 import { FieldValidationResult } from '../../common/validation/types';
 import { Attachment } from '../../common/types/Attachment';
 import { SøkersRelasjonTilBarnet, Arbeidssituasjon } from '../types/OmsorgspengesøknadFormData';
+import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
+import { dateRangesCollide } from 'common/utils/dateUtils';
 
 export enum FieldValidationErrors {
     'påkrevd' = 'fieldvalidation.påkrevd',
@@ -18,7 +20,9 @@ export enum FieldValidationErrors {
     'legeerklæring_mangler' = 'fieldvalidation.legeerklæring.mangler',
     'legeerklæring_forMangeFiler' = 'fieldvalidation.legeerklæring.forMangeFiler',
     'samværsavtale_mangler' = 'fieldvalidation.samværsavtale.mangler',
-    'samværsavtale_forMangeFiler' = 'fieldvalidation.samværsavtale.forMangeFiler'
+    'samværsavtale_forMangeFiler' = 'fieldvalidation.samværsavtale.forMangeFiler',
+    'utenlandsopphold_ikke_registrert' = 'fieldvalidation.utenlandsopphold_ikke_registrert',
+    'utenlandsopphold_overlapper' = 'fieldvalidation.utenlandsopphold_overlapper'
 }
 
 export const hasValue = (v: any) => v !== '' && v !== undefined && v !== null;
@@ -78,6 +82,16 @@ export const validateRelasjonTilBarnet = (v?: SøkersRelasjonTilBarnet | string)
 export const validateYesOrNoIsAnswered = (answer: YesOrNo): FieldValidationResult => {
     if (answer === YesOrNo.UNANSWERED || answer === undefined) {
         return fieldIsRequiredError();
+    }
+    return undefined;
+};
+
+export const validateUtenlandsoppholdSiste12Mnd = (utenlandsopphold: Utenlandsopphold[]): FieldValidationResult => {
+    if (utenlandsopphold.length === 0) {
+        return fieldValidationError(FieldValidationErrors.utenlandsopphold_ikke_registrert);
+    }
+    if (dateRangesCollide(utenlandsopphold.map((u) => ({ from: u.fromDate, to: u.toDate })))) {
+        return fieldValidationError(FieldValidationErrors.utenlandsopphold_overlapper);
     }
     return undefined;
 };

@@ -26,3 +26,28 @@ export const date1YearFromNow = moment()
     .toDate();
 
 export const dateToday = moment().toDate();
+
+const sortDateRange = (d1: DateRange, d2: DateRange): number => {
+    if (moment(d1.from).isSameOrBefore(d2.from)) {
+        return -1;
+    }
+    return 1;
+};
+
+export interface DateRange {
+    from: Date;
+    to: Date;
+}
+export const dateRangesCollide = (ranges: DateRange[]): boolean => {
+    if (ranges.length > 0) {
+        const sortedDates = ranges.sort(sortDateRange);
+        const hasOverlap = ranges.find((d, idx) => {
+            if (idx < sortedDates.length - 1) {
+                return moment(d.to).isAfter(sortedDates[idx + 1].from);
+            }
+            return false;
+        });
+        return hasOverlap !== undefined;
+    }
+    return false;
+};
