@@ -1,8 +1,6 @@
 import { YesOrNo } from '../../common/types/YesOrNo';
 import { Attachment } from '../../common/types/Attachment';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
-import moment from 'moment';
-import { guid } from 'nav-frontend-js-utils';
 
 export enum SøkersRelasjonTilBarnet {
     'MOR' = 'mor',
