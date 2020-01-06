@@ -76,18 +76,7 @@ export const initialValues: OmsorgspengesøknadFormData = {
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: false,
     [AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer]: '',
     [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.UNANSWERED,
-    [AppFormField.utenlandsoppholdSiste12Mnd]: [
-        {
-            countryCode: 'NO',
-            fromDate: moment()
-                .subtract(2, 'years')
-                .toDate(),
-            toDate: moment()
-                .subtract(1, 'years')
-                .toDate(),
-            id: guid()
-        }
-    ],
+    [AppFormField.utenlandsoppholdSiste12Mnd]: [],
     [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.UNANSWERED,
     [AppFormField.utenlandsoppholdNeste12Mnd]: []
 };
