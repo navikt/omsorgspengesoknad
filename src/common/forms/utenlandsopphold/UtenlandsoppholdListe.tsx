@@ -6,7 +6,7 @@ import Box from '../../components/box/Box';
 import { Knapp } from 'nav-frontend-knapper';
 import Modal from '../../components/modal/Modal';
 import UtenlandsoppholdForm from './UtenlandsoppholdForm';
-import { date1YearAgo, dateToday, prettifyDate } from '../../utils/dateUtils';
+import { date1YearAgo, dateToday, prettifyDateExtended } from '../../utils/dateUtils';
 import { getCountryName } from '../../components/country-select/CountrySelect';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 import moment from 'moment';
@@ -87,7 +87,7 @@ const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> 
                     <ActionLink onClick={() => handleEditUtenlandsopphold(opphold.id!)}>{navn}</ActionLink>
                 </span>
                 <span className={bem.element('dato')}>
-                    {prettifyDate(opphold.fromDate)} - {prettifyDate(opphold.toDate)}
+                    {prettifyDateExtended(opphold.fromDate)} - {prettifyDateExtended(opphold.toDate)}
                 </span>
             </div>
         );

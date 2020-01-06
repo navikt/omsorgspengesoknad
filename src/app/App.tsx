@@ -10,7 +10,10 @@ import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/
 import { isFeatureEnabled, Feature } from './utils/featureToggleUtils';
 import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
 import IntroPage from './components/pages/intro-page/IntroPage';
+import moment from 'moment';
+
 import '../common/styles/globalStyles.less';
+moment.locale('nb');
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
 
