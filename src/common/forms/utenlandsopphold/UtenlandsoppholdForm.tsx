@@ -73,78 +73,86 @@ const UtenlandsoppholdForm: React.FunctionComponent<Props & InjectedIntlProps> =
                         <Box padBottom="l">
                             <Systemtittel tag="h1">{labels.title}</Systemtittel>
                         </Box>
-                        <Field
-                            name={UtenlandsoppholdFields.fromDate}
-                            validate={(date: Date) =>
-                                validation.validateFromDate(date, minDate, maxDate, values.toDate)
-                            }>
-                            {({ field, form: { setFieldValue } }: FieldProps) => {
-                                const errorMsgProps = showErrors
-                                    ? getValidationErrorPropsWithIntl(intl, errors, field.name)
-                                    : null;
+                        <div className={bem.element('datoer')}>
+                            <div className={bem.element('dato')}>
+                                <Field
+                                    name={UtenlandsoppholdFields.fromDate}
+                                    validate={(date: Date) =>
+                                        validation.validateFromDate(date, minDate, maxDate, values.toDate)
+                                    }>
+                                    {({ field, form: { setFieldValue } }: FieldProps) => {
+                                        const errorMsgProps = showErrors
+                                            ? getValidationErrorPropsWithIntl(intl, errors, field.name)
+                                            : null;
 
-                                return (
-                                    <DatepickerBase
-                                        id="utenlandsoppholdStart"
-                                        value={field.value}
-                                        name={field.name}
-                                        label={labels.fromDate}
-                                        onChange={(date) => {
-                                            setFieldValue(field.name, date);
-                                        }}
-                                        {...errorMsgProps}
-                                        dateLimitations={{
-                                            minDato: minDate,
-                                            maksDato: values.toDate || maxDate
-                                        }}
-                                    />
-                                );
-                            }}
-                        </Field>
-                        <Field
-                            name={UtenlandsoppholdFields.toDate}
-                            validate={(date: Date) =>
-                                validation.validateToDate(date, minDate, maxDate, values.fromDate)
-                            }>
-                            {({ field, form: { setFieldValue } }: FieldProps) => {
-                                const errorMsgProps = showErrors
-                                    ? getValidationErrorPropsWithIntl(intl, errors, field.name)
-                                    : null;
-                                return (
-                                    <DatepickerBase
-                                        id="utenlandsoppholdStop"
-                                        value={field.value}
-                                        name={field.name}
-                                        label={labels.toDate}
-                                        onChange={(date) => setFieldValue(field.name, date)}
-                                        {...errorMsgProps}
-                                        dateLimitations={{
-                                            minDato: values.fromDate || minDate,
-                                            maksDato: maxDate
-                                        }}
-                                    />
-                                );
-                            }}
-                        </Field>
+                                        return (
+                                            <DatepickerBase
+                                                id="utenlandsoppholdStart"
+                                                value={field.value}
+                                                name={field.name}
+                                                label={labels.fromDate}
+                                                onChange={(date) => {
+                                                    setFieldValue(field.name, date);
+                                                }}
+                                                {...errorMsgProps}
+                                                dateLimitations={{
+                                                    minDato: minDate,
+                                                    maksDato: values.toDate || maxDate
+                                                }}
+                                            />
+                                        );
+                                    }}
+                                </Field>
+                            </div>
+                            <div className={bem.element('dato')}>
+                                <Field
+                                    name={UtenlandsoppholdFields.toDate}
+                                    validate={(date: Date) =>
+                                        validation.validateToDate(date, minDate, maxDate, values.fromDate)
+                                    }>
+                                    {({ field, form: { setFieldValue } }: FieldProps) => {
+                                        const errorMsgProps = showErrors
+                                            ? getValidationErrorPropsWithIntl(intl, errors, field.name)
+                                            : null;
+                                        return (
+                                            <DatepickerBase
+                                                id="utenlandsoppholdStop"
+                                                value={field.value}
+                                                name={field.name}
+                                                label={labels.toDate}
+                                                onChange={(date) => setFieldValue(field.name, date)}
+                                                {...errorMsgProps}
+                                                dateLimitations={{
+                                                    minDato: values.fromDate || minDate,
+                                                    maksDato: maxDate
+                                                }}
+                                            />
+                                        );
+                                    }}
+                                </Field>
+                            </div>
+                        </div>
 
-                        <Field name={UtenlandsoppholdFields.countryCode} validate={validation.validateCountry}>
-                            {({ field, form: { setFieldValue } }: FieldProps) => {
-                                const errorMsgProps = showErrors
-                                    ? getValidationErrorPropsWithIntl(intl, errors, field.name)
-                                    : null;
-                                return (
-                                    <CountrySelect
-                                        name={field.name}
-                                        label={labels.country}
-                                        defaultValue={field.value}
-                                        onChange={(country) =>
-                                            setFieldValue(UtenlandsoppholdFields.countryCode, country)
-                                        }
-                                        {...errorMsgProps}
-                                    />
-                                );
-                            }}
-                        </Field>
+                        <Box padBottom="m">
+                            <Field name={UtenlandsoppholdFields.countryCode} validate={validation.validateCountry}>
+                                {({ field, form: { setFieldValue } }: FieldProps) => {
+                                    const errorMsgProps = showErrors
+                                        ? getValidationErrorPropsWithIntl(intl, errors, field.name)
+                                        : null;
+                                    return (
+                                        <CountrySelect
+                                            name={field.name}
+                                            label={labels.country}
+                                            defaultValue={field.value}
+                                            onChange={(country) =>
+                                                setFieldValue(UtenlandsoppholdFields.countryCode, country)
+                                            }
+                                            {...errorMsgProps}
+                                        />
+                                    );
+                                }}
+                            </Field>
+                        </Box>
                         <div className={bem.element('knapper')}>
                             <Knapp
                                 type="hoved"
