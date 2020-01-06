@@ -23,6 +23,7 @@ import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { YesOrNo } from 'common/types/YesOrNo';
 import { showValidationErrors } from 'app/utils/formikUtils';
 import { getValidationErrorPropsWithIntl } from 'common/utils/navFrontendUtils';
+import { dateToday, date1YearFromNow, date1YearAgo } from 'common/utils/dateUtils';
 
 type Props = CommonStepFormikProps & HistoryProps & InjectedIntlProps & StepConfigProps;
 
@@ -59,6 +60,7 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                                 <UtenlandsoppholdListe
                                     labels={{ tittel: 'Utenlandsopphold siste 12 måneder' }}
                                     utenlandsopphold={field.value}
+                                    tidsrom={{ from: date1YearAgo, to: dateToday }}
                                     onChange={(utenlandsopphold: Utenlandsopphold[]) => {
                                         setFieldValue(field.name, utenlandsopphold);
                                     }}
@@ -90,6 +92,7 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                                     <UtenlandsoppholdListe
                                         labels={{ tittel: 'Utenlandsopphold neste 12 måneder' }}
                                         utenlandsopphold={field.value}
+                                        tidsrom={{ from: dateToday, to: date1YearFromNow }}
                                         onChange={(utenlandsopphold: Utenlandsopphold[]) => {
                                             setFieldValue(field.name, utenlandsopphold);
                                         }}

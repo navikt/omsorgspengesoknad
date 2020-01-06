@@ -6,7 +6,7 @@ import Box from '../../components/box/Box';
 import { Knapp } from 'nav-frontend-knapper';
 import Modal from '../../components/modal/Modal';
 import UtenlandsoppholdForm from './UtenlandsoppholdForm';
-import { date1YearAgo, dateToday, prettifyDateExtended } from '../../utils/dateUtils';
+import { prettifyDateExtended, DateRange } from '../../utils/dateUtils';
 import { getCountryName } from '../../components/country-select/CountrySelect';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 import moment from 'moment';
@@ -22,6 +22,7 @@ interface Props {
         tittel: string;
         helpertext?: string;
     };
+    tidsrom: DateRange;
     feil?: SkjemaelementFeil;
     utenlandsopphold: Utenlandsopphold[];
     onChange: (utenlandsopphold: Utenlandsopphold[]) => void;
@@ -40,6 +41,7 @@ const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> 
     labels,
     utenlandsopphold,
     onChange,
+    tidsrom,
     feil,
     intl
 }) => {
@@ -97,8 +99,8 @@ const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> 
         <div className={bem.block}>
             <Modal isOpen={modalState.isVisible} contentLabel={'Utenlandsopphold'} onRequestClose={resetModal}>
                 <UtenlandsoppholdForm
-                    minDate={date1YearAgo}
-                    maxDate={dateToday}
+                    minDate={tidsrom.from}
+                    maxDate={tidsrom.to}
                     onCancel={resetModal}
                     onSubmit={handleOnSubmit}
                     values={modalState.utenlandsopphold}
