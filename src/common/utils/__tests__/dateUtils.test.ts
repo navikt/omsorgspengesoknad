@@ -1,5 +1,12 @@
 import moment from 'moment';
-import { date3YearsAgo, formatDate, isMoreThan3YearsAgo, prettifyDate } from '../dateUtils';
+import {
+    date3YearsAgo,
+    formatDate,
+    isMoreThan3YearsAgo,
+    prettifyDate,
+    DateRange,
+    dateRangesCollide
+} from '../dateUtils';
 
 const mockedDate = moment('20111031', 'YYYYMMDD').toDate();
 
@@ -26,6 +33,51 @@ describe('dateUtils', () => {
         it('should return false if date is less or equal to date 3 years ago ', () => {
             expect(isMoreThan3YearsAgo(date3YearsAgo.toDate())).toBe(false);
             expect(isMoreThan3YearsAgo(moment().toDate())).toBe(false);
+        });
+    });
+
+    describe('dateRangesOverlap', () => {
+        const validRanges: DateRange[] = [
+            {
+                from: moment()
+                    .add(5, 'weeks')
+                    .toDate(),
+                to: moment()
+                    .add(6, 'week')
+                    .toDate()
+            },
+            {
+                from: moment().toDate(),
+                to: moment()
+                    .add(1, 'week')
+                    .toDate()
+            },
+            {
+                from: moment()
+                    .add(2, 'weeks')
+                    .toDate(),
+                to: moment()
+                    .add(3, 'week')
+                    .toDate()
+            }
+        ];
+        it('should return undefined when no overlap exists', () => {
+            expect(dateRangesCollide(validRanges)).toBeFalsy();
+        });
+
+        it('should detect overlap when it exists', () => {
+            const ranges: DateRange[] = [
+                ...validRanges,
+                {
+                    from: moment()
+                        .add(1, 'day')
+                        .toDate(),
+                    to: moment()
+                        .add(1, 'week')
+                        .toDate()
+                }
+            ];
+            expect(dateRangesCollide(ranges)).toBeTruthy();
         });
     });
 });
