@@ -73,8 +73,28 @@ export const initialValues: OmsorgspengesøknadFormData = {
     [AppFormField.samværsavtale]: [],
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: false,
     [AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer]: '',
-    [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.UNANSWERED,
-    [AppFormField.utenlandsoppholdSiste12Mnd]: [],
-    [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.UNANSWERED,
-    [AppFormField.utenlandsoppholdNeste12Mnd]: []
+    [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.YES,
+    [AppFormField.utenlandsoppholdSiste12Mnd]: [
+        {
+            countryCode: 'GB',
+            fromDate: new Date(),
+            toDate: new Date(),
+            id: 'sdf'
+        }
+    ],
+    [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.YES,
+    [AppFormField.utenlandsoppholdNeste12Mnd]: [
+        {
+            countryCode: 'GB',
+            fromDate: new Date(),
+            toDate: new Date(),
+            id: 'sdf'
+        },
+        {
+            countryCode: 'SE',
+            fromDate: new Date(),
+            toDate: new Date(),
+            id: 'sdfs'
+        }
+    ]
 };

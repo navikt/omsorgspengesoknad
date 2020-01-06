@@ -14,6 +14,7 @@ import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmel
 import UtenlandsoppholdListe from './UtenlandsoppholdListe';
 
 import './utenlandsoppholdListe.less';
+import intlHelper from 'common/utils/intlUtils';
 
 interface Props {
     labels: {
@@ -70,7 +71,10 @@ const UtenlandsoppholdMain: React.FunctionComponent<Props & InjectedIntlProps> =
 
     return (
         <div className={bem.block}>
-            <Modal isOpen={modalState.isVisible} contentLabel={'Utenlandsopphold'} onRequestClose={resetModal}>
+            <Modal
+                isOpen={modalState.isVisible}
+                contentLabel={intlHelper(intl, 'utenlandsopphold.modal.title')}
+                onRequestClose={resetModal}>
                 <UtenlandsoppholdForm
                     minDate={tidsrom.from}
                     maxDate={tidsrom.to}

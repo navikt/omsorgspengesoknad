@@ -22,7 +22,9 @@ export const mapFormDataToApiData = (
         samværsavtale,
         harBoddUtenforNorgeSiste12Mnd,
         arbeidssituasjon,
-        skalBoUtenforNorgeNeste12Mnd
+        skalBoUtenforNorgeNeste12Mnd,
+        utenlandsoppholdNeste12Mnd,
+        utenlandsoppholdSiste12Mnd
     }: OmsorgspengesøknadFormData,
     barn: BarnReceivedFromApi[],
     sprak: Locale
@@ -54,7 +56,11 @@ export const mapFormDataToApiData = (
         arbeidssituasjon,
         medlemskap: {
             har_bodd_i_utlandet_siste_12_mnd: harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES,
-            skal_bo_i_utlandet_neste_12_mnd: skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES
+            skal_bo_i_utlandet_neste_12_mnd: skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES,
+            utenlandsopphold_siste_12_mnd:
+                harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES ? utenlandsoppholdSiste12Mnd : [],
+            utenlandsopphold_neste_12_mnd:
+                skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES ? utenlandsoppholdNeste12Mnd : []
         },
         legeerklaring: legeerklæring
             .filter((attachment) => !attachmentUploadHasFailed(attachment))

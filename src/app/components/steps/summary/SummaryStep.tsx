@@ -26,6 +26,7 @@ import { Locale } from 'common/types/Locale';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
+import UtenlandsoppholdListe from 'common/forms/utenlandsopphold/UtenlandsoppholdListe';
 
 interface State {
     sendingInProgress: boolean;
@@ -77,6 +78,7 @@ class SummaryStep extends React.Component<Props, State> {
             <SøkerdataContextConsumer>
                 {({ person: { fornavn, mellomnavn, etternavn, fodselsnummer }, barn }: Søkerdata) => {
                     const apiValues = mapFormDataToApiData(formValues, barn, intl.locale as Locale);
+                    const { medlemskap } = apiValues;
 
                     return (
                         <FormikStep
@@ -207,12 +209,27 @@ class SummaryStep extends React.Component<Props, State> {
                                     <Box margin="l">
                                         <ContentWithHeader
                                             header={intlHelper(intl, 'steg.oppsummering.utlandetSiste12.header')}>
-                                            {apiValues.medlemskap.har_bodd_i_utlandet_siste_12_mnd === true &&
+                                            {medlemskap.har_bodd_i_utlandet_siste_12_mnd === true &&
                                                 intlHelper(intl, 'Ja')}
-                                            {apiValues.medlemskap.har_bodd_i_utlandet_siste_12_mnd === false &&
+                                            {medlemskap.har_bodd_i_utlandet_siste_12_mnd === false &&
                                                 intlHelper(intl, 'Nei')}
                                         </ContentWithHeader>
                                     </Box>
+                                    {apiValues.medlemskap.har_bodd_i_utlandet_siste_12_mnd === true &&
+                                        medlemskap.utenlandsopphold_siste_12_mnd.length > 0 && (
+                                            <Box margin="l">
+                                                <ContentWithHeader
+                                                    header={intlHelper(
+                                                        intl,
+                                                        'steg.oppsummering.utlandetSiste12.liste.header'
+                                                    )}>
+                                                    <UtenlandsoppholdListe
+                                                        utenlandsopphold={medlemskap.utenlandsopphold_siste_12_mnd}
+                                                        style="summary"
+                                                    />
+                                                </ContentWithHeader>
+                                            </Box>
+                                        )}
 
                                     <Box margin="l">
                                         <ContentWithHeader
@@ -223,6 +240,23 @@ class SummaryStep extends React.Component<Props, State> {
                                                 intlHelper(intl, 'Nei')}
                                         </ContentWithHeader>
                                     </Box>
+
+                                    {apiValues.medlemskap.skal_bo_i_utlandet_neste_12_mnd === true &&
+                                        medlemskap.utenlandsopphold_neste_12_mnd.length > 0 && (
+                                            <Box margin="l">
+                                                <ContentWithHeader
+                                                    header={intlHelper(
+                                                        intl,
+                                                        'steg.oppsummering.utlandetNeste12.liste.header'
+                                                    )}>
+                                                    <UtenlandsoppholdListe
+                                                        utenlandsopphold={medlemskap.utenlandsopphold_neste_12_mnd}
+                                                        style="summary"
+                                                    />
+                                                </ContentWithHeader>
+                                            </Box>
+                                        )}
+
                                     <Box margin="l">
                                         <ContentWithHeader
                                             header={intlHelper(intl, 'steg.oppsummering.legeerklæring.header')}>

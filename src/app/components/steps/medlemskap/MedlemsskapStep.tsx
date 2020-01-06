@@ -58,7 +58,9 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                                 : {};
                             return (
                                 <UtenlandsoppholdMain
-                                    labels={{ tittel: 'Utenlandsopphold siste 12 måneder' }}
+                                    labels={{
+                                        tittel: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel')
+                                    }}
                                     utenlandsopphold={field.value}
                                     tidsrom={{ from: date1YearAgo, to: dateToday }}
                                     onChange={(utenlandsopphold: Utenlandsopphold[]) => {
@@ -90,7 +92,9 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                                     : {};
                                 return (
                                     <UtenlandsoppholdMain
-                                        labels={{ tittel: 'Utenlandsopphold neste 12 måneder' }}
+                                        labels={{
+                                            tittel: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel')
+                                        }}
                                         utenlandsopphold={field.value}
                                         tidsrom={{ from: dateToday, to: date1YearFromNow }}
                                         onChange={(utenlandsopphold: Utenlandsopphold[]) => {

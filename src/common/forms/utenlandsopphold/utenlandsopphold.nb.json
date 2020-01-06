@@ -1,4 +1,5 @@
 {
+    "utenlandsopphold.modal.title": "Utenlandsopphold",
     "utenlandsopphold.list.add": "+ Legg til opphold",
     "utenlandsopphold.form.validation.required": "Feltet er påkrevd",
     "utenlandsopphold.form.validation.dateOutsideRange": "Datoen er utenfor gyldig tidsrom",
