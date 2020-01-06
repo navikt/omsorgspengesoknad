@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Field, FieldProps } from 'formik';
-import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
+import { getValidationErrorPropsWithIntl } from '../../../../common/utils/navFrontendUtils';
 import { FormikValidationProps } from 'app/types/FormikProps';
 import TextareaBase from '../../../../common/form-components/textarea-base/TextareaBase';
 import { TextareaProps } from 'nav-frontend-skjema';

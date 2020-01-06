@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Field, FieldProps } from 'formik';
-import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
+import { getValidationErrorPropsWithIntl } from '../../../../common/utils/navFrontendUtils';
 import { Checkbox, CheckboxProps } from 'nav-frontend-skjema';
 import { FormikValidateFunction, FormikValidationProps } from 'app/types/FormikProps';
 import { showValidationErrors } from 'app/utils/formikUtils';

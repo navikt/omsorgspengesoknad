@@ -18,7 +18,7 @@ import UtenlandsoppholdListe from 'common/forms/utenlandsopphold/Utenlandsopphol
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { YesOrNo } from 'common/types/YesOrNo';
 import { showValidationErrors } from 'app/utils/formikUtils';
-import { getValidationErrorPropsWithIntl } from 'app/utils/navFrontendUtils';
+import { getValidationErrorPropsWithIntl } from 'common/utils/navFrontendUtils';
 
 type Props = CommonStepFormikProps & HistoryProps & InjectedIntlProps & StepConfigProps;
 

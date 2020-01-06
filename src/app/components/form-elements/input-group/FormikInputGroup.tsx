@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Field, FieldProps } from 'formik';
 import { FormikValidateFunction, FormikValidationProps } from 'app/types/FormikProps';
-import { getValidationErrorPropsWithIntl } from 'app/utils/navFrontendUtils';
+import { getValidationErrorPropsWithIntl } from 'common/utils/navFrontendUtils';
 import { SkjemaGruppe } from 'nav-frontend-skjema';
 
 import './formikInputGroup.less';

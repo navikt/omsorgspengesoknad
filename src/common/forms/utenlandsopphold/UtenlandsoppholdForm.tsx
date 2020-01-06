@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Formik, Field, FieldProps } from 'formik';
 import { Knapp } from 'nav-frontend-knapper';
-import { getValidationErrorPropsWithIntl } from 'app/utils/navFrontendUtils';
+import { getValidationErrorPropsWithIntl } from 'common/utils/navFrontendUtils';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 import DatepickerBase from 'common/form-components/datepicker-base/DatepickerBase';
 import CountrySelect from 'common/components/country-select/CountrySelect';
