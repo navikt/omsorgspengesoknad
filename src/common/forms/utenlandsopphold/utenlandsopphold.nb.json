@@ -1,0 +1,7 @@
+{
+    "utenlandsoppholdFormValidation.required": "Feltet er påkrevd",
+    "utenlandsoppholdFormValidation.dateOutsideRange": "Datoen er utenfor gyldig tidsrom",
+    "utenlandsoppholdFormValidation.date.fromDateAfterToDate": "Fra-dato må være før til-dato",
+    "utenlandsoppholdFormValidation.date.toDateBeforeFromDate": "Til-dato må være etter fra-dato",
+    "utenlandsoppholdFormValidation.country.required": "Feltet er påkrevd"
+}

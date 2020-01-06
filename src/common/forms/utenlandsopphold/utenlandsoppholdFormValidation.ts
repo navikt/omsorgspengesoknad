@@ -7,12 +7,12 @@ const dateIsWithinRange = (date: Date, minDate: Date, maxDate: Date) => {
 const validateDateInRange = (date: Date | undefined, minDate: Date, maxDate: Date) => {
     if (date === undefined) {
         return {
-            key: 'validation.date.required'
+            key: 'utenlandsoppholdFormValidation.required'
         };
     }
     if (!dateIsWithinRange(date, minDate, maxDate)) {
         return {
-            key: 'validation.date.outsideRange'
+            key: 'utenlandsoppholdFormValidation.dateOutsideRange'
         };
     }
     return undefined;
@@ -25,7 +25,7 @@ const validateFromDate = (date: Date | undefined, minDate: Date, maxDate: Date, 
     }
     if (toDate && moment(date).isAfter(toDate, 'day')) {
         return {
-            key: 'validation.date.afterToDate'
+            key: 'utenlandsoppholdFormValidation.fromDateAfterToDate'
         };
     }
     return undefined;
@@ -38,7 +38,7 @@ const validateToDate = (date: Date | undefined, minDate: Date, maxDate: Date, fr
     }
     if (fromDate && moment(date).isBefore(fromDate, 'day')) {
         return {
-            key: 'validation.date.beforeFromDate'
+            key: 'utenlandsoppholdFormValidation.toDateBeforeFromDate'
         };
     }
     return undefined;
@@ -49,7 +49,7 @@ const validateCountry = (country: string) => {
         return null;
     }
     return {
-        key: 'fieldvalidation.påkrevd'
+        key: 'utenlandsoppholdFormValidation.required'
     };
 };
 

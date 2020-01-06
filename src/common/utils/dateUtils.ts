@@ -29,7 +29,7 @@ export const date1YearFromNow = moment()
 
 export const dateToday = moment().toDate();
 
-const sortDateRange = (d1: DateRange, d2: DateRange): number => {
+export const sortDateRange = (d1: DateRange, d2: DateRange): number => {
     if (moment(d1.from).isSameOrBefore(d2.from)) {
         return -1;
     }
@@ -50,6 +50,23 @@ export const dateRangesCollide = (ranges: DateRange[]): boolean => {
             return false;
         });
         return hasOverlap !== undefined;
+    }
+    return false;
+};
+
+export const dateRangesExceedsRange = (ranges: DateRange[], allowedRange: DateRange): boolean => {
+    if (ranges.length === 0) {
+        return false;
+    }
+    const sortedRanges = ranges.sort(sortDateRange);
+    const from = sortedRanges[0].from;
+    const to = sortedRanges[sortedRanges.length - 1].to;
+
+    if (
+        !moment(from).isBetween(allowedRange.from, allowedRange.to, 'day', '[]') ||
+        !moment(to).isBetween(allowedRange.from, allowedRange.to, 'day', '[]')
+    ) {
+        return true;
     }
     return false;
 };

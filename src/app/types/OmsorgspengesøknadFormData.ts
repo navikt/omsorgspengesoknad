@@ -1,6 +1,8 @@
 import { YesOrNo } from '../../common/types/YesOrNo';
 import { Attachment } from '../../common/types/Attachment';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
+import moment from 'moment';
+import { guid } from 'nav-frontend-js-utils';
 
 export enum SøkersRelasjonTilBarnet {
     'MOR' = 'mor',
@@ -74,7 +76,18 @@ export const initialValues: OmsorgspengesøknadFormData = {
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: false,
     [AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer]: '',
     [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.UNANSWERED,
-    [AppFormField.utenlandsoppholdSiste12Mnd]: [],
+    [AppFormField.utenlandsoppholdSiste12Mnd]: [
+        {
+            countryCode: 'NO',
+            fromDate: moment()
+                .subtract(2, 'years')
+                .toDate(),
+            toDate: moment()
+                .subtract(1, 'years')
+                .toDate(),
+            id: guid()
+        }
+    ],
     [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.UNANSWERED,
     [AppFormField.utenlandsoppholdNeste12Mnd]: []
 };

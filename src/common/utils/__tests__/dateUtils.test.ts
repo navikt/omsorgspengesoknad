@@ -5,7 +5,8 @@ import {
     isMoreThan3YearsAgo,
     prettifyDate,
     DateRange,
-    dateRangesCollide
+    dateRangesCollide,
+    dateRangesExceedsRange
 } from '../dateUtils';
 
 const mockedDate = moment('20111031', 'YYYYMMDD').toDate();
@@ -61,7 +62,7 @@ describe('dateUtils', () => {
                     .toDate()
             }
         ];
-        it('should return undefined when no overlap exists', () => {
+        it('should return false when no overlap exists', () => {
             expect(dateRangesCollide(validRanges)).toBeFalsy();
         });
 
@@ -78,6 +79,64 @@ describe('dateUtils', () => {
                 }
             ];
             expect(dateRangesCollide(ranges)).toBeTruthy();
+        });
+    });
+
+    describe('dateRangesExceedsRange', () => {
+        const range = {
+            from: moment().toDate(),
+            to: moment()
+                .add(2, 'week')
+                .toDate()
+        };
+
+        const ranges: DateRange[] = [
+            {
+                from: moment().toDate(),
+                to: moment()
+                    .add(1, 'week')
+                    .toDate()
+            }
+        ];
+
+        it('should return false if ranges are within valid range', () => {
+            expect(dateRangesExceedsRange(ranges, range)).toBeFalsy();
+        });
+        it('should return true if ranges are ahead of valid range', () => {
+            expect(
+                dateRangesExceedsRange(
+                    [
+                        ...ranges,
+                        {
+                            from: moment()
+                                .subtract(2, 'day')
+                                .toDate(),
+                            to: moment()
+                                .subtract(1, 'day')
+                                .toDate()
+                        }
+                    ],
+                    range
+                )
+            ).toBeTruthy();
+        });
+        it('should return true if ranges are after valid range', () => {
+            expect(
+                dateRangesExceedsRange(
+                    [
+                        ...ranges,
+                        {
+                            from: moment()
+                                .add(3, 'weeks')
+                                .toDate(),
+                            to: moment()
+                                .add(4, 'weeks')
+                                .toDate()
+                        }
+                    ],
+                    range
+                )
+            ).toBeTruthy();
         });
     });
 });

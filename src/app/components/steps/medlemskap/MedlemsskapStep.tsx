@@ -5,7 +5,11 @@ import { HistoryProps } from '../../../../common/types/History';
 import FormikStep from '../../formik-step/FormikStep';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
-import { validateYesOrNoIsAnswered, validateUtenlandsoppholdSiste12Mnd } from '../../../validation/fieldValidations';
+import {
+    validateYesOrNoIsAnswered,
+    validateUtenlandsoppholdSiste12Mnd,
+    validateUtenlandsoppholdNeste12Mnd
+} from '../../../validation/fieldValidations';
 import intlHelper from 'common/utils/intlUtils';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
 import Box from 'common/components/box/Box';
@@ -73,6 +77,29 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                     validate={validateYesOrNoIsAnswered}
                     helperText={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
                 />
+                {formValues.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
+                    <Box margin="m">
+                        <Field
+                            name={AppFormField.utenlandsoppholdNeste12Mnd}
+                            validate={validateUtenlandsoppholdNeste12Mnd}>
+                            {({ field, form: { errors, setFieldValue, status, submitCount } }: FieldProps) => {
+                                const errorMsgProps = showValidationErrors(status, submitCount)
+                                    ? getValidationErrorPropsWithIntl(intl, errors, field.name)
+                                    : {};
+                                return (
+                                    <UtenlandsoppholdListe
+                                        labels={{ tittel: 'Utenlandsopphold neste 12 måneder' }}
+                                        utenlandsopphold={field.value}
+                                        onChange={(utenlandsopphold: Utenlandsopphold[]) => {
+                                            setFieldValue(field.name, utenlandsopphold);
+                                        }}
+                                        {...errorMsgProps}
+                                    />
+                                );
+                            }}
+                        </Field>
+                    </Box>
+                )}
             </Box>
         </FormikStep>
     );

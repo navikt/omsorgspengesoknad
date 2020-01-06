@@ -11,11 +11,10 @@ import { isFeatureEnabled, Feature } from './utils/featureToggleUtils';
 import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
 import IntroPage from './components/pages/intro-page/IntroPage';
 import moment from 'moment';
-
-import '../common/styles/globalStyles.less';
-moment.locale('nb');
+import 'common/styles/globalStyles.less';
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
+moment.locale(localeFromSessionStorage);
 
 const App: React.FunctionComponent = () => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
