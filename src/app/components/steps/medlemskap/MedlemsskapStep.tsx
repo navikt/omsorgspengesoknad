@@ -18,7 +18,7 @@ import CounsellorPanel from '../../../../common/components/counsellor-panel/Coun
 import Lenke from 'nav-frontend-lenker';
 import getLenker from '../../../lenker';
 import { Field, FieldProps } from 'formik';
-import UtenlandsoppholdListe from 'common/forms/utenlandsopphold/UtenlandsoppholdListe';
+import UtenlandsoppholdMain from 'common/forms/utenlandsopphold';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { YesOrNo } from 'common/types/YesOrNo';
 import { showValidationErrors } from 'app/utils/formikUtils';
@@ -57,7 +57,7 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                                 ? getValidationErrorPropsWithIntl(intl, errors, field.name)
                                 : {};
                             return (
-                                <UtenlandsoppholdListe
+                                <UtenlandsoppholdMain
                                     labels={{ tittel: 'Utenlandsopphold siste 12 måneder' }}
                                     utenlandsopphold={field.value}
                                     tidsrom={{ from: date1YearAgo, to: dateToday }}
@@ -89,7 +89,7 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                                     ? getValidationErrorPropsWithIntl(intl, errors, field.name)
                                     : {};
                                 return (
-                                    <UtenlandsoppholdListe
+                                    <UtenlandsoppholdMain
                                         labels={{ tittel: 'Utenlandsopphold neste 12 måneder' }}
                                         utenlandsopphold={field.value}
                                         tidsrom={{ from: dateToday, to: date1YearFromNow }}
