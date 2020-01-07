@@ -11,6 +11,7 @@ import { BarnReceivedFromApi } from '../types/Søkerdata';
 import { Locale } from 'common/types/Locale';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { getCountryName } from 'common/components/country-select/CountrySelect';
+import { formatDateToApiFormat } from 'common/utils/dateUtils';
 
 export const mapFormDataToApiData = (
     {
@@ -88,6 +89,6 @@ export const mapFormDataToApiData = (
 const mapUtenlandsoppholdTilApiData = (opphold: Utenlandsopphold, locale: string): UtenlandsoppholdApiData => ({
     landnavn: getCountryName(opphold.countryCode, locale),
     landkode: opphold.countryCode,
-    fra_og_med: opphold.fromDate,
-    til_og_med: opphold.toDate
+    fra_og_med: formatDateToApiFormat(opphold.fromDate),
+    til_og_med: formatDateToApiFormat(opphold.toDate)
 });

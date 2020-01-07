@@ -1,5 +1,6 @@
 import { Locale } from '../../common/types/Locale';
 import { SøkersRelasjonTilBarnet, Arbeidssituasjon } from './OmsorgspengesøknadFormData';
+import { ApiStringDate } from 'common/types/ApiStringDate';
 
 export type ISO8601Duration = string;
 
@@ -18,8 +19,8 @@ interface Medlemskap {
 }
 
 export interface UtenlandsoppholdApiData {
-    fra_og_med: Date;
-    til_og_med: Date;
+    fra_og_med: ApiStringDate;
+    til_og_med: ApiStringDate;
     landkode: string;
     landnavn: string;
 }
