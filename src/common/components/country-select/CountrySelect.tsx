@@ -123,8 +123,8 @@ const createCountryOptions = (onluEuAndEftaCountries: boolean, intl: InjectedInt
         ));
 };
 
-export const getCountryName = (isoCode: string, intl: InjectedIntl): string => {
-    const names = countries.getNames(intl.locale);
+export const getCountryName = (isoCode: string, locale: string): string => {
+    const names = countries.getNames(locale);
     return names[isoCode];
 };
 

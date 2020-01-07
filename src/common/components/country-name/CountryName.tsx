@@ -7,7 +7,7 @@ interface Props {
 }
 
 const CountryName: React.FunctionComponent<Props & InjectedIntlProps> = ({ countryCode, intl }) => (
-    <>{getCountryName(countryCode, intl)}</>
+    <>{getCountryName(countryCode, intl.locale)}</>
 );
 
 export default injectIntl(CountryName);

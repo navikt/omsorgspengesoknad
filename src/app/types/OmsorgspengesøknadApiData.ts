@@ -1,6 +1,5 @@
 import { Locale } from '../../common/types/Locale';
 import { SøkersRelasjonTilBarnet, Arbeidssituasjon } from './OmsorgspengesøknadFormData';
-import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 
 export type ISO8601Duration = string;
 
@@ -14,8 +13,15 @@ export interface BarnToSendToApi {
 interface Medlemskap {
     har_bodd_i_utlandet_siste_12_mnd: boolean;
     skal_bo_i_utlandet_neste_12_mnd: boolean;
-    utenlandsopphold_neste_12_mnd: Utenlandsopphold[];
-    utenlandsopphold_siste_12_mnd: Utenlandsopphold[];
+    utenlandsopphold_neste_12_mnd: UtenlandsoppholdApiData[];
+    utenlandsopphold_siste_12_mnd: UtenlandsoppholdApiData[];
+}
+
+export interface UtenlandsoppholdApiData {
+    fra_og_med: Date;
+    til_og_med: Date;
+    landkode: string;
+    landnavn: string;
 }
 
 export interface OmsorgspengesøknadApiData {

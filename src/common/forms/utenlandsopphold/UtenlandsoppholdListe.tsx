@@ -32,7 +32,7 @@ const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> 
         if (!opphold) {
             return <div>"N/A"</div>;
         }
-        const navn = getCountryName(opphold.countryCode, intl);
+        const navn = getCountryName(opphold.countryCode, intl.locale);
         return (
             <div className={bem.element('label')}>
                 <span className={bem.element('land')}>
@@ -73,7 +73,7 @@ const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> 
                 .filter((u) => u.id !== undefined)
                 .map((u) => ({
                     id: u.id!,
-                    label: getCountryName(u.countryCode, intl)
+                    label: getCountryName(u.countryCode, intl.locale)
                 }))}
         />
     );
