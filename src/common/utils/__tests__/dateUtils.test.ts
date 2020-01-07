@@ -1,7 +1,7 @@
 import moment from 'moment';
 import {
     date3YearsAgo,
-    formatDate,
+    formatDateToApiFormat,
     isMoreThan3YearsAgo,
     prettifyDate,
     DateRange,
@@ -14,7 +14,7 @@ const mockedDate = moment('20111031', 'YYYYMMDD').toDate();
 describe('dateUtils', () => {
     describe('formatDate', () => {
         it('should format provided date on correct format for API', () => {
-            expect(formatDate(mockedDate)).toEqual('2011-10-31');
+            expect(formatDateToApiFormat(mockedDate)).toEqual('2011-10-31');
         });
     });
 

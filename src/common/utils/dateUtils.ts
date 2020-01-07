@@ -1,11 +1,12 @@
 import moment from 'moment';
+import { ApiStringDate } from 'common/types/ApiStringDate';
 
 const apiDateFormat = 'YYYY-MM-DD';
 const prettyDateFormat = 'DD.MM.YYYY';
 const prettyDateFormatExtended = 'DD. MMM YYYY';
 
-export const formatDate = (date: Date) => moment(date).format(apiDateFormat);
-export const prettifyDate = (date: Date) => moment(date).format(prettyDateFormat);
+export const formatDateToApiFormat = (date: Date): ApiStringDate => moment(date).format(apiDateFormat);
+export const prettifyDate = (date: Date): string => moment(date).format(prettyDateFormat);
 export const prettifyDateExtended = (date: Date) => moment(date).format(prettyDateFormatExtended);
 
 export const date3YearsAgo = moment()

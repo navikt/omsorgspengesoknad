@@ -6,6 +6,7 @@ import { SkjemaelementFeil as ValidationError } from 'nav-frontend-skjema/lib/sk
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { dateToISOFormattedDateString } from 'common/utils/dateUtils';
 import useMedia from 'use-media';
+
 import './datepickerBase.less';
 
 const placeholder = 'dd.mm.åååå';
