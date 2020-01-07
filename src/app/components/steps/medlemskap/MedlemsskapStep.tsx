@@ -18,7 +18,7 @@ import CounsellorPanel from '../../../../common/components/counsellor-panel/Coun
 import Lenke from 'nav-frontend-lenker';
 import getLenker from '../../../lenker';
 import { Field, FieldProps } from 'formik';
-import UtenlandsoppholdMain from 'common/forms/utenlandsopphold';
+import UtenlandsoppholdInput from 'common/forms/utenlandsopphold';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { YesOrNo } from 'common/types/YesOrNo';
 import { showValidationErrors } from 'app/utils/formikUtils';
@@ -57,7 +57,7 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                                 ? getValidationErrorPropsWithIntl(intl, errors, field.name)
                                 : {};
                             return (
-                                <UtenlandsoppholdMain
+                                <UtenlandsoppholdInput
                                     labels={{
                                         tittel: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel')
                                     }}
@@ -91,7 +91,7 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                                     ? getValidationErrorPropsWithIntl(intl, errors, field.name)
                                     : {};
                                 return (
-                                    <UtenlandsoppholdMain
+                                    <UtenlandsoppholdInput
                                         labels={{
                                             tittel: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel')
                                         }}

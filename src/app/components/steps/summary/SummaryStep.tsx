@@ -26,7 +26,8 @@ import { Locale } from 'common/types/Locale';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
-import UtenlandsoppholdListe from 'common/forms/utenlandsopphold/UtenlandsoppholdListe';
+import SummaryList from 'common/components/summary-list/SummaryList';
+import { renderUtenlandsoppholdSummary } from 'common/components/summary-renderers/renderUtenlandsoppholdSummary';
 
 interface State {
     sendingInProgress: boolean;
@@ -223,9 +224,9 @@ class SummaryStep extends React.Component<Props, State> {
                                                         intl,
                                                         'steg.oppsummering.utlandetSiste12.liste.header'
                                                     )}>
-                                                    <UtenlandsoppholdListe
-                                                        utenlandsopphold={medlemskap.utenlandsopphold_siste_12_mnd}
-                                                        style="summary"
+                                                    <SummaryList
+                                                        items={medlemskap.utenlandsopphold_siste_12_mnd}
+                                                        itemRenderer={renderUtenlandsoppholdSummary}
                                                     />
                                                 </ContentWithHeader>
                                             </Box>
@@ -249,9 +250,9 @@ class SummaryStep extends React.Component<Props, State> {
                                                         intl,
                                                         'steg.oppsummering.utlandetNeste12.liste.header'
                                                     )}>
-                                                    <UtenlandsoppholdListe
-                                                        utenlandsopphold={medlemskap.utenlandsopphold_neste_12_mnd}
-                                                        style="summary"
+                                                    <SummaryList
+                                                        items={medlemskap.utenlandsopphold_neste_12_mnd}
+                                                        itemRenderer={renderUtenlandsoppholdSummary}
                                                     />
                                                 </ContentWithHeader>
                                             </Box>

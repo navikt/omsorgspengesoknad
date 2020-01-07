@@ -17,14 +17,13 @@ interface Props {
     iconRender?: (id: string) => React.ReactNode;
     onDelete?: (id: string) => void;
     onEdit?: EditItemAction;
-    style?: 'normal' | 'plain';
 }
 
 const bem = bemUtils('itemList');
 const bemItem = bem.child('item');
 
-const ItemList: React.FunctionComponent<Props> = ({ items, onDelete, onEdit, labelRenderer, iconRender, style }) => (
-    <ol className={bem.classNames(bem.block, bem.modifier(style))}>
+const ItemList: React.FunctionComponent<Props> = ({ items, onDelete, onEdit, labelRenderer, iconRender }) => (
+    <ol className={bem.classNames(bem.block)}>
         {items.map((item) => (
             <li key={item.id} className={bemItem.block}>
                 {iconRender && (

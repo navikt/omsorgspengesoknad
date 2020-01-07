@@ -11,7 +11,6 @@ import './utenlandsoppholdListe.less';
 
 interface Props {
     utenlandsopphold: Utenlandsopphold[];
-    style?: 'form' | 'summary';
     onEdit?: (opphold: Utenlandsopphold) => void;
     onDelete?: (opphold: Utenlandsopphold) => void;
 }
@@ -22,7 +21,6 @@ const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> 
     utenlandsopphold,
     onDelete,
     onEdit,
-    style = 'form',
     intl
 }) => {
     const getUtenlandsopphold = (id: string): Utenlandsopphold | undefined => {
@@ -36,7 +34,7 @@ const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> 
         }
         const navn = getCountryName(opphold.countryCode, intl);
         return (
-            <div className={bem.element('label', style)}>
+            <div className={bem.element('label')}>
                 <span className={bem.element('land')}>
                     {onEdit && <ActionLink onClick={() => handleEdit(id)}>{navn}</ActionLink>}
                     {!onEdit && <span>{navn}</span>}
@@ -71,7 +69,6 @@ const UtenlandsoppholdListe: React.FunctionComponent<Props & InjectedIntlProps> 
             onDelete={onDelete ? handleDelete : undefined}
             onEdit={onEdit ? handleEdit : undefined}
             labelRenderer={renderUtenlandsoppholdLabel}
-            style={style === 'summary' ? 'plain' : 'normal'}
             items={utenlandsopphold
                 .filter((u) => u.id !== undefined)
                 .map((u) => ({
