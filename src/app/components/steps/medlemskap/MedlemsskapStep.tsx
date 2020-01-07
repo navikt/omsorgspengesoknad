@@ -24,6 +24,7 @@ import { YesOrNo } from 'common/types/YesOrNo';
 import { showValidationErrors } from 'app/utils/formikUtils';
 import { getValidationErrorPropsWithIntl } from 'common/utils/navFrontendUtils';
 import { dateToday, date1YearFromNow, date1YearAgo } from 'common/utils/dateUtils';
+import { isFeatureEnabled, Feature } from 'app/utils/featureToggleUtils';
 
 type Props = CommonStepFormikProps & HistoryProps & InjectedIntlProps & StepConfigProps;
 
@@ -49,43 +50,12 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                 validate={validateYesOrNoIsAnswered}
                 helperText={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.hjelp')}
             />
-            {formValues.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
-                <Box margin="m">
-                    <Field name={AppFormField.utenlandsoppholdSiste12Mnd} validate={validateUtenlandsoppholdSiste12Mnd}>
-                        {({ field, form: { errors, setFieldValue, status, submitCount } }: FieldProps) => {
-                            const errorMsgProps = showValidationErrors(status, submitCount)
-                                ? getValidationErrorPropsWithIntl(intl, errors, field.name)
-                                : {};
-                            return (
-                                <UtenlandsoppholdInput
-                                    labels={{
-                                        tittel: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel')
-                                    }}
-                                    utenlandsopphold={field.value}
-                                    tidsrom={{ from: date1YearAgo, to: dateToday }}
-                                    onChange={(utenlandsopphold: Utenlandsopphold[]) => {
-                                        setFieldValue(field.name, utenlandsopphold);
-                                    }}
-                                    {...errorMsgProps}
-                                />
-                            );
-                        }}
-                    </Field>
-                </Box>
-            )}
-
-            <Box margin="xl">
-                <YesOrNoQuestion
-                    legend={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.spm')}
-                    name={AppFormField.skalBoUtenforNorgeNeste12Mnd}
-                    validate={validateYesOrNoIsAnswered}
-                    helperText={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
-                />
-                {formValues.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
+            {isFeatureEnabled(Feature.TOGGLE_UTENLANDSOPPHOLD) &&
+                formValues.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
                     <Box margin="m">
                         <Field
-                            name={AppFormField.utenlandsoppholdNeste12Mnd}
-                            validate={validateUtenlandsoppholdNeste12Mnd}>
+                            name={AppFormField.utenlandsoppholdSiste12Mnd}
+                            validate={validateUtenlandsoppholdSiste12Mnd}>
                             {({ field, form: { errors, setFieldValue, status, submitCount } }: FieldProps) => {
                                 const errorMsgProps = showValidationErrors(status, submitCount)
                                     ? getValidationErrorPropsWithIntl(intl, errors, field.name)
@@ -96,7 +66,7 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                                             tittel: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel')
                                         }}
                                         utenlandsopphold={field.value}
-                                        tidsrom={{ from: dateToday, to: date1YearFromNow }}
+                                        tidsrom={{ from: date1YearAgo, to: dateToday }}
                                         onChange={(utenlandsopphold: Utenlandsopphold[]) => {
                                             setFieldValue(field.name, utenlandsopphold);
                                         }}
@@ -107,6 +77,44 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, intl, nextSt
                         </Field>
                     </Box>
                 )}
+
+            <Box margin="xl">
+                <YesOrNoQuestion
+                    legend={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.spm')}
+                    name={AppFormField.skalBoUtenforNorgeNeste12Mnd}
+                    validate={validateYesOrNoIsAnswered}
+                    helperText={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
+                />
+                {isFeatureEnabled(Feature.TOGGLE_UTENLANDSOPPHOLD) &&
+                    formValues.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
+                        <Box margin="m">
+                            <Field
+                                name={AppFormField.utenlandsoppholdNeste12Mnd}
+                                validate={validateUtenlandsoppholdNeste12Mnd}>
+                                {({ field, form: { errors, setFieldValue, status, submitCount } }: FieldProps) => {
+                                    const errorMsgProps = showValidationErrors(status, submitCount)
+                                        ? getValidationErrorPropsWithIntl(intl, errors, field.name)
+                                        : {};
+                                    return (
+                                        <UtenlandsoppholdInput
+                                            labels={{
+                                                tittel: intlHelper(
+                                                    intl,
+                                                    'steg.medlemsskap.annetLandSiste12.listeTittel'
+                                                )
+                                            }}
+                                            utenlandsopphold={field.value}
+                                            tidsrom={{ from: dateToday, to: date1YearFromNow }}
+                                            onChange={(utenlandsopphold: Utenlandsopphold[]) => {
+                                                setFieldValue(field.name, utenlandsopphold);
+                                            }}
+                                            {...errorMsgProps}
+                                        />
+                                    );
+                                }}
+                            </Field>
+                        </Box>
+                    )}
             </Box>
         </FormikStep>
     );
