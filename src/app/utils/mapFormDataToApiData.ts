@@ -1,10 +1,16 @@
 import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
-import { BarnToSendToApi, OmsorgspengesøknadApiData } from '../types/OmsorgspengesøknadApiData';
+import {
+    BarnToSendToApi,
+    OmsorgspengesøknadApiData,
+    UtenlandsoppholdApiData
+} from '../types/OmsorgspengesøknadApiData';
 import { attachmentUploadHasFailed } from '../../common/utils/attachmentUtils';
 import { YesOrNo } from '../../common/types/YesOrNo';
 import { formatName } from '../../common/utils/personUtils';
 import { BarnReceivedFromApi } from '../types/Søkerdata';
 import { Locale } from 'common/types/Locale';
+import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
+import { getCountryName } from 'common/components/country-select/CountrySelect';
 
 export const mapFormDataToApiData = (
     {
@@ -22,7 +28,9 @@ export const mapFormDataToApiData = (
         samværsavtale,
         harBoddUtenforNorgeSiste12Mnd,
         arbeidssituasjon,
-        skalBoUtenforNorgeNeste12Mnd
+        skalBoUtenforNorgeNeste12Mnd,
+        utenlandsoppholdNeste12Mnd,
+        utenlandsoppholdSiste12Mnd
     }: OmsorgspengesøknadFormData,
     barn: BarnReceivedFromApi[],
     sprak: Locale
@@ -54,7 +62,15 @@ export const mapFormDataToApiData = (
         arbeidssituasjon,
         medlemskap: {
             har_bodd_i_utlandet_siste_12_mnd: harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES,
-            skal_bo_i_utlandet_neste_12_mnd: skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES
+            skal_bo_i_utlandet_neste_12_mnd: skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES,
+            utenlandsopphold_siste_12_mnd:
+                harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES
+                    ? utenlandsoppholdSiste12Mnd.map((o) => mapUtenlandsoppholdTilApiData(o, sprak))
+                    : [],
+            utenlandsopphold_neste_12_mnd:
+                skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES
+                    ? utenlandsoppholdNeste12Mnd.map((o) => mapUtenlandsoppholdTilApiData(o, sprak))
+                    : []
         },
         legeerklaring: legeerklæring
             .filter((attachment) => !attachmentUploadHasFailed(attachment))
@@ -68,3 +84,10 @@ export const mapFormDataToApiData = (
 
     return apiData;
 };
+
+const mapUtenlandsoppholdTilApiData = (opphold: Utenlandsopphold, locale: string): UtenlandsoppholdApiData => ({
+    landnavn: getCountryName(opphold.countryCode, locale),
+    landkode: opphold.countryCode,
+    fra_og_med: opphold.fromDate,
+    til_og_med: opphold.toDate
+});

@@ -12,7 +12,7 @@ import {
 } from '../fieldValidations';
 import Mock = jest.Mock;
 import { YesOrNo } from '../../../common/types/YesOrNo';
-import { FieldValidationResult } from '../types';
+import { FieldValidationResult } from '../../../common/validation/types';
 import { Attachment } from '../../../common/types/Attachment';
 
 jest.mock('../fødselsnummerValidator', () => {

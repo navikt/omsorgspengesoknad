@@ -37,6 +37,8 @@ const formDataMock: Partial<OmsorgspengesøknadFormData> = {
     [AppFormField.harForståttRettigheterOgPlikter]: true,
     [AppFormField.søkersRelasjonTilBarnet]: SøkersRelasjonTilBarnet.MOR,
     [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.YES,
+    [AppFormField.utenlandsoppholdNeste12Mnd]: [],
+    [AppFormField.utenlandsoppholdSiste12Mnd]: [],
     [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.NO,
     [AppFormField.legeerklæring]: [attachmentMock1 as AttachmentMock, attachmentMock2 as AttachmentMock],
     [AppFormField.samværsavtale]: [attachmentMock3 as AttachmentMock]

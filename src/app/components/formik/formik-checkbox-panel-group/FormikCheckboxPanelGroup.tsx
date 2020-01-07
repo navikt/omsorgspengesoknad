@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Field, FieldProps } from 'formik';
-import { getValidationErrorPropsWithIntl } from '../../../utils/navFrontendUtils';
+import { getValidationErrorPropsWithIntl } from '../../../../common/utils/navFrontendUtils';
 import CheckboxPanelGroupBase, {
     CheckboxPanelExpandedContentRenderer
 } from '../../../../common/form-components/checkbox-panel-group-base/CheckboxPanelGroupBase';

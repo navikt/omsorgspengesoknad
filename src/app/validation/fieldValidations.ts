@@ -1,9 +1,11 @@
 import { YesOrNo } from '../../common/types/YesOrNo';
 import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
 import { attachmentHasBeenUploaded } from '../../common/utils/attachmentUtils';
-import { FieldValidationResult } from './types';
+import { FieldValidationResult } from '../../common/validation/types';
 import { Attachment } from '../../common/types/Attachment';
 import { SøkersRelasjonTilBarnet, Arbeidssituasjon } from '../types/OmsorgspengesøknadFormData';
+import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
+import { dateRangesCollide, date1YearAgo, dateRangesExceedsRange, date1YearFromNow } from 'common/utils/dateUtils';
 
 export enum FieldValidationErrors {
     'påkrevd' = 'fieldvalidation.påkrevd',
@@ -18,7 +20,10 @@ export enum FieldValidationErrors {
     'legeerklæring_mangler' = 'fieldvalidation.legeerklæring.mangler',
     'legeerklæring_forMangeFiler' = 'fieldvalidation.legeerklæring.forMangeFiler',
     'samværsavtale_mangler' = 'fieldvalidation.samværsavtale.mangler',
-    'samværsavtale_forMangeFiler' = 'fieldvalidation.samværsavtale.forMangeFiler'
+    'samværsavtale_forMangeFiler' = 'fieldvalidation.samværsavtale.forMangeFiler',
+    'utenlandsopphold_ikke_registrert' = 'fieldvalidation.utenlandsopphold_ikke_registrert',
+    'utenlandsopphold_overlapper' = 'fieldvalidation.utenlandsopphold_overlapper',
+    'utenlandsopphold_utenfor_periode' = 'fieldvalidation.utenlandsopphold_utenfor_periode'
 }
 
 export const hasValue = (v: any) => v !== '' && v !== undefined && v !== null;
@@ -78,6 +83,35 @@ export const validateRelasjonTilBarnet = (v?: SøkersRelasjonTilBarnet | string)
 export const validateYesOrNoIsAnswered = (answer: YesOrNo): FieldValidationResult => {
     if (answer === YesOrNo.UNANSWERED || answer === undefined) {
         return fieldIsRequiredError();
+    }
+    return undefined;
+};
+
+export const validateUtenlandsoppholdSiste12Mnd = (utenlandsopphold: Utenlandsopphold[]): FieldValidationResult => {
+    if (utenlandsopphold.length === 0) {
+        return fieldValidationError(FieldValidationErrors.utenlandsopphold_ikke_registrert);
+    }
+    const dateRanges = utenlandsopphold.map((u) => ({ from: u.fromDate, to: u.toDate }));
+    if (dateRangesCollide(dateRanges)) {
+        return fieldValidationError(FieldValidationErrors.utenlandsopphold_overlapper);
+    }
+    if (dateRangesExceedsRange(dateRanges, { from: date1YearAgo, to: new Date() })) {
+        return fieldValidationError(FieldValidationErrors.utenlandsopphold_utenfor_periode);
+    }
+
+    return undefined;
+};
+
+export const validateUtenlandsoppholdNeste12Mnd = (utenlandsopphold: Utenlandsopphold[]): FieldValidationResult => {
+    if (utenlandsopphold.length === 0) {
+        return fieldValidationError(FieldValidationErrors.utenlandsopphold_ikke_registrert);
+    }
+    const dateRanges = utenlandsopphold.map((u) => ({ from: u.fromDate, to: u.toDate }));
+    if (dateRangesCollide(dateRanges)) {
+        return fieldValidationError(FieldValidationErrors.utenlandsopphold_overlapper);
+    }
+    if (dateRangesExceedsRange(dateRanges, { from: new Date(), to: date1YearFromNow })) {
+        return fieldValidationError(FieldValidationErrors.utenlandsopphold_utenfor_periode);
     }
     return undefined;
 };
