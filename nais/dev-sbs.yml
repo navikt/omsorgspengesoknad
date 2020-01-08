@@ -44,3 +44,6 @@ spec:
           value: https://omsorgspenger-api.nais.oera-q.local
         - name: LOGIN_URL
           value: https://loginservice-q.nav.no/login?redirect=https://omsorgspengesoknad-q.nav.no/soknad
+        - name: TOGGLE_UTENLANDSOPPHOLD
+          value: "on"
+
