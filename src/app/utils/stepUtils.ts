@@ -7,18 +7,14 @@ import {
     arbeidStepIsValid
 } from '../validation/stepValidations';
 import { StepConfigItemTexts, StepID, StepConfigInterface } from 'app/config/stepConfig';
-import { InjectedIntl } from 'react-intl';
 import intlHelper from '../../common/utils/intlUtils';
 import { YesOrNo } from '../../common/types/YesOrNo';
+import { IntlShape } from 'react-intl';
 
 export const includeAvtaleStep = (formData: Partial<OmsorgspengesøknadFormData>): boolean =>
     formData !== undefined && formData[AppFormField.sammeAdresse] === YesOrNo.NO;
 
-export const getStepTexts = (
-    intl: InjectedIntl,
-    stepId: StepID,
-    stepConfig: StepConfigInterface
-): StepConfigItemTexts => {
+export const getStepTexts = (intl: IntlShape, stepId: StepID, stepConfig: StepConfigInterface): StepConfigItemTexts => {
     const conf = stepConfig[stepId];
     return {
         pageTitle: intlHelper(intl, conf.pageTitle),

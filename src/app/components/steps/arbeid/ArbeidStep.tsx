@@ -6,17 +6,18 @@ import FormikStep from '../../formik-step/FormikStep';
 import { AppFormField, Arbeidssituasjon } from '../../../types/OmsorgspengesøknadFormData';
 import { validateArbeid } from '../../../validation/fieldValidations';
 import intlHelper from 'common/utils/intlUtils';
-import { InjectedIntlProps, injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
-import CheckboxPanelGroup from '../../form-elements/checkbox-panel-group/CheckboxPanelGroup';
+import FormikCheckboxPanelGroup from 'common/formik/formik-checkbox-panel-group/FormikCheckboxPanelGroup';
 
-type Props = CommonStepFormikProps & HistoryProps & InjectedIntlProps & StepConfigProps;
+type Props = CommonStepFormikProps & HistoryProps & StepConfigProps;
 
-const ArbeidStep: React.FunctionComponent<Props> = ({ history, intl, nextStepRoute, ...stepProps }) => {
+const ArbeidStep: React.FunctionComponent<Props> = ({ history, nextStepRoute, ...stepProps }) => {
+    const intl = useIntl();
     const navigate = nextStepRoute ? () => navigateTo(nextStepRoute, history) : undefined;
     return (
         <FormikStep id={StepID.ARBEID} onValidFormSubmit={navigate} history={history} {...stepProps}>
-            <CheckboxPanelGroup
+            <FormikCheckboxPanelGroup<AppFormField>
                 legend={intlHelper(intl, 'steg.arbeid.spm')}
                 name={AppFormField.arbeidssituasjon}
                 singleColumn={true}
@@ -45,4 +46,4 @@ const ArbeidStep: React.FunctionComponent<Props> = ({ history, intl, nextStepRou
 
 // Todo - kommer ikke videre ved første valg
 
-export default injectIntl(ArbeidStep);
+export default ArbeidStep;

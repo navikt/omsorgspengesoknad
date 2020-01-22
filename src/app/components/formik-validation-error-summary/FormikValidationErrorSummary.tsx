@@ -6,7 +6,7 @@ import { connect } from 'formik';
 import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import intlHelper from '../../../common/utils/intlUtils';
-import { injectIntl, InjectedIntlProps } from 'react-intl';
+import { useIntl } from 'react-intl';
 import {
     renderFieldValidationError,
     isFieldValidationError
@@ -17,9 +17,10 @@ interface FormikValidationErrorSummaryProps {
     className?: string;
 }
 
-type Props = FormikValidationErrorSummaryProps & ConnectedFormikProps<AppFormField> & InjectedIntlProps;
+type Props = FormikValidationErrorSummaryProps & ConnectedFormikProps<AppFormField>;
 
-const FormikValidationErrorSummary: React.FunctionComponent<Props> = ({ formik, intl, className }) => {
+const FormikValidationErrorSummary: React.FunctionComponent<Props> = ({ formik, className }) => {
+    const intl = useIntl();
     if (formik === undefined) {
         return null;
     }
@@ -57,4 +58,4 @@ const FormikValidationErrorSummary: React.FunctionComponent<Props> = ({ formik, 
     return null;
 };
 
-export default connect<FormikValidationErrorSummaryProps, AppFormField>(injectIntl(FormikValidationErrorSummary));
+export default connect<FormikValidationErrorSummaryProps, AppFormField>(FormikValidationErrorSummary);

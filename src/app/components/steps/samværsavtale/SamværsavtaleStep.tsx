@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { injectIntl, InjectedIntlProps, FormattedHTMLMessage } from 'react-intl';
+import { useIntl, FormattedHTMLMessage } from 'react-intl';
 import { StepID, StepConfigProps } from '../../../config/stepConfig';
 import { HistoryProps } from '../../../../common/types/History';
 import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';
@@ -17,13 +17,11 @@ import { appIsRunningInDemoMode, enableDemoModeUpload } from '../../../utils/env
 import { CustomFormikProps } from '../../../types/FormikProps';
 import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
 
-type Props = { formikProps: CustomFormikProps } & CommonStepFormikProps &
-    HistoryProps &
-    InjectedIntlProps &
-    StepConfigProps;
+type Props = { formikProps: CustomFormikProps } & CommonStepFormikProps & HistoryProps & StepConfigProps;
 
-const SamværsavtaleStep = ({ history, intl, nextStepRoute, formikProps, ...stepProps }: Props) => {
+const SamværsavtaleStep = ({ history, nextStepRoute, formikProps, ...stepProps }: Props) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
+    const intl = useIntl();
 
     const navigate = nextStepRoute ? () => navigateTo(nextStepRoute, history) : undefined;
     const isRunningDemoMode = appIsRunningInDemoMode();
@@ -69,4 +67,4 @@ const SamværsavtaleStep = ({ history, intl, nextStepRoute, formikProps, ...step
     );
 };
 
-export default injectIntl(SamværsavtaleStep);
+export default SamværsavtaleStep;

@@ -7,7 +7,7 @@ import bemUtils from '../../../../common/utils/bemUtils';
 import Box from '../../../../common/components/box/Box';
 import StepBanner from '../../step-banner/StepBanner';
 import InformationPoster from '../../../../common/components/information-poster/InformationPoster';
-import { FormattedMessage, InjectedIntlProps, injectIntl, FormattedHTMLMessage } from 'react-intl';
+import { FormattedMessage, useIntl, FormattedHTMLMessage } from 'react-intl';
 import intlHelper from 'common/utils/intlUtils';
 import Lenke from 'nav-frontend-lenker';
 import RouteConfig from '../../../config/routeConfig';
@@ -15,7 +15,8 @@ import getLenker from '../../../lenker';
 
 const bem = bemUtils('introPage');
 
-const IntroPage: React.StatelessComponent<InjectedIntlProps> = ({ intl }) => {
+const IntroPage: React.StatelessComponent = () => {
+    const intl = useIntl();
     const [kroniskEllerFunksjonshemmende, setKroniskEllerFunksjonshemmende] = React.useState(YesOrNo.UNANSWERED);
 
     return (
@@ -62,4 +63,4 @@ const IntroPage: React.StatelessComponent<InjectedIntlProps> = ({ intl }) => {
     );
 };
 
-export default injectIntl(IntroPage);
+export default IntroPage;
