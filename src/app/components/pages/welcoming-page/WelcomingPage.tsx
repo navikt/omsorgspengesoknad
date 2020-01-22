@@ -6,19 +6,18 @@ import bemHelper from '../../../../common/utils/bemUtils';
 import Box from '../../../../common/components/box/Box';
 import intlHelper from '../../../../common/utils/intlUtils';
 import { HistoryProps } from '../../../../common/types/History';
-import ConfirmationCheckboxPanel from '../../confirmation-checkbox-panel/ConfirmationCheckboxPanel';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateTo } from '../../../utils/navigationUtils';
 import { StepConfigProps } from '../../../config/stepConfig';
 import { userHasSubmittedValidForm } from '../../../utils/formikUtils';
 import FrontPageBanner from '../../../../common/components/front-page-banner/FrontPageBanner';
-import { InjectedIntlProps, injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
 import Lenke from 'nav-frontend-lenker';
 import DinePlikterModal from '../../dine-plikter-modal/DinePlikterModal';
 import BehandlingAvPersonopplysningerModal from '../../behandling-av-personopplysninger-modal/BehandlingAvPersonopplysningerModal';
-// import LegeerklæringInformationPanel from '../../legeerklæring-information-panel/LegeerklæringInformationPanel';
-// import { appIsRunningInDemoMode } from '../../../utils/envUtils';
+
 import './welcomingPage.less';
+import FormikConfirmationCheckboxPanel from 'common/formik/formik-confirmation-checkbox-panel/FormikConfirmationCheckboxPanel';
 
 const bem = bemHelper('welcomingPage');
 
@@ -33,7 +32,7 @@ interface WelcomingPageState {
     behandlingAvPersonopplysningerModalOpen: boolean;
 }
 
-type Props = WelcomingPageProps & InjectedIntlProps & HistoryProps & StepConfigProps;
+type Props = WelcomingPageProps & HistoryProps & StepConfigProps & WrappedComponentProps;
 
 class WelcomingPage extends React.Component<Props, WelcomingPageState> {
     constructor(props: Props) {
@@ -107,7 +106,7 @@ class WelcomingPage extends React.Component<Props, WelcomingPageState> {
 
                     <form onSubmit={handleSubmit}>
                         <Box margin="xl">
-                            <ConfirmationCheckboxPanel
+                            <FormikConfirmationCheckboxPanel<AppFormField>
                                 label={intlHelper(intl, 'welcomingPage.samtykke.tekst')}
                                 name={AppFormField.harForståttRettigheterOgPlikter}
                                 validate={(value) => {
@@ -127,7 +126,7 @@ class WelcomingPage extends React.Component<Props, WelcomingPageState> {
                                         )
                                     }}
                                 />
-                            </ConfirmationCheckboxPanel>
+                            </FormikConfirmationCheckboxPanel>
                         </Box>
                         <Box margin="xl">
                             <Hovedknapp className={bem.element('startApplicationButton')}>

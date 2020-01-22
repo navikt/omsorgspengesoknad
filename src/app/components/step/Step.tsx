@@ -8,14 +8,14 @@ import Box from '../../../common/components/box/Box';
 import StepBanner from '../step-banner/StepBanner';
 import { Systemtittel } from 'nav-frontend-typografi';
 import FormikValidationErrorSummary from '../formik-validation-error-summary/FormikValidationErrorSummary';
-import { InjectedIntl, injectIntl } from 'react-intl';
 import { getStepTexts } from 'app/utils/stepUtils';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import { History } from 'history';
 import intlHelper from '../../../common/utils/intlUtils';
+import { useIntl } from 'react-intl';
+import BackLink from 'common/components/back-link/BackLink';
 
 import './step.less';
-import BackLink from 'app/components/back-link/BackLink';
 
 const bem = bemHelper('step');
 
@@ -27,7 +27,6 @@ export interface StepProps {
     showButtonSpinner?: boolean;
     buttonDisabled?: boolean;
     useValidationErrorSummary?: boolean;
-    intl: InjectedIntl;
 }
 
 const Step: React.FunctionComponent<StepProps> = ({
@@ -38,9 +37,9 @@ const Step: React.FunctionComponent<StepProps> = ({
     showButtonSpinner,
     buttonDisabled,
     useValidationErrorSummary,
-    intl,
     children
 }) => {
+    const intl = useIntl();
     const stepConfig = getStepConfig(formValues);
     const conf = stepConfig[id];
     const stepTexts: StepConfigItemTexts = getStepTexts(intl, id, stepConfig);
@@ -88,4 +87,4 @@ const Step: React.FunctionComponent<StepProps> = ({
     );
 };
 
-export default injectIntl(Step);
+export default Step;

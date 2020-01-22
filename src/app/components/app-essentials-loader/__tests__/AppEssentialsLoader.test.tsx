@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cleanup, render, waitForElement } from '@testing-library/react';
 import AppEssentialsLoader from '../AppEssentialsLoader';
-import MockIntlProvider from '../../../components/intl-provider/MockIntlProvider';
+import IntlProvider from 'app/components/intl-provider/IntlProvider';
 
 jest.mock('./../../../utils/envUtils', () => {
     return {
@@ -32,7 +32,11 @@ jest.mock('./../../../utils/apiUtils', () => {
 });
 
 const renderWrappedInMockIntlProvider = (child: React.ReactNode) =>
-    render(<MockIntlProvider locale="nb">{child}</MockIntlProvider>);
+    render(
+        <IntlProvider locale="nb" onError={() => null}>
+            {child}
+        </IntlProvider>
+    );
 
 describe('<AppEssentialsLoader />', () => {
     beforeEach(() => {

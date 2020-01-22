@@ -3,8 +3,8 @@ import Step from '../Step';
 import { render, RenderResult } from '@testing-library/react';
 import { StepID } from '../../../config/stepConfig';
 import { MemoryRouter } from 'react-router';
-import MockIntlProvider from '../../intl-provider/MockIntlProvider';
 import { initialValues } from '../../../types/OmsorgspengesøknadFormData';
+import IntlProvider from 'app/components/intl-provider/IntlProvider';
 
 jest.mock('../../../utils/featureToggleUtils', () => {
     return {
@@ -15,9 +15,9 @@ jest.mock('../../../utils/featureToggleUtils', () => {
 
 const renderWrappedInMemoryRouter = (child: React.ReactNode) =>
     render(
-        <MockIntlProvider locale="nb">
+        <IntlProvider locale="nb" onError={() => null}>
             <MemoryRouter>{child}</MemoryRouter>
-        </MockIntlProvider>
+        </IntlProvider>
     );
 
 const handleSubmit = jest.fn();

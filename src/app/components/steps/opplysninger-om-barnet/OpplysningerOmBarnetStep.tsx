@@ -15,32 +15,28 @@ import { Søkerdata } from '../../../types/Søkerdata';
 import { CustomFormikProps } from '../../../types/FormikProps';
 import { formatName } from '../../../../common/utils/personUtils';
 import { AppFormField, SøkersRelasjonTilBarnet } from '../../../types/OmsorgspengesøknadFormData';
-import Checkbox from '../../form-elements/checkbox/Checkbox';
-import Input from '../../form-elements/input/Input';
 import FormikStep from '../../formik-step/FormikStep';
 import { harRegistrerteBarn } from '../../../utils/søkerdataUtils';
-import RadioPanelGroup from '../../form-elements/radio-panel-group/RadioPanelGroup';
 import { resetFieldValue, resetFieldValues } from '../../../utils/formikUtils';
 import { prettifyDate } from '../../../../common/utils/dateUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import intlHelper from 'common/utils/intlUtils';
-import YesOrNoQuestion from '../../yes-or-no-question/YesOrNoQuestion';
 import Box from '../../../../common/components/box/Box';
-import Select from '../../form-elements/select/Select';
+import FormikRadioPanelGroup from 'common/formik/formik-radio-panel-group/FormikRadioPanelGroup';
+import FormikCheckbox from 'common/formik/formik-checkbox/FormikCheckbox';
+import FormikInput from 'common/formik/formik-input/FormikInput';
+import FormikSelect from 'common/formik/formik-select/FormikSelect';
+import YesOrNoQuestion from 'common/components/yes-or-no-question/YesOrNoQuestion';
 
 interface OpplysningerOmBarnetStepProps {
     formikProps: CustomFormikProps;
 }
 
-type Props = OpplysningerOmBarnetStepProps & HistoryProps & InjectedIntlProps & StepConfigProps;
+type Props = OpplysningerOmBarnetStepProps & HistoryProps & StepConfigProps;
 
-const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
-    formikProps,
-    nextStepRoute,
-    history,
-    intl
-}: Props) => {
+const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({ formikProps, nextStepRoute, history }: Props) => {
+    const intl = useIntl();
     const { handleSubmit, setFieldValue, values } = formikProps;
     const navigate = nextStepRoute ? () => navigateTo(nextStepRoute, history) : undefined;
     const { søknadenGjelderEtAnnetBarn, barnetHarIkkeFåttFødselsnummerEnda } = values;
@@ -56,7 +52,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                 {(søkerdata: Søkerdata) =>
                     harRegistrerteBarn(søkerdata) && (
                         <>
-                            <RadioPanelGroup
+                            <FormikRadioPanelGroup<AppFormField>
                                 legend={intlHelper(intl, 'steg.omBarnet.hvilketBarn.spm')}
                                 description={intlHelper(intl, 'steg.omBarnet.hvilketBarn.info')}
                                 name={AppFormField.barnetSøknadenGjelder}
@@ -87,7 +83,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                                     return validateValgtBarn(value);
                                 }}
                             />
-                            <Checkbox
+                            <FormikCheckbox<AppFormField>
                                 label={intlHelper(intl, 'steg.omBarnet.gjelderAnnetBarn')}
                                 name={AppFormField.søknadenGjelderEtAnnetBarn}
                                 afterOnChange={(newValue) => {
@@ -116,7 +112,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                 {(søkerdata: Søkerdata) =>
                     (søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
                         <>
-                            <Input
+                            <FormikInput<AppFormField>
                                 label={intlHelper(intl, 'steg.omBarnet.fnr.spm')}
                                 name={AppFormField.barnetsFødselsnummer}
                                 validate={(fnr) => {
@@ -130,7 +126,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                                 type="tel"
                                 maxLength={11}
                             />
-                            <Checkbox
+                            <FormikCheckbox<AppFormField>
                                 label={intlHelper(intl, 'steg.omBarnet.fnr.ikkeFnrEnda')}
                                 name={AppFormField.barnetHarIkkeFåttFødselsnummerEnda}
                                 afterOnChange={(newValue) => {
@@ -140,7 +136,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                                 }}
                             />
                             {barnetHarIkkeFåttFødselsnummerEnda && (
-                                <Input
+                                <FormikInput<AppFormField>
                                     label={intlHelper(intl, 'steg.omBarnet.fnr.foreløpig')}
                                     name={AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer}
                                     validate={(foreløpigFnr) => {
@@ -154,7 +150,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                                     maxLength={11}
                                 />
                             )}
-                            <Input
+                            <FormikInput<AppFormField>
                                 label={intlHelper(intl, 'steg.omBarnet.navn')}
                                 name={AppFormField.barnetsNavn}
                                 validate={(navn) => {
@@ -166,7 +162,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                                 }}
                                 bredde="XL"
                             />
-                            <Select
+                            <FormikSelect<AppFormField>
                                 bredde="xl"
                                 label={intlHelper(intl, 'steg.omBarnet.relasjon')}
                                 name={AppFormField.søkersRelasjonTilBarnet}
@@ -177,7 +173,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                                         {intlHelper(intl, `relasjonTilBarnet.${SøkersRelasjonTilBarnet[key]}`)}
                                     </option>
                                 ))}
-                            </Select>
+                            </FormikSelect>
                         </>
                     )
                 }
@@ -187,7 +183,7 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
                 values[AppFormField.sammeAdresse] !== undefined) /** Do not hide if user has already answered */ && (
                 <>
                     <Box margin="xl">
-                        <YesOrNoQuestion
+                        <YesOrNoQuestion<AppFormField>
                             legend="Er du folkeregistrert på samme adresse som barnet?"
                             name={AppFormField.sammeAdresse}
                             validate={validateYesOrNoIsAnswered}
@@ -199,4 +195,4 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({
     );
 };
 
-export default injectIntl(OpplysningerOmBarnetStep);
+export default OpplysningerOmBarnetStep;

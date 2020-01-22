@@ -2,7 +2,6 @@ import * as React from 'react';
 import { StepID } from '../../../config/stepConfig';
 import { HistoryProps } from '../../../../common/types/History';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
-import ConfirmationCheckboxPanel from '../../confirmation-checkbox-panel/ConfirmationCheckboxPanel';
 import Box from '../../../../common/components/box/Box';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';
@@ -20,20 +19,21 @@ import routeConfig from '../../../config/routeConfig';
 import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
 import * as apiUtils from '../../../utils/apiUtils';
 import ContentSwitcher from '../../../../common/components/content-switcher/ContentSwitcher';
-import { injectIntl, InjectedIntlProps, FormattedMessage } from 'react-intl';
+import { injectIntl, WrappedComponentProps, FormattedMessage } from 'react-intl';
 import intlHelper from 'common/utils/intlUtils';
 import { Locale } from 'common/types/Locale';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
 import SummaryList from 'common/components/summary-list/SummaryList';
-import { renderUtenlandsoppholdSummary } from 'common/components/summary-renderers/renderUtenlandsoppholdSummary';
+import { renderUtenlandsoppholdSummary } from 'app/components/summary-renderers/renderUtenlandsoppholdSummary';
+import FormikConfirmationCheckboxPanel from 'common/formik/formik-confirmation-checkbox-panel/FormikConfirmationCheckboxPanel';
 
 interface State {
     sendingInProgress: boolean;
 }
 
-type Props = CommonStepFormikProps & HistoryProps & InjectedIntlProps;
+type Props = CommonStepFormikProps & HistoryProps & WrappedComponentProps;
 
 class SummaryStep extends React.Component<Props, State> {
     constructor(props: Props) {
@@ -275,7 +275,7 @@ class SummaryStep extends React.Component<Props, State> {
                                 </Panel>
                             </Box>
                             <Box margin="l">
-                                <ConfirmationCheckboxPanel
+                                <FormikConfirmationCheckboxPanel<AppFormField>
                                     label={intlHelper(intl, 'steg.oppsummering.bekrefterOpplysninger')}
                                     name={AppFormField.harBekreftetOpplysninger}
                                     validate={(value) => {
