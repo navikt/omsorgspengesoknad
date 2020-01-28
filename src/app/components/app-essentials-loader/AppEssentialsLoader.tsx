@@ -2,7 +2,7 @@ import * as React from 'react';
 import LoadingPage from '../pages/loading-page/LoadingPage';
 import { Søkerdata } from '../../types/Søkerdata';
 import * as apiUtils from '../../utils/apiUtils';
-import routeConfig from '../../config/routeConfig';
+import routeConfig, { getRouteUrl } from '../../config/routeConfig';
 import { navigateToLoginPage, userIsCurrentlyOnErrorPage } from '../../utils/navigationUtils';
 import { AxiosError, AxiosResponse } from 'axios';
 import { getBarn, getSøker } from '../../api/api';
@@ -65,7 +65,7 @@ class AppEssentialsLoader extends React.Component<Props, State> {
             () => {
                 this.stopLoading();
                 if (userIsCurrentlyOnErrorPage()) {
-                    window.location.assign(routeConfig.WELCOMING_PAGE_ROUTE);
+                    window.location.assign(getRouteUrl(routeConfig.WELCOMING_PAGE_ROUTE));
                 }
             }
         );
@@ -91,7 +91,7 @@ class AppEssentialsLoader extends React.Component<Props, State> {
         if (apiUtils.isForbidden(response) || apiUtils.isUnauthorized(response)) {
             navigateToLoginPage();
         } else if (!userIsCurrentlyOnErrorPage()) {
-            window.location.assign(routeConfig.ERROR_PAGE_ROUTE);
+            window.location.assign(getRouteUrl(routeConfig.ERROR_PAGE_ROUTE));
         }
         // this timeout is set because if isLoading is updated in the state too soon,
         // the contentLoadedRenderer() will be called while the user is still on the wrong route,

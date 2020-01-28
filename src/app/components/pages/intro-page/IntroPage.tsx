@@ -10,7 +10,7 @@ import InformationPoster from '../../../../common/components/information-poster/
 import { FormattedMessage, useIntl, FormattedHTMLMessage } from 'react-intl';
 import intlHelper from 'common/utils/intlUtils';
 import Lenke from 'nav-frontend-lenker';
-import RouteConfig from '../../../config/routeConfig';
+import RouteConfig, { getRouteUrl } from '../../../config/routeConfig';
 import getLenker from '../../../lenker';
 
 const bem = bemUtils('introPage');
@@ -53,7 +53,7 @@ const IntroPage: React.StatelessComponent = () => {
                                 <FormattedHTMLMessage id={`introPage.legeerklæring.html`} />
                             </CounsellorPanel>
                         </Box>
-                        <Lenke href={RouteConfig.WELCOMING_PAGE_ROUTE}>
+                        <Lenke href={getRouteUrl(RouteConfig.WELCOMING_PAGE_ROUTE)}>
                             <FormattedMessage id="gotoApplicationLink.lenketekst" />
                         </Lenke>
                     </>

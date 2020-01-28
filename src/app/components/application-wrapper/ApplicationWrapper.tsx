@@ -5,7 +5,7 @@ import { Søkerdata } from '../../types/Søkerdata';
 import { Locale } from 'common/types/Locale';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DemoModeInfo from '../demo-mode-info/DemoModeInfo';
-import { appIsRunningInDemoMode } from '../../utils/envUtils';
+import { appIsRunningInDemoMode, getEnvironmentVariable } from '../../utils/envUtils';
 import LanguageToggle from 'common/components/language-toggle/LanguageToggle';
 
 interface ApplicationWrapperProps {
@@ -27,7 +27,7 @@ const ApplicationWrapper: React.FunctionComponent<ApplicationWrapperProps> = ({ 
                 {demoMode === false && showLanguageToggle === true && (
                     <LanguageToggle locale={locale} toggle={onChangeLocale} />
                 )}
-                <Router>{children}</Router>
+                <Router basename={getEnvironmentVariable('PUBLIC_PATH')}>{children}</Router>
             </Normaltekst>
         </IntlProvider>
     );
