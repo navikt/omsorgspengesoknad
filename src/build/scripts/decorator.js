@@ -1,5 +1,6 @@
 const jsdom = require('jsdom');
 const request = require('request');
+require('dotenv').config();
 
 const { JSDOM } = jsdom;
 
@@ -19,7 +20,8 @@ const getDecorator = () =>
                     NAV_SCRIPTS: document.getElementById('scripts')[prop],
                     NAV_STYLES: document.getElementById('styles')[prop],
                     NAV_HEADING: document.getElementById('header')[prop],
-                    NAV_FOOTER: document.getElementById('footer')[prop]
+                    NAV_FOOTER: document.getElementById('footer')[prop],
+                    PUBLIC_PATH: `${process.env.PUBLIC_PATH}`
                 };
                 resolve(data);
             } else {
