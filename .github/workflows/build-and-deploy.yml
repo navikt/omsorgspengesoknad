@@ -24,6 +24,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Test code
+        env:
+          NPM_GITHUB_AUTH_TOKEN: ${{secrets.NPM_GITHUB_AUTH_TOKEN}}
         run: |
           npm ci
           npm run test
