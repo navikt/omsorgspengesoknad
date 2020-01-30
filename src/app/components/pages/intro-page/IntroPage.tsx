@@ -4,7 +4,6 @@ import Page from '../../../../common/components/page/Page';
 import { default as YesOrNoQuestion } from '../../../../common/form-components/yes-or-no-question-base/YesOrNoQuestionBase';
 import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
 import bemUtils from '../../../../common/utils/bemUtils';
-import Box from '../../../../common/components/box/Box';
 import StepBanner from '../../step-banner/StepBanner';
 import InformationPoster from '../../../../common/components/information-poster/InformationPoster';
 import { FormattedMessage, useIntl, FormattedHTMLMessage } from 'react-intl';
@@ -12,6 +11,7 @@ import intlHelper from 'common/utils/intlUtils';
 import Lenke from 'nav-frontend-lenker';
 import RouteConfig from '../../../config/routeConfig';
 import getLenker from '../../../lenker';
+import Box from '@navikt/dusseldorf-frontend-common/lib/common/components/box/Box';
 
 const bem = bemUtils('introPage');
 
@@ -24,6 +24,11 @@ const IntroPage: React.StatelessComponent = () => {
             className={bem.block}
             title={intlHelper(intl, 'introPage.tittel')}
             topContentRenderer={() => <StepBanner text={intlHelper(intl, 'introPage.stegTittel')} />}>
+
+            {/* TODO: DETTE MÅ FJERNES. */}
+            TODO: Tester bruk av sif-common bibliotek under bygging og i q0. IKKE MERGE INN DETTE.
+            Her er Box-componenten importert fra sif-common biblioteket.
+
             <Box margin="xxxl">
                 <InformationPoster>
                     <FormattedHTMLMessage id={`introPage.intro.html`} />
