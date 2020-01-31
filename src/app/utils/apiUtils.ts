@@ -5,7 +5,9 @@ import { getEnvironmentVariable } from './envUtils';
 import Cookie from 'js-cookie';
 
 const getSelvbetjeningIdToken = () => {
-    return Cookie.get('selvbetjening-idtoken');
+    const idToken = Cookie.get('selvbetjening-idtoken');
+    console.log(idToken);
+    return idToken;
 };
 
 const getAuthorizationHeader = () => {
@@ -18,12 +20,14 @@ const getAuthorizationHeader = () => {
 };
 
 export const getAxiosConfig = () => {
-    return {
+    const config = {
         withCredentials: true,
         headers: {
             ...getAuthorizationHeader()
         }
     };
+    console.log(config);
+    return config;
 };
 export const getAxiosMultipartConfig = (multipart?: boolean) => {
     const config = getAxiosConfig();
