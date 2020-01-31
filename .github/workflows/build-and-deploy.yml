@@ -28,6 +28,7 @@ jobs:
           NPM_GITHUB_AUTH_TOKEN: ${{secrets.NPM_GITHUB_AUTH_TOKEN}}
           NPM_JS_AUTH_TOKEN: ${{secrets.NPM_JS_AUTH_TOKEN}}
         run: |
+          npm login --registry=https://npm.pkg.github.com
           npm ci
           npm run test
 
