@@ -11,7 +11,7 @@ import intlHelper from 'common/utils/intlUtils';
 import Lenke from 'nav-frontend-lenker';
 import RouteConfig from '../../../config/routeConfig';
 import getLenker from '../../../lenker';
-import Box from '@navikt/dusseldorf-frontend-common/lib/common/components/box/Box';
+import Box from '@navikt/sif-common/lib/common/components/box/Box';
 
 const bem = bemUtils('introPage');
 
