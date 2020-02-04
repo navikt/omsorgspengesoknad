@@ -77,7 +77,7 @@ class SummaryStep extends React.Component<Props, State> {
 
         return (
             <SøkerdataContextConsumer>
-                {({ person: { fornavn, mellomnavn, etternavn, fodselsnummer }, barn }: Søkerdata) => {
+                {({ person: { fornavn, mellomnavn, etternavn, fødselsnummer }, barn }: Søkerdata) => {
                     const apiValues = mapFormDataToApiData(formValues, barn, intl.locale as Locale);
                     const { medlemskap } = apiValues;
 
@@ -98,7 +98,7 @@ class SummaryStep extends React.Component<Props, State> {
                                         <Normaltekst>
                                             <FormattedMessage
                                                 id="steg.oppsummering.søker.fnr"
-                                                values={{ fodselsnummer }}
+                                                values={{ fødselsnummer }}
                                             />
                                         </Normaltekst>
                                     </ContentWithHeader>
@@ -108,8 +108,7 @@ class SummaryStep extends React.Component<Props, State> {
                                             <ContentSwitcher
                                                 firstContent={() => {
                                                     const barnReceivedFromApi = barn.find(
-                                                        ({ aktoer_id }) =>
-                                                            aktoer_id === formValues.barnetSøknadenGjelder
+                                                        ({ aktør_id }) => aktør_id === formValues.barnetSøknadenGjelder
                                                     );
                                                     return barnReceivedFromApi ? (
                                                         <>
@@ -130,7 +129,7 @@ class SummaryStep extends React.Component<Props, State> {
                                                                     id="steg.oppsummering.barnet.fodselsdato"
                                                                     values={{
                                                                         dato: prettifyDate(
-                                                                            barnReceivedFromApi!.fodselsdato
+                                                                            barnReceivedFromApi!.fødselsdato
                                                                         )
                                                                     }}
                                                                 />
@@ -156,7 +155,7 @@ class SummaryStep extends React.Component<Props, State> {
                                                             <Normaltekst>
                                                                 <FormattedMessage
                                                                     id="steg.oppsummering.barnet.fnr"
-                                                                    values={{ fnr: apiValues.barn.fodselsnummer }}
+                                                                    values={{ fnr: apiValues.barn.fødselsnummer }}
                                                                 />
                                                             </Normaltekst>
                                                         ) : null}
