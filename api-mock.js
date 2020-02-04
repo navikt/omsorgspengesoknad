@@ -34,13 +34,13 @@ const barnMock = {
             fornavn: 'Barn',
             mellomnavn: 'Barne',
             etternavn: 'Barnesen',
-            aktør_id: '1'
+            aktørId: '1'
         },
         {
             fødselsdato: '1990-01-02',
             fornavn: 'Mock',
             etternavn: 'Mocknes',
-            aktør_id: '2'
+            aktørId: '2'
         }
     ]
 };

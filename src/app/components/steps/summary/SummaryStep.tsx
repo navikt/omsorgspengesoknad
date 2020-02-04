@@ -108,7 +108,7 @@ class SummaryStep extends React.Component<Props, State> {
                                             <ContentSwitcher
                                                 firstContent={() => {
                                                     const barnReceivedFromApi = barn.find(
-                                                        ({ aktør_id }) => aktør_id === formValues.barnetSøknadenGjelder
+                                                        ({ aktørId }) => aktørId === formValues.barnetSøknadenGjelder
                                                     );
                                                     return barnReceivedFromApi ? (
                                                         <>
@@ -141,17 +141,17 @@ class SummaryStep extends React.Component<Props, State> {
                                                 }}
                                                 secondContent={() => (
                                                     <>
-                                                        {apiValues.barn.alternativ_id ? (
+                                                        {apiValues.barn.alternativId ? (
                                                             <Normaltekst>
                                                                 <FormattedMessage
                                                                     id="steg.oppsummering.barnet.forelopigFnr"
                                                                     values={{
-                                                                        fnr: apiValues.barn.alternativ_id
+                                                                        fnr: apiValues.barn.alternativId
                                                                     }}
                                                                 />
                                                             </Normaltekst>
                                                         ) : null}
-                                                        {!apiValues.barn.alternativ_id ? (
+                                                        {!apiValues.barn.alternativId ? (
                                                             <Normaltekst>
                                                                 <FormattedMessage
                                                                     id="steg.oppsummering.barnet.fnr"
@@ -173,7 +173,7 @@ class SummaryStep extends React.Component<Props, State> {
                                                                 values={{
                                                                     relasjon: intlHelper(
                                                                         intl,
-                                                                        `relasjonTilBarnet.${apiValues.relasjon_til_barnet}`
+                                                                        `relasjonTilBarnet.${apiValues.relasjonTilBarnet}`
                                                                     )
                                                                 }}
                                                             />
@@ -190,8 +190,8 @@ class SummaryStep extends React.Component<Props, State> {
                                     <Box margin="l">
                                         <ContentWithHeader
                                             header={intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.header')}>
-                                            {apiValues.samme_adresse === true && intlHelper(intl, 'Ja')}
-                                            {apiValues.samme_adresse === false && intlHelper(intl, 'Nei')}
+                                            {apiValues.sammeAdresse === true && intlHelper(intl, 'Ja')}
+                                            {apiValues.sammeAdresse === false && intlHelper(intl, 'Nei')}
                                         </ContentWithHeader>
                                     </Box>
 
@@ -209,14 +209,12 @@ class SummaryStep extends React.Component<Props, State> {
                                     <Box margin="l">
                                         <ContentWithHeader
                                             header={intlHelper(intl, 'steg.oppsummering.utlandetSiste12.header')}>
-                                            {medlemskap.har_bodd_i_utlandet_siste_12_mnd === true &&
-                                                intlHelper(intl, 'Ja')}
-                                            {medlemskap.har_bodd_i_utlandet_siste_12_mnd === false &&
-                                                intlHelper(intl, 'Nei')}
+                                            {medlemskap.harBoddIUtlandetSiste12Mnd === true && intlHelper(intl, 'Ja')}
+                                            {medlemskap.harBoddIUtlandetSiste12Mnd === false && intlHelper(intl, 'Nei')}
                                         </ContentWithHeader>
                                     </Box>
-                                    {apiValues.medlemskap.har_bodd_i_utlandet_siste_12_mnd === true &&
-                                        medlemskap.utenlandsopphold_siste_12_mnd.length > 0 && (
+                                    {apiValues.medlemskap.harBoddIUtlandetSiste12Mnd === true &&
+                                        medlemskap.utenlandsoppholdSiste12Mnd.length > 0 && (
                                             <Box margin="l">
                                                 <ContentWithHeader
                                                     header={intlHelper(
@@ -224,7 +222,7 @@ class SummaryStep extends React.Component<Props, State> {
                                                         'steg.oppsummering.utlandetSiste12.liste.header'
                                                     )}>
                                                     <SummaryList
-                                                        items={medlemskap.utenlandsopphold_siste_12_mnd}
+                                                        items={medlemskap.utenlandsoppholdSiste12Mnd}
                                                         itemRenderer={renderUtenlandsoppholdSummary}
                                                     />
                                                 </ContentWithHeader>
@@ -234,15 +232,15 @@ class SummaryStep extends React.Component<Props, State> {
                                     <Box margin="l">
                                         <ContentWithHeader
                                             header={intlHelper(intl, 'steg.oppsummering.utlandetNeste12.header')}>
-                                            {apiValues.medlemskap.skal_bo_i_utlandet_neste_12_mnd === true &&
+                                            {apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true &&
                                                 intlHelper(intl, 'Ja')}
-                                            {apiValues.medlemskap.skal_bo_i_utlandet_neste_12_mnd === false &&
+                                            {apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === false &&
                                                 intlHelper(intl, 'Nei')}
                                         </ContentWithHeader>
                                     </Box>
 
-                                    {apiValues.medlemskap.skal_bo_i_utlandet_neste_12_mnd === true &&
-                                        medlemskap.utenlandsopphold_neste_12_mnd.length > 0 && (
+                                    {apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true &&
+                                        medlemskap.utenlandsoppholdNeste12Mnd.length > 0 && (
                                             <Box margin="l">
                                                 <ContentWithHeader
                                                     header={intlHelper(
@@ -250,7 +248,7 @@ class SummaryStep extends React.Component<Props, State> {
                                                         'steg.oppsummering.utlandetNeste12.liste.header'
                                                     )}>
                                                     <SummaryList
-                                                        items={medlemskap.utenlandsopphold_neste_12_mnd}
+                                                        items={medlemskap.utenlandsoppholdNeste12Mnd}
                                                         itemRenderer={renderUtenlandsoppholdSummary}
                                                     />
                                                 </ContentWithHeader>

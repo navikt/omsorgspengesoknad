@@ -36,39 +36,39 @@ export const mapFormDataToApiData = (
     barn: BarnReceivedFromApi[],
     sprak: Locale
 ): OmsorgspengesøknadApiData => {
-    const barnObject: BarnToSendToApi = { navn: null, fødselsnummer: null, alternativ_id: null, aktør_id: null };
+    const barnObject: BarnToSendToApi = { navn: null, fødselsnummer: null, alternativId: null, aktørId: null };
 
     if (barnetSøknadenGjelder) {
-        const barnChosenFromList = barn.find((currentBarn) => currentBarn.aktør_id === barnetSøknadenGjelder);
-        const { fornavn, etternavn, mellomnavn, aktør_id } = barnChosenFromList!;
-        barnObject.aktør_id = aktør_id;
+        const barnChosenFromList = barn.find((currentBarn) => currentBarn.aktørId === barnetSøknadenGjelder);
+        const { fornavn, etternavn, mellomnavn, aktørId } = barnChosenFromList!;
+        barnObject.aktørId = aktørId;
         barnObject.navn = formatName(fornavn, etternavn, mellomnavn);
     } else {
         barnObject.navn = barnetsNavn && barnetsNavn !== '' ? barnetsNavn : null;
         if (barnetsFødselsnummer) {
             barnObject.fødselsnummer = barnetsFødselsnummer;
         } else if (barnetsForeløpigeFødselsnummerEllerDNummer) {
-            barnObject.alternativ_id = barnetsForeløpigeFødselsnummerEllerDNummer;
+            barnObject.alternativId = barnetsForeløpigeFødselsnummerEllerDNummer;
         }
     }
 
     const apiData: OmsorgspengesøknadApiData = {
-        new_version: true,
+        newVersion: true,
         språk: (sprak as any) === 'en' ? 'nn' : sprak,
-        kronisk_eller_funksjonshemming: kroniskEllerFunksjonshemming === YesOrNo.YES,
-        er_yrkesaktiv: erYrkesaktiv === YesOrNo.YES,
+        kroniskEllerFunksjonshemming: kroniskEllerFunksjonshemming === YesOrNo.YES,
+        erYrkesaktiv: erYrkesaktiv === YesOrNo.YES,
         barn: barnObject,
-        relasjon_til_barnet: barnObject.aktør_id ? undefined : søkersRelasjonTilBarnet,
-        samme_adresse: sammeAdresse === YesOrNo.YES,
+        relasjonTilBarnet: barnObject.aktørId ? undefined : søkersRelasjonTilBarnet,
+        sammeAdresse: sammeAdresse === YesOrNo.YES,
         arbeidssituasjon,
         medlemskap: {
-            har_bodd_i_utlandet_siste_12_mnd: harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES,
-            skal_bo_i_utlandet_neste_12_mnd: skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES,
-            utenlandsopphold_siste_12_mnd:
+            harBoddIUtlandetSiste12Mnd: harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES,
+            skalBoIUtlandetNeste12Mnd: skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES,
+            utenlandsoppholdSiste12Mnd:
                 harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES
                     ? utenlandsoppholdSiste12Mnd.map((o) => mapUtenlandsoppholdTilApiData(o, sprak))
                     : [],
-            utenlandsopphold_neste_12_mnd:
+            utenlandsoppholdNeste12Mnd:
                 skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES
                     ? utenlandsoppholdNeste12Mnd.map((o) => mapUtenlandsoppholdTilApiData(o, sprak))
                     : []
@@ -79,8 +79,8 @@ export const mapFormDataToApiData = (
         samvarsavtale: samværsavtale
             ? samværsavtale.filter((attachment) => !attachmentUploadHasFailed(attachment)).map(({ url }) => url!)
             : undefined,
-        har_bekreftet_opplysninger: harBekreftetOpplysninger,
-        har_forstatt_rettigheter_og_plikter: harForståttRettigheterOgPlikter
+        harBekreftetOpplysninger,
+        harForståttRettigheterOgPlikter
     };
 
     return apiData;
@@ -89,6 +89,6 @@ export const mapFormDataToApiData = (
 const mapUtenlandsoppholdTilApiData = (opphold: Utenlandsopphold, locale: string): UtenlandsoppholdApiData => ({
     landnavn: getCountryName(opphold.countryCode, locale),
     landkode: opphold.countryCode,
-    fra_og_med: formatDateToApiFormat(opphold.fromDate),
-    til_og_med: formatDateToApiFormat(opphold.toDate)
+    fraOgMed: formatDateToApiFormat(opphold.fromDate),
+    tilOgMed: formatDateToApiFormat(opphold.toDate)
 });

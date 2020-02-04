@@ -23,7 +23,7 @@ const todaysDate = moment()
     .toDate();
 
 const barnMock: BarnReceivedFromApi[] = [
-    { fødselsdato: todaysDate, fornavn: 'Mock', etternavn: 'Mocknes', aktør_id: '123' }
+    { fødselsdato: todaysDate, fornavn: 'Mock', etternavn: 'Mocknes', aktørId: '123' }
 ];
 
 type AttachmentMock = Attachment & { failed: boolean };
@@ -68,16 +68,16 @@ describe('mapFormDataToApiData', () => {
         expect(resultingApiData.barn.navn).toEqual(formDataMock[AppFormField.barnetsNavn]);
     });
 
-    it("should set 'relasjon_til_barnet' in api data correctly", () => {
-        expect(resultingApiData.relasjon_til_barnet).toEqual(formDataMock[AppFormField.søkersRelasjonTilBarnet]);
+    it("should set 'relasjonTilBarnet' in api data correctly", () => {
+        expect(resultingApiData.relasjonTilBarnet).toEqual(formDataMock[AppFormField.søkersRelasjonTilBarnet]);
     });
 
-    it("should set 'medlemskap.skal_bo_i_utlandet_neste_12_mnd' in api data correctly", () => {
-        expect(resultingApiData.medlemskap.skal_bo_i_utlandet_neste_12_mnd).toBe(false);
+    it("should set 'medlemskap.skalBoIUtlandetNeste12Mnd' in api data correctly", () => {
+        expect(resultingApiData.medlemskap.skalBoIUtlandetNeste12Mnd).toBe(false);
     });
 
-    it("should set 'medlemskap.har_bodd_i_utlandet_siste_12_mnd' in api data correctly", () => {
-        expect(resultingApiData.medlemskap.har_bodd_i_utlandet_siste_12_mnd).toBe(true);
+    it("should set 'medlemskap.harBoddIUtlandetSiste12Mnd' in api data correctly", () => {
+        expect(resultingApiData.medlemskap.harBoddIUtlandetSiste12Mnd).toBe(true);
     });
 
     it("should set 'vedlegg' in api data correctly by only including the urls of attachments that have been successfully uploaded", () => {
@@ -98,36 +98,36 @@ describe('mapFormDataToApiData', () => {
         expect(result.barn.fødselsnummer).toEqual(fnr);
     });
 
-    it("should set 'alternativ_id' in api data to undefined if it doesnt exist, and otherwise it should assign value to 'alternativ_id' in api data", () => {
+    it("should set 'alternativId' in api data to undefined if it doesnt exist, and otherwise it should assign value to 'alternativId' in api data", () => {
         const fnr = '12345123456';
-        expect(resultingApiData.barn.alternativ_id).toBeNull();
+        expect(resultingApiData.barn.alternativId).toBeNull();
         const formDataWithFnr: Partial<OmsorgspengesøknadFormData> = {
             ...formDataMock,
             [AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer]: fnr
         };
         const result = mapFormDataToApiData(formDataWithFnr as OmsorgspengesøknadFormData, barnMock, 'nb');
-        expect(result.barn.alternativ_id).toEqual(fnr);
+        expect(result.barn.alternativId).toEqual(fnr);
     });
 
-    it("should assign fnr to 'fødselsnummer' in api data, and set 'alternativ_id' to undefined, if both barnetsFødselsnummer and barnetsForeløpigeFødselsnummerEllerDNummer has values", () => {
+    it("should assign fnr to 'fødselsnummer' in api data, and set 'alternativId' to undefined, if both barnetsFødselsnummer and barnetsForeløpigeFødselsnummerEllerDNummer has values", () => {
         const fnr = '12345123456';
-        expect(resultingApiData.barn.alternativ_id).toBeNull();
+        expect(resultingApiData.barn.alternativId).toBeNull();
         const formDataWithFnr: Partial<OmsorgspengesøknadFormData> = {
             ...formDataMock,
             [AppFormField.barnetsFødselsnummer]: fnr,
             [AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer]: fnr
         };
         const result = mapFormDataToApiData(formDataWithFnr as OmsorgspengesøknadFormData, barnMock, 'nb');
-        expect(result.barn.alternativ_id).toBeNull();
+        expect(result.barn.alternativId).toBeNull();
         expect(result.barn.fødselsnummer).toEqual(fnr);
     });
 
-    it('should set har_bekreftet_opplysninger to value of harBekreftetOpplysninger in form data', () => {
-        expect(resultingApiData.har_bekreftet_opplysninger).toBe(formDataMock[AppFormField.harBekreftetOpplysninger]);
+    it('should set harBekreftetOpplysninger to value of harBekreftetOpplysninger in form data', () => {
+        expect(resultingApiData.harBekreftetOpplysninger).toBe(formDataMock[AppFormField.harBekreftetOpplysninger]);
     });
 
     it('should set har_forstått_rettigheter_og_plikter to value of harForståttRettigheterOgPlikter in form data', () => {
-        expect(resultingApiData.har_forstatt_rettigheter_og_plikter).toBe(
+        expect(resultingApiData.harForståttRettigheterOgPlikter).toBe(
             formDataMock[AppFormField.harForståttRettigheterOgPlikter]
         );
     });

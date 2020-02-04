@@ -5,14 +5,14 @@ const demoSøkerdata = {
             fornavn: 'Jan',
             mellomnavn: 'Testperson',
             etternavn: 'Hansen',
-            aktør_id: '1'
+            aktørId: '1'
         },
         {
             fødselsdato: new Date('2014-05-02'),
             fornavn: 'Kari',
             mellomnavn: 'Testperson',
             etternavn: 'Hansen',
-            aktør_id: '2'
+            aktørId: '2'
         }
     ],
     person: {

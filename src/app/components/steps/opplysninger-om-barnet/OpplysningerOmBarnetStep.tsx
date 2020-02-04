@@ -57,11 +57,11 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({ formikProps,
                                 description={intlHelper(intl, 'steg.omBarnet.hvilketBarn.info')}
                                 name={AppFormField.barnetSøknadenGjelder}
                                 radios={søkerdata.barn.map((barn) => {
-                                    const { fornavn, mellomnavn, etternavn, fødselsdato: fodselsdato, aktør_id } = barn;
+                                    const { fornavn, mellomnavn, etternavn, fødselsdato: fodselsdato, aktørId } = barn;
                                     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
                                     return {
-                                        value: aktør_id,
-                                        key: aktør_id,
+                                        value: aktørId,
+                                        key: aktørId,
                                         label: (
                                             <>
                                                 <Normaltekst>{barnetsNavn}</Normaltekst>

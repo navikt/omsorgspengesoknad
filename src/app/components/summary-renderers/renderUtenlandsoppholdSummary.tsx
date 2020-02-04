@@ -9,8 +9,8 @@ const bem = bemUtils('utenlandsoppholdSummaryItem');
 export const renderUtenlandsoppholdSummary = (opphold: UtenlandsoppholdApiData): React.ReactNode => (
     <div className={bem.block}>
         <span className={bem.element('dates')}>
-            {prettifyDateExtended(apiStringDateToDate(opphold.fra_og_med))} -{' '}
-            {prettifyDateExtended(apiStringDateToDate(opphold.til_og_med))}
+            {prettifyDateExtended(apiStringDateToDate(opphold.fraOgMed))} -{' '}
+            {prettifyDateExtended(apiStringDateToDate(opphold.tilOgMed))}
         </span>
         <span className={bem.element('country')}>{opphold.landnavn}</span>
     </div>

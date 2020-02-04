@@ -2,7 +2,7 @@ export interface BarnReceivedFromApi {
     fornavn: string;
     etternavn: string;
     mellomnavn?: string;
-    aktør_id: string;
+    aktørId: string;
     fødselsdato: Date;
 }
 
