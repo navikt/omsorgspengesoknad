@@ -106,7 +106,7 @@ jobs:
 
   deploy-dev-sbs:
     name: deploy-dev-sbs
-    if: startsWith(github.ref, 'refs/heads/dev-') || github.event.deployment.payload.triggered # Build and push docker if branch is either master or dev-*
+    if: startsWith(github.ref, 'refs/heads/dev-') # Build and push docker if branch is either master or dev-*
     needs: build-code-and-push-docker # Depends on build-code-and-push-docker job
     runs-on: ubuntu-latest
     steps:
@@ -136,7 +136,7 @@ jobs:
 
   deploy-prod-sbs:
     name: deploy-prod-sbs
-    if: startsWith(github.ref, 'refs/heads/master') || github.event.deployment.payload.triggered # Build and push docker if branch is either master or dev-*
+    if: startsWith(github.ref, 'refs/heads/master') # Build and push docker if branch is either master or dev-*
     needs: build-code-and-push-docker # Depends on build-code-and-push-docker job
     runs-on: ubuntu-latest
     steps:
