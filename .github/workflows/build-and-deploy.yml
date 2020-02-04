@@ -29,52 +29,9 @@ jobs:
           npm ci
           npm run test
 
-  build-code-and-push-docker-dev:
-    name: staging-build-push-docker
-    if: startsWith(github.ref, 'refs/heads/dev-') || startsWith(github.ref, 'refs/heads/master') # Build and push docker if branch is either master or dev-*
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: build code
-        run: |
-          npm i
-          npm run build
-      - name: Create Docker tag
-        env:
-          NAME: omsorgspengesoknad
-        run: |
-          echo "docker.pkg.github.com"/"$GITHUB_REPOSITORY"/"$NAME" > .docker_image
-          echo "$(date "+%Y.%m.%d")-$(git rev-parse --short HEAD)" > .docker_tag
-      - name: Build Docker image
-        run: |
-          docker build -t $(cat .docker_image):$(cat .docker_tag) .
-      - name: Login to Github Package Registry
-        env:
-          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          docker login -u ${GITHUB_REPOSITORY} -p ${DOCKER_PASSWORD} docker.pkg.github.com
-      - name: Push Docker image
-        run: "docker push $(cat .docker_image):$(cat .docker_tag)"
-      - name: pass image file to next job.
-        uses: actions/upload-artifact@v1
-        with:
-          name: docker_image
-          path: .docker_image
-      - name: pass tag file to next job.
-        uses: actions/upload-artifact@v1
-        with:
-          name: docker_tag
-          path: .docker_tag
-
-  build-code-and-push-docker-prod:
-    name: prod-build-push-docker
-    if: startsWith(github.ref, 'refs/heads/master') # Build and push docker if branch is either master or dev-*
+  build-code-and-push-docker:
+    name: Build code and push docker image
+    if: startsWith(github.ref, 'refs/heads/dev-') || startsWith(github.ref, 'refs/heads/master') || github.event.deployment.payload.triggered # Build and push docker if branch is either master or dev-*
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -149,7 +106,8 @@ jobs:
 
   deploy-dev-sbs:
     name: deploy-dev-sbs
-    needs: build-code-and-push-docker-dev # Depends on build-code-and-push-docker job
+    if: startsWith(github.ref, 'refs/heads/dev-') # Build and push docker if branch is either master or dev-*
+    needs: build-code-and-push-docker # Depends on build-code-and-push-docker job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -178,7 +136,8 @@ jobs:
 
   deploy-prod-sbs:
     name: deploy-prod-sbs
-    needs: build-code-and-push-docker-prod # Depends on build-code-and-push-docker job
+    if: startsWith(github.ref, 'refs/heads/master') # Build and push docker if branch is either master or dev-*
+    needs: build-code-and-push-docker # Depends on build-code-and-push-docker job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
