@@ -37,11 +37,17 @@ const renderApp = (decoratorFragments) =>
     });
 
 const startServer = (html) => {
-    server.use('/dist/js', express.static(path.resolve(__dirname, 'dist/js')));
-    server.use('/dist/css', express.static(path.resolve(__dirname, 'dist/css')));
+    server.use(
+        '/familie/sykdom-i-familien/soknad/omsorgspenger/dist/js',
+        express.static(path.resolve(__dirname, 'dist/js'))
+    );
+    server.use(
+        '/familie/sykdom-i-familien/soknad/omsorgspenger/dist/css',
+        express.static(path.resolve(__dirname, 'dist/css'))
+    );
 
-    server.get('/health/isAlive', (req, res) => res.sendStatus(200));
-    server.get('/health/isReady', (req, res) => res.sendStatus(200));
+    server.get('/familie/sykdom-i-familien/soknad/omsorgspenger/health/isAlive', (req, res) => res.sendStatus(200));
+    server.get('/familie/sykdom-i-familien/soknad/omsorgspenger/health/isReady', (req, res) => res.sendStatus(200));
 
     server.get(/^\/(?!.*dist).*$/, (req, res) => {
         res.send(html);
