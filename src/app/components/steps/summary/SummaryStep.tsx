@@ -126,7 +126,7 @@ class SummaryStep extends React.Component<Props, State> {
                                                             </Normaltekst>
                                                             <Normaltekst>
                                                                 <FormattedMessage
-                                                                    id="steg.oppsummering.barnet.fodselsdato"
+                                                                    id="steg.oppsummering.barnet.fødselsdato"
                                                                     values={{
                                                                         dato: prettifyDate(
                                                                             barnReceivedFromApi!.fødselsdato
