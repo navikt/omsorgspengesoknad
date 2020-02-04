@@ -1,45 +1,13 @@
 import axios, { AxiosError } from 'axios';
 import HttpStatus from 'http-status-codes';
+import axiosConfig from '../config/axiosConfig';
 import { ResourceType } from '../types/ResourceType';
 import { getEnvironmentVariable } from './envUtils';
-import Cookie from 'js-cookie';
 
-const getSelvbetjeningIdToken = () => {
-    const idToken = Cookie.get('selvbetjening-idtoken');
-    console.log(idToken);
-    return idToken;
-};
-
-const getAuthorizationHeader = () => {
-    const token = getSelvbetjeningIdToken();
-    return token
-        ? {
-              Authorization: `Bearer ${token}`
-          }
-        : {};
-};
-
-export const getAxiosConfig = () => {
-    const config = {
-        withCredentials: true,
-        headers: {
-            ...getAuthorizationHeader()
-        }
-    };
-    console.log(config);
-    return config;
-};
-export const getAxiosMultipartConfig = (multipart?: boolean) => {
-    const config = getAxiosConfig();
-    config.headers = {
-        ...config.headers,
-        ...{ 'Content-Type': 'multipart/form-data' }
-    };
-    return config;
-};
+export const multipartConfig = { headers: { 'Content-Type': 'multipart/form-data' }, ...axiosConfig };
 
 export const sendMultipartPostRequest = (url: string, formData: FormData) => {
-    return axios.post(url, formData, getAxiosMultipartConfig());
+    return axios.post(url, formData, multipartConfig);
 };
 
 export const isForbidden = ({ response }: AxiosError) =>

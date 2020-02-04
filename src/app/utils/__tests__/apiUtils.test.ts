@@ -3,8 +3,8 @@ import {
     getApiUrlByResourceType,
     isForbidden,
     isUnauthorized,
-    sendMultipartPostRequest,
-    getAxiosMultipartConfig
+    multipartConfig,
+    sendMultipartPostRequest
 } from '../apiUtils';
 import { ResourceType } from '../../types/ResourceType';
 
@@ -60,7 +60,7 @@ describe('apiUtils', () => {
             const formData = new FormData();
             formData.set('foo', 'bar');
             sendMultipartPostRequest('nav.no', formData);
-            expect(axios.post).toHaveBeenCalledWith('nav.no', formData, getAxiosMultipartConfig());
+            expect(axios.post).toHaveBeenCalledWith('nav.no', formData, multipartConfig);
         });
     });
 

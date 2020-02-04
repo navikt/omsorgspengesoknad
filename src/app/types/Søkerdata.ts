@@ -2,16 +2,16 @@ export interface BarnReceivedFromApi {
     fornavn: string;
     etternavn: string;
     mellomnavn?: string;
-    aktoer_id: string;
-    fodselsdato: Date;
+    aktør_id: string;
+    fødselsdato: Date;
 }
 
 export interface Person {
     etternavn: string;
     fornavn: string;
     mellomnavn: string;
-    kjonn: string;
-    fodselsnummer: string;
+    kjønn: string;
+    fødselsnummer: string;
     myndig: boolean;
 }
 

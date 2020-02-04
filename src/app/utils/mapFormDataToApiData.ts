@@ -36,17 +36,17 @@ export const mapFormDataToApiData = (
     barn: BarnReceivedFromApi[],
     sprak: Locale
 ): OmsorgspengesøknadApiData => {
-    const barnObject: BarnToSendToApi = { navn: null, fodselsnummer: null, alternativ_id: null, aktoer_id: null };
+    const barnObject: BarnToSendToApi = { navn: null, fødselsnummer: null, alternativ_id: null, aktør_id: null };
 
     if (barnetSøknadenGjelder) {
-        const barnChosenFromList = barn.find((currentBarn) => currentBarn.aktoer_id === barnetSøknadenGjelder);
-        const { fornavn, etternavn, mellomnavn, aktoer_id } = barnChosenFromList!;
-        barnObject.aktoer_id = aktoer_id;
+        const barnChosenFromList = barn.find((currentBarn) => currentBarn.aktør_id === barnetSøknadenGjelder);
+        const { fornavn, etternavn, mellomnavn, aktør_id } = barnChosenFromList!;
+        barnObject.aktør_id = aktør_id;
         barnObject.navn = formatName(fornavn, etternavn, mellomnavn);
     } else {
         barnObject.navn = barnetsNavn && barnetsNavn !== '' ? barnetsNavn : null;
         if (barnetsFødselsnummer) {
-            barnObject.fodselsnummer = barnetsFødselsnummer;
+            barnObject.fødselsnummer = barnetsFødselsnummer;
         } else if (barnetsForeløpigeFødselsnummerEllerDNummer) {
             barnObject.alternativ_id = barnetsForeløpigeFødselsnummerEllerDNummer;
         }
@@ -54,11 +54,11 @@ export const mapFormDataToApiData = (
 
     const apiData: OmsorgspengesøknadApiData = {
         new_version: true,
-        sprak: (sprak as any) === 'en' ? 'nn' : sprak,
+        språk: (sprak as any) === 'en' ? 'nn' : sprak,
         kronisk_eller_funksjonshemming: kroniskEllerFunksjonshemming === YesOrNo.YES,
         er_yrkesaktiv: erYrkesaktiv === YesOrNo.YES,
         barn: barnObject,
-        relasjon_til_barnet: barnObject.aktoer_id ? undefined : søkersRelasjonTilBarnet,
+        relasjon_til_barnet: barnObject.aktør_id ? undefined : søkersRelasjonTilBarnet,
         samme_adresse: sammeAdresse === YesOrNo.YES,
         arbeidssituasjon,
         medlemskap: {
@@ -73,7 +73,7 @@ export const mapFormDataToApiData = (
                     ? utenlandsoppholdNeste12Mnd.map((o) => mapUtenlandsoppholdTilApiData(o, sprak))
                     : []
         },
-        legeerklaring: legeerklæring
+        legeerklæring: legeerklæring
             .filter((attachment) => !attachmentUploadHasFailed(attachment))
             .map(({ url }) => url!),
         samvarsavtale: samværsavtale

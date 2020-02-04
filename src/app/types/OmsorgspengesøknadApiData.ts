@@ -6,9 +6,9 @@ export type ISO8601Duration = string;
 
 export interface BarnToSendToApi {
     navn: string | null;
-    fodselsnummer: string | null;
+    fødselsnummer: string | null;
     alternativ_id: string | null;
-    aktoer_id: string | null;
+    aktør_id: string | null;
 }
 
 interface Medlemskap {
@@ -27,14 +27,14 @@ export interface UtenlandsoppholdApiData {
 
 export interface OmsorgspengesøknadApiData {
     new_version: boolean;
-    sprak: Locale;
+    språk: Locale;
     er_yrkesaktiv: boolean;
     kronisk_eller_funksjonshemming: boolean;
     barn: BarnToSendToApi;
     samme_adresse?: boolean;
     relasjon_til_barnet: SøkersRelasjonTilBarnet | undefined;
     arbeidssituasjon: Arbeidssituasjon[];
-    legeerklaring: string[];
+    legeerklæring: string[];
     samvarsavtale?: string[];
     medlemskap: Medlemskap;
     har_forstatt_rettigheter_og_plikter: boolean;
