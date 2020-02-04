@@ -54,7 +54,7 @@ export const mapFormDataToApiData = (
 
     const apiData: OmsorgspengesøknadApiData = {
         new_version: true,
-        sprak,
+        sprak: (sprak as any) === 'en' ? 'nn' : sprak,
         kronisk_eller_funksjonshemming: kroniskEllerFunksjonshemming === YesOrNo.YES,
         er_yrkesaktiv: erYrkesaktiv === YesOrNo.YES,
         barn: barnObject,
