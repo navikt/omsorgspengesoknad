@@ -155,7 +155,7 @@ class SummaryStep extends React.Component<Props, State> {
                                                             <Normaltekst>
                                                                 <FormattedMessage
                                                                     id="steg.oppsummering.barnet.fnr"
-                                                                    values={{ fnr: apiValues.barn.fødselsnummer }}
+                                                                    values={{ fnr: apiValues.barn.norskIdentifikator }}
                                                                 />
                                                             </Normaltekst>
                                                         ) : null}

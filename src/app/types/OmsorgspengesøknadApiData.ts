@@ -6,7 +6,7 @@ export type ISO8601Duration = string;
 
 export interface BarnToSendToApi {
     navn: string | null;
-    fødselsnummer: string | null;
+    norskIdentifikator: string | null;
     alternativId: string | null;
     aktørId: string | null;
 }

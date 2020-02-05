@@ -36,7 +36,7 @@ export const mapFormDataToApiData = (
     barn: BarnReceivedFromApi[],
     sprak: Locale
 ): OmsorgspengesøknadApiData => {
-    const barnObject: BarnToSendToApi = { navn: null, fødselsnummer: null, alternativId: null, aktørId: null };
+    const barnObject: BarnToSendToApi = { navn: null, norskIdentifikator: null, alternativId: null, aktørId: null };
 
     if (barnetSøknadenGjelder) {
         const barnChosenFromList = barn.find((currentBarn) => currentBarn.aktørId === barnetSøknadenGjelder);
@@ -46,7 +46,7 @@ export const mapFormDataToApiData = (
     } else {
         barnObject.navn = barnetsNavn && barnetsNavn !== '' ? barnetsNavn : null;
         if (barnetsFødselsnummer) {
-            barnObject.fødselsnummer = barnetsFødselsnummer;
+            barnObject.norskIdentifikator = barnetsFødselsnummer;
         } else if (barnetsForeløpigeFødselsnummerEllerDNummer) {
             barnObject.alternativId = barnetsForeløpigeFødselsnummerEllerDNummer;
         }
