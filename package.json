@@ -23,7 +23,7 @@
         "@formatjs/intl-pluralrules": "^1.5.2",
         "@formatjs/intl-relativetimeformat": "^4.5.9",
         "@navikt/fnrvalidator": "^1.1.0",
-        "@navikt/sif-common": "^1.0.4",
+        "@navikt/sif-common": "^1.0.9",
         "@testing-library/react": "^9.4.0",
         "@types/js-cookie": "^2.2.4",
         "@types/react-collapse": "^5.0.0",
