@@ -6,7 +6,6 @@ import {
     date1YearAgo, date1YearFromNow, DateRange, dateRangesCollide, dateRangesExceedsRange
 } from 'common/utils/dateUtils';
 import { FieldValidationResult } from 'common/validation/types';
-
 import { Arbeidssituasjon, SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
 import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
 

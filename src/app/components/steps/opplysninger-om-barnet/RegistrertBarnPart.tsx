@@ -1,7 +1,6 @@
 import React from 'react';
 import { CustomFormikProps } from '../../../types/FormikProps';
 
-
 interface Props {
     formikProps: CustomFormikProps;
 }

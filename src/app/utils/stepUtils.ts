@@ -1,10 +1,7 @@
 import { IntlShape } from 'react-intl';
-
 import { YesOrNo } from 'common/types/YesOrNo';
 import intlHelper from 'common/utils/intlUtils';
-
 import { StepConfigInterface, StepConfigItemTexts, StepID } from 'app/config/stepConfig';
-
 import { AppFormField, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import {
     arbeidStepIsValid, legeerklæringStepIsValid, medlemskapStepIsValid,

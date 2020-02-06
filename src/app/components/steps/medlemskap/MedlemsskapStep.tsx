@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-
 import Lenke from 'nav-frontend-lenker';
-
 import Box from 'common/components/box/Box';
 import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
 import FormikYesOrNoQuestion from 'common/formik/formik-yes-or-no-question/FormikYesOrNoQuestion';
@@ -10,11 +8,9 @@ import { HistoryProps } from 'common/types/History';
 import { YesOrNo } from 'common/types/YesOrNo';
 import { date1YearAgo, date1YearFromNow, dateToday } from 'common/utils/dateUtils';
 import intlHelper from 'common/utils/intlUtils';
-
 import { Feature, isFeatureEnabled } from 'app/utils/featureToggleUtils';
 import { navigateTo } from 'app/utils/navigationUtils';
 import { validateYesOrNoIsAnswered } from 'app/validation/fieldValidations';
-
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import getLenker from '../../../lenker';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';

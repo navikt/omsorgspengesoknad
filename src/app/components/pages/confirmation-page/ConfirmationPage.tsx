@@ -1,20 +1,15 @@
-import getLenker from 'app/lenker';
+import * as React from 'react';
+import { FormattedHTMLMessage, FormattedMessage, useIntl } from 'react-intl';
+import AlertStripe from 'nav-frontend-alertstriper';
+import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import Box from 'common/components/box/Box';
 import CheckmarkIcon from 'common/components/checkmark-icon/CheckmarkIcon';
 import Page from 'common/components/page/Page';
 import bemUtils from 'common/utils/bemUtils';
 import intlHelper from 'common/utils/intlUtils';
-import AlertStripe from 'nav-frontend-alertstriper';
-import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
-import * as React from 'react';
-import { FormattedHTMLMessage, FormattedMessage, useIntl } from 'react-intl';
+import getLenker from 'app/lenker';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import './confirmationPage.less';
-
-
-
-
-
 
 const bem = bemUtils('confirmationPage');
 

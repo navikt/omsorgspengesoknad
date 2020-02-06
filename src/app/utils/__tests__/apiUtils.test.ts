@@ -1,7 +1,8 @@
 import axios, { AxiosError } from 'axios';
 import { ResourceType } from '../../types/ResourceType';
-import { getApiUrlByResourceType, isForbidden, isUnauthorized, multipartConfig, sendMultipartPostRequest } from '../apiUtils';
-
+import {
+    getApiUrlByResourceType, isForbidden, isUnauthorized, multipartConfig, sendMultipartPostRequest
+} from '../apiUtils';
 
 let axiosErrorMock: AxiosError;
 

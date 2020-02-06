@@ -1,20 +1,16 @@
+import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
+import { connect } from 'formik';
+import { Normaltekst } from 'nav-frontend-typografi';
 import AttachmentListWithDeletion from 'common/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from 'common/components/attachment-list/AttachmentList';
 import Box from 'common/components/box/Box';
 import { Attachment } from 'common/types/Attachment';
 import { containsAnyUploadedAttachments, fileExtensionIsValid } from 'common/utils/attachmentUtils';
 import { removeElementFromArray } from 'common/utils/listUtils';
-import { connect } from 'formik';
-import { Normaltekst } from 'nav-frontend-typografi';
-import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { deleteFile } from '../../api/api';
 import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
-
-
-
-
 
 interface LegeerklæringAttachmentListProps {
     includeDeletionFunctionality: boolean;

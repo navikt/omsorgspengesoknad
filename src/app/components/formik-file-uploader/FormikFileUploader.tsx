@@ -1,7 +1,5 @@
 import * as React from 'react';
-
 import { ArrayHelpers, connect } from 'formik';
-
 import FormikFileInput from 'common/formik/formik-file-input/FormikFileInput';
 import {
     FieldArrayPushFn, FieldArrayReplaceFn, FormikValidateFunction
@@ -12,7 +10,6 @@ import {
     attachmentShouldBeProcessed, attachmentShouldBeUploaded, attachmentUploadHasFailed,
     getPendingAttachmentFromFile, isFileObject, VALID_EXTENSIONS
 } from 'common/utils/attachmentUtils';
-
 import { uploadFile } from '../../api/api';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import * as apiUtils from '../../utils/apiUtils';

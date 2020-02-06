@@ -15,7 +15,6 @@ import OpplysningerOmBarnetStep from '../steps/opplysninger-om-barnet/Opplysning
 import SamværsavtaleStep from '../steps/samværsavtale/SamværsavtaleStep';
 import SummaryStep from '../steps/summary/SummaryStep';
 
-
 interface OmsorgspengesøknadContentProps {
     formikProps: CustomFormikProps;
 }

@@ -1,16 +1,14 @@
+import * as React from 'react';
+import { useIntl } from 'react-intl';
 import FormikCheckboxPanelGroup from 'common/formik/formik-checkbox-panel-group/FormikCheckboxPanelGroup';
 import { HistoryProps } from 'common/types/History';
 import intlHelper from 'common/utils/intlUtils';
-import * as React from 'react';
-import { useIntl } from 'react-intl';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField, Arbeidssituasjon } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateTo } from '../../../utils/navigationUtils';
 import { validateArbeid } from '../../../validation/fieldValidations';
 import FormikStep from '../../formik-step/FormikStep';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
-
-
 
 type Props = CommonStepFormikProps & HistoryProps & StepConfigProps;
 

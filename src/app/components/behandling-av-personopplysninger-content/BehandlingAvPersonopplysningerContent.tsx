@@ -1,14 +1,10 @@
-import getLenker from 'app/lenker';
-import Box from 'common/components/box/Box';
-import Lenke from 'nav-frontend-lenker';
-import { Ingress, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import Lenke from 'nav-frontend-lenker';
+import { Ingress, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import Box from 'common/components/box/Box';
+import getLenker from 'app/lenker';
 import './behandlingAvPersonopplysningerContent.less';
-
-
-
-
 
 const getText = (part: string) => <FormattedMessage id={`modal.personalopplysninger.${part}`} />;
 

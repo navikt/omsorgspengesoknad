@@ -1,6 +1,5 @@
 import axios, { AxiosError } from 'axios';
 import HttpStatus from 'http-status-codes';
-
 import axiosConfig from '../config/axiosConfig';
 import { ResourceType } from '../types/ResourceType';
 import { getEnvironmentVariable } from './envUtils';

@@ -1,11 +1,8 @@
-import { UtenlandsoppholdApiData } from 'app/types/OmsorgspengesøknadApiData';
+import React from 'react';
 import bemUtils from 'common/utils/bemUtils';
 import { apiStringDateToDate, prettifyDateExtended } from 'common/utils/dateUtils';
-import React from 'react';
+import { UtenlandsoppholdApiData } from 'app/types/OmsorgspengesøknadApiData';
 import './utenlandsoppholdSummaryItem.less';
-
-
-
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');
 

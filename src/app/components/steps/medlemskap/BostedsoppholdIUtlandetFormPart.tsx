@@ -1,5 +1,9 @@
-import { validateUtenlandsoppholdIPerioden } from 'app/validation/fieldValidations';
-import ModalFormAndList, { ModalFormAndListLabels } from 'common/components/modal-form-and-list/ModalFormAndList';
+import React from 'react';
+import { useIntl } from 'react-intl';
+import { Field, FieldProps } from 'formik';
+import ModalFormAndList, {
+    ModalFormAndListLabels
+} from 'common/components/modal-form-and-list/ModalFormAndList';
 import { isValidationErrorsVisible } from 'common/formik/formikUtils';
 import BostedUtlandForm from 'common/forms/bosted-utland/BostedUtlandForm';
 import BostedUtlandListe from 'common/forms/bosted-utland/BostedUtlandListe';
@@ -7,12 +11,7 @@ import { BostedUtland } from 'common/forms/bosted-utland/types';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { DateRange } from 'common/utils/dateUtils';
 import { getValidationErrorPropsWithIntl } from 'common/utils/navFrontendUtils';
-import { Field, FieldProps } from 'formik';
-import React from 'react';
-import { useIntl } from 'react-intl';
-
-
-
+import { validateUtenlandsoppholdIPerioden } from 'app/validation/fieldValidations';
 
 interface Props<T> {
     periode: DateRange;

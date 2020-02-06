@@ -4,7 +4,6 @@ import FormikWrapper from '../formik-wrapper/FormikWrapper';
 import OmsorgspengesøknadContent from '../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import IkkeMyndigPage from '../pages/ikke-myndig-page/IkkeMyndigPage';
 
-
 const renderOmsorgspengesoknad = () => (
     <FormikWrapper contentRenderer={(formikProps) => <OmsorgspengesøknadContent formikProps={formikProps} />} />
 );

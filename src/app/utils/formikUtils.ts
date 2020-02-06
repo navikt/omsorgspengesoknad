@@ -1,5 +1,4 @@
 import flatten from 'flat';
-
 import { AppFormField, initialValues } from '../types/OmsorgspengesøknadFormData';
 
 interface HasSubmittedValidFormProps {

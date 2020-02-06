@@ -1,3 +1,8 @@
+import * as React from 'react';
+import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
+import { Hovedknapp } from 'nav-frontend-knapper';
+import Lenke from 'nav-frontend-lenker';
+import { Sidetittel } from 'nav-frontend-typografi';
 import Box from 'common/components/box/Box';
 import FrontPageBanner from 'common/components/front-page-banner/FrontPageBanner';
 import Page from 'common/components/page/Page';
@@ -5,11 +10,6 @@ import FormikConfirmationCheckboxPanel from 'common/formik/formik-confirmation-c
 import { HistoryProps } from 'common/types/History';
 import bemHelper from 'common/utils/bemUtils';
 import intlHelper from 'common/utils/intlUtils';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import Lenke from 'nav-frontend-lenker';
-import { Sidetittel } from 'nav-frontend-typografi';
-import * as React from 'react';
-import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
 import { StepConfigProps } from '../../../config/stepConfig';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import { userHasSubmittedValidForm } from '../../../utils/formikUtils';
@@ -17,10 +17,6 @@ import { navigateTo } from '../../../utils/navigationUtils';
 import BehandlingAvPersonopplysningerModal from '../../behandling-av-personopplysninger-modal/BehandlingAvPersonopplysningerModal';
 import DinePlikterModal from '../../dine-plikter-modal/DinePlikterModal';
 import './welcomingPage.less';
-
-
-
-
 
 const bem = bemHelper('welcomingPage');
 

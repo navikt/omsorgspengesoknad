@@ -1,5 +1,5 @@
-import { AxiosError, AxiosResponse } from 'axios';
 import * as React from 'react';
+import { AxiosError, AxiosResponse } from 'axios';
 import { getBarn, getSøker } from '../../api/api';
 import routeConfig, { getRouteUrl } from '../../config/routeConfig';
 import { SøkerdataContextProvider } from '../../context/SøkerdataContext';
@@ -9,8 +9,6 @@ import * as apiUtils from '../../utils/apiUtils';
 import { appIsRunningInDemoMode } from '../../utils/envUtils';
 import { navigateToLoginPage, userIsCurrentlyOnErrorPage } from '../../utils/navigationUtils';
 import LoadingPage from '../pages/loading-page/LoadingPage';
-
-
 
 interface Props {
     contentLoadedRenderer: (søkerdata?: Søkerdata) => React.ReactNode;

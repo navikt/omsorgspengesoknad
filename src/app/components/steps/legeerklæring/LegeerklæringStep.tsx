@@ -1,13 +1,10 @@
 import * as React from 'react';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
-
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-
 import Box from 'common/components/box/Box';
 import HelperTextPanel from 'common/components/helper-text-panel/HelperTextPanel';
 import { HistoryProps } from 'common/types/History';
 import intlHelper from 'common/utils/intlUtils';
-
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { CustomFormikProps } from '../../../types/FormikProps';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';

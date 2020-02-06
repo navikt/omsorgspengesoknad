@@ -1,3 +1,6 @@
+import * as React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { Normaltekst } from 'nav-frontend-typografi';
 import Box from 'common/components/box/Box';
 import FormikCheckbox from 'common/formik/formik-checkbox/FormikCheckbox';
 import FormikInput from 'common/formik/formik-input/FormikInput';
@@ -8,9 +11,6 @@ import { HistoryProps } from 'common/types/History';
 import { prettifyDate } from 'common/utils/dateUtils';
 import intlHelper from 'common/utils/intlUtils';
 import { formatName } from 'common/utils/personUtils';
-import { Normaltekst } from 'nav-frontend-typografi';
-import * as React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { CustomFormikProps } from '../../../types/FormikProps';
@@ -19,11 +19,11 @@ import { Søkerdata } from '../../../types/Søkerdata';
 import { resetFieldValue, resetFieldValues } from '../../../utils/formikUtils';
 import { navigateTo } from '../../../utils/navigationUtils';
 import { harRegistrerteBarn } from '../../../utils/søkerdataUtils';
-import { validateForeløpigFødselsnummer, validateFødselsnummer, validateNavn, validateRelasjonTilBarnet, validateValgtBarn, validateYesOrNoIsAnswered } from '../../../validation/fieldValidations';
+import {
+    validateForeløpigFødselsnummer, validateFødselsnummer, validateNavn, validateRelasjonTilBarnet,
+    validateValgtBarn, validateYesOrNoIsAnswered
+} from '../../../validation/fieldValidations';
 import FormikStep from '../../formik-step/FormikStep';
-
-
-
 
 interface OpplysningerOmBarnetStepProps {
     formikProps: CustomFormikProps;

@@ -3,7 +3,6 @@ import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadForm
 import * as stepValidations from '../../validation/stepValidations';
 import * as stepUtils from '../stepUtils';
 
-
 jest.mock('./../../validation/stepValidations', () => {
     return {
         welcomingPageIsValid: jest.fn(() => true),

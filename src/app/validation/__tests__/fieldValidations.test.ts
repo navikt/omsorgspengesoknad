@@ -1,9 +1,12 @@
 import { Attachment } from 'common/types/Attachment';
 import { YesOrNo } from 'common/types/YesOrNo';
 import { FieldValidationResult } from 'common/validation/types';
-import { fieldValidationError, FieldValidationErrors, hasValue, validateForeløpigFødselsnummer, validateFødselsnummer, validateLegeerklæring, validateNavn, validateRelasjonTilBarnet, validateYesOrNoIsAnswered } from '../fieldValidations';
+import {
+    fieldValidationError, FieldValidationErrors, hasValue, validateForeløpigFødselsnummer,
+    validateFødselsnummer, validateLegeerklæring, validateNavn, validateRelasjonTilBarnet,
+    validateYesOrNoIsAnswered
+} from '../fieldValidations';
 import * as fødselsnummerValidator from '../fødselsnummerValidator';
-
 
 import Mock = jest.Mock;
 jest.mock('../fødselsnummerValidator', () => {

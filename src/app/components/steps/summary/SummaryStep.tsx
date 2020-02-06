@@ -1,4 +1,7 @@
-import { renderUtenlandsoppholdSummary } from 'app/components/summary-renderers/renderUtenlandsoppholdSummary';
+import * as React from 'react';
+import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
+import Panel from 'nav-frontend-paneler';
+import { Normaltekst } from 'nav-frontend-typografi';
 import Box from 'common/components/box/Box';
 import ContentSwitcher from 'common/components/content-switcher/ContentSwitcher';
 import ContentWithHeader from 'common/components/content-with-header/ContentWithHeader';
@@ -10,10 +13,9 @@ import { Locale } from 'common/types/Locale';
 import { prettifyDate } from 'common/utils/dateUtils';
 import intlHelper from 'common/utils/intlUtils';
 import { formatName } from 'common/utils/personUtils';
-import Panel from 'nav-frontend-paneler';
-import { Normaltekst } from 'nav-frontend-typografi';
-import * as React from 'react';
-import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
+import {
+    renderUtenlandsoppholdSummary
+} from 'app/components/summary-renderers/renderUtenlandsoppholdSummary';
 import { sendApplication } from '../../../api/api';
 import routeConfig from '../../../config/routeConfig';
 import { StepID } from '../../../config/stepConfig';
@@ -28,10 +30,6 @@ import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringAttachmentList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
-
-
-
-
 
 interface State {
     sendingInProgress: boolean;

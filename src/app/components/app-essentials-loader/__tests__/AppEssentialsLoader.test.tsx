@@ -1,9 +1,7 @@
 import { cleanup, render, waitForElement } from '@testing-library/react';
-import IntlProvider from 'app/components/intl-provider/IntlProvider';
 import * as React from 'react';
+import IntlProvider from 'app/components/intl-provider/IntlProvider';
 import AppEssentialsLoader from '../AppEssentialsLoader';
-
-
 
 jest.mock('./../../../utils/envUtils', () => {
     return {

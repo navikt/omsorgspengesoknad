@@ -1,15 +1,11 @@
+import * as React from 'react';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import Lenke from 'nav-frontend-lenker';
 import Box from 'common/components/box/Box';
 import Page from 'common/components/page/Page';
 import bemUtils from 'common/utils/bemUtils';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import Lenke from 'nav-frontend-lenker';
-import * as React from 'react';
 import StepBanner from '../../step-banner/StepBanner';
 import './unavailablePage.less';
-
-
-
-
 
 const bem = bemUtils('introPage');
 

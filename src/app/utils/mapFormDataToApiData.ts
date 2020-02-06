@@ -5,7 +5,6 @@ import { YesOrNo } from 'common/types/YesOrNo';
 import { attachmentUploadHasFailed } from 'common/utils/attachmentUtils';
 import { formatDateToApiFormat } from 'common/utils/dateUtils';
 import { formatName } from 'common/utils/personUtils';
-
 import {
     BarnToSendToApi, OmsorgspengesøknadApiData, UtenlandsoppholdApiData
 } from '../types/OmsorgspengesøknadApiData';

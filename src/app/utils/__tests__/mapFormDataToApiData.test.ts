@@ -2,11 +2,12 @@ import { Attachment } from 'common/types/Attachment';
 import { YesOrNo } from 'common/types/YesOrNo';
 import * as attachmentUtils from 'common/utils/attachmentUtils';
 import { OmsorgspengesøknadApiData } from '../../types/OmsorgspengesøknadApiData';
-import { AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet } from '../../types/OmsorgspengesøknadFormData';
+import {
+    AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet
+} from '../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../../types/Søkerdata';
 import { isFeatureEnabled } from '../featureToggleUtils';
 import { mapFormDataToApiData } from '../mapFormDataToApiData';
-
 
 const moment = require('moment');
 

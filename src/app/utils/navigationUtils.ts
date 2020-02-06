@@ -2,7 +2,6 @@ import { History } from 'history';
 import routeConfig, { getRouteUrl } from '../config/routeConfig';
 import { getEnvironmentVariable } from './envUtils';
 
-
 const loginUrl = getEnvironmentVariable('LOGIN_URL');
 
 export const navigateTo = (route: string, history: History) => history.push(route);
