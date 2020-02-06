@@ -1,10 +1,12 @@
-import * as React from 'react';
-import Step from '../Step';
 import { render, RenderResult } from '@testing-library/react';
-import { StepID } from '../../../config/stepConfig';
-import { MemoryRouter } from 'react-router';
-import { initialValues } from '../../../types/OmsorgspengesøknadFormData';
 import IntlProvider from 'app/components/intl-provider/IntlProvider';
+import * as React from 'react';
+import { MemoryRouter } from 'react-router';
+import { StepID } from '../../../config/stepConfig';
+import { initialValues } from '../../../types/OmsorgspengesøknadFormData';
+import Step from '../Step';
+
+
 
 jest.mock('../../../utils/featureToggleUtils', () => {
     return {

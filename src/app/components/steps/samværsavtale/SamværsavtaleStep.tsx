@@ -1,20 +1,23 @@
 import * as React from 'react';
-import { useIntl, FormattedHTMLMessage } from 'react-intl';
-import { StepID, StepConfigProps } from '../../../config/stepConfig';
-import { HistoryProps } from '../../../../common/types/History';
-import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';
-import FormikStep from '../../formik-step/FormikStep';
-import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
-import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
-import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
-import { validateSamværsavtale } from '../../../validation/fieldValidations';
-import HelperTextPanel from '../../../../common/components/helper-text-panel/HelperTextPanel';
-import Box from '../../../../common/components/box/Box';
-import intlHelper from 'common/utils/intlUtils';
-import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
+import { FormattedHTMLMessage, useIntl } from 'react-intl';
+
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { appIsRunningInDemoMode, enableDemoModeUpload } from '../../../utils/envUtils';
+
+import Box from 'common/components/box/Box';
+import HelperTextPanel from 'common/components/helper-text-panel/HelperTextPanel';
+import { HistoryProps } from 'common/types/History';
+import intlHelper from 'common/utils/intlUtils';
+
+import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { CustomFormikProps } from '../../../types/FormikProps';
+import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
+import { appIsRunningInDemoMode, enableDemoModeUpload } from '../../../utils/envUtils';
+import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';
+import { validateSamværsavtale } from '../../../validation/fieldValidations';
+import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
+import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
+import FormikStep from '../../formik-step/FormikStep';
+import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
 
 type Props = { formikProps: CustomFormikProps } & CommonStepFormikProps & HistoryProps & StepConfigProps;

@@ -1,19 +1,21 @@
 import * as React from 'react';
+
 import { ArrayHelpers, connect } from 'formik';
-import { ConnectedFormikProps } from '../../../common/types/ConnectedFormikProps';
+
+import FormikFileInput from 'common/formik/formik-file-input/FormikFileInput';
 import {
-    attachmentShouldBeProcessed,
-    attachmentShouldBeUploaded,
-    attachmentUploadHasFailed,
-    getPendingAttachmentFromFile,
-    VALID_EXTENSIONS
+    FieldArrayPushFn, FieldArrayReplaceFn, FormikValidateFunction
+} from 'common/formik/FormikProps';
+import { Attachment, PersistedFile } from 'common/types/Attachment';
+import { ConnectedFormikProps } from 'common/types/ConnectedFormikProps';
+import {
+    attachmentShouldBeProcessed, attachmentShouldBeUploaded, attachmentUploadHasFailed,
+    getPendingAttachmentFromFile, isFileObject, VALID_EXTENSIONS
 } from 'common/utils/attachmentUtils';
+
 import { uploadFile } from '../../api/api';
+import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import * as apiUtils from '../../utils/apiUtils';
-import { Attachment } from 'common/types/Attachment';
-import FormikFileInput from '../../../common/formik/formik-file-input/FormikFileInput';
-import { FormikValidateFunction, FieldArrayReplaceFn, FieldArrayPushFn } from 'common/formik/FormikProps';
-import { AppFormField } from 'app/types/OmsorgspengesøknadFormData';
 
 interface FormikFileUploader {
     name: AppFormField;
@@ -35,16 +37,19 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
     ...otherProps
 }) => {
     async function uploadAttachment(attachment: Attachment) {
-        try {
-            const response = await uploadFile(attachment.file);
-            attachment = setAttachmentPendingToFalse(attachment);
-            attachment.url = response.headers.location;
-            attachment.uploaded = true;
-        } catch (error) {
-            if (apiUtils.isForbidden(error) || apiUtils.isUnauthorized(error)) {
-                onUnauthorizedOrForbiddenUpload();
+        const { file } = attachment;
+        if (isFileObject(file)) {
+            try {
+                const response = await uploadFile(file);
+                attachment = setAttachmentPendingToFalse(attachment);
+                attachment.url = response.headers.location;
+                attachment.uploaded = true;
+            } catch (error) {
+                if (apiUtils.isForbidden(error) || apiUtils.isUnauthorized(error)) {
+                    onUnauthorizedOrForbiddenUpload();
+                }
+                setAttachmentPendingToFalse(attachment);
             }
-            setAttachmentPendingToFalse(attachment);
         }
     }
 
@@ -71,7 +76,11 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
             attachment = setAttachmentPendingToFalse(attachment);
             updateAttachmentListElement(allAttachments, attachment, replaceFn);
         });
-        onErrorUploadingAttachments(failedAttachments.map(({ file }) => file));
+        const failedFiles: File[] = failedAttachments
+            .map(({ file }) => file)
+            .filter((f: File | PersistedFile) => isFileObject(f)) as File[];
+
+        onErrorUploadingAttachments(failedFiles);
     }
 
     function findAttachmentsToProcess(attachments: Attachment[]): Attachment[] {

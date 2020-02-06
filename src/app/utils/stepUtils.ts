@@ -1,15 +1,15 @@
-import { OmsorgspengesøknadFormData, AppFormField } from '../types/OmsorgspengesøknadFormData';
-import {
-    legeerklæringStepIsValid,
-    medlemskapStepIsValid,
-    opplysningerOmBarnetStepIsValid,
-    welcomingPageIsValid,
-    arbeidStepIsValid
-} from '../validation/stepValidations';
-import { StepConfigItemTexts, StepID, StepConfigInterface } from 'app/config/stepConfig';
-import intlHelper from '../../common/utils/intlUtils';
-import { YesOrNo } from '../../common/types/YesOrNo';
 import { IntlShape } from 'react-intl';
+
+import { YesOrNo } from 'common/types/YesOrNo';
+import intlHelper from 'common/utils/intlUtils';
+
+import { StepConfigInterface, StepConfigItemTexts, StepID } from 'app/config/stepConfig';
+
+import { AppFormField, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
+import {
+    arbeidStepIsValid, legeerklæringStepIsValid, medlemskapStepIsValid,
+    opplysningerOmBarnetStepIsValid, welcomingPageIsValid
+} from '../validation/stepValidations';
 
 export const includeAvtaleStep = (formData: Partial<OmsorgspengesøknadFormData>): boolean =>
     formData !== undefined && formData[AppFormField.sammeAdresse] === YesOrNo.NO;

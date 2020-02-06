@@ -1,20 +1,11 @@
-import * as fødselsnummerValidator from './../fødselsnummerValidator';
-import {
-    hasValue,
-    validateForeløpigFødselsnummer,
-    validateFødselsnummer,
-    validateLegeerklæring,
-    validateNavn,
-    validateRelasjonTilBarnet,
-    validateYesOrNoIsAnswered,
-    FieldValidationErrors,
-    fieldValidationError
-} from '../fieldValidations';
-import Mock = jest.Mock;
-import { YesOrNo } from '../../../common/types/YesOrNo';
-import { FieldValidationResult } from '../../../common/validation/types';
-import { Attachment } from '../../../common/types/Attachment';
+import { Attachment } from 'common/types/Attachment';
+import { YesOrNo } from 'common/types/YesOrNo';
+import { FieldValidationResult } from 'common/validation/types';
+import { fieldValidationError, FieldValidationErrors, hasValue, validateForeløpigFødselsnummer, validateFødselsnummer, validateLegeerklæring, validateNavn, validateRelasjonTilBarnet, validateYesOrNoIsAnswered } from '../fieldValidations';
+import * as fødselsnummerValidator from '../fødselsnummerValidator';
 
+
+import Mock = jest.Mock;
 jest.mock('../fødselsnummerValidator', () => {
     return {
         fødselsnummerIsValid: jest.fn(),
@@ -24,7 +15,7 @@ jest.mock('../fødselsnummerValidator', () => {
     };
 });
 
-jest.mock('../../../common/utils/dateUtils', () => {
+jest.mock('common/utils/dateUtils', () => {
     return {
         isMoreThan3YearsAgo: jest.fn()
     };

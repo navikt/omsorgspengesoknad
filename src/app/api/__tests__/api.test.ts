@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { getApiUrlByResourceType, sendMultipartPostRequest } from '../../utils/apiUtils';
-import { ResourceType } from '../../types/ResourceType';
 import axiosConfig from '../../config/axiosConfig';
+import { ResourceType } from '../../types/ResourceType';
+import { getApiUrlByResourceType, sendMultipartPostRequest } from '../../utils/apiUtils';
 import { deleteFile, getBarn, getSøker, sendApplication, uploadFile } from '../api';
+
 
 const mockedApiUrl = 'nav.no/api';
 jest.mock('./../../utils/apiUtils', () => {

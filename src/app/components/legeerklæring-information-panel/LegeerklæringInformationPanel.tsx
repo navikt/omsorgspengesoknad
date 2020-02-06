@@ -1,7 +1,10 @@
+import Veilederpanel from 'nav-frontend-veilederpanel';
 import * as React from 'react';
 import LegeerklæringIcon from '../legeerklæring-icon/LegeerklæringWithArmIcon';
-import Veilederpanel from 'nav-frontend-veilederpanel';
 import './legeerklæringInformationPanel.less';
+
+
+
 
 interface LegeerklæringInformationPanelProps {
     text: string;

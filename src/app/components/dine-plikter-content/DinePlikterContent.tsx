@@ -1,8 +1,10 @@
-import * as React from 'react';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import Lenke from 'nav-frontend-lenker';
-import { FormattedMessage, useIntl } from 'react-intl';
 import getLenker from 'app/lenker';
+import Lenke from 'nav-frontend-lenker';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import * as React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+
+
 
 const getText = (part: string) => <FormattedMessage id={`modal.minePlikter.${part}`} />;
 

@@ -1,19 +1,20 @@
 import * as React from 'react';
-import { CustomFormikProps } from '../../types/FormikProps';
-import OpplysningerOmBarnetStep from '../steps/opplysninger-om-barnet/OpplysningerOmBarnetStep';
-import { StepID } from '../../config/stepConfig';
-import { getSøknadRoute, isAvailable, getNextStepRoute } from '../../utils/routeUtils';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import WelcomingPage from '../pages/welcoming-page/WelcomingPage';
 import RouteConfig from '../../config/routeConfig';
-import MedlemsskapStep from '../steps/medlemskap/MedlemsskapStep';
-import LegeerklæringStep from '../steps/legeerklæring/LegeerklæringStep';
-import SummaryStep from '../steps/summary/SummaryStep';
-import GeneralErrorPage from '../pages/general-error-page/GeneralErrorPage';
-import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
+import { StepID } from '../../config/stepConfig';
+import { CustomFormikProps } from '../../types/FormikProps';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
+import { getNextStepRoute, getSøknadRoute, isAvailable } from '../../utils/routeUtils';
+import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
+import GeneralErrorPage from '../pages/general-error-page/GeneralErrorPage';
+import WelcomingPage from '../pages/welcoming-page/WelcomingPage';
+import ArbeidStep from '../step/arbeid/ArbeidStep';
+import LegeerklæringStep from '../steps/legeerklæring/LegeerklæringStep';
+import MedlemsskapStep from '../steps/medlemskap/MedlemsskapStep';
+import OpplysningerOmBarnetStep from '../steps/opplysninger-om-barnet/OpplysningerOmBarnetStep';
 import SamværsavtaleStep from '../steps/samværsavtale/SamværsavtaleStep';
-import ArbeidStep from '../steps/arbeid/ArbeidStep';
+import SummaryStep from '../steps/summary/SummaryStep';
+
 
 interface OmsorgspengesøknadContentProps {
     formikProps: CustomFormikProps;

@@ -1,23 +1,26 @@
-import * as React from 'react';
-import { Sidetittel } from 'nav-frontend-typografi';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import Page from '../../../../common/components/page/Page';
-import bemHelper from '../../../../common/utils/bemUtils';
-import Box from '../../../../common/components/box/Box';
-import intlHelper from '../../../../common/utils/intlUtils';
-import { HistoryProps } from '../../../../common/types/History';
-import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
-import { navigateTo } from '../../../utils/navigationUtils';
-import { StepConfigProps } from '../../../config/stepConfig';
-import { userHasSubmittedValidForm } from '../../../utils/formikUtils';
-import FrontPageBanner from '../../../../common/components/front-page-banner/FrontPageBanner';
-import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
-import Lenke from 'nav-frontend-lenker';
-import DinePlikterModal from '../../dine-plikter-modal/DinePlikterModal';
-import BehandlingAvPersonopplysningerModal from '../../behandling-av-personopplysninger-modal/BehandlingAvPersonopplysningerModal';
-
-import './welcomingPage.less';
+import Box from 'common/components/box/Box';
+import FrontPageBanner from 'common/components/front-page-banner/FrontPageBanner';
+import Page from 'common/components/page/Page';
 import FormikConfirmationCheckboxPanel from 'common/formik/formik-confirmation-checkbox-panel/FormikConfirmationCheckboxPanel';
+import { HistoryProps } from 'common/types/History';
+import bemHelper from 'common/utils/bemUtils';
+import intlHelper from 'common/utils/intlUtils';
+import { Hovedknapp } from 'nav-frontend-knapper';
+import Lenke from 'nav-frontend-lenker';
+import { Sidetittel } from 'nav-frontend-typografi';
+import * as React from 'react';
+import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
+import { StepConfigProps } from '../../../config/stepConfig';
+import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
+import { userHasSubmittedValidForm } from '../../../utils/formikUtils';
+import { navigateTo } from '../../../utils/navigationUtils';
+import BehandlingAvPersonopplysningerModal from '../../behandling-av-personopplysninger-modal/BehandlingAvPersonopplysningerModal';
+import DinePlikterModal from '../../dine-plikter-modal/DinePlikterModal';
+import './welcomingPage.less';
+
+
+
+
 
 const bem = bemHelper('welcomingPage');
 

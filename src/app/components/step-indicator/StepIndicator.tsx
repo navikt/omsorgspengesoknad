@@ -1,9 +1,12 @@
-import * as React from 'react';
+import { getStepTexts } from 'app/utils/stepUtils';
 import NAVStepIndicator from 'nav-frontend-stegindikator/lib/stegindikator';
 import { default as Step } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
+import * as React from 'react';
+import { IntlShape, useIntl } from 'react-intl';
 import { StepConfigInterface, StepID } from '../../config/stepConfig';
-import { useIntl, IntlShape } from 'react-intl';
-import { getStepTexts } from 'app/utils/stepUtils';
+
+
+
 
 interface StepIndicatorProps {
     activeStep: number;

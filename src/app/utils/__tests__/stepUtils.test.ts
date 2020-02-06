@@ -1,7 +1,8 @@
+import { YesOrNo } from 'common/types/YesOrNo';
+import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import * as stepValidations from '../../validation/stepValidations';
 import * as stepUtils from '../stepUtils';
-import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
-import { YesOrNo } from '../../../common/types/YesOrNo';
+
 
 jest.mock('./../../validation/stepValidations', () => {
     return {

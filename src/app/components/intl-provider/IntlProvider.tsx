@@ -1,18 +1,18 @@
+import '@formatjs/intl-pluralrules/dist/locale-data/nb';
+import '@formatjs/intl-pluralrules/dist/locale-data/nn';
+import '@formatjs/intl-pluralrules/polyfill';
+import { Locale } from 'common/types/Locale';
 import * as React from 'react';
 import { IntlProvider as Provider } from 'react-intl';
 
-import '@formatjs/intl-pluralrules/polyfill';
-import '@formatjs/intl-pluralrules/dist/locale-data/nb';
-import '@formatjs/intl-pluralrules/dist/locale-data/nn';
 
-import { Locale } from '../../../common/types/Locale';
 
 const appBokmålstekster = require('../../i18n/nb.json');
 const appNynorsktekster = require('../../i18n/nn.json');
 
 // Modultekster
-const utenlandsoppholdBokmål = require('../../../common/forms/utenlandsopphold/utenlandsopphold.nb.json');
-const utenlandsoppholdNynorsk = require('../../../common/forms/utenlandsopphold/utenlandsopphold.nn.json');
+const utenlandsoppholdBokmål = require('common/forms/utenlandsopphold/utenlandsopphold.nb.json');
+const utenlandsoppholdNynorsk = require('common/forms/utenlandsopphold/utenlandsopphold.nn.json');
 
 const bokmålstekster = { ...appBokmålstekster, ...utenlandsoppholdBokmål };
 const nynorsktekster = { ...appNynorsktekster, ...utenlandsoppholdNynorsk };

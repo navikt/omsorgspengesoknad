@@ -1,15 +1,8 @@
-import { StepID, getStepConfig } from '../config/stepConfig';
 import RouteConfig from '../config/routeConfig';
+import { getStepConfig, StepID } from '../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
-import { appIsRunningInDevEnvironment, appIsRunningInDemoMode } from './envUtils';
-import {
-    legeerklæringStepAvailable,
-    medlemskapStepAvailable,
-    opplysningerOmBarnetStepAvailable,
-    summaryStepAvailable,
-    samværsavtaleStepAvailable,
-    arbeidStepIsAvailable
-} from './stepUtils';
+import { appIsRunningInDemoMode, appIsRunningInDevEnvironment } from './envUtils';
+import { arbeidStepIsAvailable, legeerklæringStepAvailable, medlemskapStepAvailable, opplysningerOmBarnetStepAvailable, samværsavtaleStepAvailable, summaryStepAvailable } from './stepUtils';
 
 export const getSøknadRoute = (stepId: StepID | undefined) => {
     if (stepId !== undefined) {
