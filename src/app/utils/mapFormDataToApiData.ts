@@ -1,17 +1,15 @@
-import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
-import {
-    BarnToSendToApi,
-    OmsorgspengesøknadApiData,
-    UtenlandsoppholdApiData
-} from '../types/OmsorgspengesøknadApiData';
-import { attachmentUploadHasFailed } from '../../common/utils/attachmentUtils';
-import { YesOrNo } from '../../common/types/YesOrNo';
-import { formatName } from '../../common/utils/personUtils';
-import { BarnReceivedFromApi } from '../types/Søkerdata';
-import { Locale } from 'common/types/Locale';
-import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { getCountryName } from 'common/components/country-select/CountrySelect';
+import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
+import { Locale } from 'common/types/Locale';
+import { YesOrNo } from 'common/types/YesOrNo';
+import { attachmentUploadHasFailed } from 'common/utils/attachmentUtils';
 import { formatDateToApiFormat } from 'common/utils/dateUtils';
+import { formatName } from 'common/utils/personUtils';
+import {
+    BarnToSendToApi, OmsorgspengesøknadApiData, UtenlandsoppholdApiData
+} from '../types/OmsorgspengesøknadApiData';
+import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
+import { BarnReceivedFromApi } from '../types/Søkerdata';
 
 export const mapFormDataToApiData = (
     {
@@ -87,8 +85,8 @@ export const mapFormDataToApiData = (
 };
 
 const mapUtenlandsoppholdTilApiData = (opphold: Utenlandsopphold, locale: string): UtenlandsoppholdApiData => ({
-    landnavn: getCountryName(opphold.countryCode, locale),
-    landkode: opphold.countryCode,
-    fraOgMed: formatDateToApiFormat(opphold.fromDate),
-    tilOgMed: formatDateToApiFormat(opphold.toDate)
+    landnavn: getCountryName(opphold.landkode, locale),
+    landkode: opphold.landkode,
+    fraOgMed: formatDateToApiFormat(opphold.fom),
+    tilOgMed: formatDateToApiFormat(opphold.tom)
 });

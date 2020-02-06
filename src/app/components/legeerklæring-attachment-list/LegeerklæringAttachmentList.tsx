@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { connect } from 'formik';
-import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
-import AttachmentList from '../../../common/components/attachment-list/AttachmentList';
-import { removeElementFromArray } from '../../../common/utils/listUtils';
-import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
-import { deleteFile } from '../../api/api';
-import { containsAnyUploadedAttachments, fileExtensionIsValid } from '../../../common/utils/attachmentUtils';
-import Box from '../../../common/components/box/Box';
-import { Normaltekst } from 'nav-frontend-typografi';
-import AttachmentListWithDeletion from '../../../common/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import { FormattedMessage } from 'react-intl';
-import { Attachment } from '../../../common/types/Attachment';
+import { connect } from 'formik';
+import { Normaltekst } from 'nav-frontend-typografi';
+import AttachmentListWithDeletion from 'common/components/attachment-list-with-deletion/AttachmentListWithDeletion';
+import AttachmentList from 'common/components/attachment-list/AttachmentList';
+import Box from 'common/components/box/Box';
+import { Attachment } from 'common/types/Attachment';
+import { containsAnyUploadedAttachments, fileExtensionIsValid } from 'common/utils/attachmentUtils';
+import { removeElementFromArray } from 'common/utils/listUtils';
+import { deleteFile } from '../../api/api';
+import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
+import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 
 interface LegeerklæringAttachmentListProps {
     includeDeletionFunctionality: boolean;

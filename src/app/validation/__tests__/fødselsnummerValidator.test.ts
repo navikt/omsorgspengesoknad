@@ -1,5 +1,5 @@
-import { fødselsnummerIsValid } from '../fødselsnummerValidator';
 import { FødselsnummerMockedValidity } from '../../../../__mocks__/@navikt/fnrvalidator';
+import { fødselsnummerIsValid } from '../fødselsnummerValidator';
 
 describe('fødselsnummerIsValid', () => {
     it('should return an array containing true (index 0) and empty array (index 1) if fødselsnummer was valid', () => {

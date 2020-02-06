@@ -1,6 +1,6 @@
-import { YesOrNo } from '../../common/types/YesOrNo';
-import { Attachment } from '../../common/types/Attachment';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
+import { Attachment } from 'common/types/Attachment';
+import { YesOrNo } from 'common/types/YesOrNo';
 
 export enum SøkersRelasjonTilBarnet {
     'MOR' = 'mor',

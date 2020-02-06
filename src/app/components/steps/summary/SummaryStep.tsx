@@ -1,33 +1,35 @@
 import * as React from 'react';
-import { StepID } from '../../../config/stepConfig';
-import { HistoryProps } from '../../../../common/types/History';
-import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
-import Box from '../../../../common/components/box/Box';
+import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
+import Panel from 'nav-frontend-paneler';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';
-import FormikStep from '../../formik-step/FormikStep';
-import { mapFormDataToApiData } from '../../../utils/mapFormDataToApiData';
-import Panel from '../../../../common/components/panel/Panel';
-import ContentWithHeader from '../../../../common/components/content-with-header/ContentWithHeader';
-import LegeerklæringAttachmentList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
-import { prettifyDate } from '../../../../common/utils/dateUtils';
-import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
-import { BarnReceivedFromApi, Søkerdata } from '../../../types/Søkerdata';
-import { formatName } from '../../../../common/utils/personUtils';
+import Box from 'common/components/box/Box';
+import ContentSwitcher from 'common/components/content-switcher/ContentSwitcher';
+import ContentWithHeader from 'common/components/content-with-header/ContentWithHeader';
+import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
+import SummaryList from 'common/components/summary-list/SummaryList';
+import FormikConfirmationCheckboxPanel from 'common/formik/formik-confirmation-checkbox-panel/FormikConfirmationCheckboxPanel';
+import { HistoryProps } from 'common/types/History';
+import { Locale } from 'common/types/Locale';
+import { prettifyDate } from 'common/utils/dateUtils';
+import intlHelper from 'common/utils/intlUtils';
+import { formatName } from 'common/utils/personUtils';
+import {
+    renderUtenlandsoppholdSummary
+} from 'app/components/summary-renderers/renderUtenlandsoppholdSummary';
 import { sendApplication } from '../../../api/api';
 import routeConfig from '../../../config/routeConfig';
-import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
+import { StepID } from '../../../config/stepConfig';
+import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
+import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
+import { BarnReceivedFromApi, Søkerdata } from '../../../types/Søkerdata';
 import * as apiUtils from '../../../utils/apiUtils';
-import ContentSwitcher from '../../../../common/components/content-switcher/ContentSwitcher';
-import { injectIntl, WrappedComponentProps, FormattedMessage } from 'react-intl';
-import intlHelper from 'common/utils/intlUtils';
-import { Locale } from 'common/types/Locale';
-import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import { appIsRunningInDemoMode } from '../../../utils/envUtils';
+import { mapFormDataToApiData } from '../../../utils/mapFormDataToApiData';
+import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';
+import FormikStep from '../../formik-step/FormikStep';
+import LegeerklæringAttachmentList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
+import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
-import SummaryList from 'common/components/summary-list/SummaryList';
-import { renderUtenlandsoppholdSummary } from 'app/components/summary-renderers/renderUtenlandsoppholdSummary';
-import FormikConfirmationCheckboxPanel from 'common/formik/formik-confirmation-checkbox-panel/FormikConfirmationCheckboxPanel';
 
 interface State {
     sendingInProgress: boolean;

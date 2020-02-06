@@ -1,7 +1,7 @@
-import routeConfig from './routeConfig';
-import { getSøknadRoute } from '../utils/routeUtils';
 import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
+import { getSøknadRoute } from '../utils/routeUtils';
 import { includeAvtaleStep } from '../utils/stepUtils';
+import routeConfig from './routeConfig';
 
 export enum StepID {
     'OPPLYSNINGER_OM_BARNET' = 'opplysninger-om-barnet',

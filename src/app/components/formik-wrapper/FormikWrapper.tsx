@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Formik } from 'formik';
-import { initialValues, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import { FormikBag } from '../../types/FormikBag';
 import { CustomFormikProps } from '../../types/FormikProps';
+import { initialValues, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 
 interface FormikWrapperProps {
     contentRenderer: (formikProps: CustomFormikProps) => JSX.Element;

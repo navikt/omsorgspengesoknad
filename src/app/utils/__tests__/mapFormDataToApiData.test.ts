@@ -1,15 +1,13 @@
-import {
-    AppFormField,
-    OmsorgspengesøknadFormData,
-    SøkersRelasjonTilBarnet
-} from '../../types/OmsorgspengesøknadFormData';
-import { mapFormDataToApiData } from '../mapFormDataToApiData';
+import { Attachment } from 'common/types/Attachment';
+import { YesOrNo } from 'common/types/YesOrNo';
+import * as attachmentUtils from 'common/utils/attachmentUtils';
 import { OmsorgspengesøknadApiData } from '../../types/OmsorgspengesøknadApiData';
-import * as attachmentUtils from '../../../common/utils/attachmentUtils';
-import { YesOrNo } from '../../../common/types/YesOrNo';
+import {
+    AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet
+} from '../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../../types/Søkerdata';
 import { isFeatureEnabled } from '../featureToggleUtils';
-import { Attachment } from '../../../common/types/Attachment';
+import { mapFormDataToApiData } from '../mapFormDataToApiData';
 
 const moment = require('moment');
 
@@ -44,13 +42,13 @@ const formDataMock: Partial<OmsorgspengesøknadFormData> = {
     [AppFormField.samværsavtale]: [attachmentMock3 as AttachmentMock]
 };
 
-jest.mock('../../../common/utils/dateUtils', () => {
+jest.mock('common/utils/dateUtils', () => {
     return {
         formatDate: jest.fn((date: Date) => date.toDateString())
     };
 });
 
-jest.mock('../../../common/utils/attachmentUtils', () => {
+jest.mock('common/utils/attachmentUtils', () => {
     return {
         attachmentUploadHasFailed: jest.fn((attachment: AttachmentMock) => attachment.failed)
     };

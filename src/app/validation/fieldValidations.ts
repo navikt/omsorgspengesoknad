@@ -1,11 +1,13 @@
-import { YesOrNo } from '../../common/types/YesOrNo';
-import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
-import { attachmentHasBeenUploaded } from '../../common/utils/attachmentUtils';
-import { FieldValidationResult } from '../../common/validation/types';
-import { Attachment } from '../../common/types/Attachment';
-import { SøkersRelasjonTilBarnet, Arbeidssituasjon } from '../types/OmsorgspengesøknadFormData';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
-import { dateRangesCollide, date1YearAgo, dateRangesExceedsRange, date1YearFromNow } from 'common/utils/dateUtils';
+import { Attachment } from 'common/types/Attachment';
+import { YesOrNo } from 'common/types/YesOrNo';
+import { attachmentHasBeenUploaded } from 'common/utils/attachmentUtils';
+import {
+    date1YearAgo, date1YearFromNow, DateRange, dateRangesCollide, dateRangesExceedsRange
+} from 'common/utils/dateUtils';
+import { FieldValidationResult } from 'common/validation/types';
+import { Arbeidssituasjon, SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
+import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
 
 export enum FieldValidationErrors {
     'påkrevd' = 'fieldvalidation.påkrevd',
@@ -91,7 +93,7 @@ export const validateUtenlandsoppholdSiste12Mnd = (utenlandsopphold: Utenlandsop
     if (utenlandsopphold.length === 0) {
         return fieldValidationError(FieldValidationErrors.utenlandsopphold_ikke_registrert);
     }
-    const dateRanges = utenlandsopphold.map((u) => ({ from: u.fromDate, to: u.toDate }));
+    const dateRanges = utenlandsopphold.map((u) => ({ from: u.fom, to: u.tom }));
     if (dateRangesCollide(dateRanges)) {
         return fieldValidationError(FieldValidationErrors.utenlandsopphold_overlapper);
     }
@@ -106,7 +108,7 @@ export const validateUtenlandsoppholdNeste12Mnd = (utenlandsopphold: Utenlandsop
     if (utenlandsopphold.length === 0) {
         return fieldValidationError(FieldValidationErrors.utenlandsopphold_ikke_registrert);
     }
-    const dateRanges = utenlandsopphold.map((u) => ({ from: u.fromDate, to: u.toDate }));
+    const dateRanges = utenlandsopphold.map((u) => ({ from: u.fom, to: u.tom }));
     if (dateRangesCollide(dateRanges)) {
         return fieldValidationError(FieldValidationErrors.utenlandsopphold_overlapper);
     }
@@ -159,4 +161,21 @@ export const fieldValidationError = (key: FieldValidationErrors | undefined, val
               values
           }
         : undefined;
+};
+
+export const validateUtenlandsoppholdIPerioden = (
+    periode: DateRange,
+    utenlandsopphold: Utenlandsopphold[]
+): FieldValidationResult => {
+    if (utenlandsopphold.length === 0) {
+        return fieldValidationError(FieldValidationErrors.utenlandsopphold_ikke_registrert);
+    }
+    const dateRanges = utenlandsopphold.map((u) => ({ from: u.fom, to: u.tom }));
+    if (dateRangesCollide(dateRanges)) {
+        return fieldValidationError(FieldValidationErrors.utenlandsopphold_overlapper);
+    }
+    if (dateRangesExceedsRange(dateRanges, periode)) {
+        return fieldValidationError(FieldValidationErrors.utenlandsopphold_utenfor_periode);
+    }
+    return undefined;
 };

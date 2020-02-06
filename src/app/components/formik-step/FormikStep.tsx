@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { History } from 'history';
-import Step, { StepProps } from '../step/Step';
-import { userHasSubmittedValidForm } from '../../utils/formikUtils';
 import { connect } from 'formik';
+import { History } from 'history';
 import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
+import { userHasSubmittedValidForm } from '../../utils/formikUtils';
+import Step, { StepProps } from '../step/Step';
 
 export interface FormikStepProps {
     children: React.ReactNode;

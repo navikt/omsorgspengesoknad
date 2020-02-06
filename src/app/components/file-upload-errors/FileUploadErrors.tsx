@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { FormattedMessage } from 'react-intl';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface FileUploadErrorsProps {
     filesThatDidntGetUploaded: File[];

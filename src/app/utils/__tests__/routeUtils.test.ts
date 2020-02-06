@@ -1,8 +1,8 @@
-import { StepID } from '../../config/stepConfig';
 import RouteConfig from '../../config/routeConfig';
+import { StepID } from '../../config/stepConfig';
+import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import { getSøknadRoute, isAvailable } from '../routeUtils';
 import * as stepUtils from '../stepUtils';
-import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 
 jest.mock('../featureToggleUtils', () => {
     return {

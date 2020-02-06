@@ -1,5 +1,5 @@
-import { AppFormField, initialValues } from '../types/OmsorgspengesøknadFormData';
 import flatten from 'flat';
+import { AppFormField, initialValues } from '../types/OmsorgspengesøknadFormData';
 
 interface HasSubmittedValidFormProps {
     isSubmitting: boolean;

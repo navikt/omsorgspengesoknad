@@ -1,16 +1,16 @@
 import * as React from 'react';
-import ApplicationWrapper from './components/application-wrapper/ApplicationWrapper';
-import { Route, Switch } from 'react-router-dom';
-import RouteConfig from './config/routeConfig';
-import Omsorgspengesøknad from './components/omsorgspengesøknad/Omsorgspengesøknad';
 import { render } from 'react-dom';
-import Modal from 'nav-frontend-modal';
-import { Locale } from '../common/types/Locale';
-import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
-import { isFeatureEnabled, Feature } from './utils/featureToggleUtils';
-import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
-import IntroPage from './components/pages/intro-page/IntroPage';
+import { Route, Switch } from 'react-router-dom';
 import moment from 'moment';
+import Modal from 'nav-frontend-modal';
+import { Locale } from 'common/types/Locale';
+import ApplicationWrapper from './components/application-wrapper/ApplicationWrapper';
+import Omsorgspengesøknad from './components/omsorgspengesøknad/Omsorgspengesøknad';
+import IntroPage from './components/pages/intro-page/IntroPage';
+import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
+import RouteConfig from './config/routeConfig';
+import { Feature, isFeatureEnabled } from './utils/featureToggleUtils';
+import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
 import 'common/styles/globalStyles.less';
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();

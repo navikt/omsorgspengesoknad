@@ -1,4 +1,4 @@
-import { userHasSubmittedValidForm, isCheckboxChecked } from '../formikUtils';
+import { isCheckboxChecked, userHasSubmittedValidForm } from '../formikUtils';
 
 describe('formikUtils', () => {
     describe('userHasSubmittedValidForm', () => {

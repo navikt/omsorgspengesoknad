@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Page from '../../../../common/components/page/Page';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import Box from '../../../../common/components/box/Box';
-import { useIntl, FormattedMessage } from 'react-intl';
+import Box from 'common/components/box/Box';
+import Page from 'common/components/page/Page';
 import intlHelper from 'common/utils/intlUtils';
 
 const GeneralErrorPage: React.FunctionComponent = () => {

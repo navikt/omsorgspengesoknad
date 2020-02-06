@@ -1,11 +1,11 @@
 import * as React from 'react';
-import FrontPageBanner from '../../../../common/components/front-page-banner/FrontPageBanner';
-import Page from '../../../../common/components/page/Page';
+import { FormattedMessage, useIntl } from 'react-intl';
 import Lenke from 'nav-frontend-lenker';
-import Box from '../../../../common/components/box/Box';
 import { Innholdstittel } from 'nav-frontend-typografi';
+import Box from 'common/components/box/Box';
+import FrontPageBanner from 'common/components/front-page-banner/FrontPageBanner';
+import Page from 'common/components/page/Page';
 import intlHelper from 'common/utils/intlUtils';
-import { useIntl, FormattedMessage } from 'react-intl';
 import getLenker from 'app/lenker';
 import './ikkeMyndigPage.less';
 

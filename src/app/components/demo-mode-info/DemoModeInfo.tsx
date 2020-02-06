@@ -1,7 +1,7 @@
 import React from 'react';
-import './demoModeInfo.less';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { FormattedHTMLMessage } from 'react-intl';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import './demoModeInfo.less';
 
 const DemoModeInfo: React.FunctionComponent<{}> = () => (
     <div className="demoModeInfoWrapper">

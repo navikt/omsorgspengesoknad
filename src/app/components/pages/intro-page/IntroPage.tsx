@@ -1,17 +1,19 @@
 import * as React from 'react';
-import { YesOrNo } from '../../../../common/types/YesOrNo';
-import Page from '../../../../common/components/page/Page';
-import { default as YesOrNoQuestion } from '../../../../common/form-components/yes-or-no-question-base/YesOrNoQuestionBase';
-import CounsellorPanel from '../../../../common/components/counsellor-panel/CounsellorPanel';
-import bemUtils from '../../../../common/utils/bemUtils';
-import Box from '../../../../common/components/box/Box';
-import StepBanner from '../../step-banner/StepBanner';
-import InformationPoster from '../../../../common/components/information-poster/InformationPoster';
-import { FormattedMessage, useIntl, FormattedHTMLMessage } from 'react-intl';
-import intlHelper from 'common/utils/intlUtils';
+import { FormattedHTMLMessage, FormattedMessage, useIntl } from 'react-intl';
 import Lenke from 'nav-frontend-lenker';
+import Box from 'common/components/box/Box';
+import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
+import InformationPoster from 'common/components/information-poster/InformationPoster';
+import Page from 'common/components/page/Page';
+import {
+    default as YesOrNoQuestion
+} from 'common/form-components/yes-or-no-question-base/YesOrNoQuestionBase';
+import { YesOrNo } from 'common/types/YesOrNo';
+import bemUtils from 'common/utils/bemUtils';
+import intlHelper from 'common/utils/intlUtils';
 import RouteConfig, { getRouteUrl } from '../../../config/routeConfig';
 import getLenker from '../../../lenker';
+import StepBanner from '../../step-banner/StepBanner';
 
 const bem = bemUtils('introPage');
 

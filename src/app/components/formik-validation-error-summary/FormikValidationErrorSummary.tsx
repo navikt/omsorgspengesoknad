@@ -1,17 +1,16 @@
 import * as React from 'react';
+import { useIntl } from 'react-intl';
+import { connect } from 'formik';
+import intlHelper from 'common/utils/intlUtils';
+import {
+    isFieldValidationError, renderFieldValidationError
+} from 'common/validation/fieldValidationRenderUtils';
+import { flattenFieldArrayErrors, showValidationErrors } from 'app/utils/formikUtils';
+import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
+import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import ValidationErrorSummaryBase, {
     ValidationSummaryError
 } from '../validation-error-summary-base/ValidationErrorSummaryBase';
-import { connect } from 'formik';
-import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
-import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
-import intlHelper from '../../../common/utils/intlUtils';
-import { useIntl } from 'react-intl';
-import {
-    renderFieldValidationError,
-    isFieldValidationError
-} from '../../../common/validation/fieldValidationRenderUtils';
-import { flattenFieldArrayErrors, showValidationErrors } from 'app/utils/formikUtils';
 
 interface FormikValidationErrorSummaryProps {
     className?: string;
