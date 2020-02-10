@@ -84,7 +84,7 @@
         "@babel/preset-react": "^7.8.3",
         "@types/classnames": "^2.2.9",
         "@types/enzyme": "^3.10.4",
-        "@types/enzyme-adapter-react-16": "^1.0.3",
+        "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/flat": "0.0.28",
         "@types/intl": "^1.2.0",
         "@types/jest": "^24.9.1",
