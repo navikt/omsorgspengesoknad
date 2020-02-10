@@ -65,7 +65,7 @@
         "nav-frontend-veilederpanel": "^0.1.21",
         "promise": "^8.0.2",
         "react": "^16.10.2",
-        "react-aria-menubutton": "^6.2.0",
+        "react-aria-menubutton": "^6.3.0",
         "react-collapse": "^5.0.1",
         "react-day-picker": "^7.3.2",
         "react-dom": "^16.10.2",
