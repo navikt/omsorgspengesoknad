@@ -3,6 +3,7 @@ import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl'
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
 import { Sidetittel } from 'nav-frontend-typografi';
+import { userHasSubmittedValidForm } from '@navikt/sif-common/lib/common/formik/formikUtils';
 import Box from 'common/components/box/Box';
 import FrontPageBanner from 'common/components/front-page-banner/FrontPageBanner';
 import Page from 'common/components/page/Page';
@@ -12,7 +13,6 @@ import bemHelper from 'common/utils/bemUtils';
 import intlHelper from 'common/utils/intlUtils';
 import { StepConfigProps } from '../../../config/stepConfig';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
-import { userHasSubmittedValidForm } from '../../../utils/formikUtils';
 import { navigateTo } from '../../../utils/navigationUtils';
 import BehandlingAvPersonopplysningerModal from '../../behandling-av-personopplysninger-modal/BehandlingAvPersonopplysningerModal';
 import DinePlikterModal from '../../dine-plikter-modal/DinePlikterModal';

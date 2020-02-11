@@ -139,6 +139,7 @@
     "steg.omBarnet.fnr.spm": "Barnets fødselsnummer",
     "steg.omBarnet.fnr.ikkeFnrEnda": "Barnet har ikke fått fødselsnummer ennå",
     "steg.omBarnet.fnr.foreløpig": "Barnets foreløpige fødselsnummer eller D-nummer",
+    "steg.omBarnet.fødselsdato": "Barnets fødselsdato",
     "steg.omBarnet.navn": "Barnets navn",
     "steg.omBarnet.relasjon": "Min relasjon til barnet",
     "steg.omBarnet.veileder.samværsavtale": "Senere i søknaden laster du opp samværsavtale eller avtale om delt bosted for barnet.",

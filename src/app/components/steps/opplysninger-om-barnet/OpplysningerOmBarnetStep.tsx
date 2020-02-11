@@ -1,26 +1,31 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
+import {
+    resetFieldValue, resetFieldValues
+} from '@navikt/sif-common/lib/common/formik/formikUtils';
 import Box from 'common/components/box/Box';
 import FormikCheckbox from 'common/formik/formik-checkbox/FormikCheckbox';
+import FormikDatepicker from 'common/formik/formik-datepicker/FormikDatepicker';
 import FormikInput from 'common/formik/formik-input/FormikInput';
 import FormikRadioPanelGroup from 'common/formik/formik-radio-panel-group/FormikRadioPanelGroup';
 import FormikSelect from 'common/formik/formik-select/FormikSelect';
 import FormikYesOrNoQuestion from 'common/formik/formik-yes-or-no-question/FormikYesOrNoQuestion';
 import { HistoryProps } from 'common/types/History';
-import { prettifyDate } from 'common/utils/dateUtils';
+import { dateToday, prettifyDate } from 'common/utils/dateUtils';
 import intlHelper from 'common/utils/intlUtils';
 import { formatName } from 'common/utils/personUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { CustomFormikProps } from '../../../types/FormikProps';
-import { AppFormField, SøkersRelasjonTilBarnet } from '../../../types/OmsorgspengesøknadFormData';
+import {
+    AppFormField, initialValues, SøkersRelasjonTilBarnet
+} from '../../../types/OmsorgspengesøknadFormData';
 import { Søkerdata } from '../../../types/Søkerdata';
-import { resetFieldValue, resetFieldValues } from '../../../utils/formikUtils';
 import { navigateTo } from '../../../utils/navigationUtils';
 import { harRegistrerteBarn } from '../../../utils/søkerdataUtils';
 import {
-    validateForeløpigFødselsnummer, validateFødselsnummer, validateNavn, validateRelasjonTilBarnet,
+    validateFødselsdato, validateFødselsnummer, validateNavn, validateRelasjonTilBarnet,
     validateValgtBarn, validateYesOrNoIsAnswered
 } from '../../../validation/fieldValidations';
 import FormikStep from '../../formik-step/FormikStep';
@@ -84,17 +89,22 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({ formikProps,
                                 name={AppFormField.søknadenGjelderEtAnnetBarn}
                                 afterOnChange={(newValue) => {
                                     if (newValue) {
-                                        resetFieldValue(AppFormField.barnetSøknadenGjelder, setFieldValue);
+                                        resetFieldValue(
+                                            AppFormField.barnetSøknadenGjelder,
+                                            setFieldValue,
+                                            initialValues
+                                        );
                                     } else {
                                         resetFieldValues(
                                             [
                                                 AppFormField.barnetsFødselsnummer,
                                                 AppFormField.barnetHarIkkeFåttFødselsnummerEnda,
-                                                AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer,
+                                                AppFormField.barnetsFødselsdato,
                                                 AppFormField.barnetsNavn,
                                                 AppFormField.søkersRelasjonTilBarnet
                                             ],
-                                            setFieldValue
+                                            setFieldValue,
+                                            initialValues
                                         );
                                     }
                                 }}
@@ -132,18 +142,16 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<Props> = ({ formikProps,
                                 }}
                             />
                             {barnetHarIkkeFåttFødselsnummerEnda && (
-                                <FormikInput<AppFormField>
-                                    label={intlHelper(intl, 'steg.omBarnet.fnr.foreløpig')}
-                                    name={AppFormField.barnetsForeløpigeFødselsnummerEllerDNummer}
-                                    validate={(foreløpigFnr) => {
+                                <FormikDatepicker<AppFormField>
+                                    name={AppFormField.barnetsFødselsdato}
+                                    dateLimitations={{ maksDato: dateToday }}
+                                    label={intlHelper(intl, 'steg.omBarnet.fødselsdato')}
+                                    validate={(dato) => {
                                         if (barnetHarIkkeFåttFødselsnummerEnda) {
-                                            return validateForeløpigFødselsnummer(foreløpigFnr);
+                                            return validateFødselsdato(dato);
                                         }
                                         return undefined;
                                     }}
-                                    bredde="XXL"
-                                    type="tel"
-                                    maxLength={11}
                                 />
                             )}
                             <FormikInput<AppFormField>

@@ -18,7 +18,7 @@ export const mapFormDataToApiData = (
         erYrkesaktiv,
         barnetsNavn,
         barnetsFødselsnummer,
-        barnetsForeløpigeFødselsnummerEllerDNummer,
+        barnetsFødselsdato,
         barnetSøknadenGjelder,
         harBekreftetOpplysninger,
         harForståttRettigheterOgPlikter,
@@ -34,21 +34,15 @@ export const mapFormDataToApiData = (
     barn: BarnReceivedFromApi[],
     sprak: Locale
 ): OmsorgspengesøknadApiData => {
-    const barnObject: BarnToSendToApi = { navn: null, norskIdentifikator: null, alternativId: null, aktørId: null };
+    // const barnObject: BarnToSendToApi = { navn: null, norskIdentifikator: null, alternativId: null, aktørId: null };
 
-    if (barnetSøknadenGjelder) {
-        const barnChosenFromList = barn.find((currentBarn) => currentBarn.aktørId === barnetSøknadenGjelder);
-        const { fornavn, etternavn, mellomnavn, aktørId } = barnChosenFromList!;
-        barnObject.aktørId = aktørId;
-        barnObject.navn = formatName(fornavn, etternavn, mellomnavn);
-    } else {
-        barnObject.navn = barnetsNavn && barnetsNavn !== '' ? barnetsNavn : null;
-        if (barnetsFødselsnummer) {
-            barnObject.norskIdentifikator = barnetsFødselsnummer;
-        } else if (barnetsForeløpigeFødselsnummerEllerDNummer) {
-            barnObject.alternativId = barnetsForeløpigeFødselsnummerEllerDNummer;
-        }
-    }
+    const barnObject: BarnToSendToApi = mapBarnToApiData(
+        barn,
+        barnetsNavn,
+        barnetsFødselsnummer,
+        barnetsFødselsdato,
+        barnetSøknadenGjelder
+    );
 
     const apiData: OmsorgspengesøknadApiData = {
         newVersion: true,
@@ -90,3 +84,29 @@ const mapUtenlandsoppholdTilApiData = (opphold: Utenlandsopphold, locale: string
     fraOgMed: formatDateToApiFormat(opphold.fom),
     tilOgMed: formatDateToApiFormat(opphold.tom)
 });
+
+export const mapBarnToApiData = (
+    barn: BarnReceivedFromApi[],
+    barnetsNavn: string,
+    barnetsFødselsnummer: string | undefined,
+    barnetsFødselsdato: Date | undefined,
+    barnetSøknadenGjelder: string | undefined
+): BarnToSendToApi => {
+    if (barnetSøknadenGjelder) {
+        const barnChosenFromList = barn.find((currentBarn) => currentBarn.aktørId === barnetSøknadenGjelder)!;
+        const { fornavn, etternavn, mellomnavn, aktørId } = barnChosenFromList;
+        return {
+            navn: formatName(fornavn, etternavn, mellomnavn),
+            norskIdentifikator: null,
+            aktørId,
+            fødselsdato: formatDateToApiFormat(barnChosenFromList.fødselsdato)
+        };
+    } else {
+        return {
+            navn: barnetsNavn && barnetsNavn !== '' ? barnetsNavn : null,
+            norskIdentifikator: barnetsFødselsnummer || null,
+            aktørId: null,
+            fødselsdato: barnetsFødselsdato !== undefined ? formatDateToApiFormat(barnetsFødselsdato) : null
+        };
+    }
+};

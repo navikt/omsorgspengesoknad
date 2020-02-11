@@ -10,7 +10,7 @@ import SummaryList from 'common/components/summary-list/SummaryList';
 import FormikConfirmationCheckboxPanel from 'common/formik/formik-confirmation-checkbox-panel/FormikConfirmationCheckboxPanel';
 import { HistoryProps } from 'common/types/History';
 import { Locale } from 'common/types/Locale';
-import { prettifyDate } from 'common/utils/dateUtils';
+import { apiStringDateToDate, prettifyDate } from 'common/utils/dateUtils';
 import intlHelper from 'common/utils/intlUtils';
 import { formatName } from 'common/utils/personUtils';
 import {
@@ -143,21 +143,17 @@ class SummaryStep extends React.Component<Props, State> {
                                                 }}
                                                 secondContent={() => (
                                                     <>
-                                                        {apiValues.barn.alternativId ? (
+                                                        {apiValues.barn.fødselsdato ? (
                                                             <Normaltekst>
                                                                 <FormattedMessage
-                                                                    id="steg.oppsummering.barnet.forelopigFnr"
+                                                                    id="steg.oppsummering.barnet.fødselsdato"
                                                                     values={{
-                                                                        fnr: apiValues.barn.alternativId
+                                                                        dato: prettifyDate(
+                                                                            apiStringDateToDate(
+                                                                                apiValues.barn.fødselsdato
+                                                                            )
+                                                                        )
                                                                     }}
-                                                                />
-                                                            </Normaltekst>
-                                                        ) : null}
-                                                        {!apiValues.barn.alternativId ? (
-                                                            <Normaltekst>
-                                                                <FormattedMessage
-                                                                    id="steg.oppsummering.barnet.fnr"
-                                                                    values={{ fnr: apiValues.barn.norskIdentifikator }}
                                                                 />
                                                             </Normaltekst>
                                                         ) : null}
