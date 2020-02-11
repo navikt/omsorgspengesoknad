@@ -1,10 +1,8 @@
 import { Attachment } from 'common/types/Attachment';
 import { YesOrNo } from 'common/types/YesOrNo';
-import { FieldValidationResult } from 'common/validation/types';
 import {
-    fieldValidationError, FieldValidationErrors, hasValue, validateForeløpigFødselsnummer,
-    validateFødselsnummer, validateLegeerklæring, validateNavn, validateRelasjonTilBarnet,
-    validateYesOrNoIsAnswered
+    AppFieldValidationErrors, fieldValidationError, hasValue, validateFødselsnummer,
+    validateLegeerklæring, validateNavn, validateRelasjonTilBarnet, validateYesOrNoIsAnswered
 } from '../fieldValidations';
 import * as fødselsnummerValidator from '../fødselsnummerValidator';
 
@@ -25,7 +23,7 @@ jest.mock('common/utils/dateUtils', () => {
 });
 
 describe('fieldValidations', () => {
-    const fieldRequiredError = fieldValidationError(FieldValidationErrors.påkrevd);
+    const fieldRequiredError = fieldValidationError(AppFieldValidationErrors.påkrevd);
 
     describe('hasValue', () => {
         it('should return true if provided value is not undefined, null or empty string', () => {
@@ -54,14 +52,14 @@ describe('fieldValidations', () => {
             ]);
             const result = validateFødselsnummer(mockedFnr);
             expect(fødselsnummerValidator.fødselsnummerIsValid).toHaveBeenCalledWith(mockedFnr);
-            expect(result).toEqual(fieldValidationError(FieldValidationErrors.fødselsnummer_11siffer));
+            expect(result).toEqual(fieldValidationError(AppFieldValidationErrors.fødselsnummer_11siffer));
         });
 
         it('should return an error message saying fnr format is validation has failed, but reason is not MustConsistOf11Digits', () => {
             (fødselsnummerValidator.fødselsnummerIsValid as Mock).mockReturnValue([false, []]);
             const result = validateFødselsnummer(mockedFnr);
             expect(fødselsnummerValidator.fødselsnummerIsValid).toHaveBeenCalledWith(mockedFnr);
-            expect(result).toEqual(fieldValidationError(FieldValidationErrors.fødselsnummer_ugyldig));
+            expect(result).toEqual(fieldValidationError(AppFieldValidationErrors.fødselsnummer_ugyldig));
         });
 
         it('should return undefined if fødselsnummer is valid', () => {
@@ -72,21 +70,6 @@ describe('fieldValidations', () => {
         });
     });
 
-    describe('validateForeløpigFødselsnummer', () => {
-        it('should return undefined if value is valid (when it has either 11 digits or no value)', () => {
-            expect(validateForeløpigFødselsnummer('1'.repeat(11))).toBeUndefined();
-            expect(validateForeløpigFødselsnummer('')).toBeUndefined();
-        });
-
-        it('should return an error message saying it must be 11 digits, if provided value is something other than a string with 11 digits', () => {
-            const error: FieldValidationResult = { key: FieldValidationErrors.foreløpigFødselsnummer_ugyldig };
-            expect(validateForeløpigFødselsnummer('1234512345')).toEqual(error);
-            expect(validateForeløpigFødselsnummer('1234512345a')).toEqual(error);
-            expect(validateForeløpigFødselsnummer('123451234512')).toEqual(error);
-            expect(validateForeløpigFødselsnummer('12345123451a')).toEqual(error);
-        });
-    });
-
     describe('validateNavn', () => {
         it('should return an error message saying field is required if provided value is empty string and isRequired is set to true', () => {
             expect(validateNavn('', true)).toEqual(fieldRequiredError);
@@ -94,7 +77,7 @@ describe('fieldValidations', () => {
 
         it('should return an error message saying field has to be 50 letters or less, if length is longer than 50 letters', () => {
             expect(validateNavn('a'.repeat(51))).toEqual(
-                fieldValidationError(FieldValidationErrors.navn_maksAntallTegn, { maxNumOfLetters: 50 })
+                fieldValidationError(AppFieldValidationErrors.navn_maksAntallTegn, { maxNumOfLetters: 50 })
             );
         });
 
@@ -136,13 +119,13 @@ describe('fieldValidations', () => {
 
         it('should return error message saying that files must be uploaded if list is empty', () => {
             expect(validateLegeerklæring([])).toEqual(
-                fieldValidationError(FieldValidationErrors.legeerklæring_mangler)
+                fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler)
             );
         });
 
         it('should return error message saying that files must be uploaded if list contains no successfully uploaded attachments', () => {
             expect(validateLegeerklæring([failedAttachment1, failedAttachment2])).toEqual(
-                fieldValidationError(FieldValidationErrors.legeerklæring_mangler)
+                fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler)
             );
         });
 
@@ -155,7 +138,7 @@ describe('fieldValidations', () => {
         it('should return error message saying no more than 3 files if list contains 4 files or more', () => {
             expect(
                 validateLegeerklæring([uploadedAttachment, uploadedAttachment, uploadedAttachment, uploadedAttachment])
-            ).toEqual(fieldValidationError(FieldValidationErrors.legeerklæring_forMangeFiler));
+            ).toEqual(fieldValidationError(AppFieldValidationErrors.legeerklæring_forMangeFiler));
         });
     });
 });
