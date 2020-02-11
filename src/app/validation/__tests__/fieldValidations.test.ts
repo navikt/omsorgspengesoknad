@@ -1,10 +1,8 @@
 import { Attachment } from 'common/types/Attachment';
 import { YesOrNo } from 'common/types/YesOrNo';
-import { FieldValidationResult } from 'common/validation/types';
 import {
-    AppFieldValidationErrors, fieldValidationError, hasValue, validateForeløpigFødselsnummer,
-    validateFødselsnummer, validateLegeerklæring, validateNavn, validateRelasjonTilBarnet,
-    validateYesOrNoIsAnswered
+    AppFieldValidationErrors, fieldValidationError, hasValue, validateFødselsnummer,
+    validateLegeerklæring, validateNavn, validateRelasjonTilBarnet, validateYesOrNoIsAnswered
 } from '../fieldValidations';
 import * as fødselsnummerValidator from '../fødselsnummerValidator';
 
@@ -69,21 +67,6 @@ describe('fieldValidations', () => {
             const result = validateFødselsnummer(mockedFnr);
             expect(fødselsnummerValidator.fødselsnummerIsValid).toHaveBeenCalledWith(mockedFnr);
             expect(result).toBeUndefined();
-        });
-    });
-
-    describe('validateForeløpigFødselsnummer', () => {
-        it('should return undefined if value is valid (when it has either 11 digits or no value)', () => {
-            expect(validateForeløpigFødselsnummer('1'.repeat(11))).toBeUndefined();
-            expect(validateForeløpigFødselsnummer('')).toBeUndefined();
-        });
-
-        it('should return an error message saying it must be 11 digits, if provided value is something other than a string with 11 digits', () => {
-            const error: FieldValidationResult = { key: AppFieldValidationErrors.foreløpigFødselsnummer_ugyldig };
-            expect(validateForeløpigFødselsnummer('1234512345')).toEqual(error);
-            expect(validateForeløpigFødselsnummer('1234512345a')).toEqual(error);
-            expect(validateForeløpigFødselsnummer('123451234512')).toEqual(error);
-            expect(validateForeløpigFødselsnummer('12345123451a')).toEqual(error);
         });
     });
 

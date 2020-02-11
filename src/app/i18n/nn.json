@@ -204,7 +204,6 @@
     "fieldvalidation.påkrevd": "Feltet er påkrevd",
     "fieldvalidation.fødselsnummer.11siffer": "Fødselsnummeret må bestå av 11 siffer",
     "fieldvalidation.fødselsnummer.ugyldig": "Fødselsnummeret er ugyldig",
-    "fieldvalidation.foreløpigFødselsnummer.ugyldig": "Det foreløpige fødselsnummeret / D-nummeret må bestå av 11 siffer",
     "fieldvalidation.navn.maksAntallTegn": "Navnet kan være maks {maxNumOfLetters} tegn",
     "fieldvalidation.relasjon.maksAntallTegn": "Din relasjon til barnet kan maks være beskrevet på {maxNumOfLetters} tegn",
     "fieldvalidation.fradato.merEnnTreÅr": "Du kan ikke søke om omsorgspenger for en periode som er mer enn tre år tilbake i tid",

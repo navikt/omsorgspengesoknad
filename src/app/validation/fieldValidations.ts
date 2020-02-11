@@ -16,7 +16,6 @@ export enum AppFieldValidationErrors {
     'påkrevd' = 'fieldvalidation.påkrevd',
     'fødselsnummer_11siffer' = 'fieldvalidation.fødselsnummer.11siffer',
     'fødselsnummer_ugyldig' = 'fieldvalidation.fødselsnummer.ugyldig',
-    'foreløpigFødselsnummer_ugyldig' = 'fieldvalidation.foreløpigFødselsnummer.ugyldig',
     'navn_maksAntallTegn' = 'fieldvalidation.navn.maksAntallTegn',
     'fradato_merEnnTreÅr' = 'fieldvalidation.fradato.merEnnTreÅr',
     'fradato_erEtterTildato' = 'fieldvalidation.fradato.erEtterTildato',
@@ -51,18 +50,6 @@ export const validateFødselsnummer = (v: string): FieldValidationResult => {
             return fieldValidationError(AppFieldValidationErrors.fødselsnummer_ugyldig);
         }
     }
-};
-
-export const validateForeløpigFødselsnummer = (v: string): FieldValidationResult => {
-    if (!hasValue(v)) {
-        return undefined;
-    }
-
-    const elevenDigits = new RegExp('^\\d{11}$');
-    if (!elevenDigits.test(v)) {
-        return fieldValidationError(AppFieldValidationErrors.foreløpigFødselsnummer_ugyldig);
-    }
-    return undefined;
 };
 
 export const validateValgtBarn = (v: string): FieldValidationResult => {
