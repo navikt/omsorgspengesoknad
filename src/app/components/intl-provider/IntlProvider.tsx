@@ -3,17 +3,14 @@ import { IntlProvider as Provider } from 'react-intl';
 import '@formatjs/intl-pluralrules/dist/locale-data/nb';
 import '@formatjs/intl-pluralrules/dist/locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
+import { allCommonMessages } from 'common/i18n/allCommonMessages';
 import { Locale } from 'common/types/Locale';
 
 const appBokmålstekster = require('../../i18n/nb.json');
 const appNynorsktekster = require('../../i18n/nn.json');
 
-// Modultekster
-const utenlandsoppholdBokmål = require('common/forms/utenlandsopphold/utenlandsopphold.nb.json');
-const utenlandsoppholdNynorsk = require('common/forms/utenlandsopphold/utenlandsopphold.nn.json');
-
-const bokmålstekster = { ...appBokmålstekster, ...utenlandsoppholdBokmål };
-const nynorsktekster = { ...appNynorsktekster, ...utenlandsoppholdNynorsk };
+const bokmålstekster = { ...allCommonMessages.nb, ...appBokmålstekster };
+const nynorsktekster = { ...allCommonMessages.nn, ...appNynorsktekster };
 
 export interface IntlProviderProps {
     locale: Locale;
