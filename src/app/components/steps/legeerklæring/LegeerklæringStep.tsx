@@ -26,6 +26,8 @@ const LegeerklæringStep = ({ history, nextStepRoute, formikProps, ...stepProps 
     const navigate = nextStepRoute ? () => navigateTo(nextStepRoute, history) : undefined;
     const isRunningDemoMode = appIsRunningInDemoMode();
     const showUploadForm = enableDemoModeUpload() === false;
+    const hasPendingUploads: boolean =
+        (formikProps.values[AppFormField.legeerklæring] || []).find((a) => a.pending === true) !== undefined;
 
     return (
         <FormikStep
@@ -34,6 +36,7 @@ const LegeerklæringStep = ({ history, nextStepRoute, formikProps, ...stepProps 
             history={history}
             useValidationErrorSummary={false}
             skipValidation={isRunningDemoMode}
+            buttonDisabled={hasPendingUploads}
             {...stepProps}>
             {!showUploadForm && (
                 <Box>
