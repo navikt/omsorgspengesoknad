@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
 import Lenke from 'nav-frontend-lenker';
-import { validateRequiredList } from '@navikt/sif-common/lib/common/validation/fieldValidations';
 import Box from 'common/components/box/Box';
 import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
 import FormikYesOrNoQuestion from 'common/formik/formik-yes-or-no-question/FormikYesOrNoQuestion';
@@ -12,7 +11,10 @@ import { date1YearAgo, date1YearFromNow, dateToday } from 'common/utils/dateUtil
 import intlHelper from 'common/utils/intlUtils';
 import { Feature, isFeatureEnabled } from 'app/utils/featureToggleUtils';
 import { navigateTo } from 'app/utils/navigationUtils';
-import { validateYesOrNoIsAnswered } from 'app/validation/fieldValidations';
+import {
+    validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd,
+    validateYesOrNoIsAnswered
+} from 'app/validation/fieldValidations';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import getLenker from '../../../lenker';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
@@ -54,12 +56,11 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, nextStepRout
                             name={AppFormField.utenlandsoppholdSiste12Mnd}
                             minDate={date1YearAgo}
                             maxDate={dateToday}
-                            validate={validateRequiredList}
+                            validate={validateUtenlandsoppholdSiste12Mnd}
                             labels={{
                                 addLabel: 'Legg til nytt utenlandsopphold',
                                 listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
-                                modalTitle: 'Utenlandsopphold siste 12 måneder',
-                                emptyListText: 'Ingen opphold er registrert'
+                                modalTitle: 'Utenlandsopphold siste 12 måneder'
                             }}
                         />
                     </Box>
@@ -79,12 +80,11 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, nextStepRout
                             minDate={dateToday}
                             maxDate={date1YearFromNow}
                             name={AppFormField.utenlandsoppholdNeste12Mnd}
-                            validate={validateRequiredList}
+                            validate={validateUtenlandsoppholdNeste12Mnd}
                             labels={{
                                 addLabel: 'Legg til nytt utenlandsopphold',
                                 listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
-                                modalTitle: 'Utenlandsopphold neste 12 måneder',
-                                emptyListText: 'Ingen opphold er registrert'
+                                modalTitle: 'Utenlandsopphold neste 12 måneder'
                             }}
                         />
                     </Box>

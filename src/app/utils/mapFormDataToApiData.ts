@@ -68,9 +68,10 @@ export const mapFormDataToApiData = (
         legeerklæring: legeerklæring
             .filter((attachment) => !attachmentUploadHasFailed(attachment))
             .map(({ url }) => url!),
-        samvarsavtale: samværsavtale
-            ? samværsavtale.filter((attachment) => !attachmentUploadHasFailed(attachment)).map(({ url }) => url!)
-            : undefined,
+        samvarsavtale:
+            samværsavtale && samværsavtale.length > 0
+                ? samværsavtale.filter((attachment) => !attachmentUploadHasFailed(attachment)).map(({ url }) => url!)
+                : undefined,
         harBekreftetOpplysninger,
         harForståttRettigheterOgPlikter
     };
