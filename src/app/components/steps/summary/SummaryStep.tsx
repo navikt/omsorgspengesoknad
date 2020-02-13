@@ -259,7 +259,7 @@ class SummaryStep extends React.Component<Props, State> {
                                             <LegeerklæringAttachmentList includeDeletionFunctionality={false} />
                                         </ContentWithHeader>
                                     </Box>
-                                    {apiValues.samvarsavtale && (
+                                    {apiValues.samværsavtale && (
                                         <Box margin="l">
                                             <ContentWithHeader
                                                 header={intlHelper(intl, 'steg.oppsummering.samværsavtale.header')}>

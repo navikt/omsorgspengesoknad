@@ -35,7 +35,7 @@ export interface OmsorgspengesøknadApiData {
     relasjonTilBarnet: SøkersRelasjonTilBarnet | undefined;
     arbeidssituasjon: Arbeidssituasjon[];
     legeerklæring: string[];
-    samvarsavtale?: string[];
+    samværsavtale?: string[];
     medlemskap: Medlemskap;
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
