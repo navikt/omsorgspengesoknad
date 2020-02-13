@@ -4,6 +4,7 @@ import Lenke from 'nav-frontend-lenker';
 import Box from 'common/components/box/Box';
 import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
 import FormikYesOrNoQuestion from 'common/formik/formik-yes-or-no-question/FormikYesOrNoQuestion';
+import BostedUtlandListAndDialog from 'common/forms/bosted-utland/BostedUtlandListAndDialog';
 import { HistoryProps } from 'common/types/History';
 import { YesOrNo } from 'common/types/YesOrNo';
 import { date1YearAgo, date1YearFromNow, dateToday } from 'common/utils/dateUtils';
@@ -16,7 +17,6 @@ import getLenker from '../../../lenker';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import FormikStep from '../../formik-step/FormikStep';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
-import BostedsoppholdIUtlandetFormPart from './BostedsoppholdIUtlandetFormPart';
 
 type Props = CommonStepFormikProps & HistoryProps & StepConfigProps;
 
@@ -49,13 +49,15 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, nextStepRout
             {isFeatureEnabled(Feature.TOGGLE_UTENLANDSOPPHOLD) &&
                 formValues.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
                     <Box margin="m">
-                        <BostedsoppholdIUtlandetFormPart
-                            periode={{ from: date1YearAgo, to: date1YearFromNow }}
+                        <BostedUtlandListAndDialog<AppFormField>
                             name={AppFormField.utenlandsoppholdSiste12Mnd}
+                            minDate={date1YearAgo}
+                            maxDate={dateToday}
                             labels={{
                                 addLabel: 'Legg til nytt utenlandsopphold',
                                 listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
-                                modalTitle: 'Utenlandsopphold siste 12 måneder'
+                                modalTitle: 'Utenlandsopphold siste 12 måneder',
+                                emptyListText: 'Ingen opphold er registrert'
                             }}
                         />
                     </Box>
@@ -71,13 +73,15 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, nextStepRout
             {isFeatureEnabled(Feature.TOGGLE_UTENLANDSOPPHOLD) &&
                 formValues.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
                     <Box margin="m">
-                        <BostedsoppholdIUtlandetFormPart
-                            periode={{ from: dateToday, to: date1YearFromNow }}
+                        <BostedUtlandListAndDialog<AppFormField>
+                            minDate={dateToday}
+                            maxDate={date1YearFromNow}
                             name={AppFormField.utenlandsoppholdNeste12Mnd}
                             labels={{
                                 addLabel: 'Legg til nytt utenlandsopphold',
                                 listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
-                                modalTitle: 'Utenlandsopphold neste 12 måneder'
+                                modalTitle: 'Utenlandsopphold neste 12 måneder',
+                                emptyListText: 'Ingen opphold er registrert'
                             }}
                         />
                     </Box>

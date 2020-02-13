@@ -11,7 +11,8 @@ interface FormikWrapperProps {
 const FormikWrapper: React.FunctionComponent<FormikWrapperProps> = ({ contentRenderer }) => (
     <Formik
         initialValues={initialValues}
-        onSubmit={(values: OmsorgspengesøknadFormData, { setSubmitting, setFormikState, setTouched }: FormikBag) => {
+        initialStatus={{ stepSubmitCount: 0, submitCount: 0 }}
+        onSubmit={(values: OmsorgspengesøknadFormData, { setSubmitting, setTouched }: FormikBag) => {
             setSubmitting(false);
             setTouched({});
         }}
