@@ -50,13 +50,14 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, nextStepRout
                 formValues.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
                     <Box margin="m">
                         <BostedUtlandListAndDialog<AppFormField>
-                            name={name}
+                            name={AppFormField.utenlandsoppholdSiste12Mnd}
                             minDate={date1YearAgo}
-                            maxDate={date1YearFromNow}
+                            maxDate={dateToday}
                             labels={{
                                 addLabel: 'Legg til nytt utenlandsopphold',
                                 listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
-                                modalTitle: 'Utenlandsopphold siste 12 måneder'
+                                modalTitle: 'Utenlandsopphold siste 12 måneder',
+                                emptyListText: 'Ingen opphold er registrert'
                             }}
                         />
                     </Box>
@@ -79,7 +80,8 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, nextStepRout
                             labels={{
                                 addLabel: 'Legg til nytt utenlandsopphold',
                                 listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
-                                modalTitle: 'Utenlandsopphold neste 12 måneder'
+                                modalTitle: 'Utenlandsopphold neste 12 måneder',
+                                emptyListText: 'Ingen opphold er registrert'
                             }}
                         />
                     </Box>
