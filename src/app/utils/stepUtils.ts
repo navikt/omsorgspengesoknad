@@ -2,14 +2,18 @@ import { IntlShape } from 'react-intl';
 import { YesOrNo } from 'common/types/YesOrNo';
 import intlHelper from 'common/utils/intlUtils';
 import { StepConfigInterface, StepConfigItemTexts, StepID } from 'app/config/stepConfig';
-import { AppFormField, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
+import {
+    AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet
+} from '../types/OmsorgspengesøknadFormData';
 import {
     arbeidStepIsValid, legeerklæringStepIsValid, medlemskapStepIsValid,
     opplysningerOmBarnetStepIsValid, welcomingPageIsValid
 } from '../validation/stepValidations';
 
 export const includeAvtaleStep = (formData: Partial<OmsorgspengesøknadFormData>): boolean =>
-    formData !== undefined && formData[AppFormField.sammeAdresse] === YesOrNo.NO;
+    formData !== undefined &&
+    formData[AppFormField.sammeAdresse] === YesOrNo.NO &&
+    formData[AppFormField.søkersRelasjonTilBarnet] !== SøkersRelasjonTilBarnet.FOSTERFORELDER;
 
 export const getStepTexts = (intl: IntlShape, stepId: StepID, stepConfig: StepConfigInterface): StepConfigItemTexts => {
     const conf = stepConfig[stepId];
