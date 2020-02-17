@@ -61,7 +61,7 @@ export interface OmsorgspengesøknadFormData {
 
 export const initialValues: OmsorgspengesøknadFormData = {
     [AppFormField.erYrkesaktiv]: YesOrNo.YES,
-    [AppFormField.kroniskEllerFunksjonshemming]: YesOrNo.YES,
+    [AppFormField.kroniskEllerFunksjonshemming]: YesOrNo.UNANSWERED,
     [AppFormField.barnetsNavn]: '',
     [AppFormField.barnetsFødselsnummer]: '',
     [AppFormField.barnetSøknadenGjelder]: '',
