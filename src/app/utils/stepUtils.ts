@@ -32,25 +32,10 @@ export const opplysningerOmBarnetStepAvailable = (formData: OmsorgspengesøknadF
 export const arbeidStepIsAvailable = (formData: OmsorgspengesøknadFormData) =>
     opplysningerOmBarnetStepIsValid(formData);
 
-export const medlemskapStepAvailable = (formData: OmsorgspengesøknadFormData) =>
-    welcomingPageIsValid(formData) && arbeidStepIsValid(formData) && opplysningerOmBarnetStepIsValid(formData);
+export const medlemskapStepAvailable = (formData: OmsorgspengesøknadFormData) => arbeidStepIsValid(formData);
 
-export const legeerklæringStepAvailable = (formData: OmsorgspengesøknadFormData) =>
-    welcomingPageIsValid(formData) &&
-    arbeidStepIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    medlemskapStepIsValid(formData);
+export const legeerklæringStepAvailable = (formData: OmsorgspengesøknadFormData) => medlemskapStepIsValid(formData);
 
-export const samværsavtaleStepAvailable = (formData: OmsorgspengesøknadFormData) =>
-    welcomingPageIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    arbeidStepIsValid(formData) &&
-    medlemskapStepIsValid(formData) &&
-    legeerklæringStepIsValid();
+export const samværsavtaleStepAvailable = (formData: OmsorgspengesøknadFormData) => legeerklæringStepIsValid();
 
-export const summaryStepAvailable = (formData: OmsorgspengesøknadFormData) =>
-    welcomingPageIsValid(formData) &&
-    opplysningerOmBarnetStepIsValid(formData) &&
-    arbeidStepIsValid(formData) &&
-    medlemskapStepIsValid(formData) &&
-    legeerklæringStepIsValid();
+export const summaryStepAvailable = (formData: OmsorgspengesøknadFormData) => legeerklæringStepIsValid();

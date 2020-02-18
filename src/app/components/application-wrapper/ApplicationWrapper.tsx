@@ -15,7 +15,6 @@ interface ApplicationWrapperProps {
 }
 
 const demoMode = appIsRunningInDemoMode();
-const showLanguageToggle = true;
 
 const ApplicationWrapper: React.FunctionComponent<ApplicationWrapperProps> = ({ locale, onChangeLocale, children }) => {
     return (
@@ -24,9 +23,7 @@ const ApplicationWrapper: React.FunctionComponent<ApplicationWrapperProps> = ({ 
                 {demoMode && <DemoModeInfo />}
 
                 {/* I Påvente av oversettelser */}
-                {demoMode === false && showLanguageToggle === true && (
-                    <LanguageToggle locale={locale} toggle={onChangeLocale} />
-                )}
+                {demoMode === false && <LanguageToggle locale={locale} toggle={onChangeLocale} />}
                 <Router basename={getEnvironmentVariable('PUBLIC_PATH')}>{children}</Router>
             </Normaltekst>
         </IntlProvider>

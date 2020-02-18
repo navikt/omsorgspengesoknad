@@ -24,7 +24,7 @@
     "Torsdag": "Torsdag",
     "Fredag": "Fredag",
 
-    "banner.title": "Søknad om omsorgspenger",
+    "banner.title": "Søknad om ekstra omsorgsdager",
 
     "page.loadingPage.tekst": "Laster ...",
     "gotoApplicationLink.lenketekst": "Gå til den digitale søknaden",
@@ -82,17 +82,17 @@
     "step.oppsummering.stepTitle": "Oppsummering",
     "step.oppsummering.stepIndicatorLabel": "Oppsummering",
 
-    "introPage.tittel": "Søknad om omsorgspenger",
+    "introPage.tittel": "Søknad om ekstra omsorgsdager",
     "introPage.stegTittel": "Kan jeg bruke den digitale omsorgspengesøknaden?",
-    "introPage.intro.html": "<p>Den digitale søknaden er under utvikling og kan foreløpig kun brukes til å søke om utvidet rett til omsorgspenger for et barn som har en funksjonshemming eller kronisk sykdom. </p><div>For å søke må du være i én eller flere av disse arbeidssituasjonene:<ul><li>arbeidstaker</li><li>selvstendig næringsdrivende</li><li>frilanser</li></ul></div>",
+    "introPage.intro.html": "<p>Den digitale søknaden er under utvikling og kan foreløpig kun brukes til å søke om utvidet rett til omsorgspenger for et barn som har en kronisk sykdom eller funksjonshemming. </p><div>For å søke må du være i én eller flere av disse arbeidssituasjonene:<ul><li>arbeidstaker</li><li>selvstendig næringsdrivende</li><li>frilanser</li></ul></div>",
     "introPage.legeerklæring.html": "<p>Har du legeerklæringen klar? Du trenger den når du skal fylle ut søknaden. Da tar du bare et bilde av den og laster den opp.</p>Hvis du ikke bor fast sammen med barnet, må du også laste opp avtalen du og den andre forelderen har om samværet med barnet. Det kan for eksempel være en samværsavtale eller en avtale om delt bosted.",
     "introPage.spm.kroniskEllerFunksjonshemmende": "Har du et barn som har en kronisk sykdom eller funksjonshemming?",
     "introPage.infoIkkeKroniskEllerFunksjonshemmende.html": "Du må foreløpig bruke <a href=\"{url}\" class=\"lenke\">papirsøknaden</a> hvis du skal<ol><li>søke om å ta over dager fra en annen omsorgsperson</li><li>fordele dager med en annen omsorgsperson</li><li>overføre dager til en ny samlivspartner</li></ol>",
 
-    "welcomingPage.sidetittel": "Søknad om omsorgspenger",
+    "welcomingPage.sidetittel": "Søknad om ekstra omsorgsdager",
     "welcomingPage.banner.tittel": "Hei,",
     "welcomingPage.banner.tekst": "jeg vil hjelpe deg med å fylle ut søknaden!",
-    "welcomingPage.introtittel": "Søknad om omsorgspenger",
+    "welcomingPage.introtittel": "Søknad om ekstra omsorgsdager",
     "welcomingPage.samtykke.tekst": "Jeg bekrefter at jeg har lest og forstått",
     "welcomingPage.samtykke.harIkkeGodkjentVilkår": "Du må godkjenne vilkårene",
     "welcomingPage.samtykke.harForståttLabel": "For å gå videre med søknaden må du bekrefte at du har lest og forstått {plikterLink}.",
@@ -195,11 +195,11 @@
     "page.generalErrorPage.tittel": "Noe gikk galt...",
     "page.generalErrorPage.tekst": "Beklager, her har det dessverre skjedd en feil.",
 
-    "page.ikkeMyndig.sidetittel": "Søknad om omsorgspenger - ikke myndig",
+    "page.ikkeMyndig.sidetittel": "Søknad om ekstra omsorgsdager - ikke myndig",
     "page.ikkeMyndig.banner.tittel": "Hei!",
     "page.ikkeMyndig.banner.tekst": "Fordi du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.",
     "page.ikkeMyndig.banner.lastNed": "Her kan du laste ned papirsøknaden",
-    "page.ikkeMyndig.tittel": "Søknad om omsorgspenger",
+    "page.ikkeMyndig.tittel": "Søknad om ekstra omsorgsdager",
 
     "vedleggsliste.fjernKnapp": "Fjern vedlegg",
     "vedleggsliste.ingenLegeerklæringLastetOpp": "Ingen vedlegg er lastet opp",
