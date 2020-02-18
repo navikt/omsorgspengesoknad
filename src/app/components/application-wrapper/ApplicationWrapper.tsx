@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Normaltekst } from 'nav-frontend-typografi';
-import LanguageToggle from 'common/components/language-toggle/LanguageToggle';
+// import LanguageToggle from 'common/components/language-toggle/LanguageToggle';
 import { Locale } from 'common/types/Locale';
 import { Søkerdata } from '../../types/Søkerdata';
 import { appIsRunningInDemoMode, getEnvironmentVariable } from '../../utils/envUtils';
@@ -23,7 +23,7 @@ const ApplicationWrapper: React.FunctionComponent<ApplicationWrapperProps> = ({ 
                 {demoMode && <DemoModeInfo />}
 
                 {/* I Påvente av oversettelser */}
-                {demoMode === false && <LanguageToggle locale={locale} toggle={onChangeLocale} />}
+                {/* {demoMode === false &&  <LanguageToggle locale={locale} toggle={onChangeLocale} />} */}
                 <Router basename={getEnvironmentVariable('PUBLIC_PATH')}>{children}</Router>
             </Normaltekst>
         </IntlProvider>
