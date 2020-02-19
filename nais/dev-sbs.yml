@@ -11,8 +11,8 @@ spec:
     liveness:
         path: /familie/sykdom-i-familien/soknad/omsorgspenger/health/isAlive
         initialDelay: 20
-        periodSeconds: 5
         timeout: 1
+        periodSeconds: 5
         failureThreshold: 10
     readiness:
         path: /familie/sykdom-i-familien/soknad/omsorgspenger/health/isReady
