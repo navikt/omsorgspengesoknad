@@ -47,5 +47,5 @@ spec:
         - name: LOGIN_URL
           value: https://loginservice.nav.no/login?redirect=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/soknad
         - name: TOGGLE_UTENLANDSOPPHOLD
-          value: "off"
+          value: "on"
 
