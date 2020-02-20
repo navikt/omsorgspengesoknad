@@ -49,22 +49,21 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, nextStepRout
                 validate={validateYesOrNoIsAnswered}
                 helperText={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.hjelp')}
             />
-            {isFeatureEnabled(Feature.TOGGLE_UTENLANDSOPPHOLD) &&
-                formValues.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
-                    <Box margin="m">
-                        <BostedUtlandListAndDialog<AppFormField>
-                            name={AppFormField.utenlandsoppholdSiste12Mnd}
-                            minDate={date1YearAgo}
-                            maxDate={dateToday}
-                            validate={validateUtenlandsoppholdSiste12Mnd}
-                            labels={{
-                                addLabel: 'Legg til nytt utenlandsopphold',
-                                listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
-                                modalTitle: 'Utenlandsopphold siste 12 måneder'
-                            }}
-                        />
-                    </Box>
-                )}
+            {formValues.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
+                <Box margin="m">
+                    <BostedUtlandListAndDialog<AppFormField>
+                        name={AppFormField.utenlandsoppholdSiste12Mnd}
+                        minDate={date1YearAgo}
+                        maxDate={dateToday}
+                        validate={validateUtenlandsoppholdSiste12Mnd}
+                        labels={{
+                            addLabel: 'Legg til nytt utenlandsopphold',
+                            listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
+                            modalTitle: 'Utenlandsopphold siste 12 måneder'
+                        }}
+                    />
+                </Box>
+            )}
             <Box margin="xl">
                 <FormikYesOrNoQuestion
                     legend={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.spm')}
@@ -73,22 +72,21 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, nextStepRout
                     helperText={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
                 />
             </Box>
-            {isFeatureEnabled(Feature.TOGGLE_UTENLANDSOPPHOLD) &&
-                formValues.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
-                    <Box margin="m">
-                        <BostedUtlandListAndDialog<AppFormField>
-                            minDate={dateToday}
-                            maxDate={date1YearFromNow}
-                            name={AppFormField.utenlandsoppholdNeste12Mnd}
-                            validate={validateUtenlandsoppholdNeste12Mnd}
-                            labels={{
-                                addLabel: 'Legg til nytt utenlandsopphold',
-                                listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
-                                modalTitle: 'Utenlandsopphold neste 12 måneder'
-                            }}
-                        />
-                    </Box>
-                )}
+            {formValues.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
+                <Box margin="m">
+                    <BostedUtlandListAndDialog<AppFormField>
+                        minDate={dateToday}
+                        maxDate={date1YearFromNow}
+                        name={AppFormField.utenlandsoppholdNeste12Mnd}
+                        validate={validateUtenlandsoppholdNeste12Mnd}
+                        labels={{
+                            addLabel: 'Legg til nytt utenlandsopphold',
+                            listTitle: intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.listeTittel'),
+                            modalTitle: 'Utenlandsopphold neste 12 måneder'
+                        }}
+                    />
+                </Box>
+            )}
         </FormikStep>
     );
 };

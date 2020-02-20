@@ -9,8 +9,7 @@ function createEnvSettingsFile(settingsFile) {
                 LOGIN_URL: '${process.env.LOGIN_URL}',
                 DEMO_MODE: '${process.env.DEMO_MODE}',
                 PUBLIC_PATH: '${process.env.PUBLIC_PATH}',
-                UTILGJENGELIG: '${process.env.UTILGJENGELIG}',
-                TOGGLE_UTENLANDSOPPHOLD: '${process.env.TOGGLE_UTENLANDSOPPHOLD}'
+                UTILGJENGELIG: '${process.env.UTILGJENGELIG}'
             };`
         );
     });
