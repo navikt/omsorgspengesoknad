@@ -26,7 +26,7 @@
         "@formatjs/intl-relativetimeformat": "^4.5.9",
         "@navikt/fnrvalidator": "^1.1.0",
         "@navikt/sif-common": "^4.1.2",
-        "@testing-library/react": "^9.4.0",
+        "@testing-library/react": "^9.4.1",
         "axios": "^0.19.2",
         "busboy": "^0.3.0",
         "classnames": "^2.2.6",
