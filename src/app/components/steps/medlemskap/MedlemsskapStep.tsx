@@ -9,7 +9,6 @@ import { HistoryProps } from 'common/types/History';
 import { YesOrNo } from 'common/types/YesOrNo';
 import { date1YearAgo, date1YearFromNow, dateToday } from 'common/utils/dateUtils';
 import intlHelper from 'common/utils/intlUtils';
-import { Feature, isFeatureEnabled } from 'app/utils/featureToggleUtils';
 import { navigateTo } from 'app/utils/navigationUtils';
 import {
     validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd,
