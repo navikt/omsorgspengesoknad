@@ -1,10 +1,10 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
+import FormikCheckbox from '@navikt/sif-common-formik/lib/components/formik-checkbox/FormikCheckbox';
+import FormikDatepicker from '@navikt/sif-common-formik/lib/components/formik-datepicker/FormikDatepicker';
+import FormikInput from '@navikt/sif-common-formik/lib/components/formik-input/FormikInput';
+import FormikSelect from '@navikt/sif-common-formik/lib/components/formik-select/FormikSelect';
 import Box from '@navikt/sif-common/lib/common/components/box/Box';
-import FormikCheckbox from '@navikt/sif-common/lib/common/formik/formik-checkbox/FormikCheckbox';
-import FormikDatepicker from '@navikt/sif-common/lib/common/formik/formik-datepicker/FormikDatepicker';
-import FormikInput from '@navikt/sif-common/lib/common/formik/formik-input/FormikInput';
-import FormikSelect from '@navikt/sif-common/lib/common/formik/formik-select/FormikSelect';
 import { dateToday } from '@navikt/sif-common/lib/common/utils/dateUtils';
 import intlHelper from '@navikt/sif-common/lib/common/utils/intlUtils';
 import { validateFødselsnummer } from '@navikt/sif-common/lib/common/validation/fieldValidations';

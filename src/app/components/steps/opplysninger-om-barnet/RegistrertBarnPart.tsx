@@ -1,11 +1,9 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Normaltekst } from 'nav-frontend-typografi';
-import FormikCheckbox from '@navikt/sif-common/lib/common/formik/formik-checkbox/FormikCheckbox';
-import FormikRadioPanelGroup from '@navikt/sif-common/lib/common/formik/formik-radio-panel-group/FormikRadioPanelGroup';
 import {
-    resetFieldValue, resetFieldValues
-} from '@navikt/sif-common/lib/common/formik/formikUtils';
+    FormikCheckbox, FormikRadioPanelGroup, resetFieldValue, resetFieldValues
+} from '@navikt/sif-common-formik';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { prettifyDate } from '@navikt/sif-common/lib/common/utils/dateUtils';
 import intlHelper from '@navikt/sif-common/lib/common/utils/intlUtils';
 import { formatName } from '@navikt/sif-common/lib/common/utils/personUtils';

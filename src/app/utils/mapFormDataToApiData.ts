@@ -1,4 +1,4 @@
-import { getCountryName } from 'common/components/country-select/CountrySelect';
+import { getCountryName } from '@navikt/sif-common-formik/lib';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { Locale } from 'common/types/Locale';
 import { YesOrNo } from 'common/types/YesOrNo';

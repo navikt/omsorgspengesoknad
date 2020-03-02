@@ -2,12 +2,13 @@ import * as React from 'react';
 import {
     FormattedHTMLMessage, FormattedMessage, injectIntl, WrappedComponentProps
 } from 'react-intl';
+import {
+    FormikConfirmationCheckboxPanel, FormikYesOrNoQuestion
+} from '@navikt/sif-common-formik/lib';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
 import { Sidetittel } from 'nav-frontend-typografi';
 import CounsellorPanel from '@navikt/sif-common/lib/common/components/counsellor-panel/CounsellorPanel';
-import FormikYesOrNoQuestion from '@navikt/sif-common/lib/common/formik/formik-yes-or-no-question/FormikYesOrNoQuestion';
-import { userHasSubmittedValidForm } from '@navikt/sif-common/lib/common/formik/formikUtils';
 import { YesOrNo } from '@navikt/sif-common/lib/common/types/YesOrNo';
 import {
     validateYesOrNoIsAnswered
@@ -15,7 +16,6 @@ import {
 import Box from 'common/components/box/Box';
 import FrontPageBanner from 'common/components/front-page-banner/FrontPageBanner';
 import Page from 'common/components/page/Page';
-import FormikConfirmationCheckboxPanel from 'common/formik/formik-confirmation-checkbox-panel/FormikConfirmationCheckboxPanel';
 import { HistoryProps } from 'common/types/History';
 import bemHelper from 'common/utils/bemUtils';
 import intlHelper from 'common/utils/intlUtils';

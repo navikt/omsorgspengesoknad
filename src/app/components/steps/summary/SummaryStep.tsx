@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
+import { FormikConfirmationCheckboxPanel } from '@navikt/sif-common-formik/lib';
 import Panel from 'nav-frontend-paneler';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Box from 'common/components/box/Box';
-import ContentSwitcher from 'common/components/content-switcher/ContentSwitcher';
 import ContentWithHeader from 'common/components/content-with-header/ContentWithHeader';
 import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
 import SummaryList from 'common/components/summary-list/SummaryList';
-import FormikConfirmationCheckboxPanel from 'common/formik/formik-confirmation-checkbox-panel/FormikConfirmationCheckboxPanel';
 import { HistoryProps } from 'common/types/History';
 import { Locale } from 'common/types/Locale';
-import { apiStringDateToDate, prettifyDate } from 'common/utils/dateUtils';
 import intlHelper from 'common/utils/intlUtils';
 import { formatName } from 'common/utils/personUtils';
 import {
@@ -30,6 +28,8 @@ import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringAttachmentList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
 import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
+import AnnetBarnSummary from './AnnetBarnSummary';
+import BarnRecveivedFormSApiSummary from './BarnReceivedFromApiSummary';
 
 interface State {
     sendingInProgress: boolean;
@@ -107,81 +107,14 @@ class SummaryStep extends React.Component<Props, State> {
 
                                     <Box margin="l">
                                         <ContentWithHeader header={intlHelper(intl, 'steg.oppsummering.barnet.header')}>
-                                            <ContentSwitcher
-                                                firstContent={() => {
-                                                    const barnReceivedFromApi = barn.find(
-                                                        ({ aktørId }) => aktørId === formValues.barnetSøknadenGjelder
-                                                    );
-                                                    return barnReceivedFromApi ? (
-                                                        <>
-                                                            <Normaltekst>
-                                                                <FormattedMessage
-                                                                    id="steg.oppsummering.barnet.navn"
-                                                                    values={{
-                                                                        navn: formatName(
-                                                                            barnReceivedFromApi!.fornavn,
-                                                                            barnReceivedFromApi!.etternavn,
-                                                                            barnReceivedFromApi!.mellomnavn
-                                                                        )
-                                                                    }}
-                                                                />
-                                                            </Normaltekst>
-                                                            <Normaltekst>
-                                                                <FormattedMessage
-                                                                    id="steg.oppsummering.barnet.fødselsdato"
-                                                                    values={{
-                                                                        dato: prettifyDate(
-                                                                            barnReceivedFromApi!.fødselsdato
-                                                                        )
-                                                                    }}
-                                                                />
-                                                            </Normaltekst>
-                                                        </>
-                                                    ) : (
-                                                        <></>
-                                                    );
-                                                }}
-                                                secondContent={() => (
-                                                    <>
-                                                        {apiValues.barn.fødselsdato ? (
-                                                            <Normaltekst>
-                                                                <FormattedMessage
-                                                                    id="steg.oppsummering.barnet.fødselsdato"
-                                                                    values={{
-                                                                        dato: prettifyDate(
-                                                                            apiStringDateToDate(
-                                                                                apiValues.barn.fødselsdato
-                                                                            )
-                                                                        )
-                                                                    }}
-                                                                />
-                                                            </Normaltekst>
-                                                        ) : null}
-                                                        {apiValues.barn.navn ? (
-                                                            <Normaltekst>
-                                                                <FormattedMessage
-                                                                    id="steg.oppsummering.barnet.navn"
-                                                                    values={{ navn: apiValues.barn.navn }}
-                                                                />
-                                                            </Normaltekst>
-                                                        ) : null}
-                                                        <Normaltekst>
-                                                            <FormattedMessage
-                                                                id="steg.oppsummering.barnet.søkersRelasjonTilBarnet"
-                                                                values={{
-                                                                    relasjon: intlHelper(
-                                                                        intl,
-                                                                        `relasjonTilBarnet.${apiValues.relasjonTilBarnet}`
-                                                                    )
-                                                                }}
-                                                            />
-                                                        </Normaltekst>
-                                                    </>
-                                                )}
-                                                showFirstContent={
-                                                    !formValues.søknadenGjelderEtAnnetBarn && barn && barn.length > 0
-                                                }
-                                            />
+                                            {!formValues.søknadenGjelderEtAnnetBarn && barn && barn.length > 0 ? (
+                                                <BarnRecveivedFormSApiSummary
+                                                    barn={barn}
+                                                    barnetSøknadenGjelder={formValues.barnetSøknadenGjelder}
+                                                />
+                                            ) : (
+                                                <AnnetBarnSummary apiValues={apiValues} />
+                                            )}
                                         </ContentWithHeader>
                                     </Box>
 

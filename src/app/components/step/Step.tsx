@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
+import { FormikValidationErrorSummary } from '@navikt/sif-common-formik/lib';
 import { History } from 'history';
 import { Hovedknapp as Button } from 'nav-frontend-knapper';
 import { Systemtittel } from 'nav-frontend-typografi';
@@ -11,7 +12,6 @@ import intlHelper from 'common/utils/intlUtils';
 import { getStepTexts } from 'app/utils/stepUtils';
 import { getStepConfig, StepConfigItemTexts, StepID } from '../../config/stepConfig';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
-import FormikValidationErrorSummary from '../formik-validation-error-summary/FormikValidationErrorSummary';
 import StepBanner from '../step-banner/StepBanner';
 import StepIndicator from '../step-indicator/StepIndicator';
 import './step.less';
@@ -49,9 +49,7 @@ const Step: React.FunctionComponent<StepProps> = ({
             topContentRenderer={() => (
                 <>
                     <StepBanner text={intlHelper(intl, 'banner.title')} />
-                    {useValidationErrorSummary !== false && (
-                        <FormikValidationErrorSummary className={bem.element('validationErrorSummary')} />
-                    )}
+                    {useValidationErrorSummary !== false && <FormikValidationErrorSummary />}
                 </>
             )}>
             <BackLink

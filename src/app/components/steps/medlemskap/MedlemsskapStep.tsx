@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
+import { FormikYesOrNoQuestion } from '@navikt/sif-common-formik/lib';
 import Lenke from 'nav-frontend-lenker';
 import Box from 'common/components/box/Box';
 import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
-import FormikYesOrNoQuestion from 'common/formik/formik-yes-or-no-question/FormikYesOrNoQuestion';
 import BostedUtlandListAndDialog from 'common/forms/bosted-utland/BostedUtlandListAndDialog';
 import { HistoryProps } from 'common/types/History';
 import { YesOrNo } from 'common/types/YesOrNo';
@@ -46,7 +46,7 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, nextStepRout
                 legend={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.spm')}
                 name={AppFormField.harBoddUtenforNorgeSiste12Mnd}
                 validate={validateYesOrNoIsAnswered}
-                helperText={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.hjelp')}
+                info={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.hjelp')}
             />
             {formValues.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
                 <Box margin="m">
@@ -68,7 +68,7 @@ const MedlemsskapStep: React.FunctionComponent<Props> = ({ history, nextStepRout
                     legend={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.spm')}
                     name={AppFormField.skalBoUtenforNorgeNeste12Mnd}
                     validate={validateYesOrNoIsAnswered}
-                    helperText={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
+                    info={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
                 />
             </Box>
             {formValues.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (

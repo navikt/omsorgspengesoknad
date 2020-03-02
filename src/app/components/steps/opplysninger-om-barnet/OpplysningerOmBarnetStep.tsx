@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { FormikYesOrNoQuestion } from '@navikt/sif-common-formik';
 import Box from 'common/components/box/Box';
-import FormikYesOrNoQuestion from 'common/formik/formik-yes-or-no-question/FormikYesOrNoQuestion';
 import { HistoryProps } from 'common/types/History';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
