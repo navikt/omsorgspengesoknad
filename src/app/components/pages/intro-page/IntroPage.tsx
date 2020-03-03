@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from 'react-intl';
 import Lenke from 'nav-frontend-lenker';
+import StepBanner from '@navikt/sif-common/lib/common/components/step-banner/StepBanner';
 import Box from 'common/components/box/Box';
 import InformationPoster from 'common/components/information-poster/InformationPoster';
 import Page from 'common/components/page/Page';
 import bemUtils from 'common/utils/bemUtils';
 import intlHelper from 'common/utils/intlUtils';
 import RouteConfig, { getRouteUrl } from '../../../config/routeConfig';
-import StepBanner from '../../step-banner/StepBanner';
 
 const bem = bemUtils('introPage');
 
