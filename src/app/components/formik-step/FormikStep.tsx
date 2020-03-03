@@ -2,11 +2,11 @@ import * as React from 'react';
 import { useIntl } from 'react-intl';
 import { useFormikContext } from 'formik';
 import { Knapp } from 'nav-frontend-knapper';
+import FormBlock from 'common/components/form-block/FormBlock';
 import { getStepConfig } from '../../config/stepConfig';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import { getStepTexts } from '../../utils/stepUtils';
 import AppForm from '../app-form/AppForm';
-import FormBlock from '../form-block/FormBlock';
 import Step, { StepProps } from '../step/Step';
 
 export interface FormikStepProps {

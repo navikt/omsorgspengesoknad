@@ -4,6 +4,7 @@ import { useFormikContext } from 'formik';
 import { dateToday } from '@navikt/sif-common/lib/common/utils/dateUtils';
 import intlHelper from '@navikt/sif-common/lib/common/utils/intlUtils';
 import { validateFødselsnummer } from '@navikt/sif-common/lib/common/validation/fieldValidations';
+import FormBlock from 'common/components/form-block/FormBlock';
 import {
     AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet
 } from '../../../types/OmsorgspengesøknadFormData';
@@ -11,7 +12,6 @@ import {
     validateFødselsdato, validateNavn, validateRelasjonTilBarnet
 } from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
-import FormBlock from '../../form-block/FormBlock';
 
 const AnnetBarnPart: React.FunctionComponent = () => {
     const intl = useIntl();

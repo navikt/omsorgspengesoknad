@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useIntl } from 'react-intl';
 import Lenke from 'nav-frontend-lenker';
 import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
+import FormBlock from 'common/components/form-block/FormBlock';
 import BostedUtlandListAndDialog from 'common/forms/bosted-utland/BostedUtlandListAndDialog';
 import { YesOrNo } from 'common/types/YesOrNo';
 import { date1YearAgo, date1YearFromNow, dateToday } from 'common/utils/dateUtils';
@@ -14,7 +15,6 @@ import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import getLenker from '../../../lenker';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import AppForm from '../../app-form/AppForm';
-import FormBlock from '../../form-block/FormBlock';
 import FormikStep from '../../formik-step/FormikStep';
 
 const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit, formValues }) => {

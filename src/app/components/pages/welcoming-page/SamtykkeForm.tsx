@@ -12,12 +12,12 @@ import intlHelper from '@navikt/sif-common/lib/common/utils/intlUtils';
 import {
     validateYesOrNoIsAnswered
 } from '@navikt/sif-common/lib/common/validation/fieldValidations';
+import FormBlock from 'common/components/form-block/FormBlock';
 import bemHelper from 'common/utils/bemUtils';
 import getLenker from '../../../lenker';
 import {
     AppFormField, OmsorgspengesøknadFormData
 } from '../../../types/OmsorgspengesøknadFormData';
-import FormBlock from '../../form-block/FormBlock';
 
 interface Props {
     onConfirm: () => void;
@@ -34,7 +34,7 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
     onOpenDinePlikterModal,
     openBehandlingAvPersonopplysningerModal
 }) => {
-    const { values: formValues } = useFormikContext();
+    const { values: formValues } = useFormikContext<OmsorgspengesøknadFormData>();
     const intl = useIntl();
     return (
         <AppForm.Form

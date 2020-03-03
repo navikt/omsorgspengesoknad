@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { connect } from 'formik';
+import { connect, useFormikContext } from 'formik';
 import { Normaltekst } from 'nav-frontend-typografi';
 import AttachmentListWithDeletion from 'common/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from 'common/components/attachment-list/AttachmentList';
@@ -9,7 +9,6 @@ import { Attachment } from 'common/types/Attachment';
 import { containsAnyUploadedAttachments, fileExtensionIsValid } from 'common/utils/attachmentUtils';
 import { removeElementFromArray } from 'common/utils/listUtils';
 import { deleteFile } from '../../api/api';
-import { ConnectedFormikProps } from '../../types/ConnectedFormikProps';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 
 interface SamværsavtaleAttachmentListProps {
@@ -17,13 +16,13 @@ interface SamværsavtaleAttachmentListProps {
     wrapNoAttachmentsInBox?: boolean;
 }
 
-type Props = SamværsavtaleAttachmentListProps & ConnectedFormikProps<AppFormField>;
+type Props = SamværsavtaleAttachmentListProps;
 
 const SamværsavtaleAttachmentList: React.FunctionComponent<Props> = ({
-    formik: { values, setFieldValue },
     wrapNoAttachmentsInBox,
     includeDeletionFunctionality
 }) => {
+    const { values, setFieldValue } = useFormikContext<AppFormField>();
     const avtale: Attachment[] = values[AppFormField.samværsavtale].filter(({ file }: Attachment) =>
         fileExtensionIsValid(file.name)
     );

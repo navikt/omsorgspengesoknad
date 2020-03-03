@@ -6,13 +6,13 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { prettifyDate } from '@navikt/sif-common/lib/common/utils/dateUtils';
 import intlHelper from '@navikt/sif-common/lib/common/utils/intlUtils';
 import { formatName } from '@navikt/sif-common/lib/common/utils/personUtils';
+import FormBlock from 'common/components/form-block/FormBlock';
 import {
     AppFormField, initialValues, OmsorgspengesøknadFormData
 } from '../../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../../../types/Søkerdata';
 import { validateValgtBarn } from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
-import FormBlock from '../../form-block/FormBlock';
 
 interface Props {
     søkersBarn: BarnReceivedFromApi[];

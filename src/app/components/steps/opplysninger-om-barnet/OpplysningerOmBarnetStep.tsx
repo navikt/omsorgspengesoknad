@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useFormikContext } from 'formik';
+import FormBlock from 'common/components/form-block/FormBlock';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { SøkerdataContext } from '../../../context/SøkerdataContext';
 import {
@@ -8,7 +9,6 @@ import {
 import { harRegistrerteBarn } from '../../../utils/søkerdataUtils';
 import { validateYesOrNoIsAnswered } from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
-import FormBlock from '../../form-block/FormBlock';
 import FormikStep from '../../formik-step/FormikStep';
 import AnnetBarnPart from './AnnetBarnPart';
 import RegistrertBarnPart from './RegistrertBarnPart';
