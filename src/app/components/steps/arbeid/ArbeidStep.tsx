@@ -1,22 +1,16 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
 import { FormikCheckboxPanelGroup } from '@navikt/sif-common-formik/lib';
-import { HistoryProps } from 'common/types/History';
 import intlHelper from 'common/utils/intlUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField, Arbeidssituasjon } from '../../../types/OmsorgspengesøknadFormData';
-import { navigateTo } from '../../../utils/navigationUtils';
 import { validateArbeid } from '../../../validation/fieldValidations';
 import FormikStep from '../../formik-step/FormikStep';
-import { CommonStepFormikProps } from '../../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 
-type Props = CommonStepFormikProps & HistoryProps & StepConfigProps;
-
-const ArbeidStep: React.FunctionComponent<Props> = ({ history, nextStepRoute, ...stepProps }) => {
+const ArbeidStep = ({ onValidSubmit }: StepConfigProps) => {
     const intl = useIntl();
-    const navigate = nextStepRoute ? () => navigateTo(nextStepRoute, history) : undefined;
     return (
-        <FormikStep id={StepID.ARBEID} onValidFormSubmit={navigate} history={history} {...stepProps}>
+        <FormikStep id={StepID.ARBEID} onValidFormSubmit={onValidSubmit}>
             <FormikCheckboxPanelGroup<AppFormField>
                 legend={intlHelper(intl, 'steg.arbeid.spm')}
                 name={AppFormField.arbeidssituasjon}

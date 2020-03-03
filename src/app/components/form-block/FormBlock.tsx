@@ -8,10 +8,10 @@ interface Props {
     paddingBottom?: BoxMargin;
 }
 
-const FormBox: React.FunctionComponent<Props> = ({ margin = 'xl', paddingBottom, children }) => (
+const FormBlock: React.FunctionComponent<Props> = ({ margin = 'xl', paddingBottom, children }) => (
     <Box margin={margin} padBottom={paddingBottom}>
         {children}
     </Box>
 );
 
-export default FormBox;
+export default FormBlock;

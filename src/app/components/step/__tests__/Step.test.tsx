@@ -3,7 +3,6 @@ import * as React from 'react';
 import { MemoryRouter } from 'react-router';
 import IntlProvider from 'app/components/intl-provider/IntlProvider';
 import { StepID } from '../../../config/stepConfig';
-import { initialValues } from '../../../types/OmsorgspengesøknadFormData';
 import Step from '../Step';
 
 jest.mock('../../../utils/featureToggleUtils', () => {
@@ -20,17 +19,13 @@ const renderWrappedInMemoryRouter = (child: React.ReactNode) =>
         </IntlProvider>
     );
 
-const handleSubmit = jest.fn();
-
 describe('<Step>', () => {
     const stepID: StepID = StepID.OPPLYSNINGER_OM_BARNET;
 
     let renderResult: RenderResult;
 
     beforeAll(() => {
-        renderResult = renderWrappedInMemoryRouter(
-            <Step id={stepID} handleSubmit={handleSubmit} formValues={initialValues} />
-        );
+        renderResult = renderWrappedInMemoryRouter(<Step id={stepID} stepConfig={{}} />);
     });
 
     it('should render common <Step> content', () => {

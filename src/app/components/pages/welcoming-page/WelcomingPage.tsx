@@ -4,11 +4,9 @@ import { Sidetittel } from 'nav-frontend-typografi';
 import Box from 'common/components/box/Box';
 import FrontPageBanner from 'common/components/front-page-banner/FrontPageBanner';
 import Page from 'common/components/page/Page';
-import { HistoryProps } from 'common/types/History';
 import bemHelper from 'common/utils/bemUtils';
 import intlHelper from 'common/utils/intlUtils';
 import { StepConfigProps } from '../../../config/stepConfig';
-import { navigateTo } from '../../../utils/navigationUtils';
 import BehandlingAvPersonopplysningerModal from '../../behandling-av-personopplysninger-modal/BehandlingAvPersonopplysningerModal';
 import DinePlikterModal from '../../dine-plikter-modal/DinePlikterModal';
 import SamtykkeForm from './SamtykkeForm';
@@ -21,7 +19,7 @@ interface WelcomingPageState {
     behandlingAvPersonopplysningerModalOpen: boolean;
 }
 
-type Props = HistoryProps & StepConfigProps & WrappedComponentProps;
+type Props = Omit<StepConfigProps, 'formValues'> & WrappedComponentProps;
 
 class WelcomingPage extends React.Component<Props, WelcomingPageState> {
     constructor(props: Props) {
@@ -62,7 +60,7 @@ class WelcomingPage extends React.Component<Props, WelcomingPageState> {
     }
 
     render() {
-        const { intl } = this.props;
+        const { onValidSubmit, intl } = this.props;
         const { dinePlikterModalOpen, behandlingAvPersonopplysningerModalOpen } = this.state;
 
         return (
@@ -87,14 +85,10 @@ class WelcomingPage extends React.Component<Props, WelcomingPageState> {
                     <SamtykkeForm
                         onOpenDinePlikterModal={this.openDinePlikterModal}
                         openBehandlingAvPersonopplysningerModal={this.openBehandlingAvPersonopplysningerModal}
-                        onConfirm={() => {
-                            const { history, nextStepRoute } = this.props;
-                            if (nextStepRoute) {
-                                navigateTo(nextStepRoute, history);
-                            }
-                        }}
+                        onConfirm={onValidSubmit}
                     />
                 </Page>
+
                 <DinePlikterModal
                     isOpen={dinePlikterModalOpen}
                     onRequestClose={this.closeDinePlikterModal}

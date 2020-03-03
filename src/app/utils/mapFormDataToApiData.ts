@@ -34,8 +34,6 @@ export const mapFormDataToApiData = (
     barn: BarnReceivedFromApi[],
     sprak: Locale
 ): OmsorgspengesøknadApiData => {
-    // const barnObject: BarnToSendToApi = { navn: null, norskIdentifikator: null, alternativId: null, aktørId: null };
-
     const barnObject: BarnToSendToApi = mapBarnToApiData(
         barn,
         barnetsNavn,

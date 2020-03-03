@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormikFileInput, FormikValidateFunction } from '@navikt/sif-common-formik/lib';
+import { FormikValidateFunction } from '@navikt/sif-common-formik/lib';
 import { ArrayHelpers, useFormikContext } from 'formik';
 import { Attachment, PersistedFile } from 'common/types/Attachment';
 import {
@@ -9,6 +9,7 @@ import {
 import { uploadFile } from '../../api/api';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import * as apiUtils from '../../utils/apiUtils';
+import AppForm from '../app-form/AppForm';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
@@ -27,7 +28,6 @@ type Props = FormikFileUploader;
 
 const FormikFileUploader: React.FunctionComponent<Props> = ({
     name,
-    // formik: { values },
     onFileInputClick,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
@@ -109,7 +109,7 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
     }
 
     return (
-        <FormikFileInput<AppFormField>
+        <AppForm.FileInput
             name={name}
             acceptedExtensions={VALID_EXTENSIONS.join(', ')}
             onFilesSelect={async (files: File[], { push, replace }: ArrayHelpers) => {
