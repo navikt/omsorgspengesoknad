@@ -26,24 +26,24 @@ class FormikStep extends React.Component<PropsWithFormik> {
         });
     }
 
-    componentDidUpdate(previousProps: PropsWithFormik) {
-        const previousValues = {
-            isSubmitting: previousProps.formik.isSubmitting,
-            isValid: previousProps.formik.isValid
-        };
-        const currentValues = { isSubmitting: this.props.formik.isSubmitting, isValid: this.props.formik.isValid };
-        const { skipValidation } = this.props;
+    // componentDidUpdate(previousProps: PropsWithFormik) {
+    //     const previousValues = {
+    //         isSubmitting: previousProps.formik.isSubmitting,
+    //         isValid: previousProps.formik.isValid
+    //     };
+    //     const currentValues = { isSubmitting: this.props.formik.isSubmitting, isValid: this.props.formik.isValid };
+    //     const { skipValidation } = this.props;
 
-        if (
-            userHasSubmittedValidForm(previousValues, currentValues) ||
-            (skipValidation && previousValues.isSubmitting === true && currentValues.isSubmitting === false)
-        ) {
-            const { onValidFormSubmit } = this.props;
-            if (onValidFormSubmit) {
-                onValidFormSubmit();
-            }
-        }
-    }
+    //     if (
+    //         userHasSubmittedValidForm(previousValues, currentValues) ||
+    //         (skipValidation && previousValues.isSubmitting === true && currentValues.isSubmitting === false)
+    //     ) {
+    //         const { onValidFormSubmit } = this.props;
+    //         if (onValidFormSubmit) {
+    //             onValidFormSubmit();
+    //         }
+    //     }
+    // }
 
     render() {
         return <Step {...this.props} />;

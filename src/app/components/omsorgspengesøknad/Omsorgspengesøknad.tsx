@@ -17,7 +17,7 @@ const Omsorgspengesøknad = () => (
             return (
                 <TypedFormikWrapper<OmsorgspengesøknadFormData>
                     initialValues={initialValues}
-                    onSubmit={(data) => console.log(data)}
+                    onSubmit={() => null}
                     renderForm={(formikProps) => <OmsorgspengesøknadContent formikProps={formikProps} />}
                 />
             );

@@ -26,7 +26,7 @@ export interface CommonStepFormikProps {
 
 const OmsorgspengesøknadContent: React.FunctionComponent<OmsorgspengesøknadContentProps> = ({ formikProps }) => {
     const [søknadHasBeenSent, setSøknadHasBeenSent] = React.useState(false);
-    const { handleSubmit, values, isSubmitting, isValid, resetForm } = formikProps;
+    const { handleSubmit, values, resetForm } = formikProps;
     const commonFormikProps: CommonStepFormikProps = { handleSubmit, formValues: formikProps.values };
     return (
         <Switch>
@@ -34,10 +34,7 @@ const OmsorgspengesøknadContent: React.FunctionComponent<OmsorgspengesøknadCon
                 path={RouteConfig.WELCOMING_PAGE_ROUTE}
                 render={(props) => (
                     <WelcomingPage
-                        {...commonFormikProps}
                         {...props}
-                        isSubmitting={isSubmitting}
-                        isValid={isValid}
                         nextStepRoute={`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${StepID.OPPLYSNINGER_OM_BARNET}`}
                     />
                 )}
