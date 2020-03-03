@@ -4,7 +4,6 @@ import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik/lib';
 import { useFormikContext } from 'formik';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
-import Box from '@navikt/sif-common/lib/common/components/box/Box';
 import CounsellorPanel from '@navikt/sif-common/lib/common/components/counsellor-panel/CounsellorPanel';
 import {
     commonFieldErrorRenderer
@@ -18,6 +17,7 @@ import getLenker from '../../../lenker';
 import {
     AppFormField, OmsorgspengesøknadFormData
 } from '../../../types/OmsorgspengesøknadFormData';
+import FormBlock from '../../form-block/FormBlock';
 
 interface Props {
     onConfirm: () => void;
@@ -41,23 +41,20 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
             onValidSubmit={onConfirm}
             includeButtons={false}
             fieldErrorRenderer={(error) => commonFieldErrorRenderer(intl, error)}>
-            <Box margin="xl">
+            <FormBlock>
                 <AppForm.YesOrNoQuestion
                     name={AppFormField.kroniskEllerFunksjonshemming}
                     legend={intlHelper(intl, 'introPage.spm.kroniskEllerFunksjonshemmende')}
                     validate={validateYesOrNoIsAnswered}
                 />
-            </Box>
-
-            <Box margin="xl">
+            </FormBlock>
+            <FormBlock>
                 {formValues.kroniskEllerFunksjonshemming === YesOrNo.NO && (
                     <CounsellorPanel>
-                        <p>
-                            <FormattedHTMLMessage
-                                id={`introPage.infoIkkeKroniskEllerFunksjonshemmende.html`}
-                                values={{ url: getLenker(intl.locale).papirskjemaPrivat }}
-                            />
-                        </p>
+                        <FormattedHTMLMessage
+                            id={`introPage.infoIkkeKroniskEllerFunksjonshemmende.html`}
+                            values={{ url: getLenker(intl.locale).papirskjemaPrivat }}
+                        />
                     </CounsellorPanel>
                 )}
                 {formValues.kroniskEllerFunksjonshemming === YesOrNo.YES && (
@@ -65,7 +62,7 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
                         <CounsellorPanel>
                             <FormattedHTMLMessage id={`introPage.legeerklæring.html`} />
                         </CounsellorPanel>
-                        <Box margin="xl">
+                        <FormBlock>
                             <AppForm.ConfirmationCheckbox
                                 label={intlHelper(intl, 'welcomingPage.samtykke.tekst')}
                                 name={AppFormField.harForståttRettigheterOgPlikter}
@@ -87,20 +84,22 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
                                     }}
                                 />
                             </AppForm.ConfirmationCheckbox>
-                        </Box>
-                        <Box margin="xl">
+                        </FormBlock>
+                        <FormBlock>
                             <Hovedknapp className={bem.element('startApplicationButton')}>
                                 {intlHelper(intl, 'welcomingPage.begynnsøknad')}
                             </Hovedknapp>
-                        </Box>
-                        <Box margin="xl" className={bem.element('personopplysningModalLenke')}>
-                            <Lenke href="#" onClick={openBehandlingAvPersonopplysningerModal}>
-                                <FormattedMessage id="welcomingPage.personopplysninger.lenketekst" />
-                            </Lenke>
-                        </Box>
+                        </FormBlock>
+                        <FormBlock>
+                            <div className={bem.element('personopplysningModalLenke')}>
+                                <Lenke href="#" onClick={openBehandlingAvPersonopplysningerModal}>
+                                    <FormattedMessage id="welcomingPage.personopplysninger.lenketekst" />
+                                </Lenke>
+                            </div>
+                        </FormBlock>
                     </>
                 )}
-            </Box>
+            </FormBlock>
         </AppForm.Form>
     );
 };
