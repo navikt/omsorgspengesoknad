@@ -2,6 +2,9 @@ import * as React from 'react';
 import { useIntl } from 'react-intl';
 import { useFormikContext } from 'formik';
 import { Knapp } from 'nav-frontend-knapper';
+import {
+    commonFieldErrorRenderer
+} from '@navikt/sif-common/lib/common/utils/commonFieldErrorRenderer';
 import FormBlock from 'common/components/form-block/FormBlock';
 import { getStepConfig } from '../../config/stepConfig';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
@@ -28,7 +31,10 @@ const FormikStep: React.FunctionComponent<Props> = (props) => {
     const texts = getStepTexts(intl, id, stepConfig);
     return (
         <Step stepConfig={stepConfig} {...props}>
-            <AppForm.Form onValidSubmit={onValidFormSubmit} includeButtons={false}>
+            <AppForm.Form
+                onValidSubmit={onValidFormSubmit}
+                includeButtons={false}
+                fieldErrorRenderer={(error) => commonFieldErrorRenderer(intl, error)}>
                 {children}
                 <FormBlock>
                     <Knapp
