@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { prettifyDate } from '@navikt/sif-common/lib/common/utils/dateUtils';
-import { formatName } from '@navikt/sif-common/lib/common/utils/personUtils';
+import { prettifyDate } from 'common/utils/dateUtils';
+import { formatName } from 'common/utils/personUtils';
 import { BarnReceivedFromApi } from '../../../types/Søkerdata';
 
 interface Props {

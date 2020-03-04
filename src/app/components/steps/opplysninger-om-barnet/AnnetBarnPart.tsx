@@ -1,10 +1,10 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useFormikContext } from 'formik';
-import { dateToday } from '@navikt/sif-common/lib/common/utils/dateUtils';
-import intlHelper from '@navikt/sif-common/lib/common/utils/intlUtils';
-import { validateFødselsnummer } from '@navikt/sif-common/lib/common/validation/fieldValidations';
 import FormBlock from 'common/components/form-block/FormBlock';
+import { dateToday } from 'common/utils/dateUtils';
+import intlHelper from 'common/utils/intlUtils';
+import { validateFødselsnummer } from 'common/validation/fieldValidations';
 import {
     AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet
 } from '../../../types/OmsorgspengesøknadFormData';

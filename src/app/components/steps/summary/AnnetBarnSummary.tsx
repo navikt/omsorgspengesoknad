@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { apiStringDateToDate, prettifyDate } from '@navikt/sif-common/lib/common/utils/dateUtils';
-import intlHelper from '@navikt/sif-common/lib/common/utils/intlUtils';
+import { apiStringDateToDate, prettifyDate } from 'common/utils/dateUtils';
+import intlHelper from 'common/utils/intlUtils';
 import { OmsorgspengesøknadApiData } from '../../../types/OmsorgspengesøknadApiData';
 
 interface Props {

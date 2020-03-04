@@ -3,10 +3,10 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik';
 import { useFormikContext } from 'formik';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { prettifyDate } from '@navikt/sif-common/lib/common/utils/dateUtils';
-import intlHelper from '@navikt/sif-common/lib/common/utils/intlUtils';
-import { formatName } from '@navikt/sif-common/lib/common/utils/personUtils';
 import FormBlock from 'common/components/form-block/FormBlock';
+import { prettifyDate } from 'common/utils/dateUtils';
+import intlHelper from 'common/utils/intlUtils';
+import { formatName } from 'common/utils/personUtils';
 import {
     AppFormField, initialValues, OmsorgspengesøknadFormData
 } from '../../../types/OmsorgspengesøknadFormData';

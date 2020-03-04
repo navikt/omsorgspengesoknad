@@ -4,16 +4,12 @@ import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik/lib';
 import { useFormikContext } from 'formik';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
-import CounsellorPanel from '@navikt/sif-common/lib/common/components/counsellor-panel/CounsellorPanel';
-import {
-    commonFieldErrorRenderer
-} from '@navikt/sif-common/lib/common/utils/commonFieldErrorRenderer';
-import intlHelper from '@navikt/sif-common/lib/common/utils/intlUtils';
-import {
-    validateYesOrNoIsAnswered
-} from '@navikt/sif-common/lib/common/validation/fieldValidations';
+import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
 import FormBlock from 'common/components/form-block/FormBlock';
 import bemHelper from 'common/utils/bemUtils';
+import { commonFieldErrorRenderer } from 'common/utils/commonFieldErrorRenderer';
+import intlHelper from 'common/utils/intlUtils';
+import { validateYesOrNoIsAnswered } from 'common/validation/fieldValidations';
 import getLenker from '../../../lenker';
 import {
     AppFormField, OmsorgspengesøknadFormData
