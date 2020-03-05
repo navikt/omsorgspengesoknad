@@ -1,37 +1,37 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik';
+import { useFormikContext } from 'formik';
 import { Normaltekst } from 'nav-frontend-typografi';
-import FormikCheckbox from '@navikt/sif-common/lib/common/formik/formik-checkbox/FormikCheckbox';
-import FormikRadioPanelGroup from '@navikt/sif-common/lib/common/formik/formik-radio-panel-group/FormikRadioPanelGroup';
+import FormBlock from 'common/components/form-block/FormBlock';
+import { prettifyDate } from 'common/utils/dateUtils';
+import intlHelper from 'common/utils/intlUtils';
+import { formatName } from 'common/utils/personUtils';
 import {
-    resetFieldValue, resetFieldValues
-} from '@navikt/sif-common/lib/common/formik/formikUtils';
-import { prettifyDate } from '@navikt/sif-common/lib/common/utils/dateUtils';
-import intlHelper from '@navikt/sif-common/lib/common/utils/intlUtils';
-import { formatName } from '@navikt/sif-common/lib/common/utils/personUtils';
-import { CustomFormikProps } from '../../../types/FormikProps';
-import { AppFormField, initialValues } from '../../../types/OmsorgspengesøknadFormData';
+    AppFormField, initialValues, OmsorgspengesøknadFormData
+} from '../../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../../../types/Søkerdata';
 import { validateValgtBarn } from '../../../validation/fieldValidations';
+import AppForm from '../../app-form/AppForm';
 
 interface Props {
-    formikProps: CustomFormikProps;
     søkersBarn: BarnReceivedFromApi[];
 }
 
-const RegistrertBarnPart: React.FunctionComponent<Props> = ({
-    søkersBarn = [],
-    formikProps: { values, setFieldValue }
-}) => {
+const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }) => {
     const intl = useIntl();
-    const { søknadenGjelderEtAnnetBarn } = values;
+    const {
+        values: { søknadenGjelderEtAnnetBarn },
+        setFieldValue
+    } = useFormikContext<OmsorgspengesøknadFormData>();
 
     return (
         <>
-            <FormikRadioPanelGroup<AppFormField>
+            <AppForm.RadioPanelGroup
                 legend={intlHelper(intl, 'steg.omBarnet.hvilketBarn.spm')}
                 description={intlHelper(intl, 'steg.omBarnet.hvilketBarn.info')}
                 name={AppFormField.barnetSøknadenGjelder}
+                useTwoColumns={true}
                 radios={søkersBarn.map((barn) => {
                     const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
                     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
@@ -59,27 +59,29 @@ const RegistrertBarnPart: React.FunctionComponent<Props> = ({
                     return validateValgtBarn(value);
                 }}
             />
-            <FormikCheckbox<AppFormField>
-                label={intlHelper(intl, 'steg.omBarnet.gjelderAnnetBarn')}
-                name={AppFormField.søknadenGjelderEtAnnetBarn}
-                afterOnChange={(newValue) => {
-                    if (newValue) {
-                        resetFieldValue(AppFormField.barnetSøknadenGjelder, setFieldValue, initialValues);
-                    } else {
-                        resetFieldValues(
-                            [
-                                AppFormField.barnetsFødselsnummer,
-                                AppFormField.barnetHarIkkeFåttFødselsnummerEnda,
-                                AppFormField.barnetsFødselsdato,
-                                AppFormField.barnetsNavn,
-                                AppFormField.søkersRelasjonTilBarnet
-                            ],
-                            setFieldValue,
-                            initialValues
-                        );
-                    }
-                }}
-            />
+            <FormBlock margin="l">
+                <AppForm.Checkbox
+                    label={intlHelper(intl, 'steg.omBarnet.gjelderAnnetBarn')}
+                    name={AppFormField.søknadenGjelderEtAnnetBarn}
+                    afterOnChange={(newValue) => {
+                        if (newValue) {
+                            resetFieldValue(AppFormField.barnetSøknadenGjelder, setFieldValue, initialValues);
+                        } else {
+                            resetFieldValues(
+                                [
+                                    AppFormField.barnetsFødselsnummer,
+                                    AppFormField.barnetHarIkkeFåttFødselsnummerEnda,
+                                    AppFormField.barnetsFødselsdato,
+                                    AppFormField.barnetsNavn,
+                                    AppFormField.søkersRelasjonTilBarnet
+                                ],
+                                setFieldValue,
+                                initialValues
+                            );
+                        }
+                    }}
+                />
+            </FormBlock>
         </>
     );
 };

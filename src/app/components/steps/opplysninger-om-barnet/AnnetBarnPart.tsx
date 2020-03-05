@@ -1,30 +1,28 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common/lib/common/components/box/Box';
-import FormikCheckbox from '@navikt/sif-common/lib/common/formik/formik-checkbox/FormikCheckbox';
-import FormikDatepicker from '@navikt/sif-common/lib/common/formik/formik-datepicker/FormikDatepicker';
-import FormikInput from '@navikt/sif-common/lib/common/formik/formik-input/FormikInput';
-import FormikSelect from '@navikt/sif-common/lib/common/formik/formik-select/FormikSelect';
-import { dateToday } from '@navikt/sif-common/lib/common/utils/dateUtils';
-import intlHelper from '@navikt/sif-common/lib/common/utils/intlUtils';
-import { validateFødselsnummer } from '@navikt/sif-common/lib/common/validation/fieldValidations';
-import { CustomFormikProps } from '../../../types/FormikProps';
-import { AppFormField, SøkersRelasjonTilBarnet } from '../../../types/OmsorgspengesøknadFormData';
+import { useFormikContext } from 'formik';
+import FormBlock from 'common/components/form-block/FormBlock';
+import { dateToday } from 'common/utils/dateUtils';
+import intlHelper from 'common/utils/intlUtils';
+import { validateFødselsnummer } from 'common/validation/fieldValidations';
+import {
+    AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet
+} from '../../../types/OmsorgspengesøknadFormData';
 import {
     validateFødselsdato, validateNavn, validateRelasjonTilBarnet
 } from '../../../validation/fieldValidations';
+import AppForm from '../../app-form/AppForm';
 
-interface Props {
-    formikProps: CustomFormikProps;
-}
-
-const AnnetBarnPart: React.FunctionComponent<Props> = ({ formikProps: { values, setFieldValue } }) => {
+const AnnetBarnPart: React.FunctionComponent = () => {
     const intl = useIntl();
-    const { barnetHarIkkeFåttFødselsnummerEnda } = values;
+    const {
+        values: { barnetHarIkkeFåttFødselsnummerEnda },
+        setFieldValue
+    } = useFormikContext<OmsorgspengesøknadFormData>();
     return (
         <>
-            <Box margin="xl">
-                <FormikInput<AppFormField>
+            <FormBlock>
+                <AppForm.Input
                     label={intlHelper(intl, 'steg.omBarnet.fnr.spm')}
                     name={AppFormField.barnetsFødselsnummer}
                     validate={(fnr) => {
@@ -38,9 +36,9 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ formikProps: { values, 
                     type="tel"
                     maxLength={11}
                 />
-            </Box>
-            <Box margin="m">
-                <FormikCheckbox<AppFormField>
+            </FormBlock>
+            <FormBlock margin="m">
+                <AppForm.Checkbox
                     label={intlHelper(intl, 'steg.omBarnet.fnr.ikkeFnrEnda')}
                     name={AppFormField.barnetHarIkkeFåttFødselsnummerEnda}
                     afterOnChange={(newValue) => {
@@ -49,10 +47,10 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ formikProps: { values, 
                         }
                     }}
                 />
-            </Box>
+            </FormBlock>
             {barnetHarIkkeFåttFødselsnummerEnda && (
-                <Box margin="xl">
-                    <FormikDatepicker<AppFormField>
+                <FormBlock>
+                    <AppForm.DatePicker
                         name={AppFormField.barnetsFødselsdato}
                         dateLimitations={{ maksDato: dateToday }}
                         label={intlHelper(intl, 'steg.omBarnet.fødselsdato')}
@@ -63,10 +61,10 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ formikProps: { values, 
                             return undefined;
                         }}
                     />
-                </Box>
+                </FormBlock>
             )}
-            <Box margin="xl">
-                <FormikInput<AppFormField>
+            <FormBlock>
+                <AppForm.Input
                     label={intlHelper(intl, 'steg.omBarnet.navn')}
                     name={AppFormField.barnetsNavn}
                     validate={(navn) => {
@@ -78,9 +76,9 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ formikProps: { values, 
                     }}
                     bredde="XL"
                 />
-            </Box>
-            <Box margin="xl">
-                <FormikSelect<AppFormField>
+            </FormBlock>
+            <FormBlock>
+                <AppForm.Select
                     bredde="xl"
                     label={intlHelper(intl, 'steg.omBarnet.relasjon')}
                     name={AppFormField.søkersRelasjonTilBarnet}
@@ -91,8 +89,8 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ formikProps: { values, 
                             {intlHelper(intl, `relasjonTilBarnet.${SøkersRelasjonTilBarnet[key]}`)}
                         </option>
                     ))}
-                </FormikSelect>
-            </Box>
+                </AppForm.Select>
+            </FormBlock>
         </>
     );
 };

@@ -92,7 +92,8 @@ export const getStepConfig = (formData?: OmsorgspengesøknadFormData): StepConfi
 };
 
 export interface StepConfigProps {
-    nextStepRoute: string | undefined;
+    onValidSubmit: () => void;
+    formValues: OmsorgspengesøknadFormData;
 }
 
 export const stepConfig: StepConfigInterface = getStepConfig();
