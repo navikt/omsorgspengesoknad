@@ -4,9 +4,9 @@ metadata:
     name: omsorgspengesoknad
     namespace: default
     labels:
-        team: {{team}}
+        team: dusseldorf
 spec:
-    image: {{ image }}:{{ tag }}
+    image: {{ image }}
     port: 8080
     liveness:
         path: /familie/sykdom-i-familien/soknad/omsorgspenger/health/isAlive
