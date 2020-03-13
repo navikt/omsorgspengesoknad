@@ -8,6 +8,7 @@ import StepBanner from 'common/components/step-banner/StepBanner';
 import bemUtils from 'common/utils/bemUtils';
 import intlHelper from 'common/utils/intlUtils';
 import RouteConfig, { getRouteUrl } from '../../../config/routeConfig';
+import CoronaWarning from '../../corona-warning/CoronaWarning';
 
 const bem = bemUtils('introPage');
 
@@ -19,6 +20,9 @@ const IntroPage: React.StatelessComponent = () => {
             className={bem.block}
             title={intlHelper(intl, 'introPage.tittel')}
             topContentRenderer={() => <StepBanner text={intlHelper(intl, 'introPage.stegTittel')} />}>
+            <Box margin="xxl" padBottom="l">
+                <CoronaWarning />
+            </Box>
             <Box margin="xxxl">
                 <InformationPoster>
                     <FormattedHTMLMessage id={`introPage.intro.html`} />
