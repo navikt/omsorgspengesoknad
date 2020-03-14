@@ -29,6 +29,11 @@ const CoronaWarning: React.FunctionComponent<Props> = (props) => (
                 </Lenke>
                 .
             </p>
+            <p style={{ marginBottom: '1rem' }}>
+                <Lenke href="https://www.nav.no/familie/sykdom-i-familien/nb/ofte-stilte-sporsmal-om-koronaviruset-og-bruk-av-omsorgsdager">
+                    Ofte stilte spørsmål om koronaviruset og bruk av omsorgsdager
+                </Lenke>
+            </p>
             <p>
                 Denne søknaden skal du kun bruke hvis du skal søke om ekstra omsorgsdager for kronisk sykt eller
                 funksjonshemmet barn.
