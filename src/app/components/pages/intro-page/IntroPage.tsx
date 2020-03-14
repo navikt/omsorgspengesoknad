@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from 'react-intl';
 import Lenke from 'nav-frontend-lenker';
+import { Undertittel } from 'nav-frontend-typografi';
 import Box from 'common/components/box/Box';
 import InformationPoster from 'common/components/information-poster/InformationPoster';
 import Page from 'common/components/page/Page';
@@ -25,6 +26,10 @@ const IntroPage: React.StatelessComponent = () => {
             </Box>
             <Box margin="xxxl">
                 <InformationPoster>
+                    <Undertittel>
+                        Denne søknaden skal du <u>kun</u> bruke hvis du skal søke om ekstra omsorgsdager for{' '}
+                        <u>kronisk sykt eller funksjonshemmet barn</u>.
+                    </Undertittel>
                     <FormattedHTMLMessage id={`introPage.intro.html`} />
                 </InformationPoster>
             </Box>

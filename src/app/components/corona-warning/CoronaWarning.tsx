@@ -34,10 +34,6 @@ const CoronaWarning: React.FunctionComponent<Props> = (props) => (
                     Ofte stilte spørsmål om koronaviruset og bruk av omsorgsdager
                 </Lenke>
             </p>
-            <p>
-                Denne søknaden skal du kun bruke hvis du skal søke om ekstra omsorgsdager for kronisk sykt eller
-                funksjonshemmet barn.
-            </p>
         </AlertStripeInfo>
     </div>
 );
