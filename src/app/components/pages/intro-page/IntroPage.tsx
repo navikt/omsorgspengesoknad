@@ -72,7 +72,10 @@ const IntroPage: React.StatelessComponent = () => {
                                         koronastengt barnehage eller skole, bruker du av dine vanlige omsorgsdager. Det
                                         er per i dag ikke mulig å få ekstra dager på grunn av koronaviruset.
                                     </p>
-                                    <p>Hvis det kommer endringer rundt dette, vil vi oppdatere informasjonen.</p>
+                                    <p>
+                                        Hvis det kommer endringer rundt dette, vil vi oppatere informasjonen så snart vi
+                                        har den.
+                                    </p>
                                 </AlertStripeInfo>
                             </Box>
                         )}
