@@ -27,6 +27,8 @@ interface PageFormValues {
 
 const PageForm = getTypedFormComponents<PageFormField, PageFormValues>();
 
+const showSystemUnstabilityMessage = false;
+
 const IntroPage: React.StatelessComponent = () => {
     const intl = useIntl();
     const initialValues = {};
@@ -35,14 +37,16 @@ const IntroPage: React.StatelessComponent = () => {
             className={bem.block}
             title={intlHelper(intl, 'introPage.tittel')}
             topContentRenderer={() => <StepBanner text={intlHelper(intl, 'introPage.stegTittel')} />}>
-            <Box margin="xxl">
-                <AlertStripeAdvarsel>
-                    <Lenke href="https://www.nav.no/no/driftsmeldinger/ustabilitet-pa-nav.no-soendag-15mars">
-                        Ustabile selvbetjeningstjenester søndag 15. mars
-                    </Lenke>
-                    .
-                </AlertStripeAdvarsel>
-            </Box>
+            {showSystemUnstabilityMessage && (
+                <Box margin="xxl">
+                    <AlertStripeAdvarsel>
+                        <Lenke href="https://www.nav.no/no/driftsmeldinger/ustabilitet-pa-nav.no-soendag-15mars">
+                            Ustabile selvbetjeningstjenester søndag 15. mars
+                        </Lenke>
+                        .
+                    </AlertStripeAdvarsel>
+                </Box>
+            )}
             <Box margin="xl" padBottom="l">
                 <CoronaWarning />
             </Box>
