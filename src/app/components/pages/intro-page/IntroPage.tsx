@@ -4,7 +4,7 @@ import {
     commonFieldErrorRenderer
 } from '@navikt/sif-common-core/lib/utils/commonFieldErrorRenderer';
 import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik/lib';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Lenke from 'nav-frontend-lenker';
 import Box from 'common/components/box/Box';
 import InformationPoster from 'common/components/information-poster/InformationPoster';
@@ -35,7 +35,15 @@ const IntroPage: React.StatelessComponent = () => {
             className={bem.block}
             title={intlHelper(intl, 'introPage.tittel')}
             topContentRenderer={() => <StepBanner text={intlHelper(intl, 'introPage.stegTittel')} />}>
-            <Box margin="xxl" padBottom="l">
+            <Box margin="xxl">
+                <AlertStripeAdvarsel>
+                    <Lenke href="https://www.nav.no/no/driftsmeldinger/ustabilitet-pa-nav.no-soendag-15mars">
+                        Ustabile selvbetjeningstjenester søndag 15. mars
+                    </Lenke>
+                    .
+                </AlertStripeAdvarsel>
+            </Box>
+            <Box margin="xl" padBottom="l">
                 <CoronaWarning />
             </Box>
             <Box margin="xxxl" padBottom="xxl">
@@ -59,14 +67,12 @@ const IntroPage: React.StatelessComponent = () => {
                             <Box margin="xl">
                                 <AlertStripeInfo>
                                     <p style={{ marginTop: 0 }}>
-                                        Søknad om ekstra dager gjelder kun de som har barn med en kronisk sykdom eller
-                                        funksjonshemming. Hvis du er hjemme fra jobb pga. koronostengt bhg/skole kan du
-                                        bruke av dine vanlige omsorgsdager, du skal ikke søke.
+                                        Søknad om ekstra omsorgsdager gjelder <strong>kun</strong> for de som har
+                                        kronisk sykt eller funksjonshemmet barn. Hvis du er hjemme fra jobb på grunn av
+                                        koronastengt barnehage eller skole, bruker du av dine vanlige omsorgsdager. Det
+                                        er per i dag ikke mulig å få ekstra dager på grunn av koronaviruset.
                                     </p>
-                                    <p>
-                                        Ser mer informasjon om omsorgsdager og koronaviruset i informasjonsboksen lenger
-                                        opp på denne siden.
-                                    </p>
+                                    <p>Hvis det kommer endringer rundt dette, vil vi oppdatere informasjonen.</p>
                                 </AlertStripeInfo>
                             </Box>
                         )}
