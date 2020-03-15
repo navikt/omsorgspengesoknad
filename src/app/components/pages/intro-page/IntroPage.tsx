@@ -73,7 +73,7 @@ const IntroPage: React.StatelessComponent = () => {
                                         er per i dag ikke mulig å få ekstra dager på grunn av koronaviruset.
                                     </p>
                                     <p>
-                                        Hvis det kommer endringer rundt dette, vil vi oppatere informasjonen så snart vi
+                                        Hvis det kommer endringer rundt dette, oppdaterer vi informasjonen så snart vi
                                         har den.
                                     </p>
                                 </AlertStripeInfo>
