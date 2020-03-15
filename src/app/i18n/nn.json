@@ -193,7 +193,7 @@
 
     "page.generalErrorPage.sidetittel": "Feil",
     "page.generalErrorPage.tittel": "Noe gikk galt...",
-    "page.generalErrorPage.tekst": "Beklager, her har det dessverre skjedd en feil.",
+    "page.generalErrorPage.tekst": "Beklager, her har det dessverre skjedd en feil. Du kan prøve på nytt om ei lita stund.",
 
     "page.ikkeMyndig.sidetittel": "Søknad om ekstra omsorgsdager - ikke myndig",
     "page.ikkeMyndig.banner.tittel": "Hei!",
