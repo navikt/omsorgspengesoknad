@@ -7,7 +7,7 @@ import HelperTextPanel from 'common/components/helper-text-panel/HelperTextPanel
 import intlHelper from 'common/utils/intlUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
-import { appIsRunningInDemoMode, enableDemoModeUpload } from '../../../utils/envUtils';
+import { enableDemoModeUpload } from '../../../utils/envUtils';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import { validateSamværsavtale } from '../../../validation/fieldValidations';
 import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
@@ -18,7 +18,7 @@ import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/S
 const SamværsavtaleStep = ({ onValidSubmit }: StepConfigProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const intl = useIntl();
-    const isRunningDemoMode = appIsRunningInDemoMode();
+    // KORONA; const isRunningDemoMode = appIsRunningInDemoMode();
     const showUploadForm = enableDemoModeUpload() === false;
 
     return (
@@ -26,7 +26,7 @@ const SamværsavtaleStep = ({ onValidSubmit }: StepConfigProps) => {
             id={StepID.SAMVÆRSAVTALE}
             onValidFormSubmit={onValidSubmit}
             useValidationErrorSummary={false}
-            skipValidation={isRunningDemoMode}>
+            skipValidation={true}> // KORONA
             {!showUploadForm && (
                 <Box>
                     <AlertStripeInfo>

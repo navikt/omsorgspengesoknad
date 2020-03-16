@@ -117,9 +117,11 @@ export const validateUtenlandsoppholdNeste12Mnd = (utenlandsopphold: Utenlandsop
 
 export const validateLegeerklæring = (attachments: Attachment[]): FieldValidationResult => {
     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
+/* -- KORONA
     if (uploadedAttachments.length === 0) {
         return fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler);
     }
+*/
     if (uploadedAttachments.length > 3) {
         return fieldValidationError(AppFieldValidationErrors.legeerklæring_forMangeFiler);
     }
@@ -128,9 +130,11 @@ export const validateLegeerklæring = (attachments: Attachment[]): FieldValidati
 
 export const validateSamværsavtale = (attachments: Attachment[]): FieldValidationResult => {
     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
+/* -- KORONA
     if (uploadedAttachments.length === 0) {
         return fieldValidationError(AppFieldValidationErrors.samværsavtale_mangler);
     }
+*/
     if (uploadedAttachments.length > 3) {
         return fieldValidationError(AppFieldValidationErrors.samværsavtale_forMangeFiler);
     }
