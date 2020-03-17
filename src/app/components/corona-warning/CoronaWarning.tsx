@@ -24,7 +24,7 @@ const CoronaWarning: React.FunctionComponent<Props> = (props) => (
             </p>
             <p style={{ marginBottom: '1rem' }}>
                 Som selvstendig næringsdrivende eller frilanser kan du i{' '}
-                <Lenke href="https://www.nav.no/familie/sykdom-i-familien/nb/omsorgspenger#Slik-tar-du-ut-omsorgsdager">
+                <Lenke href="https://www.nav.no/familie/sykdom-i-familien/nb/omsorgspenger#Slik-tar-du-ut-omsorgsdager--uttak-selvstendig">
                     noen tilfeller få utbetaling fra NAV
                 </Lenke>
                 .
