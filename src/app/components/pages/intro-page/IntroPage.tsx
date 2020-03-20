@@ -70,15 +70,9 @@ const IntroPage: React.StatelessComponent = () => {
                         {values[PageFormField.harKroniskSyktBarn] === YesOrNo.NO && (
                             <Box margin="xl">
                                 <AlertStripeInfo>
-                                    <p style={{ marginTop: 0 }}>
+                                    <p style={{ marginTop: 0, marginBottom: 0 }}>
                                         Søknad om ekstra omsorgsdager gjelder <strong>kun</strong> for de som har
-                                        kronisk sykt eller funksjonshemmet barn. Hvis du er hjemme fra jobb på grunn av
-                                        koronastengt barnehage eller skole, bruker du av dine vanlige omsorgsdager. Det
-                                        er per i dag ikke mulig å få ekstra dager på grunn av koronaviruset.
-                                    </p>
-                                    <p>
-                                        Hvis det kommer endringer rundt dette, oppdaterer vi informasjonen så snart vi
-                                        har den.
+                                        kronisk sykt eller funksjonshemmet barn.
                                     </p>
                                 </AlertStripeInfo>
                             </Box>
