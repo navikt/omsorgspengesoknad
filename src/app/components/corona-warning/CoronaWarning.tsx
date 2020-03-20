@@ -12,7 +12,7 @@ const CoronaWarning: React.FunctionComponent<Props> = (props) => (
                 <Undertittel>Omsorgsdager og koronaviruset</Undertittel>
             </Box>
             <p style={{ marginTop: 0, marginBottom: '1rem' }}>
-                Stortinget vedtok endringer i regelverket for omsorgspenger 20.03.20
+                Stortinget vedtok endringer i regelverket for omsorgspenger 20.03.20.
             </p>
             <p>
                 Det ble vedtatt å doble antall omsorgsdager frem til 31.12.20. Disse dagene får du automatisk, du skal
