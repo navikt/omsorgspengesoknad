@@ -1,32 +1,32 @@
 # See .env for default ENV vars
 version: '3.7'
 services:
-  oms-api-mock:
+  api-mock:
     build: ../server
     environment:
       - "PORT=8088"
     ports:
       - 8088:8088
-  oms-web:
+  web:
     build:
       context: ../
       dockerfile: Dockerfile.web-cypress
     ports:
       - 8083:8083
     depends_on:
-      - oms-api-mock
+      - api-mock
     environment:
       #- API_URL=http://api-mock:8088 from .env
       #- PUBLIC_PATH=/familie/sykdom-i-familien/soknad/omsorgspenger from .env
-      - HOSTNAME=oms-web
+      - HOSTNAME=web
       - PORT=8083
-  oms-e2e:
+  e2e:
     build: .
     depends_on:
-      - oms-web
+      - web
     environment:
       - CYPRESS_video=false
-      - CYPRESS_baseUrl=http://oms-web:8083
+      - CYPRESS_baseUrl=http://web:8083
 # Dersom debugging er nødvendig
 #    working_dir: /e2e
 #    volumes:
