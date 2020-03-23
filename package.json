@@ -16,7 +16,10 @@
         "start-api-mock": "PORT=8088 node ./api-mock.js",
         "test": "jest --maxWorkers=2 --config ./jest/jest.config.js",
         "snyk-protect": "snyk protect",
-        "prepare": "npm run snyk-protect"
+        "prepare": "npm run snyk-protect",
+        "cypress:lib-install": "npm add -D cypress cypress-file-upload",
+        "cypress:open": "CYPRESS_baseUrl=http://localhost:8083 cypress open --project $PWD/e2e",
+        "cypress:run": "CYPRESS_baseUrl=http://localhost:8083 cypress run --project $PWD/e2e"
     },
     "jest": {
         "testEnvironment": "node"
