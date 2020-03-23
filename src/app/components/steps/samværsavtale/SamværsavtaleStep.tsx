@@ -26,7 +26,7 @@ const SamværsavtaleStep = ({ onValidSubmit }: StepConfigProps) => {
             id={StepID.SAMVÆRSAVTALE}
             onValidFormSubmit={onValidSubmit}
             useValidationErrorSummary={false}
-            skipValidation={true}> // KORONA
+            skipValidation={true}>
             {!showUploadForm && (
                 <Box>
                     <AlertStripeInfo>
