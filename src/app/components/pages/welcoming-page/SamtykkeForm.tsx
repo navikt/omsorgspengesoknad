@@ -55,9 +55,6 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
                 )}
                 {formValues.kroniskEllerFunksjonshemming === YesOrNo.YES && (
                     <>
-                        <CounsellorPanel>
-                            <FormattedHTMLMessage id={`introPage.legeerklæring.html`} />
-                        </CounsellorPanel>
                         <FormBlock>
                             <AppForm.ConfirmationCheckbox
                                 label={intlHelper(intl, 'welcomingPage.samtykke.tekst')}
