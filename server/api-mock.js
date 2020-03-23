@@ -3,8 +3,14 @@ const Busboy = require('busboy');
 
 const server = express();
 
+server.use(express.json());
 server.use((req, res, next) => {
-    const allowedOrigins = ['https://omsorgspengesoknad-mock.nais.oera.no', 'http://localhost:8083'];
+    const allowedOrigins = [
+        'http://host.docker.internal:8083',
+        'https://omsorgspengesoknad-mock.nais.oera.no',
+        'http://localhost:8083',
+        'http://web:8083'
+    ];
     const requestOrigin = req.headers.origin;
     if (allowedOrigins.indexOf(requestOrigin) >= 0) {
         res.set('Access-Control-Allow-Origin', requestOrigin);
@@ -15,6 +21,7 @@ server.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
     res.set('X-Content-Type-Options', 'nosniff');
     res.set('Access-Control-Allow-Headers', 'content-type');
+    res.set('Access-Control-Allow-Methods', ['GET','POST','DELETE']);
     res.set('Access-Control-Allow-Credentials', true);
     next();
 });
@@ -45,7 +52,7 @@ const barnMock = {
     ]
 };
 
-const startServer = () => {
+const startExpressServer = () => {
     const port = process.env.PORT || 8088;
 
     server.get('/health/isAlive', (req, res) => res.sendStatus(200));
@@ -73,8 +80,9 @@ const startServer = () => {
     });
 
     server.listen(port, () => {
-        console.log(`App listening on port: ${port}`);
+        console.log(`Express mock-api server listening on port: ${port}`);
     });
 };
 
-startServer();
+startExpressServer();
+

@@ -6,3 +6,5 @@
 /heroku/dist
 /e2e/cypress/screenshots/
 /e2e/cypress/videos/
+/yarn-error.log
+/omsorgspengesoknad.iml
