@@ -15,11 +15,6 @@ services:
       - 8083:8083
     depends_on:
       - api-mock
-    environment:
-      #- API_URL=http://api-mock:8088 from .env
-      #- PUBLIC_PATH=/familie/sykdom-i-familien/soknad/omsorgspenger from .env
-      - HOSTNAME=web
-      - PORT=8083
   e2e:
     build: .
     depends_on:
