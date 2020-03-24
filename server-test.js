@@ -16,8 +16,14 @@ server.set('views', `${__dirname}/dist`);
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
 
-const PUBLIC_PATH = process.env.PUBLIC_PATH || '/familie/sykdom-i-familien/soknad/omsorgspenger';
+console.error('process.env.PORT', process.env.PORT);
+console.error('process.env.PUBLIC_PATH', process.env.PUBLIC_PATH);
+console.error('process.env.API_URL', process.env.API_URL);
+console.error('process.env.DEMO_MODE', process.env.DEMO_MODE);
 
+const PUBLIC_PATH = process.env.PUBLIC_PATH; // '/familie/sykdom-i-familien/soknad/omsorgspenger';
+
+server.use(`/dist`, express.static(path.resolve(__dirname, 'dist')));
 server.use(`${PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
 server.use(`${PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'dist/css')));
 
@@ -38,15 +44,12 @@ const renderApp = () =>
     });
 
 const startServer = (html) => {
-    const routeSoknad = express.Router();
-    routeSoknad.use((req, res) => {
+
+    server.get(/^\/(?!.*dist).*$/, (req, res) => {
         res.send(html);
     });
-    server.use('/soknad', routeSoknad);
-    server.use('/barn', routeSoknad);
-    server.use('/', routeSoknad);
 
-    const port = process.env.PORT || 8080;
+    const port = process.env.PORT || 8083;
     server.listen(port, () => {
         console.log(`Server-test Web App listening on port: ${port}`);
     });
@@ -57,7 +60,6 @@ const startExpressWebServer = async () => {
         console.error('PUBLIC_PATH env var must be defined!');
         process.exit(1);
     }
-    console.log('PUBLIC_PATH', process.env.PUBLIC_PATH);
     if (!process.env.API_URL) {
         console.error('API_URL env var must be defined!');
         process.exit(1);
