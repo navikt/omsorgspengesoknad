@@ -70,7 +70,7 @@ const IntroPage: React.StatelessComponent = () => {
                         {values[PageFormField.harKroniskSyktBarn] === YesOrNo.NO && (
                             <Box margin="xl">
                                 <AlertStripeInfo>
-                                    <p style={{ marginTop: 0, marginBottom: 0 }}>
+                                    <p data-cy="harIkkeKroniskSyktBarn" style={{ marginTop: 0, marginBottom: 0 }}>
                                         Søknad om ekstra omsorgsdager gjelder <strong>kun</strong> for de som har
                                         kronisk sykt eller funksjonshemmet barn.
                                     </p>
