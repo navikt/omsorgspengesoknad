@@ -71,7 +71,7 @@
     "step.medlemskap.stepIndicatorLabel": "Om medlemskap i folketrygden",
 
     "step.legeerklaering.pageTitle": "Omsorgspengesøknad - legeerklæring",
-    "step.legeerklaering.stepTitle": "Last opp legeerklæring",
+    "step.legeerklaering.stepTitle": "Legeerklæring",
     "step.legeerklaering.stepIndicatorLabel": "Last opp din legeerklæring",
 
     "step.samværsavtale.pageTitle": "Omsorgspengesøknad - avtale om delt bosted",
@@ -84,10 +84,10 @@
 
     "introPage.tittel": "Søknad om ekstra omsorgsdager",
     "introPage.stegTittel": "Kan jeg bruke den digitale omsorgspengesøknaden?",
-    "introPage.intro.html": "<p>Den digitale søknaden er under utvikling og kan foreløpig kun brukes til å søke om utvidet rett til omsorgspenger for et barn som har en <strong>kronisk sykdom eller funksjonshemming</strong>. </p><div>For å søke må du være i én eller flere av disse arbeidssituasjonene:<ul><li>arbeidstaker</li><li>selvstendig næringsdrivende</li><li>frilanser</li></ul></div>",
-    "introPage.legeerklæring.html": "<p>Har du legeerklæringen klar? Du trenger den når du skal fylle ut søknaden. Da tar du bare et bilde av den og laster den opp.</p><p>Hvis du ikke bor på samme folkeregistrerte adresse som barnet, men har en avtale om delt bosted, må du også laste opp denne.</p>",
+    "introPage.intro.html": "<p>Den digitale søknaden er under utvikling og kan foreløpig <strong>kun</strong> brukes til å søke om ekstra omsorgsdager for barn med kronisk sykdom eller funksjonshemning.</p><div>For å søke må du være i én eller flere av disse arbeidssituasjonene:<ul><li>arbeidstaker</li><li>selvstendig næringsdrivende</li><li>frilanser</li></ul></div>",
+    "introPage.legeerklæring.html": "<p>For å søke om ekstra omsorgsdager må du ha legeerklæring for barnet. Hvis du ikke har legeerklæringen tilgjengelig nå, kan du ettersende den.</p><p>Hvis du ikke bor på samme folkeregistrerte adresse som barnet, men har en avtale om delt bosted, må du laste opp avtalen.</p>",
     "introPage.spm.kroniskEllerFunksjonshemmende": "Har du et barn som har en kronisk sykdom eller funksjonshemming?",
-    "introPage.infoIkkeKroniskEllerFunksjonshemmende.html": "<p>Du må foreløpig bruke <a href=\"{url}\" class=\"lenke\">papirsøknaden</a> hvis du skal<ol><li>søke om å ta over dager fra en annen omsorgsperson</li><li>fordele dager med en annen omsorgsperson</li><li>overføre dager til en ny samlivspartner</li></ol></p>",
+    "introPage.infoIkkeKroniskEllerFunksjonshemmende.html": "<p>Denne søknaden kan <strong>kun</strong> brukes til å søke om ekstra omsorgsdager for barn med kronisk sykdom eller funksjonshemning.</p><p>Du må foreløpig bruke <a href=\"{url}\" class=\"lenke\">papirsøknaden</a> hvis du skal<ol><li>dele omsorgsdager med en annen omsorgsperson</li><li>søke om å bli regnet som alene om omsorgen fordi den andre forelderen ikke kan ha tilsyn med barnet i en periode på minst 6 måneder</li></ol></p>",
 
     "welcomingPage.sidetittel": "Søknad om ekstra omsorgsdager",
     "welcomingPage.banner.tittel": "Hei,",
@@ -152,10 +152,10 @@
     "steg.medlemsskap.annetLandNeste12.hjelp": "Du svarer ja bare hvis du planlegger å oppholde deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.",
     "steg.medlemsskap.annetLandNeste12.listeTittel": "Utenlandsopphold neste 12 måneder",
 
-    "steg.lege.info.html": "<h2>Ta bilde av legeerklæringen og last opp</h2><h3>Slik tar du et godt bilde:</h3><ul><li>Hold mobilen eller kameraet direkte over dokumentet.</li><li>Legeerklæringen skal fylle hele bildet. Bildet skal ikke <i>ikke</i> inneholde annen dokumentasjon eller gjenstander.</li><li>Bildet må inneholde all tekst i legeerkaring. Hvis legeerklæringen er skrevet på mer enn én side, bør du last opp flere bilder. Du kan ikke laste opp mer enn 3 bilder.</li></ul><h3>Etter at du har tatt bildet, sjekk følgende før du laster opp:</h3><ul><li>Legeerklæringen har riktig retting.</li><li>Teksten til legeerklæringen er godt leselig.</li><li>Bildet er godt opplyst, uten skygger.</li></ul>",
+    "steg.lege.info.html": "<p>Her skal du laste opp bilde av legeerklæringen som legen har skrevet i papirsøknaden. Vær nøye med at all tekst er med på bildet, inkludert legens signatur. Hvis du ikke har legeerklæring tilgjengelig når du søker, kan den ettersendes.</p><p>Vi jobber for at du skal kunne ettersende dokumentasjon digitalt, men per i dag må du sende det i posten. <a href=\"{lenke}\" class=\"lenke\" rel=\"noopener\">Her får du veiledning til hvordan du ettersender dokumentasjon</a>.</p>",
     "steg.lege.vedlegg": "Last opp bilde av legeerklæringen (maks 3 bilder)",
     "steg.lege.intro.1.html": "For de første 8 ukene må legeerklæringen skrives av en sykehuslege. Etter de første 8 ukene kan legeerklæringen skrives av alle leger i spesialisthelsetjenesten.",
-    "steg.lege.intro.2.html": "Disse yrkesgruppene kan <strong>ikke</strong> undertegne legeerklæringen: fastlege, spesialist i allmenmedisin, legesekretær, sosionom, psykolog, psykologspesialist eller fysioterapeut, fastlege og spesialist i allmennmedisin.",
+    "steg.lege.intro.2.html": "Disse yrkesgruppene kan <strong>ikke</strong> undertegne legeerklæringen: Sosionom, legesekretær, psykolog, psykologspesialist, fysioterapeut, fastlege og spesialist i allmennmedisin.",
 
     "steg.samværsavtale.info.html": "<p>Ta bilde av avtalen om delt bosted og last opp.</p>Vær nøye med:<ul><li>å få all tekst med på bildet</li><li>at signaturen fra begge parter er synlig på bildet</li><li>at bildet er leselig</li></ul>",
     "steg.samværsavtale.vedlegg": "Last opp bilde av avtalen (maks 3 bilder)",
@@ -193,7 +193,7 @@
 
     "page.generalErrorPage.sidetittel": "Feil",
     "page.generalErrorPage.tittel": "Noe gikk galt...",
-    "page.generalErrorPage.tekst": "Beklager, her har det dessverre skjedd en feil. Du kan prøve på nytt om ei lita stund.",
+    "page.generalErrorPage.tekst": "Beklager, her har det dessverre skjedd en feil. Vennligst prøv igjen senere.",
 
     "page.ikkeMyndig.sidetittel": "Søknad om ekstra omsorgsdager - ikke myndig",
     "page.ikkeMyndig.banner.tittel": "Hei!",
@@ -204,7 +204,6 @@
     "vedleggsliste.fjernKnapp": "Fjern vedlegg",
     "vedleggsliste.ingenLegeerklæringLastetOpp": "Ingen vedlegg er lastet opp",
     "vedleggsliste.ingenSamværsavtaleLastetOpp": "Ingen vedlegg er lastet opp",
-    "vedleggsliste.legeerklæringLastetOppSjekkliste": "Før du fortsetter, klikk på hvert enkelt filnavn og sjekk at bildekvaliteten er god nok. Bildet åpner i en ny fane.",
 
     "fieldvalidation.påkrevd": "Feltet er påkrevd",
     "fieldvalidation.fødselsnummer.11siffer": "Fødselsnummeret må bestå av 11 siffer",

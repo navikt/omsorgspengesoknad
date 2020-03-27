@@ -18,7 +18,6 @@ import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/S
 const SamværsavtaleStep = ({ onValidSubmit }: StepConfigProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const intl = useIntl();
-    // KORONA; const isRunningDemoMode = appIsRunningInDemoMode();
     const showUploadForm = enableDemoModeUpload() === false;
 
     return (
@@ -26,7 +25,7 @@ const SamværsavtaleStep = ({ onValidSubmit }: StepConfigProps) => {
             id={StepID.SAMVÆRSAVTALE}
             onValidFormSubmit={onValidSubmit}
             useValidationErrorSummary={false}
-            skipValidation={true}> // KORONA
+            skipValidation={true}>
             {!showUploadForm && (
                 <Box>
                     <AlertStripeInfo>
