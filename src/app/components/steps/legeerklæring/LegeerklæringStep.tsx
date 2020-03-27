@@ -6,7 +6,7 @@ import HelperTextPanel from 'common/components/helper-text-panel/HelperTextPanel
 import intlHelper from 'common/utils/intlUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
-import { appIsRunningInDemoMode, enableDemoModeUpload } from '../../../utils/envUtils';
+import { enableDemoModeUpload } from '../../../utils/envUtils';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import { validateLegeerklæring } from '../../../validation/fieldValidations';
 import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
@@ -17,7 +17,6 @@ import LegeerklæringFileList from '../../legeerklæring-attachment-list/Legeerk
 const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
     const intl = useIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
-    const isRunningDemoMode = appIsRunningInDemoMode();
     const showUploadForm = enableDemoModeUpload() === false;
     const hasPendingUploads: boolean = (formValues.legeerklæring || []).find((a) => a.pending === true) !== undefined;
 
@@ -26,7 +25,7 @@ const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
             id={StepID.LEGEERKLÆRING}
             onValidFormSubmit={onValidSubmit}
             useValidationErrorSummary={false}
-            skipValidation={isRunningDemoMode}
+            skipValidation={true}
             buttonDisabled={hasPendingUploads}>
             {!showUploadForm && (
                 <Box>
@@ -38,7 +37,13 @@ const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
             {showUploadForm && (
                 <>
                     <HelperTextPanel>
-                        <FormattedHTMLMessage id="steg.lege.info.html" />
+                        <FormattedHTMLMessage
+                            id="steg.lege.info.html"
+                            values={{
+                                lenke:
+                                    'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/ettersendelse'
+                            }}
+                        />
                     </HelperTextPanel>
                     <Box margin="l">
                         <FormikFileUploader

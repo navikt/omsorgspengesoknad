@@ -117,13 +117,13 @@ describe('fieldValidations', () => {
         const failedAttachment1: Attachment = { file: fileMock, pending: true, uploaded: false };
         const failedAttachment2: Attachment = { file: fileMock, pending: false, uploaded: false };
 
-        it('should return error message saying that files must be uploaded if list is empty', () => {
+        it.skip('should return error message saying that files must be uploaded if list is empty', () => {
             expect(validateLegeerklæring([])).toEqual(
                 fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler)
             );
         });
 
-        it('should return error message saying that files must be uploaded if list contains no successfully uploaded attachments', () => {
+        it.skip('should return error message saying that files must be uploaded if list contains no successfully uploaded attachments', () => {
             expect(validateLegeerklæring([failedAttachment1, failedAttachment2])).toEqual(
                 fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler)
             );

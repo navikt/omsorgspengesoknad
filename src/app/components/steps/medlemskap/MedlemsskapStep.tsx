@@ -38,7 +38,7 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                 />
             </FormBlock>
             {formValues.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
-                <FormBlock margin="m">
+                <FormBlock margin="l">
                     <BostedUtlandListAndDialog<AppFormField>
                         name={AppFormField.utenlandsoppholdSiste12Mnd}
                         minDate={date1YearAgo}
@@ -60,7 +60,7 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                 />
             </FormBlock>
             {formValues.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
-                <FormBlock margin="m">
+                <FormBlock margin="l">
                     <BostedUtlandListAndDialog<AppFormField>
                         minDate={dateToday}
                         maxDate={date1YearFromNow}
