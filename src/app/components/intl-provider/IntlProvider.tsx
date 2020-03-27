@@ -10,8 +10,8 @@ import { Locale } from 'common/types/Locale';
 const appBokmålstekster = require('../../i18n/nb.json');
 const appNynorsktekster = require('../../i18n/nn.json');
 
-const bokmålstekster = { ...bostedUtlandMessages.nb, ...allCommonMessages.nb, ...appBokmålstekster };
-const nynorsktekster = { ...bostedUtlandMessages.nn, ...allCommonMessages.nn, ...appNynorsktekster };
+const bokmålstekster = { ...allCommonMessages.nb, ...bostedUtlandMessages.nb, ...appBokmålstekster };
+const nynorsktekster = { ...allCommonMessages.nn, ...bostedUtlandMessages.nn, ...appNynorsktekster };
 
 export interface IntlProviderProps {
     locale: Locale;

@@ -1,11 +1,13 @@
-const express = require('express');
 const path = require('path');
+const process = require('process');
+const express = require('express');
 const mustacheExpress = require('mustache-express');
 const Promise = require('promise');
 const compression = require('compression');
 const helmet = require('helmet');
 const createEnvSettingsFile = require('./src/build/scripts/envSettings');
 const getDecorator = require('./src/build/scripts/decorator');
+createEnvSettingsFile(path.resolve(`${__dirname}/dist/js/settings.js`));
 
 const server = express();
 server.use(helmet());
@@ -14,7 +16,12 @@ server.set('views', `${__dirname}/dist`);
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
 
-createEnvSettingsFile(path.resolve(`${__dirname}/dist/js/settings.js`));
+const PUBLIC_PATH = process.env.PUBLIC_PATH;
+server.use(`${PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
+server.use(`${PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'dist/css')));
+
+server.get(`${PUBLIC_PATH}/health/isAlive`, (req, res) => res.sendStatus(200));
+server.get(`${PUBLIC_PATH}/health/isReady`, (req, res) => res.sendStatus(200));
 
 const verifyLoginUrl = () =>
     new Promise((resolve, reject) => {
@@ -37,10 +44,6 @@ const renderApp = (decoratorFragments) =>
     });
 
 const startServer = (html) => {
-    server.use(`${process.env.PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
-    server.use(`${process.env.PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'dist/css')));
-    server.get(`${process.env.PUBLIC_PATH}/health/isAlive`, (req, res) => res.sendStatus(200));
-    server.get(`${process.env.PUBLIC_PATH}/health/isReady`, (req, res) => res.sendStatus(200));
 
     server.get(/^\/(?!.*dist).*$/, (req, res) => {
         res.send(html);
