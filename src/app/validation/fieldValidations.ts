@@ -4,7 +4,12 @@ import { Attachment } from 'common/types/Attachment';
 import { YesOrNo } from 'common/types/YesOrNo';
 import { attachmentHasBeenUploaded } from 'common/utils/attachmentUtils';
 import {
-    date1YearAgo, date1YearFromNow, DateRange, dateRangesCollide, dateRangesExceedsRange, dateToday
+    date1YearAgo,
+    date1YearFromNow,
+    DateRange,
+    dateRangesCollide,
+    dateRangesExceedsRange,
+    dateToday
 } from 'common/utils/dateUtils';
 import { createFieldValidationError } from 'common/validation/fieldValidations';
 import { FieldValidationResult } from 'common/validation/types';
@@ -117,7 +122,7 @@ export const validateUtenlandsoppholdNeste12Mnd = (utenlandsopphold: Utenlandsop
 
 export const validateLegeerklæring = (attachments: Attachment[]): FieldValidationResult => {
     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
-/* -- KORONA
+    /* -- KORONA
     if (uploadedAttachments.length === 0) {
         return fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler);
     }
@@ -128,13 +133,11 @@ export const validateLegeerklæring = (attachments: Attachment[]): FieldValidati
     return undefined;
 };
 
-export const validateSamværsavtale = (attachments: Attachment[]): FieldValidationResult => {
+export const validateDeltBostedAvtale = (attachments: Attachment[]): FieldValidationResult => {
     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
-/* -- KORONA
     if (uploadedAttachments.length === 0) {
         return fieldValidationError(AppFieldValidationErrors.samværsavtale_mangler);
     }
-*/
     if (uploadedAttachments.length > 3) {
         return fieldValidationError(AppFieldValidationErrors.samværsavtale_forMangeFiler);
     }

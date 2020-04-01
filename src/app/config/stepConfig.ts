@@ -8,7 +8,7 @@ export enum StepID {
     'MEDLEMSKAP' = 'medlemskap',
     'ARBEID' = 'arbeid',
     'LEGEERKLÆRING' = 'legeerklaering',
-    'SAMVÆRSAVTALE' = 'samværsavtale',
+    'DELT_BOSTED' = 'deltBosted',
     'SUMMARY' = 'oppsummering'
 }
 
@@ -64,14 +64,14 @@ export const getStepConfig = (formData?: OmsorgspengesøknadFormData): StepConfi
         [StepID.LEGEERKLÆRING]: {
             ...getStepConfigItemTextKeys(StepID.LEGEERKLÆRING),
             index: idx++,
-            nextStep: avtaleStepIsIncluded ? StepID.SAMVÆRSAVTALE : StepID.SUMMARY,
+            nextStep: avtaleStepIsIncluded ? StepID.DELT_BOSTED : StepID.SUMMARY,
             backLinkHref: getSøknadRoute(StepID.MEDLEMSKAP)
         }
     };
 
     if (avtaleStepIsIncluded) {
-        config[StepID.SAMVÆRSAVTALE] = {
-            ...getStepConfigItemTextKeys(StepID.SAMVÆRSAVTALE),
+        config[StepID.DELT_BOSTED] = {
+            ...getStepConfigItemTextKeys(StepID.DELT_BOSTED),
             index: idx++,
             nextStep: StepID.SUMMARY,
             backLinkHref: getSøknadRoute(StepID.LEGEERKLÆRING)
@@ -81,9 +81,7 @@ export const getStepConfig = (formData?: OmsorgspengesøknadFormData): StepConfi
     config[StepID.SUMMARY] = {
         ...getStepConfigItemTextKeys(StepID.SUMMARY),
         index: idx++,
-        backLinkHref: avtaleStepIsIncluded
-            ? getSøknadRoute(StepID.SAMVÆRSAVTALE)
-            : getSøknadRoute(StepID.LEGEERKLÆRING),
+        backLinkHref: avtaleStepIsIncluded ? getSøknadRoute(StepID.DELT_BOSTED) : getSøknadRoute(StepID.LEGEERKLÆRING),
         nextButtonLabel: 'step.sendButtonLabel',
         nextButtonAriaLabel: 'step.sendButtonAriaLabel'
     };

@@ -9,20 +9,20 @@ import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import { enableDemoModeUpload } from '../../../utils/envUtils';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
-import { validateSamværsavtale } from '../../../validation/fieldValidations';
+import { validateDeltBostedAvtale } from '../../../validation/fieldValidations';
 import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
-import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
+import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
 
-const SamværsavtaleStep = ({ onValidSubmit }: StepConfigProps) => {
+const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const intl = useIntl();
     const showUploadForm = enableDemoModeUpload() === false;
 
     return (
         <FormikStep
-            id={StepID.SAMVÆRSAVTALE}
+            id={StepID.DELT_BOSTED}
             onValidFormSubmit={onValidSubmit}
             useValidationErrorSummary={false}
             skipValidation={true}>
@@ -46,16 +46,16 @@ const SamværsavtaleStep = ({ onValidSubmit }: StepConfigProps) => {
                             onFileInputClick={() => {
                                 setFilesThatDidntGetUploaded([]);
                             }}
-                            validate={validateSamværsavtale}
+                            validate={validateDeltBostedAvtale}
                             onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                         />
                     </FormBlock>
                     <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
-                    <SamværsavtaleAttachmentList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
+                    <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
                 </>
             )}
         </FormikStep>
     );
 };
 
-export default SamværsavtaleStep;
+export default DeltBostedAvtaleStep;

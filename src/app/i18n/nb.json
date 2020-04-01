@@ -74,9 +74,9 @@
     "step.legeerklaering.stepTitle": "Legeerklæring",
     "step.legeerklaering.stepIndicatorLabel": "Last opp din legeerklæring",
 
-    "step.samværsavtale.pageTitle": "Omsorgspengesøknad - avtale om delt bosted",
-    "step.samværsavtale.stepTitle": "Avtale om delt bosted",
-    "step.samværsavtale.stepIndicatorLabel": "Last opp din avtale om delt bosted",
+    "step.deltBosted.pageTitle": "Omsorgspengesøknad - avtale om delt bosted",
+    "step.deltBosted.stepTitle": "Avtale om delt bosted",
+    "step.deltBosted.stepIndicatorLabel": "Last opp din avtale om delt bosted",
 
     "step.oppsummering.pageTitle": "Omsorgspengesøknad - oppsummering",
     "step.oppsummering.stepTitle": "Oppsummering",
@@ -203,7 +203,7 @@
 
     "vedleggsliste.fjernKnapp": "Fjern vedlegg",
     "vedleggsliste.ingenLegeerklæringLastetOpp": "Ingen vedlegg er lastet opp",
-    "vedleggsliste.ingenSamværsavtaleLastetOpp": "Ingen vedlegg er lastet opp",
+    "vedleggsliste.ingenBostedsavtaleLastetOpp": "Ingen vedlegg er lastet opp",
 
     "fieldvalidation.påkrevd": "Feltet er påkrevd",
     "fieldvalidation.fødselsnummer.11siffer": "Fødselsnummeret må bestå av 11 siffer",

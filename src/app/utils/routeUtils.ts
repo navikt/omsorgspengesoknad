@@ -3,8 +3,12 @@ import { getStepConfig, StepID } from '../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import { appIsRunningInDemoMode, appIsRunningInDevEnvironment } from './envUtils';
 import {
-    arbeidStepIsAvailable, legeerklæringStepAvailable, medlemskapStepAvailable,
-    opplysningerOmBarnetStepAvailable, samværsavtaleStepAvailable, summaryStepAvailable
+    arbeidStepIsAvailable,
+    legeerklæringStepAvailable,
+    medlemskapStepAvailable,
+    opplysningerOmBarnetStepAvailable,
+    samværsavtaleStepAvailable,
+    summaryStepAvailable
 } from './stepUtils';
 
 export const getSøknadRoute = (stepId: StepID | undefined) => {
@@ -30,7 +34,7 @@ export const isAvailable = (path: StepID | RouteConfig, values: Omsorgspengesøk
                 return arbeidStepIsAvailable(values);
             case StepID.MEDLEMSKAP:
                 return medlemskapStepAvailable(values);
-            case StepID.SAMVÆRSAVTALE:
+            case StepID.DELT_BOSTED:
                 return samværsavtaleStepAvailable(values);
             case StepID.SUMMARY:
                 return summaryStepAvailable(values);

@@ -203,7 +203,7 @@
 
     "vedleggsliste.fjernKnapp": "Fjern vedlegg",
     "vedleggsliste.ingenLegeerklæringLastetOpp": "Ingen vedlegg er lastet opp",
-    "vedleggsliste.ingenSamværsavtaleLastetOpp": "Ingen vedlegg er lastet opp",
+    "vedleggsliste.ingenBostedsavtaleLastetOpp": "Ingen vedlegg er lastet opp",
 
     "fieldvalidation.påkrevd": "Feltet er påkrevd",
     "fieldvalidation.fødselsnummer.11siffer": "Fødselsnummeret må bestå av 11 siffer",

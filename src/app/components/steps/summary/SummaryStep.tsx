@@ -11,9 +11,7 @@ import SummaryList from 'common/components/summary-list/SummaryList';
 import { Locale } from 'common/types/Locale';
 import intlHelper from 'common/utils/intlUtils';
 import { formatName } from 'common/utils/personUtils';
-import {
-    renderUtenlandsoppholdSummary
-} from 'app/components/summary-renderers/renderUtenlandsoppholdSummary';
+import { renderUtenlandsoppholdSummary } from 'app/components/summary-renderers/renderUtenlandsoppholdSummary';
 import { sendApplication } from '../../../api/api';
 import routeConfig from '../../../config/routeConfig';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
@@ -26,7 +24,7 @@ import { mapFormDataToApiData } from '../../../utils/mapFormDataToApiData';
 import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';
 import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringAttachmentList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
-import SamværsavtaleAttachmentList from '../../samværsavtale-attachment-list/SamværsavtaleAttachmentList';
+import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
 import AnnetBarnSummary from './AnnetBarnSummary';
 import BarnRecveivedFormSApiSummary from './BarnReceivedFromApiSummary';
 
@@ -168,7 +166,7 @@ const SummaryStep = ({ formValues }: StepConfigProps) => {
                                     <Box margin="l">
                                         <ContentWithHeader
                                             header={intlHelper(intl, 'steg.oppsummering.samværsavtale.header')}>
-                                            <SamværsavtaleAttachmentList includeDeletionFunctionality={false} />
+                                            <DeltBostedAvtaleAttachmentList includeDeletionFunctionality={false} />
                                         </ContentWithHeader>
                                     </Box>
                                 )}
