@@ -11,14 +11,14 @@ import { removeElementFromArray } from 'common/utils/listUtils';
 import { deleteFile } from '../../api/api';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 
-interface SamværsavtaleAttachmentListProps {
+interface DeltBostedAvtaleAttachmentListProps {
     includeDeletionFunctionality: boolean;
     wrapNoAttachmentsInBox?: boolean;
 }
 
-type Props = SamværsavtaleAttachmentListProps;
+type Props = DeltBostedAvtaleAttachmentListProps;
 
-const SamværsavtaleAttachmentList: React.FunctionComponent<Props> = ({
+const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     wrapNoAttachmentsInBox,
     includeDeletionFunctionality
 }) => {
@@ -30,7 +30,7 @@ const SamværsavtaleAttachmentList: React.FunctionComponent<Props> = ({
     if (!containsAnyUploadedAttachments(avtale)) {
         const noAttachmentsText = (
             <Normaltekst>
-                <FormattedMessage id="vedleggsliste.ingenSamværsavtaleLastetOpp" />
+                <FormattedMessage id="vedleggsliste.ingenBostedsavtaleLastetOpp" />
             </Normaltekst>
         );
         if (wrapNoAttachmentsInBox) {
@@ -62,4 +62,4 @@ const SamværsavtaleAttachmentList: React.FunctionComponent<Props> = ({
     }
 };
 
-export default connect<SamværsavtaleAttachmentListProps, AppFormField>(SamværsavtaleAttachmentList);
+export default connect<DeltBostedAvtaleAttachmentListProps, AppFormField>(DeltBostedAvtaleAttachmentList);

@@ -13,7 +13,7 @@ import ArbeidStep from '../steps/arbeid/ArbeidStep';
 import LegeerklæringStep from '../steps/legeerklæring/LegeerklæringStep';
 import MedlemsskapStep from '../steps/medlemskap/MedlemsskapStep';
 import OpplysningerOmBarnetStep from '../steps/opplysninger-om-barnet/OpplysningerOmBarnetStep';
-import SamværsavtaleStep from '../steps/samværsavtale/SamværsavtaleStep';
+import DeltBostedAvtaleStep from '../steps/delt-bosted-avtale/DeltBostedAvtaleStep';
 import SummaryStep from '../steps/summary/SummaryStep';
 
 const OmsorgspengesøknadContent: React.FunctionComponent = () => {
@@ -93,12 +93,12 @@ const OmsorgspengesøknadContent: React.FunctionComponent = () => {
                 />
             )}
 
-            {isAvailable(StepID.SAMVÆRSAVTALE, values) && (
+            {isAvailable(StepID.DELT_BOSTED, values) && (
                 <Route
-                    path={getSøknadRoute(StepID.SAMVÆRSAVTALE)}
+                    path={getSøknadRoute(StepID.DELT_BOSTED)}
                     render={() => (
-                        <SamværsavtaleStep
-                            onValidSubmit={() => navigateToNextStep(StepID.SAMVÆRSAVTALE)}
+                        <DeltBostedAvtaleStep
+                            onValidSubmit={() => navigateToNextStep(StepID.DELT_BOSTED)}
                             formValues={values}
                         />
                     )}

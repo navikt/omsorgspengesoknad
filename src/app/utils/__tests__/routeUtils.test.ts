@@ -47,7 +47,7 @@ describe('routeUtils', () => {
         });
 
         it('should return result from calling samværsavtaleAvailable if route=StepID.SAMVÆRSAVTALE', () => {
-            const result = isAvailable(StepID.SAMVÆRSAVTALE, formValues);
+            const result = isAvailable(StepID.DELT_BOSTED, formValues);
             expect(stepUtils.samværsavtaleStepAvailable).toHaveBeenCalledWith(formValues);
             expect(result).toEqual(stepUtils.samværsavtaleStepAvailable(formValues));
         });
