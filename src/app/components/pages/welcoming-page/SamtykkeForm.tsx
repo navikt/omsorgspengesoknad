@@ -51,6 +51,9 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
                             id={`introPage.infoIkkeKroniskEllerFunksjonshemmende.html`}
                             values={{ url: getLenker(intl.locale).papirskjemaPrivat }}
                         />
+                        <FormattedHTMLMessage
+                            id={`introPage.infoIkkeKroniskEllerFunksjonshemmende.html.ekstra`}
+                        />
                     </CounsellorPanel>
                 )}
                 {formValues.kroniskEllerFunksjonshemming === YesOrNo.YES && (
