@@ -153,7 +153,7 @@
     "steg.medlemsskap.annetLandNeste12.hjelp": "Du svarer ja bare hvis du planlegger å oppholde deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.",
     "steg.medlemsskap.annetLandNeste12.listeTittel": "Utenlandsopphold neste 12 måneder",
 
-    "steg.lege.info.html": "<p>Her skal du laste opp bilde av legeerklæringen som legen har skrevet i papirsøknaden. Vær nøye med at all tekst er med på bildet, inkludert legens signatur. Hvis du ikke har legeerklæring tilgjengelig når du søker, kan den ettersendes.</p><p>Vi jobber for at du skal kunne ettersende dokumentasjon digitalt, men per i dag må du sende det i posten. <a href=\"{lenke}\" class=\"lenke\" rel=\"noopener\">Her får du veiledning til hvordan du ettersender dokumentasjon</a>.</p>",
+    "steg.lege.info.html": "<p>Her skal du laste opp bilde av legeerklæringen som legen har skrevet i papirsøknaden. Vær nøye med at all tekst er med på bildet, inkludert legens signatur. Hvis du ikke har legeerklæring tilgjengelig når du søker, kan den ettersendes. <a href=\"{lenke}\" class=\"lenke\" target=\"_blank\" rel=\"noopener noreferrer\">Her får du veiledning til hvordan du ettersender dokumentasjon</a>.</p>",
     "steg.lege.vedlegg": "Last opp bilde av legeerklæringen (maks 3 bilder)",
     "steg.lege.intro.1.html": "For de første 8 ukene må legeerklæringen skrives av en sykehuslege. Etter de første 8 ukene kan legeerklæringen skrives av alle leger i spesialisthelsetjenesten.",
     "steg.lege.intro.2.html": "Disse yrkesgruppene kan <strong>ikke</strong> undertegne legeerklæringen: Sosionom, legesekretær, psykolog, psykologspesialist, fysioterapeut, fastlege og spesialist i allmennmedisin.",
@@ -223,5 +223,20 @@
     "fieldvalidation.utenlandsopphold_overlapper": "Ett eller flere av utenlandsoppholdene har datoer som overlapper",
     "fieldvalidation.utenlandsopphold_utenfor_periode": "Ett eller flere av utenlandsoppholdene er utenfor tillatt tidsrom",
 
-    "demoInfo.html": "Dette er en <strong>demoversjon</strong> av søknadsskjemaet for omsorgspenger, og blir kun brukt i sammenheng med brukertest på <a href=\"http://navlab.no/\">http://navlab.no/</a>"
+    "demoInfo.html": "Dette er en <strong>demoversjon</strong> av søknadsskjemaet for omsorgspenger, og blir kun brukt i sammenheng med brukertest på <a href=\"http://navlab.no/\">http://navlab.no/</a>",
+
+    "psg-temp.innholdstittel": "Ta bilde av dokumentene og last opp",
+    "psg-temp.section1.tittel": "Slik tar du et godt bilde:",
+    "psg-temp.section1.liste": "<li>Hold mobilen eller kameraet direkte over dokumentet.</li><li>Dokumentet skal fylle hele bildet. Bildet skal ikke inneholde annen dokumentasjon eller gjenstander.</li><li>Bildet må inneholde all tekst i dokumentet. Hvis dokumentet er på mer enn én side, bør du laste opp flere bilder.</li>",
+    "psg-temp.section2.tittel": "Etter at du har tatt bildet, sjekk følgende før du laster opp:",
+    "psg-temp.section2.liste": "<li>Dokumentet har riktig retning.</li><li>Teksten til dokumentet er godt leselig.</li><li>Bildet er godt opplyst, uten skygger.</li>",
+    "psg-temp.icon.heading": "Bra og dårlige eksempler på bilder av dokumenter",
+    "psg-temp.good": "Bra",
+    "psg-temp.bad": "Dårlig",
+    "psg-temp.icon.label.good": "Dokumentet fyller hele bildet",
+    "psg-temp.icon.label.keystone": "Bildet er ikke tatt ovenfra",
+    "psg-temp.icon.label.horizontal": "Bildet har ikke riktig retning",
+    "psg-temp.icon.label.shadow": "Bildet har skygge på dokumentet",
+    "psg-temp.lenkepanel.url": "https://www.nav.no/no/nav-og-samfunn/kontakt-nav/relatert-informasjon/ta-bilde-av-vedleggene-med-mobilen",
+    "psg-temp.lenkepanel.text": "Mer hjelp til å laste opp vedlegg (åpnes i et nytt vindu)."
 }

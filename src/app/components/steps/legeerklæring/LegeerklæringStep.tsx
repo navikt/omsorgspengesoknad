@@ -13,6 +13,9 @@ import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringFileList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
+import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
+import FormBlock from 'common/components/form-block/FormBlock';
+import PictureScanningGuide from '../../picture-scanning-guide/PictureScanningGuide';
 
 const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
     const intl = useIntl();
@@ -36,15 +39,24 @@ const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
             )}
             {showUploadForm && (
                 <>
-                    <HelperTextPanel>
-                        <FormattedHTMLMessage
-                            id="steg.lege.info.html"
-                            values={{
-                                lenke:
-                                    'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/ettersendelse'
-                            }}
-                        />
-                    </HelperTextPanel>
+                    <Box padBottom="xl">
+                        <CounsellorPanel>
+                            <p>
+                                <FormattedHTMLMessage
+                                    id={'steg.lege.info.html'}
+                                    values={{
+                                        lenke:
+                                            'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/ettersendelse'
+                                    }}
+                                />
+                            </p>
+                        </CounsellorPanel>
+                    </Box>
+                    <FormBlock>
+                        <HelperTextPanel>
+                            <PictureScanningGuide />
+                        </HelperTextPanel>
+                    </FormBlock>
                     <Box margin="l">
                         <FormikFileUploader
                             name={AppFormField.legeerklæring}
