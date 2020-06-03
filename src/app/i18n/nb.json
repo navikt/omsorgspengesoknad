@@ -84,12 +84,7 @@
 
     "introPage.tittel": "Søknad om ekstra omsorgsdager",
     "introPage.stegTittel": "Kan jeg bruke den digitale omsorgspengesøknaden?",
-    "introPage.intro.html": "<p>Den digitale søknaden er under utvikling og kan foreløpig <strong>kun</strong> brukes til å søke om ekstra omsorgsdager for barn med kronisk sykdom eller funksjonshemning.</p><div>For å søke må du være i én eller flere av disse arbeidssituasjonene:<ul><li>arbeidstaker</li><li>selvstendig næringsdrivende</li><li>frilanser</li></ul></div>",
-    "introPage.legeerklæring.html": "<p>For å søke om ekstra omsorgsdager må du ha legeerklæring for barnet. Hvis du ikke har legeerklæringen tilgjengelig nå, kan du ettersende den.</p><p>Hvis du ikke bor på samme folkeregistrerte adresse som barnet, men har en avtale om delt bosted, må du laste opp avtalen.</p>",
     "introPage.spm.kroniskEllerFunksjonshemmende": "Har du et barn som har en kronisk sykdom eller funksjonshemming?",
-    "introPage.infoIkkeKroniskEllerFunksjonshemmende.html": "<p>Denne søknaden kan <strong>kun</strong> brukes til å søke om ekstra omsorgsdager for barn med kronisk sykdom eller funksjonshemning.</p><p>Du må foreløpig <a href=\"{url}\" class=\"lenke\" target=\"_blank\" rel=\"noopener noreferrer\">sende skjema i posten</a> hvis du skal<ol><li>dele omsorgsdager med en annen omsorgsperson</li><li>søke om å bli regnet som alene om omsorgen fordi den andre forelderen ikke kan ha tilsyn med barnet i en periode på minst 6 måneder</li></ol></p>",
-    "introPage.infoIkkeKroniskEllerFunksjonshemmende.html.ekstra": "<div>Hvis du skal overføre dager til en annen omsorgsperson pga. stengt barnehage eller skole i forbindelse med koronaviruset <a href=\"https://www.nav.no/familie/sykdom-i-familien/soknad/overfore-omsorgsdager\" class=\"lenke\" target=\"_blank\" rel=\"noopener noreferrer\">gjør du det her</a>.</div>",
-
     "welcomingPage.sidetittel": "Søknad om ekstra omsorgsdager",
     "welcomingPage.banner.tittel": "Hei,",
     "welcomingPage.banner.tekst": "jeg vil hjelpe deg med å fylle ut søknaden!",
@@ -153,12 +148,7 @@
     "steg.medlemsskap.annetLandNeste12.hjelp": "Du svarer ja bare hvis du planlegger å oppholde deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.",
     "steg.medlemsskap.annetLandNeste12.listeTittel": "Utenlandsopphold neste 12 måneder",
 
-    "steg.lege.info.html": "<p>Her skal du laste opp bilde av legeerklæringen som legen har skrevet i papirsøknaden. Vær nøye med at all tekst er med på bildet, inkludert legens signatur. Hvis du ikke har legeerklæring tilgjengelig når du søker, kan den ettersendes. <a href=\"{lenke}\" class=\"lenke\" target=\"_blank\" rel=\"noopener noreferrer\">Her får du veiledning til hvordan du ettersender dokumentasjon</a>.</p>",
     "steg.lege.vedlegg": "Last opp bilde av legeerklæringen (maks 3 bilder)",
-    "steg.lege.intro.1.html": "For de første 8 ukene må legeerklæringen skrives av en sykehuslege. Etter de første 8 ukene kan legeerklæringen skrives av alle leger i spesialisthelsetjenesten.",
-    "steg.lege.intro.2.html": "Disse yrkesgruppene kan <strong>ikke</strong> undertegne legeerklæringen: Sosionom, legesekretær, psykolog, psykologspesialist, fysioterapeut, fastlege og spesialist i allmennmedisin.",
-
-    "steg.samværsavtale.info.html": "<p>Ta bilde av avtalen om delt bosted og last opp.</p>Vær nøye med:<ul><li>å få all tekst med på bildet</li><li>at signaturen fra begge parter er synlig på bildet</li><li>at bildet er leselig</li></ul>",
     "steg.samværsavtale.vedlegg": "Last opp bilde av avtalen (maks 3 bilder)",
 
     "steg.oppsummering.info": "Les gjennom oppsummeringen før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.",
@@ -187,10 +177,6 @@
 
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
     "page.confirmation.tittel": "Vi har mottatt søknad fra deg om omsorgspenger",
-    "page.confirmation.undertittel": "Hva skjer videre nå?",
-    "page.confirmation.hvaSkjer1": "Søknaden din vil bli synlig på Ditt NAV etter omkring en uke. Da vil du også kunne se hva slags dokumentasjon vi har fått fra deg.",
-    "page.confirmation.hvaSkjer2": "Vi starter behandlingen av søknaden din når vi har mottatt all nødvendig dokumentasjon. Vi kontakter deg hvis vi trenger flere opplysninger i saken din.",
-    "page.confirmation.hvaSkjer3": "Når søknaden er ferdig behandlet, får du et svarbrev fra oss. Du kan se <a href=\"{lenke}\" class=\"lenke\" rel=\"noopener\">saksbehandlingstiden</a> for ditt fylke her.",
 
     "page.generalErrorPage.sidetittel": "Feil",
     "page.generalErrorPage.tittel": "Noe gikk galt...",
@@ -221,20 +207,5 @@
     "fieldvalidation.samværsavtale.forMangeFiler": "Du kan maksimalt laste opp 3 bilder",
     "fieldvalidation.utenlandsopphold_ikke_registrert": "Du har ikke registrert noen utenlandsopphold for perioden",
     "fieldvalidation.utenlandsopphold_overlapper": "Ett eller flere av utenlandsoppholdene har datoer som overlapper",
-    "fieldvalidation.utenlandsopphold_utenfor_periode": "Ett eller flere av utenlandsoppholdene er utenfor tillatt tidsrom",
-
-    "psg-temp.innholdstittel": "Ta bilde av dokumentene og last opp",
-    "psg-temp.section1.tittel": "Slik tar du et godt bilde:",
-    "psg-temp.section1.liste": "<li>Hold mobilen eller kameraet direkte over dokumentet.</li><li>Dokumentet skal fylle hele bildet. Bildet skal ikke inneholde annen dokumentasjon eller gjenstander.</li><li>Bildet må inneholde all tekst i dokumentet. Hvis dokumentet er på mer enn én side, bør du laste opp flere bilder.</li>",
-    "psg-temp.section2.tittel": "Etter at du har tatt bildet, sjekk følgende før du laster opp:",
-    "psg-temp.section2.liste": "<li>Dokumentet har riktig retning.</li><li>Teksten til dokumentet er godt leselig.</li><li>Bildet er godt opplyst, uten skygger.</li>",
-    "psg-temp.icon.heading": "Bra og dårlige eksempler på bilder av dokumenter",
-    "psg-temp.good": "Bra",
-    "psg-temp.bad": "Dårlig",
-    "psg-temp.icon.label.good": "Dokumentet fyller hele bildet",
-    "psg-temp.icon.label.keystone": "Bildet er ikke tatt ovenfra",
-    "psg-temp.icon.label.horizontal": "Bildet har ikke riktig retning",
-    "psg-temp.icon.label.shadow": "Bildet har skygge på dokumentet",
-    "psg-temp.lenkepanel.url": "https://www.nav.no/no/nav-og-samfunn/kontakt-nav/relatert-informasjon/ta-bilde-av-vedleggene-med-mobilen",
-    "psg-temp.lenkepanel.text": "Mer hjelp til å laste opp vedlegg (åpnes i et nytt vindu)."
+    "fieldvalidation.utenlandsopphold_utenfor_periode": "Ett eller flere av utenlandsoppholdene er utenfor tillatt tidsrom"
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormattedHTMLMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import FormBlock from 'common/components/form-block/FormBlock';
 import HelperTextPanel from 'common/components/helper-text-panel/HelperTextPanel';
 import intlHelper from 'common/utils/intlUtils';
@@ -23,7 +23,12 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
             useValidationErrorSummary={false}
             skipValidation={true}>
             <HelperTextPanel>
-                <FormattedHTMLMessage id="steg.samværsavtale.info.html" />
+                <p>Ta bilde av avtalen om delt bosted og last opp.</p>Vær nøye med:
+                <ul>
+                    <li>å få all tekst med på bildet</li>
+                    <li>at signaturen fra begge parter er synlig på bildet</li>
+                    <li>at bildet er leselig</li>
+                </ul>
             </HelperTextPanel>
             <FormBlock>
                 <FormikFileUploader

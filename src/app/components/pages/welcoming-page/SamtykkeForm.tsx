@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedHTMLMessage, FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik/lib';
 import { useFormikContext } from 'formik';
 import { Hovedknapp } from 'nav-frontend-knapper';
@@ -11,9 +11,7 @@ import { commonFieldErrorRenderer } from 'common/utils/commonFieldErrorRenderer'
 import intlHelper from 'common/utils/intlUtils';
 import { validateYesOrNoIsAnswered } from 'common/validation/fieldValidations';
 import getLenker from '../../../lenker';
-import {
-    AppFormField, OmsorgspengesøknadFormData
-} from '../../../types/OmsorgspengesøknadFormData';
+import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 
 interface Props {
     onConfirm: () => void;
@@ -47,19 +45,47 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
             <FormBlock>
                 {formValues.kroniskEllerFunksjonshemming === YesOrNo.NO && (
                     <CounsellorPanel>
-                        <FormattedHTMLMessage
-                            id={`introPage.infoIkkeKroniskEllerFunksjonshemmende.html`}
-                            values={{ url: getLenker(intl.locale).papirskjemaPrivat }}
-                        />
-                        <FormattedHTMLMessage
-                            id={`introPage.infoIkkeKroniskEllerFunksjonshemmende.html.ekstra`}
-                        />
+                        <p>
+                            Denne søknaden kan <strong>kun</strong> brukes til å søke om ekstra omsorgsdager for barn
+                            med kronisk sykdom eller funksjonshemning.
+                        </p>
+                        <p>
+                            Du må foreløpig{' '}
+                            <Lenke href={getLenker(intl.locale).papirskjemaPrivat} target="_blank">
+                                sende skjema i posten
+                            </Lenke>{' '}
+                            hvis du skal
+                            <ol>
+                                <li>dele omsorgsdager med en annen omsorgsperson</li>
+                                <li>
+                                    søke om å bli regnet som alene om omsorgen fordi den andre forelderen ikke kan ha
+                                    tilsyn med barnet i en periode på minst 6 måneder
+                                </li>
+                            </ol>
+                        </p>
+                        <div>
+                            Hvis du skal overføre dager til en annen omsorgsperson pga. stengt barnehage eller skole i
+                            forbindelse med koronaviruset{' '}
+                            <Lenke
+                                href="https://www.nav.no/familie/sykdom-i-familien/soknad/overfore-omsorgsdager"
+                                target="_blank">
+                                gjør du det her
+                            </Lenke>
+                            .
+                        </div>
                     </CounsellorPanel>
                 )}
                 {formValues.kroniskEllerFunksjonshemming === YesOrNo.YES && (
                     <>
                         <CounsellorPanel>
-                            <FormattedHTMLMessage id={`introPage.legeerklæring.html`} />
+                            <p>
+                                For å søke om ekstra omsorgsdager må du ha legeerklæring for barnet. Hvis du ikke har
+                                legeerklæringen tilgjengelig nå, kan du ettersende den.
+                            </p>
+                            <p>
+                                Hvis du ikke bor på samme folkeregistrerte adresse som barnet, men har en avtale om delt
+                                bosted, må du laste opp avtalen.
+                            </p>
                         </CounsellorPanel>
                         <FormBlock>
                             <AppForm.ConfirmationCheckbox
