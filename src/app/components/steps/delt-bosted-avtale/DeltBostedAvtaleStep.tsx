@@ -1,13 +1,10 @@
 import * as React from 'react';
-import { FormattedHTMLMessage, useIntl } from 'react-intl';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import Box from 'common/components/box/Box';
+import { useIntl } from 'react-intl';
 import FormBlock from 'common/components/form-block/FormBlock';
 import HelperTextPanel from 'common/components/helper-text-panel/HelperTextPanel';
 import intlHelper from 'common/utils/intlUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
-import { enableDemoModeUpload } from '../../../utils/envUtils';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import { validateDeltBostedAvtale } from '../../../validation/fieldValidations';
 import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
@@ -18,7 +15,6 @@ import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-
 const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const intl = useIntl();
-    const showUploadForm = enableDemoModeUpload() === false;
 
     return (
         <FormikStep
@@ -26,34 +22,28 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
             onValidFormSubmit={onValidSubmit}
             useValidationErrorSummary={false}
             skipValidation={true}>
-            {!showUploadForm && (
-                <Box>
-                    <AlertStripeInfo>
-                        Opplasting av samværsavtalen er ikke tilgjengelig i demo versjon. Du kan klikke Fortsett.
-                    </AlertStripeInfo>
-                </Box>
-            )}
-            {showUploadForm && (
-                <>
-                    <HelperTextPanel>
-                        <FormattedHTMLMessage id="steg.samværsavtale.info.html" />
-                    </HelperTextPanel>
-                    <FormBlock>
-                        <FormikFileUploader
-                            name={AppFormField.samværsavtale}
-                            label={intlHelper(intl, 'steg.samværsavtale.vedlegg')}
-                            onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
-                            onFileInputClick={() => {
-                                setFilesThatDidntGetUploaded([]);
-                            }}
-                            validate={validateDeltBostedAvtale}
-                            onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
-                        />
-                    </FormBlock>
-                    <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
-                    <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
-                </>
-            )}
+            <HelperTextPanel>
+                <p>Ta bilde av avtalen om delt bosted og last opp.</p>Vær nøye med:
+                <ul>
+                    <li>å få all tekst med på bildet</li>
+                    <li>at signaturen fra begge parter er synlig på bildet</li>
+                    <li>at bildet er leselig</li>
+                </ul>
+            </HelperTextPanel>
+            <FormBlock>
+                <FormikFileUploader
+                    name={AppFormField.samværsavtale}
+                    label={intlHelper(intl, 'steg.samværsavtale.vedlegg')}
+                    onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
+                    onFileInputClick={() => {
+                        setFilesThatDidntGetUploaded([]);
+                    }}
+                    validate={validateDeltBostedAvtale}
+                    onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
+                />
+            </FormBlock>
+            <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
+            <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
         </FormikStep>
     );
 };

@@ -19,7 +19,6 @@ server.engine('html', mustacheExpress());
 console.error('process.env.PORT', process.env.PORT);
 console.error('process.env.PUBLIC_PATH', process.env.PUBLIC_PATH);
 console.error('process.env.API_URL', process.env.API_URL);
-console.error('process.env.DEMO_MODE', process.env.DEMO_MODE);
 
 const PUBLIC_PATH = process.env.PUBLIC_PATH; // '/familie/sykdom-i-familien/soknad/omsorgspenger';
 
@@ -44,7 +43,6 @@ const renderApp = () =>
     });
 
 const startServer = (html) => {
-
     server.get(/^\/(?!.*dist).*$/, (req, res) => {
         res.send(html);
     });
@@ -67,8 +65,7 @@ const startExpressWebServer = async () => {
     try {
         const html = await renderApp();
         startServer(html);
-    }
-    catch (e) {
+    } catch (e) {
         console.error(e);
     }
 };

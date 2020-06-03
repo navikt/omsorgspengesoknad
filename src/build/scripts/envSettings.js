@@ -7,7 +7,6 @@ const createEnvSettingsFile = async (settingsFile) => {
     const API_URL = process.env.API_URL;
     const LOGIN_URL = process.env.LOGIN_URL;
     const PUBLIC_PATH = process.env.PUBLIC_PATH;
-    const DEMO_MODE = process.env.DEMO_MODE;
     const UTILGJENGELIG = process.env.UTILGJENGELIG;
 
     const appSettings = `
@@ -15,15 +14,15 @@ const createEnvSettingsFile = async (settingsFile) => {
         API_URL: '${API_URL}',
         LOGIN_URL: '${LOGIN_URL}',
         PUBLIC_PATH: '${PUBLIC_PATH}',
-        DEMO_MODE: '${DEMO_MODE}',
         UTILGJENGELIG: '${UTILGJENGELIG}'
-    };`.trim().replace(/ /g, '');
+    };`
+        .trim()
+        .replace(/ /g, '');
 
     try {
         await fsExtra.ensureFile(settingsFile);
         fsExtra.writeFileSync(settingsFile, `${appSettings}`); // => dist/js/settings.js, and used by dist/dev/index.html
-    }
-    catch (e) {
+    } catch (e) {
         console.error(e);
     }
 };

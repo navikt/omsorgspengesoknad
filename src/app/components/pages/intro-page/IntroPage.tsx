@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { FormattedHTMLMessage, FormattedMessage, useIntl } from 'react-intl';
-import {
-    commonFieldErrorRenderer
-} from '@navikt/sif-common-core/lib/utils/commonFieldErrorRenderer';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { commonFieldErrorRenderer } from '@navikt/sif-common-core/lib/utils/commonFieldErrorRenderer';
 import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik/lib';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Lenke from 'nav-frontend-lenker';
@@ -52,7 +50,18 @@ const IntroPage: React.StatelessComponent = () => {
             </Box>
             <Box margin="xxxl" padBottom="xxl">
                 <InformationPoster>
-                    <FormattedHTMLMessage id={`introPage.intro.html`} />
+                    <p>
+                        Den digitale søknaden er under utvikling og kan foreløpig <strong>kun</strong> brukes til å søke
+                        om ekstra omsorgsdager for barn med kronisk sykdom eller funksjonshemning.
+                    </p>
+                    <div>
+                        For å søke må du være i én eller flere av disse arbeidssituasjonene:
+                        <ul>
+                            <li>arbeidstaker</li>
+                            <li>selvstendig næringsdrivende</li>
+                            <li>frilanser</li>
+                        </ul>
+                    </div>
                 </InformationPoster>
             </Box>
 

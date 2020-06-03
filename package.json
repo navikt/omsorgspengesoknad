@@ -31,11 +31,11 @@
         "testEnvironment": "node"
     },
     "dependencies": {
-        "@formatjs/intl-pluralrules": "^1.5.2",
-        "@formatjs/intl-relativetimeformat": "^4.5.9",
+        "@formatjs/intl-pluralrules": "^1.5.9",
+        "@formatjs/intl-relativetimeformat": "^4.5.16",
         "@navikt/fnrvalidator": "^1.1.0",
-        "@navikt/sif-common-core": "^3.3.7",
-        "@navikt/sif-common-formik": "^7.1.6",
+        "@navikt/sif-common-core": "^4.0.2",
+        "@navikt/sif-common-formik": "^7.1.7",
         "@navikt/sif-common-forms": "^6.1.5",
         "@testing-library/react": "^9.4.0",
         "axios": "^0.19.2",
@@ -82,7 +82,7 @@
         "react-collapse": "^5.0.1",
         "react-day-picker": "^7.4.0",
         "react-dom": "^16.12.0",
-        "react-intl": "^3.12.0",
+        "react-intl": "^4.5.12",
         "react-modal": "^3.10.1",
         "react-router-dom": "^5.1.2",
         "react-simple-timefield": "^3.0.0",
@@ -99,7 +99,6 @@
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/flat": "0.0.28",
-        "@types/intl": "^1.2.0",
         "@types/jest": "^24.9.1",
         "@types/js-cookie": "^2.2.4",
         "@types/react": "^16.9.19",
@@ -157,7 +156,7 @@
         "tslint-react": "^4.2.0",
         "typescript": "3.7.5",
         "webpack": "^4.41.6",
-        "webpack-dev-server": "^3.10.3"
+        "webpack-dev-server": "^3.11.0"
     },
     "resolutions": {
         "babel-core": "7.0.0-bridge.0"
