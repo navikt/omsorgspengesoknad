@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Box from 'common/components/box/Box';
 import HelperTextPanel from 'common/components/helper-text-panel/HelperTextPanel';
 import intlHelper from 'common/utils/intlUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
-import { enableDemoModeUpload } from '../../../utils/envUtils';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import { validateLegeerklæring } from '../../../validation/fieldValidations';
 import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
@@ -20,7 +18,6 @@ import PictureScanningGuide from '../../picture-scanning-guide/PictureScanningGu
 const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
     const intl = useIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
-    const showUploadForm = enableDemoModeUpload() === false;
     const hasPendingUploads: boolean = (formValues.legeerklæring || []).find((a) => a.pending === true) !== undefined;
 
     return (
@@ -30,49 +27,38 @@ const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
             useValidationErrorSummary={false}
             skipValidation={true}
             buttonDisabled={hasPendingUploads}>
-            {!showUploadForm && (
-                <Box>
-                    <AlertStripeInfo>
-                        Opplasting av legeerklæring er ikke tilgjengelig i demo versjon. Du kan klikke Fortsett.
-                    </AlertStripeInfo>
-                </Box>
-            )}
-            {showUploadForm && (
-                <>
-                    <Box padBottom="xl">
-                        <CounsellorPanel>
-                            <p>
-                                <FormattedHTMLMessage
-                                    id={'steg.lege.info.html'}
-                                    values={{
-                                        lenke:
-                                            'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/ettersendelse'
-                                    }}
-                                />
-                            </p>
-                        </CounsellorPanel>
-                    </Box>
-                    <FormBlock>
-                        <HelperTextPanel>
-                            <PictureScanningGuide />
-                        </HelperTextPanel>
-                    </FormBlock>
-                    <Box margin="l">
-                        <FormikFileUploader
-                            name={AppFormField.legeerklæring}
-                            label={intlHelper(intl, 'steg.lege.vedlegg')}
-                            onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
-                            onFileInputClick={() => {
-                                setFilesThatDidntGetUploaded([]);
+            <Box padBottom="xl">
+                <CounsellorPanel>
+                    <p>
+                        <FormattedHTMLMessage
+                            id={'steg.lege.info.html'}
+                            values={{
+                                lenke:
+                                    'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/ettersendelse'
                             }}
-                            validate={validateLegeerklæring}
-                            onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                         />
-                    </Box>
-                    <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
-                    <LegeerklæringFileList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
-                </>
-            )}
+                    </p>
+                </CounsellorPanel>
+            </Box>
+            <FormBlock>
+                <HelperTextPanel>
+                    <PictureScanningGuide />
+                </HelperTextPanel>
+            </FormBlock>
+            <Box margin="l">
+                <FormikFileUploader
+                    name={AppFormField.legeerklæring}
+                    label={intlHelper(intl, 'steg.lege.vedlegg')}
+                    onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
+                    onFileInputClick={() => {
+                        setFilesThatDidntGetUploaded([]);
+                    }}
+                    validate={validateLegeerklæring}
+                    onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
+                />
+            </Box>
+            <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
+            <LegeerklæringFileList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
         </FormikStep>
     );
 };

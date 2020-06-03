@@ -223,8 +223,6 @@
     "fieldvalidation.utenlandsopphold_overlapper": "Ett eller flere av utenlandsoppholdene har datoer som overlapper",
     "fieldvalidation.utenlandsopphold_utenfor_periode": "Ett eller flere av utenlandsoppholdene er utenfor tillatt tidsrom",
 
-    "demoInfo.html": "Dette er en <strong>demoversjon</strong> av søknadsskjemaet for omsorgspenger, og blir kun brukt i sammenheng med brukertest på <a href=\"http://navlab.no/\">http://navlab.no/</a>",
-
     "psg-temp.innholdstittel": "Ta bilde av dokumentene og last opp",
     "psg-temp.section1.tittel": "Slik tar du et godt bilde:",
     "psg-temp.section1.liste": "<li>Hold mobilen eller kameraet direkte over dokumentet.</li><li>Dokumentet skal fylle hele bildet. Bildet skal ikke inneholde annen dokumentasjon eller gjenstander.</li><li>Bildet må inneholde all tekst i dokumentet. Hvis dokumentet er på mer enn én side, bør du laste opp flere bilder.</li>",

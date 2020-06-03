@@ -5,8 +5,7 @@ import AppEssentialsLoader from '../AppEssentialsLoader';
 
 jest.mock('./../../../utils/envUtils', () => {
     return {
-        getEnvironmentVariable: () => 'someEnvVar',
-        appIsRunningInDemoMode: () => false
+        getEnvironmentVariable: () => 'someEnvVar'
     };
 });
 

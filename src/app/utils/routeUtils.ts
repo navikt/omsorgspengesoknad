@@ -1,7 +1,7 @@
 import RouteConfig from '../config/routeConfig';
 import { getStepConfig, StepID } from '../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
-import { appIsRunningInDemoMode, appIsRunningInDevEnvironment } from './envUtils';
+import { appIsRunningInDevEnvironment } from './envUtils';
 import {
     arbeidStepIsAvailable,
     legeerklæringStepAvailable,
@@ -24,7 +24,7 @@ export const getNextStepRoute = (stepId: StepID, formData?: OmsorgspengesøknadF
 };
 
 export const isAvailable = (path: StepID | RouteConfig, values: OmsorgspengesøknadFormData) => {
-    if (!appIsRunningInDevEnvironment() && !appIsRunningInDemoMode()) {
+    if (!appIsRunningInDevEnvironment()) {
         switch (path) {
             case StepID.OPPLYSNINGER_OM_BARNET:
                 return opplysningerOmBarnetStepAvailable(values);

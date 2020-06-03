@@ -19,12 +19,11 @@ import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi, Søkerdata } from '../../../types/Søkerdata';
 import * as apiUtils from '../../../utils/apiUtils';
-import { appIsRunningInDemoMode } from '../../../utils/envUtils';
 import { mapFormDataToApiData } from '../../../utils/mapFormDataToApiData';
 import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';
+import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
 import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringAttachmentList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
-import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
 import AnnetBarnSummary from './AnnetBarnSummary';
 import BarnRecveivedFormSApiSummary from './BarnReceivedFromApiSummary';
 
@@ -35,18 +34,14 @@ const SummaryStep = ({ formValues }: StepConfigProps) => {
 
     async function sendSoknad(barn: BarnReceivedFromApi[]) {
         setSendingInProgress(true);
-        if (appIsRunningInDemoMode()) {
+        try {
+            await sendApplication(mapFormDataToApiData(formValues, barn, intl.locale as Locale));
             navigateTo(routeConfig.SØKNAD_SENDT_ROUTE, history);
-        } else {
-            try {
-                await sendApplication(mapFormDataToApiData(formValues, barn, intl.locale as Locale));
-                navigateTo(routeConfig.SØKNAD_SENDT_ROUTE, history);
-            } catch (error) {
-                if (apiUtils.isForbidden(error) || apiUtils.isUnauthorized(error)) {
-                    navigateToLoginPage();
-                } else {
-                    navigateTo(routeConfig.ERROR_PAGE_ROUTE, history);
-                }
+        } catch (error) {
+            if (apiUtils.isForbidden(error) || apiUtils.isUnauthorized(error)) {
+                navigateToLoginPage();
+            } else {
+                navigateTo(routeConfig.ERROR_PAGE_ROUTE, history);
             }
         }
     }

@@ -1,6 +1,5 @@
 FROM node:alpine
 WORKDIR /usr/src/app
-ENV DEMO_MODE=false
 ENV API_URL=http://api-mock:8088
 ENV PUBLIC_PATH=/familie/sykdom-i-familien/soknad/omsorgspenger
 COPY . .
