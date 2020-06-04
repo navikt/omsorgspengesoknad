@@ -7,6 +7,7 @@ import { Søkerdata } from '../../types/Søkerdata';
 import * as apiUtils from '../../utils/apiUtils';
 import { navigateToLoginPage, userIsCurrentlyOnErrorPage } from '../../utils/navigationUtils';
 import LoadingPage from '../pages/loading-page/LoadingPage';
+import appSentryLogger from '../../utils/appSentryLogger';
 
 interface Props {
     contentLoadedRenderer: (søkerdata?: Søkerdata) => React.ReactNode;
@@ -33,8 +34,9 @@ class AppEssentialsLoader extends React.Component<Props, State> {
         try {
             const [søkerResponse, barnResponse] = await Promise.all([getSøker(), getBarn()]);
             this.handleSøkerdataFetchSuccess(søkerResponse, barnResponse);
-        } catch (response) {
-            this.handleSøkerdataFetchError(response);
+        } catch (error) {
+            appSentryLogger.logApiError(error);
+            this.handleSøkerdataFetchError(error);
         }
     }
 

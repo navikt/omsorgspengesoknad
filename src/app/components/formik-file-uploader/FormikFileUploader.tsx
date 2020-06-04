@@ -3,8 +3,12 @@ import { FormikValidateFunction } from '@navikt/sif-common-formik/lib';
 import { ArrayHelpers, useFormikContext } from 'formik';
 import { Attachment, PersistedFile } from 'common/types/Attachment';
 import {
-    attachmentShouldBeProcessed, attachmentShouldBeUploaded, attachmentUploadHasFailed,
-    getPendingAttachmentFromFile, isFileObject, VALID_EXTENSIONS
+    attachmentShouldBeProcessed,
+    attachmentShouldBeUploaded,
+    attachmentUploadHasFailed,
+    getPendingAttachmentFromFile,
+    isFileObject,
+    VALID_EXTENSIONS
 } from 'common/utils/attachmentUtils';
 import { uploadFile } from '../../api/api';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
@@ -114,7 +118,7 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
             acceptedExtensions={VALID_EXTENSIONS.join(', ')}
             onFilesSelect={async (files: File[], { push, replace }: ArrayHelpers) => {
                 const attachments = files.map((file) => addPendingAttachmentToFieldArray(file, push));
-                await uploadAttachments([...values[name], ...attachments], replace);
+                await uploadAttachments([...(values as any)[name], ...attachments], replace);
             }}
             onClick={onFileInputClick}
             {...otherProps}
