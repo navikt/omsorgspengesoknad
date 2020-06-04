@@ -26,6 +26,7 @@ import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringAttachmentList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
 import AnnetBarnSummary from './AnnetBarnSummary';
 import BarnRecveivedFormSApiSummary from './BarnReceivedFromApiSummary';
+import appSentryLogger from '../../../utils/appSentryLogger';
 
 const SummaryStep = ({ formValues }: StepConfigProps) => {
     const intl = useIntl();
@@ -41,6 +42,7 @@ const SummaryStep = ({ formValues }: StepConfigProps) => {
             if (apiUtils.isForbidden(error) || apiUtils.isUnauthorized(error)) {
                 navigateToLoginPage();
             } else {
+                appSentryLogger.logApiError(error);
                 navigateTo(routeConfig.ERROR_PAGE_ROUTE, history);
             }
         }
