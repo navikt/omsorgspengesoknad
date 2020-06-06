@@ -7,7 +7,7 @@ import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import { validateLegeerklæring } from '../../../validation/fieldValidations';
-import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
+import FileUploadErrors from 'common/components/file-upload-errors/FileUploadErrors';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringFileList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
@@ -60,7 +60,11 @@ const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
                     onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                 />
             </Box>
-            <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
+            {filesThatDidntGetUploaded && filesThatDidntGetUploaded.length > 0 && (
+                <Box margin="m">
+                    <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
+                </Box>
+            )}
             <LegeerklæringFileList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
         </FormikStep>
     );
