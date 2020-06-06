@@ -7,7 +7,7 @@ import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import { validateDeltBostedAvtale } from '../../../validation/fieldValidations';
-import FileUploadErrors from '../../file-upload-errors/FileUploadErrors';
+import FileUploadErrors from 'common/components/file-upload-errors/FileUploadErrors';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
 import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
