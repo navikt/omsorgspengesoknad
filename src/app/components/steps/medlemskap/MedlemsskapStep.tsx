@@ -8,7 +8,8 @@ import { YesOrNo } from 'common/types/YesOrNo';
 import { date1YearAgo, date1YearFromNow, dateToday } from 'common/utils/dateUtils';
 import intlHelper from 'common/utils/intlUtils';
 import {
-    validateUtenlandsoppholdNeste12Mnd, validateUtenlandsoppholdSiste12Mnd,
+    validateUtenlandsoppholdNeste12Mnd,
+    validateUtenlandsoppholdSiste12Mnd,
     validateYesOrNoIsAnswered
 } from 'app/validation/fieldValidations';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
@@ -17,7 +18,7 @@ import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import AppForm from '../../app-form/AppForm';
 import FormikStep from '../../formik-step/FormikStep';
 
-const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit, formValues }) => {
+const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit, formValues }: StepConfigProps) => {
     const intl = useIntl();
     return (
         <FormikStep id={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
@@ -46,7 +47,8 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                         validate={validateUtenlandsoppholdSiste12Mnd}
                         labels={{
                             addLabel: 'Legg til nytt utenlandsopphold',
-                            modalTitle: 'Utenlandsopphold siste 12 måneder'
+                            modalTitle: 'Utenlandsopphold siste 12 måneder',
+                            listTitle: 'Utenlandsopphold siste 12 måneder'
                         }}
                     />
                 </FormBlock>
@@ -68,7 +70,8 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                         validate={validateUtenlandsoppholdNeste12Mnd}
                         labels={{
                             addLabel: 'Legg til nytt utenlandsopphold',
-                            modalTitle: 'Utenlandsopphold neste 12 måneder'
+                            modalTitle: 'Utenlandsopphold neste 12 måneder',
+                            listTitle: 'Utenlandsopphold neste 12 måneder'
                         }}
                     />
                 </FormBlock>
