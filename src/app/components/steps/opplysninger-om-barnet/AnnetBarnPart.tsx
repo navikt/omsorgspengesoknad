@@ -6,11 +6,11 @@ import { dateToday } from 'common/utils/dateUtils';
 import intlHelper from 'common/utils/intlUtils';
 import { validateFødselsnummer } from 'common/validation/fieldValidations';
 import {
-    AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet
+    AppFormField,
+    OmsorgspengesøknadFormData,
+    SøkersRelasjonTilBarnet
 } from '../../../types/OmsorgspengesøknadFormData';
-import {
-    validateFødselsdato, validateNavn, validateRelasjonTilBarnet
-} from '../../../validation/fieldValidations';
+import { validateFødselsdato, validateNavn, validateRelasjonTilBarnet } from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
 
 const AnnetBarnPart: React.FunctionComponent = () => {
@@ -52,7 +52,7 @@ const AnnetBarnPart: React.FunctionComponent = () => {
                 <FormBlock>
                     <AppForm.DatePicker
                         name={AppFormField.barnetsFødselsdato}
-                        dateLimitations={{ maksDato: dateToday }}
+                        maxDate={dateToday}
                         label={intlHelper(intl, 'steg.omBarnet.fødselsdato')}
                         validate={(dato) => {
                             if (barnetHarIkkeFåttFødselsnummerEnda) {
