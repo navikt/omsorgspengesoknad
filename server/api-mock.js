@@ -22,7 +22,7 @@ server.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
     res.set('X-Content-Type-Options', 'nosniff');
     res.set('Access-Control-Allow-Headers', 'content-type');
-    res.set('Access-Control-Allow-Methods', ['GET','POST','DELETE']);
+    res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'DELETE']);
     res.set('Access-Control-Allow-Credentials', true);
     next();
 });
@@ -53,6 +53,8 @@ const barnMock = {
     ]
 };
 
+const isLoggedIn = (req) => req.headers.cookie !== undefined;
+
 const startExpressServer = () => {
     const port = process.env.PORT || 8088;
 
@@ -68,13 +70,10 @@ const startExpressServer = () => {
     });
 
     server.get('/soker', (req, res) => {
-        let cookies = req.headers.cookie;
-        if (cookies === undefined) {
-            console.info("Cookies are undefined");
-            res.status(401).send();
-        } else {
-            console.info("Logged in user.");
+        if (isLoggedIn(req)) {
             res.send(søkerMock);
+        } else {
+            res.status(401).send();
         }
     });
 
@@ -101,4 +100,3 @@ const startExpressServer = () => {
 };
 
 startExpressServer();
-
