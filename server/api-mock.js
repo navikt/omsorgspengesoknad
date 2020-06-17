@@ -1,5 +1,6 @@
 const express = require('express');
 const Busboy = require('busboy');
+const path = require('path');
 
 const server = express();
 
@@ -58,8 +59,23 @@ const startExpressServer = () => {
     server.get('/health/isAlive', (req, res) => res.sendStatus(200));
     server.get('/health/isReady', (req, res) => res.sendStatus(200));
 
+    server.get('/auth-mock', (req, res) => {
+        let authMockHtmlFilePath = path.resolve(__dirname, 'auth-mock-index.html');
+        res.sendFile(authMockHtmlFilePath);
+    });
+    server.get('/auth-mock/cookie', (req, res) => {
+        res.cookie('omsLocalLoginCookie', 'mysecrettoken').sendStatus(201);
+    });
+
     server.get('/soker', (req, res) => {
-        res.send(søkerMock);
+        let cookies = req.headers.cookie;
+        if (cookies === undefined) {
+            console.info("Cookies are undefined");
+            res.status(401).send();
+        } else {
+            console.info("Logged in user.");
+            res.send(søkerMock);
+        }
     });
 
     server.post('/vedlegg', (req, res) => {
