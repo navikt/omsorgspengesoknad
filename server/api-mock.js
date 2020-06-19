@@ -1,5 +1,6 @@
 const express = require('express');
 const Busboy = require('busboy');
+const path = require('path');
 
 const server = express();
 
@@ -21,7 +22,7 @@ server.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
     res.set('X-Content-Type-Options', 'nosniff');
     res.set('Access-Control-Allow-Headers', 'content-type');
-    res.set('Access-Control-Allow-Methods', ['GET','POST','DELETE']);
+    res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'DELETE']);
     res.set('Access-Control-Allow-Credentials', true);
     next();
 });
@@ -52,14 +53,28 @@ const barnMock = {
     ]
 };
 
+const isLoggedIn = (req) => req.headers.cookie !== undefined;
+
 const startExpressServer = () => {
     const port = process.env.PORT || 8088;
 
     server.get('/health/isAlive', (req, res) => res.sendStatus(200));
     server.get('/health/isReady', (req, res) => res.sendStatus(200));
 
+    server.get('/auth-mock', (req, res) => {
+        let authMockHtmlFilePath = path.resolve(__dirname, 'auth-mock-index.html');
+        res.sendFile(authMockHtmlFilePath);
+    });
+    server.get('/auth-mock/cookie', (req, res) => {
+        res.cookie('omsLocalLoginCookie', 'mysecrettoken').sendStatus(201);
+    });
+
     server.get('/soker', (req, res) => {
-        res.send(søkerMock);
+        if (isLoggedIn(req)) {
+            res.send(søkerMock);
+        } else {
+            res.status(401).send();
+        }
     });
 
     server.post('/vedlegg', (req, res) => {
@@ -85,4 +100,3 @@ const startExpressServer = () => {
 };
 
 startExpressServer();
-
