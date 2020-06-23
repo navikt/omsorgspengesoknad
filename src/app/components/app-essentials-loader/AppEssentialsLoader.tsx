@@ -26,12 +26,11 @@ const AppEssentialsLoader = (props: Props) => {
     async function loadAppEssentials() {
         try {
             const [søkerResponse, barnResponse] = await Promise.all([getSøker(), getBarn()]);
-
             setState({
                 ...state,
                 søkerdata: {
                     person: søkerResponse.data,
-                    barn: barnResponse.data
+                    barn: barnResponse.data.barn
                 },
                 isLoading: false,
                 doApiCalls: false
