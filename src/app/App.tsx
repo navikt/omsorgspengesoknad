@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { Route, Switch } from 'react-router-dom';
+import AppStatusWrapper from '@navikt/sif-common-core/lib/components/app-status-wrapper/AppStatusWrapper';
 import moment from 'moment';
 import Modal from 'nav-frontend-modal';
 import { Locale } from 'common/types/Locale';
@@ -9,18 +10,38 @@ import Omsorgspengesøknad from './components/omsorgspengesøknad/Omsorgspenges�
 import IntroPage from './components/pages/intro-page/IntroPage';
 import UnavailablePage from './components/pages/unavailable-page/UnavailablePage';
 import RouteConfig from './config/routeConfig';
-import { Feature, isFeatureEnabled } from './utils/featureToggleUtils';
+import appSentryLogger from './utils/appSentryLogger';
+import { getEnvironmentVariable } from './utils/envUtils';
 import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
 import 'common/styles/globalStyles.less';
-import appSentryLogger from './utils/appSentryLogger';
 
 appSentryLogger.init();
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
 moment.locale(localeFromSessionStorage);
 
+const getAppStatusSanityConfig = ():
+    | {
+          projectId: string;
+          dataset: string;
+      }
+    | undefined => {
+    const projectId = getEnvironmentVariable('APPSTATUS_PROJECT_ID');
+    const dataset = getEnvironmentVariable('APPSTATUS_DATASET');
+    return !projectId || !dataset ? undefined : { projectId, dataset };
+};
+
+const APPLICATION_KEY = 'omsorgspengersoknad';
+
 const App: React.FunctionComponent = () => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
+    const appStatusSanityConfig = getAppStatusSanityConfig();
+    const renderContent = (): React.ReactNode => (
+        <Switch>
+            <Route path={RouteConfig.SØKNAD_ROUTE_PREFIX} component={Omsorgspengesøknad} />
+            <Route path="/" component={IntroPage} />
+        </Switch>
+    );
     return (
         <ApplicationWrapper
             locale={locale}
@@ -28,16 +49,16 @@ const App: React.FunctionComponent = () => {
                 setLocaleInSessionStorage(activeLocale);
                 setLocale(activeLocale);
             }}>
-            <>
-                {isFeatureEnabled(Feature.UTILGJENGELIG) ? (
-                    <UnavailablePage />
-                ) : (
-                    <Switch>
-                        <Route path={RouteConfig.SØKNAD_ROUTE_PREFIX} component={Omsorgspengesøknad} />
-                        <Route path="/" component={IntroPage} />
-                    </Switch>
-                )}
-            </>
+            {appStatusSanityConfig ? (
+                <AppStatusWrapper
+                    applicationKey={APPLICATION_KEY}
+                    sanityConfig={appStatusSanityConfig}
+                    contentRenderer={renderContent}
+                    unavailableContentRenderer={(): React.ReactNode => <UnavailablePage />}
+                />
+            ) : (
+                renderContent()
+            )}
         </ApplicationWrapper>
     );
 };
