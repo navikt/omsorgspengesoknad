@@ -2,7 +2,9 @@ import { YesOrNo } from 'common/types/YesOrNo';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import * as fieldValidations from '../fieldValidations';
 import {
-    legeerklæringStepIsValid, medlemskapStepIsValid, opplysningerOmBarnetStepIsValid,
+    legeerklæringStepIsValid,
+    medlemskapStepIsValid,
+    opplysningerOmBarnetStepIsValid,
     welcomingPageIsValid
 } from '../stepValidations';
 
@@ -14,10 +16,6 @@ jest.mock('./../fieldValidations', () => {
         validateFødselsnummer: jest.fn(() => undefined),
         validateValgtBarn: jest.fn(() => undefined)
     };
-});
-
-jest.mock('./../../utils/featureToggleUtils', () => {
-    return { isFeatureEnabled: () => false, Feature: {} };
 });
 
 const formData: Partial<OmsorgspengesøknadFormData> = {};

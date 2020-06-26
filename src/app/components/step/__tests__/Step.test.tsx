@@ -5,13 +5,6 @@ import IntlProvider from 'app/components/intl-provider/IntlProvider';
 import { getStepConfig, StepID } from '../../../config/stepConfig';
 import Step from '../Step';
 
-jest.mock('../../../utils/featureToggleUtils', () => {
-    return {
-        isFeatureEnabled: () => false,
-        Feature: {}
-    };
-});
-
 const renderWrappedInMemoryRouter = (child: React.ReactNode) =>
     render(
         <IntlProvider locale="nb" onError={() => null}>

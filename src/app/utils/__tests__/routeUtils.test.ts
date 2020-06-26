@@ -4,13 +4,6 @@ import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import { getSøknadRoute, isAvailable } from '../routeUtils';
 import * as stepUtils from '../stepUtils';
 
-jest.mock('../featureToggleUtils', () => {
-    return {
-        isFeatureEnabled: () => false,
-        Feature: {}
-    };
-});
-
 jest.mock('./../stepUtils', () => {
     return {
         opplysningerOmBarnetStepAvailable: jest.fn(() => 'barn step available'),
