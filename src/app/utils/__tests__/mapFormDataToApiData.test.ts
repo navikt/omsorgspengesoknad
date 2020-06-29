@@ -3,18 +3,14 @@ import { YesOrNo } from 'common/types/YesOrNo';
 import * as attachmentUtils from 'common/utils/attachmentUtils';
 import { OmsorgspengesøknadApiData } from '../../types/OmsorgspengesøknadApiData';
 import {
-    AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet
+    AppFormField,
+    OmsorgspengesøknadFormData,
+    SøkersRelasjonTilBarnet
 } from '../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../../types/Søkerdata';
-import { isFeatureEnabled } from '../featureToggleUtils';
 import { mapFormDataToApiData } from '../mapFormDataToApiData';
 
 const moment = require('moment');
-
-jest.mock('./../featureToggleUtils.ts', () => ({
-    isFeatureEnabled: jest.fn(),
-    Feature: {}
-}));
 
 const todaysDate = moment()
     .startOf('day')
@@ -58,7 +54,6 @@ describe('mapFormDataToApiData', () => {
     let resultingApiData: OmsorgspengesøknadApiData;
 
     beforeAll(() => {
-        (isFeatureEnabled as any).mockImplementation(() => false);
         resultingApiData = mapFormDataToApiData(formDataMock as OmsorgspengesøknadFormData, barnMock, 'nb');
     });
 
