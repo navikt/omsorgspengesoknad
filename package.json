@@ -39,7 +39,7 @@
         "@navikt/sif-common-forms": "^8.0.4",
         "@navikt/sif-common-sentry": "^0.0.8",
         "@sentry/browser": "^5.18.1",
-        "@testing-library/react": "^9.4.0",
+        "@testing-library/react": "^10.4.3",
         "axios": "^0.19.2",
         "busboy": "^0.3.0",
         "classnames": "^2.2.6",
