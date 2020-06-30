@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
+import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
 import Lenke from 'nav-frontend-lenker';
 import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
 import FormBlock from 'common/components/form-block/FormBlock';
@@ -35,7 +36,11 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                     legend={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.spm')}
                     name={AppFormField.harBoddUtenforNorgeSiste12Mnd}
                     validate={validateYesOrNoIsAnswered}
-                    info={intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.hjelp')}
+                    description={
+                        <ExpandableInfo title="Hva betyr dette?">
+                            {intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.hjelp')}
+                        </ExpandableInfo>
+                    }
                 />
             </FormBlock>
             {formValues.harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES && (
@@ -58,7 +63,11 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                     legend={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.spm')}
                     name={AppFormField.skalBoUtenforNorgeNeste12Mnd}
                     validate={validateYesOrNoIsAnswered}
-                    info={intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
+                    description={
+                        <ExpandableInfo title="Hva betyr dette?">
+                            {intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
+                        </ExpandableInfo>
+                    }
                 />
             </FormBlock>
             {formValues.skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES && (
