@@ -37,7 +37,7 @@
         "@navikt/sif-common-core": "^5.0.2",
         "@navikt/sif-common-formik": "^10.0.3",
         "@navikt/sif-common-forms": "^8.0.5",
-        "@navikt/sif-common-sentry": "^0.0.8",
+        "@navikt/sif-common-sentry": "0.0.11",
         "@sentry/browser": "^5.20.1",
         "@testing-library/react": "^9.4.0",
         "axios": "^0.19.2",
@@ -70,7 +70,7 @@
         "react-modal": "^3.10.1",
         "react-router-dom": "^5.1.2",
         "react-simple-timefield": "^3.0.0",
-        "snyk": "^1.366.2",
+        "snyk": "^1.368.1",
         "use-media": "^1.4.0"
     },
     "devDependencies": {
