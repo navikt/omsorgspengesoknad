@@ -5,6 +5,7 @@ import '@formatjs/intl-pluralrules/dist/locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
 import bostedUtlandMessages from 'common/forms/bosted-utland/bostedUtlandMessages';
 import { allCommonMessages } from 'common/i18n/allCommonMessages';
+// import MessagesPreview from 'common/dev-utils/intl/messages-preview/MessagesPreview';
 import { Locale } from 'common/types/Locale';
 
 const appBokmålstekster = require('../../i18n/nb.json');
@@ -19,14 +20,23 @@ export interface IntlProviderProps {
 
 export interface IntlProviderProps {
     locale: Locale;
+    children: React.ReactNode;
     onError?: (err: any) => void;
 }
 
-const IntlProvider: React.FunctionComponent<IntlProviderProps> = ({ locale, children, onError }) => {
+const IntlProvider = ({ locale, children, onError }: IntlProviderProps) => {
     const messages = locale === 'nb' ? bokmålstekster : nynorsktekster;
     return (
         <Provider locale={locale} messages={messages} onError={onError}>
             {children}
+            {/* <MessagesPreview
+                title="Søknad ekstra omsorgsdager"
+                showMissingTextSummary={false}
+                messages={{
+                    nb: bokmålstekster,
+                    nn: nynorsktekster
+                }}
+            /> */}
         </Provider>
     );
 };
