@@ -73,6 +73,8 @@
     "step.legeerklaering.pageTitle": "Omsorgspengesøknad - legeerklæring",
     "step.legeerklaering.stepTitle": "Legeerklæring",
     "step.legeerklaering.stepIndicatorLabel": "Last opp din legeerklæring",
+    "step.legeerklaering.counsellorpanel.1": "Her skal du laste opp bilde av legeerklæringen som legen har skrevet i papirsøknaden. Det gjør du enten ved å ta bilde av leggerklæringen, eller ved å scanne den. Vær nøye med at all tekst er med, inkludert legens signatur. Hvis du ikke har legeerklæring tilgjengelig når du søker, kan den ettersendes. ",
+    "step.legeerklaering.counsellorpanel.2": "Her får du veiledning til hvordan du ettersender dokumentasjon",
 
     "step.deltBosted.pageTitle": "Omsorgspengesøknad - avtale om delt bosted",
     "step.deltBosted.stepTitle": "Avtale om delt bosted",
