@@ -9,6 +9,9 @@ import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadForm
 import { getStepTexts } from '../../utils/stepUtils';
 import AppForm from '../app-form/AppForm';
 import Step, { StepProps } from '../step/Step';
+import bemUtils from 'common/utils/bemUtils';
+
+const bem = bemUtils('step');
 
 export interface FormikStepProps {
     children: React.ReactNode;
@@ -36,15 +39,17 @@ const FormikStep: React.FunctionComponent<Props> = (props) => {
                 fieldErrorRenderer={(error) => commonFieldErrorRenderer(intl, error)}>
                 {children}
                 <FormBlock>
-                    <Knapp
-                        type="hoved"
-                        htmlType="submit"
-                        className={'step__button'}
-                        spinner={showButtonSpinner || false}
-                        disabled={buttonDisabled || false}
-                        aria-label={texts.nextButtonAriaLabel}>
-                        {texts.nextButtonLabel}
-                    </Knapp>
+                    <div className={bem.element('buttonWrapper')}>
+                        <Knapp
+                            type="hoved"
+                            htmlType="submit"
+                            className={'step__button'}
+                            spinner={showButtonSpinner || false}
+                            disabled={buttonDisabled || false}
+                            aria-label={texts.nextButtonAriaLabel}>
+                            {texts.nextButtonLabel}
+                        </Knapp>
+                    </div>
                 </FormBlock>
             </AppForm.Form>
         </Step>

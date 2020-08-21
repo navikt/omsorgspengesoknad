@@ -111,9 +111,11 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
                             </AppForm.ConfirmationCheckbox>
                         </FormBlock>
                         <FormBlock>
-                            <Hovedknapp className={bem.element('startApplicationButton')}>
-                                {intlHelper(intl, 'welcomingPage.begynnsøknad')}
-                            </Hovedknapp>
+                            <div className={bem.element('buttonWrapper')}>
+                                <Hovedknapp className={bem.element('startApplicationButton')}>
+                                    {intlHelper(intl, 'welcomingPage.begynnsøknad')}
+                                </Hovedknapp>
+                            </div>
                         </FormBlock>
                         <FormBlock>
                             <div className={bem.element('personopplysningModalLenke')}>
