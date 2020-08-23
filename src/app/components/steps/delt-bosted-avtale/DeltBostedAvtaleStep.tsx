@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from 'common/components/form-block/FormBlock';
 import HelperTextPanel from 'common/components/helper-text-panel/HelperTextPanel';
 import intlHelper from 'common/utils/intlUtils';
@@ -11,6 +11,7 @@ import FileUploadErrors from 'common/components/file-upload-errors/FileUploadErr
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
 import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
+import Box from 'common/components/box/Box';
 
 const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
@@ -23,11 +24,22 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
             useValidationErrorSummary={false}
             skipValidation={true}>
             <HelperTextPanel>
-                <p>Ta bilde av avtalen om delt bosted og last opp.</p>Vær nøye med:
+                <Box margin={'l'} padBottom={'l'}>
+                    <FormattedMessage id={'step.deltBosted.helperTextPanel.1'} />
+                </Box>
+                <Box>
+                    <FormattedMessage id={'step.deltBosted.helperTextPanel.2'} />
+                </Box>
                 <ul>
-                    <li>å få all tekst med på bildet</li>
-                    <li>at signaturen fra begge parter er synlig på bildet</li>
-                    <li>at bildet er leselig</li>
+                    <li>
+                        <FormattedMessage id={'step.deltBosted.helperTextPanel.3.1'} />
+                    </li>
+                    <li>
+                        <FormattedMessage id={'step.deltBosted.helperTextPanel.3.2'} />
+                    </li>
+                    <li>
+                        <FormattedMessage id={'step.deltBosted.helperTextPanel.3.3'} />
+                    </li>
                 </ul>
             </HelperTextPanel>
             <FormBlock>

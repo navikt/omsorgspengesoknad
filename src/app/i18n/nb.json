@@ -79,6 +79,11 @@
     "step.deltBosted.pageTitle": "Omsorgspengesøknad - avtale om delt bosted",
     "step.deltBosted.stepTitle": "Avtale om delt bosted",
     "step.deltBosted.stepIndicatorLabel": "Last opp din avtale om delt bosted",
+    "step.deltBosted.helperTextPanel.1": "Ta bilde av eller scann avtalen om delt bosted og last opp.",
+    "step.deltBosted.helperTextPanel.2": "Vær nøye med:",
+    "step.deltBosted.helperTextPanel.3.1": "å få all tekst med på bildet",
+    "step.deltBosted.helperTextPanel.3.2": "at signaturen fra begge parter er synlig på bildet",
+    "step.deltBosted.helperTextPanel.3.3": "at bildet er leselig",
 
     "step.oppsummering.pageTitle": "Omsorgspengesøknad - oppsummering",
     "step.oppsummering.stepTitle": "Oppsummering",
@@ -98,7 +103,7 @@
     "welcomingPage.personopplysninger.lenketekst": "Les om hvordan NAV behandler personopplysningene dine",
     "welcomingPage.modal.omDinePlikter.tittel": "Om dine plikter",
     "welcomingPage.modal.behandlingAvPersonalia.tittel": "Om behandling av personopplysninger",
-    "welcomingPage.begynnsøknad": "Gå til søknaden",
+    "welcomingPage.begynnsøknad": "Start søknaden",
 
     "modal.personalopplysninger.tittel": "Slik behandler NAV personopplysningene dine",
     "modal.personalopplysninger.intro.1": "NAV innhenter og mottar opplysninger om deg når du sender inn en søknad. Det er nødvendig for at du skal kunne få riktig tjeneste og ytelser.",
