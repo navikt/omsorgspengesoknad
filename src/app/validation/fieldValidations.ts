@@ -2,7 +2,11 @@ import moment from 'moment';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { Attachment } from 'common/types/Attachment';
 import { YesOrNo } from 'common/types/YesOrNo';
-import { attachmentHasBeenUploaded } from 'common/utils/attachmentUtils';
+import {
+    attachmentHasBeenUploaded,
+    getTotalSizeOfAttachments,
+    MAX_TOTAL_ATTACHMENT_SIZE_BYTES
+} from 'common/utils/attachmentUtils';
 import {
     date1YearAgo,
     date1YearFromNow,
@@ -30,6 +34,7 @@ export enum AppFieldValidationErrors {
     'legeerklæring_forMangeFiler' = 'fieldvalidation.legeerklæring.forMangeFiler',
     'samværsavtale_mangler' = 'fieldvalidation.samværsavtale.mangler',
     'samværsavtale_forMangeFiler' = 'fieldvalidation.samværsavtale.forMangeFiler',
+    'samlet_storrelse_for_hoy' = 'fieldvalidation.samlet_storrelse_for_hoy',
     'utenlandsopphold_ikke_registrert' = 'fieldvalidation.utenlandsopphold_ikke_registrert',
     'utenlandsopphold_overlapper' = 'fieldvalidation.utenlandsopphold_overlapper',
     'utenlandsopphold_utenfor_periode' = 'fieldvalidation.utenlandsopphold_utenfor_periode'
@@ -126,8 +131,12 @@ export const validateLegeerklæring = (attachments: Attachment[]): FieldValidati
     if (uploadedAttachments.length === 0) {
         return fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler);
     }
-*/
-    if (uploadedAttachments.length > 3) {
+    */
+    const totalSizeInBytes: number = getTotalSizeOfAttachments(attachments);
+    if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
+        return createAppFieldValidationError(AppFieldValidationErrors.samlet_storrelse_for_hoy);
+    }
+    if (uploadedAttachments.length > 100) {
         return fieldValidationError(AppFieldValidationErrors.legeerklæring_forMangeFiler);
     }
     return undefined;
@@ -135,10 +144,14 @@ export const validateLegeerklæring = (attachments: Attachment[]): FieldValidati
 
 export const validateDeltBostedAvtale = (attachments: Attachment[]): FieldValidationResult => {
     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
+    const totalSizeInBytes: number = getTotalSizeOfAttachments(attachments);
+    if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
+        return createAppFieldValidationError(AppFieldValidationErrors.samlet_storrelse_for_hoy);
+    }
     if (uploadedAttachments.length === 0) {
         return fieldValidationError(AppFieldValidationErrors.samværsavtale_mangler);
     }
-    if (uploadedAttachments.length > 3) {
+    if (uploadedAttachments.length > 100) {
         return fieldValidationError(AppFieldValidationErrors.samværsavtale_forMangeFiler);
     }
     return undefined;

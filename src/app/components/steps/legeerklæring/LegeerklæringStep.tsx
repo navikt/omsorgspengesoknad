@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Box from 'common/components/box/Box';
 import intlHelper from 'common/utils/intlUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
-import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
+import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import { validateLegeerklæring } from '../../../validation/fieldValidations';
 import FileUploadErrors from 'common/components/file-upload-errors/FileUploadErrors';
@@ -13,11 +13,16 @@ import LegeerklæringFileList from '../../legeerklæring-attachment-list/Legeerk
 import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
 import PictureScanningGuide from 'common/components/picture-scanning-guide/PictureScanningGuide';
 import Lenke from 'nav-frontend-lenker';
+import { getTotalSizeOfAttachments, MAX_TOTAL_ATTACHMENT_SIZE_BYTES } from 'common/utils/attachmentUtils';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { useFormikContext } from 'formik';
 
 const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
     const intl = useIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const hasPendingUploads: boolean = (formValues.legeerklæring || []).find((a) => a.pending === true) !== undefined;
+    const { values } = useFormikContext<OmsorgspengesøknadFormData>();
+    const totalSize = getTotalSizeOfAttachments(values.legeerklæring);
 
     return (
         <FormikStep
@@ -54,6 +59,13 @@ const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
                     onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                 />
             </Box>
+            {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
+                <Box margin={'l'}>
+                    <AlertStripeAdvarsel>
+                        <FormattedMessage id={'steg.dokumenter.advarsel.totalstørrelse'} />
+                    </AlertStripeAdvarsel>
+                </Box>
+            )}
             {filesThatDidntGetUploaded && filesThatDidntGetUploaded.length > 0 && (
                 <Box margin="m">
                     <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />

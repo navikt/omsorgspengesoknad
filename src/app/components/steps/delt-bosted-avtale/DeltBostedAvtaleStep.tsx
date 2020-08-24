@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from 'common/components/form-block/FormBlock';
-import HelperTextPanel from 'common/components/helper-text-panel/HelperTextPanel';
 import intlHelper from 'common/utils/intlUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
-import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
+import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import { validateDeltBostedAvtale } from '../../../validation/fieldValidations';
 import FileUploadErrors from 'common/components/file-upload-errors/FileUploadErrors';
@@ -12,10 +11,17 @@ import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
 import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
 import Box from 'common/components/box/Box';
+import { getTotalSizeOfAttachments, MAX_TOTAL_ATTACHMENT_SIZE_BYTES } from 'common/utils/attachmentUtils';
+import { useFormikContext } from 'formik';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
+import PictureScanningGuide from 'common/components/picture-scanning-guide/PictureScanningGuide';
 
 const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const intl = useIntl();
+    const { values } = useFormikContext<OmsorgspengesøknadFormData>();
+    const totalSize = getTotalSizeOfAttachments(values.samværsavtale ? values.samværsavtale : []);
 
     return (
         <FormikStep
@@ -23,25 +29,16 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
             onValidFormSubmit={onValidSubmit}
             useValidationErrorSummary={false}
             skipValidation={true}>
-            <HelperTextPanel>
-                <Box margin={'l'} padBottom={'l'}>
-                    <FormattedMessage id={'step.deltBosted.helperTextPanel.1'} />
-                </Box>
-                <Box>
-                    <FormattedMessage id={'step.deltBosted.helperTextPanel.2'} />
-                </Box>
-                <ul>
-                    <li>
-                        <FormattedMessage id={'step.deltBosted.helperTextPanel.3.1'} />
-                    </li>
-                    <li>
-                        <FormattedMessage id={'step.deltBosted.helperTextPanel.3.2'} />
-                    </li>
-                    <li>
-                        <FormattedMessage id={'step.deltBosted.helperTextPanel.3.3'} />
-                    </li>
-                </ul>
-            </HelperTextPanel>
+            <Box padBottom="xl">
+                <CounsellorPanel>
+                    <p>
+                        <FormattedMessage id={'step.deltBosted.helperTextPanel.1'} />
+                    </p>
+                </CounsellorPanel>
+            </Box>
+            <Box margin={'l'}>
+                <PictureScanningGuide />
+            </Box>
             <FormBlock>
                 <FormikFileUploader
                     name={AppFormField.samværsavtale}
@@ -54,7 +51,16 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
                     onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                 />
             </FormBlock>
-            <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
+            {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
+                <Box margin={'l'}>
+                    <AlertStripeAdvarsel>
+                        <FormattedMessage id={'steg.dokumenter.advarsel.totalstørrelse'} />
+                    </AlertStripeAdvarsel>
+                </Box>
+            )}
+            <Box margin={'l'}>
+                <FileUploadErrors filesThatDidntGetUploaded={filesThatDidntGetUploaded} />
+            </Box>
             <DeltBostedAvtaleAttachmentList wrapNoAttachmentsInBox={true} includeDeletionFunctionality={true} />
         </FormikStep>
     );

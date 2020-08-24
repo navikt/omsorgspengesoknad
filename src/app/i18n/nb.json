@@ -155,8 +155,9 @@
     "steg.medlemsskap.annetLandNeste12.hjelp": "Du svarer ja bare hvis du planlegger å oppholde deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.",
     "steg.medlemsskap.annetLandNeste12.listeTittel": "Utenlandsopphold neste 12 måneder",
 
-    "steg.lege.vedlegg": "Last opp bilde av legeerklæringen (maks 3 bilder)",
-    "steg.samværsavtale.vedlegg": "Last opp bilde av avtalen (maks 3 bilder)",
+    "steg.lege.vedlegg": "Last opp legeerklæringen",
+    "steg.samværsavtale.vedlegg": "Last opp avtalen",
+    "steg.dokumenter.advarsel.totalstørrelse": "Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du sende inn en ny ettersendelse når du er ferdig med denne.",
 
     "steg.oppsummering.info": "Les gjennom oppsummeringen før du sender inn søknaden. Hvis du vil gjøre endringer, kan du gå tilbake.",
     "steg.oppsummering.søker.header": "Navn på søker",
@@ -209,9 +210,10 @@
     "fieldvalidation.tildato.merEnnTreÅr": "Du kan ikke søke om omsorgspenger for en periode som er mer enn tre år tilbake i tid",
     "fieldvalidation.tildato.erFørFradato": "Til-datoen kan ikke være tidligere enn fra-datoen",
     "fieldvalidation.legeerklæring.mangler": "Du må laste opp en legeerklæring",
-    "fieldvalidation.legeerklæring.forMangeFiler": "Du kan maksimalt laste opp 3 bilder",
+    "fieldvalidation.legeerklæring.forMangeFiler": "Du har lastet opp for mange vedlegg",
     "fieldvalidation.samværsavtale.mangler": "Du må laste opp en avtale",
-    "fieldvalidation.samværsavtale.forMangeFiler": "Du kan maksimalt laste opp 3 bilder",
+    "fieldvalidation.samværsavtale.forMangeFiler": "Du har lastet opp for mange vedlegg",
+    "fieldvalidation.samlet_storrelse_for_hoy": "Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.",
     "fieldvalidation.utenlandsopphold_ikke_registrert": "Du har ikke registrert noen utenlandsopphold for perioden",
     "fieldvalidation.utenlandsopphold_overlapper": "Ett eller flere av utenlandsoppholdene har datoer som overlapper",
     "fieldvalidation.utenlandsopphold_utenfor_periode": "Ett eller flere av utenlandsoppholdene er utenfor tillatt tidsrom"
