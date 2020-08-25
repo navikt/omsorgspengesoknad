@@ -16,6 +16,7 @@ import { useFormikContext } from 'formik';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
 import PictureScanningGuide from 'common/components/picture-scanning-guide/PictureScanningGuide';
+import Lenke from 'nav-frontend-lenker';
 
 const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
@@ -54,7 +55,15 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
             {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Box margin={'l'}>
                     <AlertStripeAdvarsel>
-                        <FormattedMessage id={'steg.dokumenter.advarsel.totalstørrelse'} />
+                        <FormattedMessage id={'dokumenter.advarsel.totalstørrelse.1'} />
+                        <Lenke
+                            target={'_blank'}
+                            rel={'noopener noreferrer'}
+                            href={
+                                'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-35.01/ettersendelse'
+                            }>
+                            <FormattedMessage id={'dokumenter.advarsel.totalstørrelse.2'} />
+                        </Lenke>
                     </AlertStripeAdvarsel>
                 </Box>
             )}
