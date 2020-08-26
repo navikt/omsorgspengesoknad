@@ -11,6 +11,8 @@ import StepBanner from 'common/components/step-banner/StepBanner';
 import bemUtils from 'common/utils/bemUtils';
 import intlHelper from 'common/utils/intlUtils';
 import RouteConfig, { getRouteUrl } from '../../../config/routeConfig';
+import './introPage.less';
+import Knappelenke from 'common/components/knappelenke/Knappelenke';
 
 const bem = bemUtils('introPage');
 
@@ -83,10 +85,15 @@ const IntroPage: React.StatelessComponent = () => {
                             </Box>
                         )}
                         {values[PageFormField.harKroniskSyktBarn] === YesOrNo.YES && (
-                            <Box margin="xl" textAlignCenter={true}>
-                                <Lenke href={getRouteUrl(RouteConfig.WELCOMING_PAGE_ROUTE)}>
+                            <Box
+                                margin="xl"
+                                textAlignCenter={true}
+                                className={bem.element('gaTilSoknadenKnappelenkeWrapper')}>
+                                <Knappelenke
+                                    type={'hoved'}
+                                    href={getRouteUrl(RouteConfig.WELCOMING_PAGE_ROUTE)}>
                                     <FormattedMessage id="gotoApplicationLink.lenketekst" />
-                                </Lenke>
+                                </Knappelenke>
                             </Box>
                         )}
                     </PageForm.Form>
