@@ -5,7 +5,10 @@ import intlHelper from 'common/utils/intlUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
-import { validateDeltBostedAvtale } from '../../../validation/fieldValidations';
+import {
+    validateDeltBostedAvtale,
+    validateSumOfAllAttachmentsAndValidateStep
+} from '../../../validation/fieldValidations';
 import FileUploadErrors from 'common/components/file-upload-errors/FileUploadErrors';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
@@ -22,7 +25,9 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const intl = useIntl();
     const { values } = useFormikContext<OmsorgspengesøknadFormData>();
-    const totalSize = getTotalSizeOfAttachments(values.samværsavtale ? values.samværsavtale : []);
+    const otherAttachmentsInSøknad = values.legeerklæring;
+    const samværsavtaleAttachments = values.samværsavtale ? values.samværsavtale : [];
+    const totalSize = getTotalSizeOfAttachments([...samværsavtaleAttachments, ...otherAttachmentsInSøknad]);
 
     return (
         <FormikStep
@@ -48,7 +53,10 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
                     onFileInputClick={() => {
                         setFilesThatDidntGetUploaded([]);
                     }}
-                    validate={validateDeltBostedAvtale}
+                    validate={validateSumOfAllAttachmentsAndValidateStep(
+                        otherAttachmentsInSøknad,
+                        validateDeltBostedAvtale
+                    )}
                     onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                 />
             </FormBlock>

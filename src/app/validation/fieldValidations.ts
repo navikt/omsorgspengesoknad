@@ -142,6 +142,13 @@ export const validateLegeerklæring = (attachments: Attachment[]): FieldValidati
     return undefined;
 };
 
+export const validateSumOfAllAttachmentsAndValidateStep = (
+    otherAttachments: Attachment[],
+    validationFunc: (attachments: Attachment[]) => FieldValidationResult
+): (attachments: Attachment[]) => FieldValidationResult => {
+    return (attachments: Attachment[]) => validationFunc([...otherAttachments, ...attachments])
+}
+
 export const validateDeltBostedAvtale = (attachments: Attachment[]): FieldValidationResult => {
     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
     const totalSizeInBytes: number = getTotalSizeOfAttachments(attachments);
