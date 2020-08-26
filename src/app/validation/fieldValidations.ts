@@ -125,14 +125,9 @@ export const validateUtenlandsoppholdNeste12Mnd = (utenlandsopphold: Utenlandsop
     return undefined;
 };
 
-export const validateLegeerklæring = (attachments: Attachment[]): FieldValidationResult => {
+export const validerAlleDokumenterISøknaden = (attachments: Attachment[]): FieldValidationResult => {
     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
-    /* -- KORONA
-    if (uploadedAttachments.length === 0) {
-        return fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler);
-    }
-    */
-    const totalSizeInBytes: number = getTotalSizeOfAttachments(attachments);
+    const totalSizeInBytes: number = getTotalSizeOfAttachments(uploadedAttachments);
     if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
         return createAppFieldValidationError(AppFieldValidationErrors.samlet_storrelse_for_hoy);
     }
@@ -145,21 +140,16 @@ export const validateLegeerklæring = (attachments: Attachment[]): FieldValidati
 export const validateSumOfAllAttachmentsAndValidateStep = (
     otherAttachments: Attachment[],
     validationFunc: (attachments: Attachment[]) => FieldValidationResult
-): (attachments: Attachment[]) => FieldValidationResult => {
-    return (attachments: Attachment[]) => validationFunc([...otherAttachments, ...attachments])
-}
+): ((attachments: Attachment[]) => FieldValidationResult) => {
+    return (attachments: Attachment[]) => {
+        return validerAlleDokumenterISøknaden([...attachments, ...otherAttachments]) || validationFunc(attachments);
+    };
+};
 
 export const validateDeltBostedAvtale = (attachments: Attachment[]): FieldValidationResult => {
     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
-    const totalSizeInBytes: number = getTotalSizeOfAttachments(attachments);
-    if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
-        return createAppFieldValidationError(AppFieldValidationErrors.samlet_storrelse_for_hoy);
-    }
     if (uploadedAttachments.length === 0) {
         return fieldValidationError(AppFieldValidationErrors.samværsavtale_mangler);
-    }
-    if (uploadedAttachments.length > 100) {
-        return fieldValidationError(AppFieldValidationErrors.samværsavtale_forMangeFiler);
     }
     return undefined;
 };

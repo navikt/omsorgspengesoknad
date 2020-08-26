@@ -5,7 +5,7 @@ import intlHelper from 'common/utils/intlUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
-import { validateLegeerklæring } from '../../../validation/fieldValidations';
+import { validerAlleDokumenterISøknaden } from '../../../validation/fieldValidations';
 import FileUploadErrors from 'common/components/file-upload-errors/FileUploadErrors';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
@@ -16,13 +16,15 @@ import Lenke from 'nav-frontend-lenker';
 import { getTotalSizeOfAttachments, MAX_TOTAL_ATTACHMENT_SIZE_BYTES } from 'common/utils/attachmentUtils';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { useFormikContext } from 'formik';
+import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils';
 
 const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
     const intl = useIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const hasPendingUploads: boolean = (formValues.legeerklæring || []).find((a) => a.pending === true) !== undefined;
     const { values } = useFormikContext<OmsorgspengesøknadFormData>();
-    const totalSize = getTotalSizeOfAttachments(values.legeerklæring);
+    const alleDokumenterISøknaden = valuesToAlleDokumenterISøknaden(values);
+    const totalSize = getTotalSizeOfAttachments(alleDokumenterISøknaden);
 
     return (
         <FormikStep
@@ -55,7 +57,7 @@ const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
                     onFileInputClick={() => {
                         setFilesThatDidntGetUploaded([]);
                     }}
-                    validate={validateLegeerklæring}
+                    validate={() => validerAlleDokumenterISøknaden(alleDokumenterISøknaden)}
                     onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                 />
             </Box>

@@ -2,7 +2,7 @@ import { Attachment } from 'common/types/Attachment';
 import { YesOrNo } from 'common/types/YesOrNo';
 import {
     AppFieldValidationErrors, fieldValidationError, hasValue, validateFødselsnummer,
-    validateLegeerklæring, validateNavn, validateRelasjonTilBarnet, validateYesOrNoIsAnswered
+    validerAlleDokumenterISøknaden, validateNavn, validateRelasjonTilBarnet, validateYesOrNoIsAnswered
 } from '../fieldValidations';
 import * as fødselsnummerValidator from '../fødselsnummerValidator';
 
@@ -118,21 +118,21 @@ describe('fieldValidations', () => {
         const failedAttachment2: Attachment = { file: fileMock, pending: false, uploaded: false };
 
         it.skip('should return error message saying that files must be uploaded if list is empty', () => {
-            expect(validateLegeerklæring([])).toEqual(
+            expect(validerAlleDokumenterISøknaden([])).toEqual(
                 fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler)
             );
         });
 
         it.skip('should return error message saying that files must be uploaded if list contains no successfully uploaded attachments', () => {
-            expect(validateLegeerklæring([failedAttachment1, failedAttachment2])).toEqual(
+            expect(validerAlleDokumenterISøknaden([failedAttachment1, failedAttachment2])).toEqual(
                 fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler)
             );
         });
 
         it('should return undefined if list contains between 1-3 successfully uploaded attachments', () => {
-            expect(validateLegeerklæring([uploadedAttachment])).toBeUndefined();
-            expect(validateLegeerklæring([uploadedAttachment, uploadedAttachment])).toBeUndefined();
-            expect(validateLegeerklæring([uploadedAttachment, uploadedAttachment, uploadedAttachment])).toBeUndefined();
+            expect(validerAlleDokumenterISøknaden([uploadedAttachment])).toBeUndefined();
+            expect(validerAlleDokumenterISøknaden([uploadedAttachment, uploadedAttachment])).toBeUndefined();
+            expect(validerAlleDokumenterISøknaden([uploadedAttachment, uploadedAttachment, uploadedAttachment])).toBeUndefined();
         });
 
     });
