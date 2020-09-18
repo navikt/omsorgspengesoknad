@@ -1,7 +1,7 @@
 {
     "Ja": "Ja",
     "Nei": "Nei",
-    "VetIkke": "Eg er usikker.",
+    "VetIkke": "Eg er usikker",
 
     "locale.nb": "Bokmål - norsk",
     "locale.nn": "Nynorsk - norsk",
@@ -73,17 +73,17 @@
     "step.legeerklaering.pageTitle": "Omsorgspengesøknad - legeerklæring",
     "step.legeerklaering.stepTitle": "Legeerklæring",
     "step.legeerklaering.stepIndicatorLabel": "Last opp legeerklæringa di",
-    "step.legeerklaering.counsellorpanel.1": "Her skal du laste opp bilde av legeerklæringen. Det gjør du enten ved å ta bilde av leggerklæringen, eller ved å scanne den. Vær nøye med at all tekst er med, inkludert legens signatur. Hvis du ikke har legeerklæring tilgjengelig når du søker, kan den ettersendes. ",
-    "step.legeerklaering.counsellorpanel.2": "Her får du veiledning til hvordan du ettersender dokumentasjon",
+    "step.legeerklaering.counsellorpanel.1": "Her skal du laste opp legeerklæringa. Det gjør du enten ved å ta bilete av leggerklæringa, eller ved å scanne den. Du må vera nøye med at all tekst er med, inkludert legen sin signatur. Dersom du ikkje har legeerklæringa tilgjengeleg når du søkjer, kan du ettersende den.",
+    "step.legeerklaering.counsellorpanel.2": "Her får du veiledning til korleis du ettersender dokumentasjon",
 
     "step.deltBosted.pageTitle": "Omsorgspengesøknad – avtale om delt bustad",
     "step.deltBosted.stepTitle": "Avtale om delt bustad",
     "step.deltBosted.stepIndicatorLabel": "Last opp avtalen din om delt bustad",
-    "step.deltBosted.helperTextPanel.1": "Ta bilde av eller scann avtalen om delt bosted og last opp.",
-    "step.deltBosted.helperTextPanel.2": "Vær nøye med:",
-    "step.deltBosted.helperTextPanel.3.1": "å få all tekst med på bildet",
-    "step.deltBosted.helperTextPanel.3.2": "at signaturen fra begge parter er synlig på bildet",
-    "step.deltBosted.helperTextPanel.3.3": "at bildet er leselig",
+    "step.deltBosted.helperTextPanel.1": "Ta bilete av eller scann avtalen om delt bustad og last opp.",
+    "step.deltBosted.helperTextPanel.2": "Du må vera nøye med:",
+    "step.deltBosted.helperTextPanel.3.1": "å få all tekst med på biletet",
+    "step.deltBosted.helperTextPanel.3.2": "at signaturen frå begge parter er synleg på biletet",
+    "step.deltBosted.helperTextPanel.3.3": "at biletet er leseleg",
 
     "step.oppsummering.pageTitle": "Omsorgspengesøknad - oppsummering",
     "step.oppsummering.stepTitle": "Oppsummering",
@@ -157,8 +157,8 @@
 
     "steg.lege.vedlegg": "Last opp bilete av legeerklæringa (maks 3 bilete)",
     "steg.samværsavtale.vedlegg": "Last opp bilete av avtalen (maks 3 bilete)",
-    "dokumenter.advarsel.totalstørrelse.1": "Du har totalt lastet opp mer enn grensen på 24 Mb. Det betyr at du må fjerne noe av det du har lastet opp. Hvis det betyr at du ikke får plass til alt du ønsker å sende nå, kan du ",
-    "dokumenter.advarsel.totalstørrelse.2": "ettersende flere dokumenter.",
+    "dokumenter.advarsel.totalstørrelse.1": "Du har totalt lasta opp meir enn grensa på 24 Mb. Det betyr at du må fjerne nokre av dei vedlegga du har lasta opp. Dersom det betyr at du ikkje får plass til alt du ønskjer å sende nå, kan du ",
+    "dokumenter.advarsel.totalstørrelse.2": "ettersende fleire dokumenter.",
 
     "steg.oppsummering.info": "Les gjennom oppsummeringa før du sender inn søknaden. Dersom du vil gjere endringar, kan du gå tilbake.",
     "steg.oppsummering.søker.header": "Namnet på søkjaren",
@@ -214,7 +214,7 @@
     "fieldvalidation.legeerklæring.forMangeFiler": "Du har lastet opp for mange vedlegg",
     "fieldvalidation.samværsavtale.mangler": "Du må laste opp ein avtale",
     "fieldvalidation.samværsavtale.forMangeFiler": "Du har lastet opp for mange vedlegg",
-    "fieldvalidation.samlet_storrelse_for_hoy": "Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.",
+    "fieldvalidation.samlet_storrelse_for_hoy": "Total samla størrelse for dokumenta du har lasta opp overstig grensa på 24 Mb.",
     "fieldvalidation.utenlandsopphold_ikke_registrert": "Du har ikkje registrert nokon utanlandsopphald for perioden",
     "fieldvalidation.utenlandsopphold_overlapper": "Eitt eller fleire av utanlandsopphalda har datoar som overlappar.",
     "fieldvalidation.utenlandsopphold_utenfor_periode": "Eitt eller fleire av utanlandsopphalda er utanfor tillate tidsrom"
