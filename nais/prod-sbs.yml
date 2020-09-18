@@ -46,4 +46,10 @@ spec:
           value: /familie/sykdom-i-familien/soknad/omsorgspenger
         - name: LOGIN_URL
           value: https://loginservice.nav.no/login?redirect=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/soknad
+        - name: NYNORSK
+          value: "on"
+        - name: APPSTATUS_PROJECT_ID
+          value: "ryujtq87"
+        - name: APPSTATUS_DATASET
+          value: "production"
 

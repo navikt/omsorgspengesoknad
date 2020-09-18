@@ -7,6 +7,7 @@ const createEnvSettingsFile = async (settingsFile) => {
     const API_URL = process.env.API_URL;
     const LOGIN_URL = process.env.LOGIN_URL;
     const PUBLIC_PATH = process.env.PUBLIC_PATH;
+    const NYNORSK = process.env.NYNORSK;
     const APPSTATUS_PROJECT_ID = process.env.APPSTATUS_PROJECT_ID;
     const APPSTATUS_DATASET = process.env.APPSTATUS_DATASET;
 
@@ -15,6 +16,7 @@ const createEnvSettingsFile = async (settingsFile) => {
         API_URL: '${API_URL}',
         LOGIN_URL: '${LOGIN_URL}',
         PUBLIC_PATH: '${PUBLIC_PATH}',
+        NYNORSK: '${NYNORSK}',
         APPSTATUS_PROJECT_ID: '${APPSTATUS_PROJECT_ID}',
         APPSTATUS_DATASET: '${APPSTATUS_DATASET}',
 
