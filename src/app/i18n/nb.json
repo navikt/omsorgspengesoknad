@@ -214,7 +214,7 @@
     "fieldvalidation.legeerklæring.forMangeFiler": "Du har lastet opp for mange vedlegg",
     "fieldvalidation.samværsavtale.mangler": "Du må laste opp en avtale",
     "fieldvalidation.samværsavtale.forMangeFiler": "Du har lastet opp for mange vedlegg",
-    "fieldvalidation.samlet_storrelse_for_hoy": "Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24Mb.",
+    "fieldvalidation.samlet_storrelse_for_hoy": "Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 Mb.",
     "fieldvalidation.utenlandsopphold_ikke_registrert": "Du har ikke registrert noen utenlandsopphold for perioden",
     "fieldvalidation.utenlandsopphold_overlapper": "Ett eller flere av utenlandsoppholdene har datoer som overlapper",
     "fieldvalidation.utenlandsopphold_utenfor_periode": "Ett eller flere av utenlandsoppholdene er utenfor tillatt tidsrom"
