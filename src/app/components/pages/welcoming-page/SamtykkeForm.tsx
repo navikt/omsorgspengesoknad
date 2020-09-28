@@ -49,7 +49,7 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
                             Denne søknaden kan <strong>kun</strong> brukes til å søke om ekstra omsorgsdager for barn
                             med kronisk sykdom eller funksjonshemning.
                         </p>
-                        <p>
+                        <div>
                             Du må foreløpig{' '}
                             <Lenke href={getLenker(intl.locale).papirskjemaPrivat} target="_blank">
                                 sende skjema i posten
@@ -62,7 +62,7 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
                                     tilsyn med barnet i en periode på minst 6 måneder
                                 </li>
                             </ol>
-                        </p>
+                        </div>
                         <div>
                             Hvis du skal overføre dager til en annen omsorgsperson pga. stengt barnehage eller skole i
                             forbindelse med koronaviruset{' '}
