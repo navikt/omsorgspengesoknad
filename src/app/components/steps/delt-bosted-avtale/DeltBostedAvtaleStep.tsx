@@ -28,13 +28,15 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
     const otherAttachmentsInSøknad = values.legeerklæring;
     const samværsavtaleAttachments = values.samværsavtale ? values.samværsavtale : [];
     const totalSize = getTotalSizeOfAttachments([...samværsavtaleAttachments, ...otherAttachmentsInSøknad]);
+    const totalSizeOfAttachmentsOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
 
     return (
         <FormikStep
             id={StepID.DELT_BOSTED}
             onValidFormSubmit={onValidSubmit}
             useValidationErrorSummary={false}
-            skipValidation={true}>
+            skipValidation={true}
+            buttonDisabled={totalSizeOfAttachmentsOver24Mb}>
             <Box padBottom="xl">
                 <CounsellorPanel>
                     <p>
@@ -45,21 +47,23 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
             <Box margin={'l'}>
                 <PictureScanningGuide />
             </Box>
-            <FormBlock>
-                <FormikFileUploader
-                    name={AppFormField.samværsavtale}
-                    label={intlHelper(intl, 'steg.samværsavtale.vedlegg')}
-                    onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
-                    onFileInputClick={() => {
-                        setFilesThatDidntGetUploaded([]);
-                    }}
-                    validate={validateSumOfAllAttachmentsAndValidateStep(
-                        otherAttachmentsInSøknad,
-                        validateDeltBostedAvtale
-                    )}
-                    onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
-                />
-            </FormBlock>
+            {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
+                <FormBlock>
+                    <FormikFileUploader
+                        name={AppFormField.samværsavtale}
+                        label={intlHelper(intl, 'steg.samværsavtale.vedlegg')}
+                        onErrorUploadingAttachments={setFilesThatDidntGetUploaded}
+                        onFileInputClick={() => {
+                            setFilesThatDidntGetUploaded([]);
+                        }}
+                        validate={validateSumOfAllAttachmentsAndValidateStep(
+                            otherAttachmentsInSøknad,
+                            validateDeltBostedAvtale
+                        )}
+                        onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
+                    />
+                </FormBlock>
+            )}
             {totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <Box margin={'l'}>
                     <AlertStripeAdvarsel>
