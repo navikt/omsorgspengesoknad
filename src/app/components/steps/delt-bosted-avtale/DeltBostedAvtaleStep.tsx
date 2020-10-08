@@ -29,6 +29,7 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
     const samværsavtaleAttachments = values.samværsavtale ? values.samværsavtale : [];
     const totalSize = getTotalSizeOfAttachments([...samværsavtaleAttachments, ...otherAttachmentsInSøknad]);
     const totalSizeOfAttachmentsOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
+    const hasPendingUploads: boolean = (values.samværsavtale || []).find((a: any) => a.pending === true) !== undefined;
 
     return (
         <FormikStep
@@ -36,7 +37,7 @@ const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
             onValidFormSubmit={onValidSubmit}
             useValidationErrorSummary={false}
             skipValidation={true}
-            buttonDisabled={totalSizeOfAttachmentsOver24Mb}>
+            buttonDisabled={hasPendingUploads || totalSizeOfAttachmentsOver24Mb}>
             <Box padBottom="xl">
                 <CounsellorPanel>
                     <p>
