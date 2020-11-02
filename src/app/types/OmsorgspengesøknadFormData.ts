@@ -51,7 +51,7 @@ export interface OmsorgspengesøknadFormData {
     [AppFormField.arbeidssituasjon]: Arbeidssituasjon[];
     [AppFormField.legeerklæring]: Attachment[];
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: boolean;
-    [AppFormField.barnetsFødselsdato]?: Date;
+    [AppFormField.barnetsFødselsdato]?: string;
     [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo;
     [AppFormField.utenlandsoppholdSiste12Mnd]: Utenlandsopphold[];
     [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo;

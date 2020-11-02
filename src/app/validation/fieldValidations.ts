@@ -19,6 +19,19 @@ import { createFieldValidationError } from 'common/validation/fieldValidations';
 import { FieldValidationResult } from 'common/validation/types';
 import { Arbeidssituasjon, SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
 import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
+import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
+
+export const fieldValidationError = (
+    key: AppFieldValidationErrors | undefined,
+    values?: any
+): FieldValidationResult => {
+    return key
+        ? {
+              key,
+              values
+          }
+        : undefined;
+};
 
 export enum AppFieldValidationErrors {
     'fødselsdato_ugyldig' = 'fieldvalidation.fødelsdato.ugyldig',
@@ -168,18 +181,6 @@ export const validateArbeid = (value: Arbeidssituasjon[]): FieldValidationResult
     return undefined;
 };
 
-export const fieldValidationError = (
-    key: AppFieldValidationErrors | undefined,
-    values?: any
-): FieldValidationResult => {
-    return key
-        ? {
-              key,
-              values
-          }
-        : undefined;
-};
-
 export const validateUtenlandsoppholdIPerioden = (
     periode: DateRange,
     utenlandsopphold: Utenlandsopphold[]
@@ -197,7 +198,8 @@ export const validateUtenlandsoppholdIPerioden = (
     return undefined;
 };
 
-export const validateFødselsdato = (date: Date): FieldValidationResult => {
+export const validateFødselsdato = (dateString?: string): FieldValidationResult => {
+    const date = datepickerUtils.getDateFromDateString(dateString);
     if (!hasValue(date)) {
         return fieldIsRequiredError();
     }
