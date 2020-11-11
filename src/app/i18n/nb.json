@@ -92,6 +92,13 @@
     "introPage.tittel": "Søknad om ekstra omsorgsdager",
     "introPage.stegTittel": "Kan jeg bruke den digitale omsorgspengesøknaden?",
     "introPage.spm.kroniskEllerFunksjonshemmende": "Har du et barn som har en kronisk sykdom eller funksjonshemming?",
+    "introPage.intro.1.html": "Den digitale søknaden er under utvikling og kan foreløpig <strong>kun</strong> brukes til å søke om ekstra omsorgsdager for barn med kronisk sykdom eller funksjonshemning.",
+    "introPage.intro.2": "For å søke må du være i én eller flere av disse arbeidssituasjonene:",
+    "introPage.intro.2.1": "arbeidstaker",
+    "introPage.intro.2.2": "selvstendig næringsdrivende",
+    "introPage.intro.2.3": "frilanser",
+    "introPage.info.harIkkeKroniskSyktBarn.html": "Søknad om ekstra omsorgsdager gjelder <strong>kun</strong> for de som har kronisk sykt eller funksjonshemmet barn.",
+
     "welcomingPage.sidetittel": "Søknad om ekstra omsorgsdager",
     "welcomingPage.banner.tittel": "Hei,",
     "welcomingPage.banner.tekst": "jeg vil hjelpe deg med å fylle ut søknaden!",
