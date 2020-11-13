@@ -161,6 +161,13 @@
     "steg.medlemsskap.annetLandSiste12.listeTittel": "Utenlandsopphold siste 12 måneder",
     "steg.medlemsskap.annetLandNeste12.hjelp": "Du svarer ja bare hvis du planlegger å oppholde deg fast i et annet land enn Norge. Korte utlandsturer i forbindelse med for eksempel ferie regnes ikke med.",
     "steg.medlemsskap.annetLandNeste12.listeTittel": "Utenlandsopphold neste 12 måneder",
+    "steg.medlemsskap.opphold.addLabel": "Legg til nytt utenlandsopphold",
+    "steg.medlemsskap.oppholdNeste12.modalTitle": "Utenlandsopphold neste 12 måneder",
+    "steg.medlemsskap.oppholdNeste12.listTitle": "Utenlandsopphold neste 12 måneder",
+    "steg.medlemsskap.oppholdSiste12.modalTitle": "Utenlandsopphold siste 12 måneder",
+    "steg.medlemsskap.oppholdSiste12.listTitle": "Utenlandsopphold siste 12 måneder",
+    "steg.medlemskap.veileder": "Medlemskap i folketrygden er nøkkelen til rettigheter fra NAV. Hvis du bor eller jobber i Norge er du vanligvis medlem. Du kan lese mer om medlemskap på",
+    "expandableInfo.hvaBetyrDette": "Hva betyr dette?",
 
     "steg.lege.vedlegg": "Last opp legeerklæringen",
     "steg.samværsavtale.vedlegg": "Last opp avtalen",
