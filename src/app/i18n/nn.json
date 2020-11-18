@@ -112,6 +112,18 @@
     "welcomingPage.modal.behandlingAvPersonalia.tittel": "Om behandling av personopplysningar",
     "welcomingPage.begynnsøknad": "Start søknaden",
 
+    "welcomingPage.veileder.1.html": "Du kan <strong>berre</strong> bruke denne   søknaden til å søkje om ekstra omsorgsdagar for barn med kronisk sjukdom eller funksjonshemming.",
+    "welcomingPage.veileder.2.1": "Du må førebels",
+    "welcomingPage.veileder.2.2": "sende skjemaet i posten",
+    "welcomingPage.veileder.2.3": "dersom du skal",
+    "welcomingPage.veileder.2.4.1": "dele omsorgsdagar med ein annan omsorgsperson",
+    "welcomingPage.veileder.2.4.2": "søkje om å bli rekna som åleine om omsorga fordi den andre forelderen ikkje kan ha tilsyn med barnet i ein periode på minst 6 månader",
+    "welcomingPage.veileder.3.1": "Dersom du skal overføre dagar til ein annan omsorgsperson på grunn av stengd barnehage eller skule i samband med koronaviruset,",
+    "welcomingPage.veileder.3.2": "gjer du det her",
+    "welcomingPage.veileder.3.3": ".",
+    "welcomingPage.kronisk.1": "For å søkje om ekstra omsorgsdagar må du ha legeerklæring for barnet. Dersom du ikkje har legeerklæringa tilgjengeleg no, kan du ettersende henne.",
+    "welcomingPage.kronisk.2": "Dersom du ikkje bur på den same folkeregistrerte adressa som barnet, men har ein avtale om delt bustad, må du laste opp avtalen.",
+
     "modal.personalopplysninger.tittel": "Slik behandlar NAV personopplysningane dine",
     "modal.personalopplysninger.intro.1": "NAV hentar inn og får opplysningar om deg når du sender inn ein søknad. Det er nødvendig for at du skal kunne få riktig teneste og riktige ytingar.",
     "modal.personalopplysninger.intro.2a": "Du har valt å søkje om omsorgspengar. Det er ei yting frå folketrygda som du kan få dersom du fyller vilkåra. Vilkåra står på",
