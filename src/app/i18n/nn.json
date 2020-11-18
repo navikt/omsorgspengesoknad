@@ -241,8 +241,8 @@
     "fieldvalidation.samværsavtale.mangler": "Du må laste opp ein avtale",
     "fieldvalidation.samværsavtale.forMangeFiler": "Du har lasta opp for mange vedlegg",
     "fieldvalidation.samlet_storrelse_for_hoy": "Total samla størrelse for dokumenta du har lasta opp overstig grensa på 24 Mb.",
-    "fieldvalidation.utenlandsopphald_ikke_registrert": "Du har ikkje registrert nokon utanlandsopphald for perioden",
-    "fieldvalidation.utenlandsopphald_overlapper": "Eitt eller fleire av utanlandsopphalda har datoar som overlappar.",
-    "fieldvalidation.utenlandsopphald_utenfor_periode": "Eitt eller fleire av utanlandsopphalda er utanfor tillate tidsrom",
+    "fieldvalidation.utenlandsopphold_ikke_registrert": "Du har ikkje registrert nokon utanlandsopphald for perioden",
+    "fieldvalidation.utenlandsopphold_overlapper": "Eitt eller fleire av utanlandsopphalda har datoar som overlappar.",
+    "fieldvalidation.utenlandsopphold_utenfor_periode": "Eitt eller fleire av utanlandsopphalda er utanfor tillate tidsrom",
     "fieldvalidation.fødelsdato.ugyldig": "Ugyldig dato"
 }
