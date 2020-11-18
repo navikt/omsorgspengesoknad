@@ -24,8 +24,7 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
     return (
         <FormikStep id={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
             <CounsellorPanel>
-                Medlemskap i folketrygden er nøkkelen til rettigheter fra NAV. Hvis du bor eller jobber i Norge er du
-                vanligvis medlem. Du kan lese mer om medlemskap på{' '}
+                {intlHelper(intl, 'steg.medlemskap.veileder')}{' '}
                 <Lenke href={getLenker().medlemskap} target="_blank">
                     nav.no
                 </Lenke>
@@ -37,7 +36,7 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                     name={AppFormField.harBoddUtenforNorgeSiste12Mnd}
                     validate={validateYesOrNoIsAnswered}
                     description={
-                        <ExpandableInfo title="Hva betyr dette?">
+                        <ExpandableInfo title={intlHelper(intl, 'expandableInfo.hvaBetyrDette')}>
                             {intlHelper(intl, 'steg.medlemsskap.annetLandSiste12.hjelp')}
                         </ExpandableInfo>
                     }
@@ -51,9 +50,9 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                         maxDate={dateToday}
                         validate={validateUtenlandsoppholdSiste12Mnd}
                         labels={{
-                            addLabel: 'Legg til nytt utenlandsopphold',
-                            modalTitle: 'Utenlandsopphold siste 12 måneder',
-                            listTitle: 'Utenlandsopphold siste 12 måneder'
+                            addLabel: intlHelper(intl, 'steg.medlemsskap.opphold.addLabel'),
+                            modalTitle: intlHelper(intl, 'steg.medlemsskap.oppholdSiste12.modalTitle'),
+                            listTitle: intlHelper(intl, 'steg.medlemsskap.oppholdSiste12.listTitle')
                         }}
                     />
                 </FormBlock>
@@ -64,7 +63,7 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                     name={AppFormField.skalBoUtenforNorgeNeste12Mnd}
                     validate={validateYesOrNoIsAnswered}
                     description={
-                        <ExpandableInfo title="Hva betyr dette?">
+                        <ExpandableInfo title={intlHelper(intl, 'expandableInfo.hvaBetyrDette')}>
                             {intlHelper(intl, 'steg.medlemsskap.annetLandNeste12.hjelp')}
                         </ExpandableInfo>
                     }
@@ -78,9 +77,9 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                         name={AppFormField.utenlandsoppholdNeste12Mnd}
                         validate={validateUtenlandsoppholdNeste12Mnd}
                         labels={{
-                            addLabel: 'Legg til nytt utenlandsopphold',
-                            modalTitle: 'Utenlandsopphold neste 12 måneder',
-                            listTitle: 'Utenlandsopphold neste 12 måneder'
+                            addLabel: intlHelper(intl, 'steg.medlemsskap.opphold.addLabel'),
+                            modalTitle: intlHelper(intl, 'steg.medlemsskap.oppholdNeste12.modalTitle'),
+                            listTitle: intlHelper(intl, 'steg.medlemsskap.oppholdNeste12.listTitle')
                         }}
                     />
                 </FormBlock>

@@ -1,4 +1,5 @@
 import { getCountryName } from '@navikt/sif-common-formik/lib';
+import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { Locale } from 'common/types/Locale';
 import { YesOrNo } from 'common/types/YesOrNo';
@@ -6,10 +7,46 @@ import { attachmentUploadHasFailed } from 'common/utils/attachmentUtils';
 import { formatDateToApiFormat } from 'common/utils/dateUtils';
 import { formatName } from 'common/utils/personUtils';
 import {
-    BarnToSendToApi, OmsorgspengesøknadApiData, UtenlandsoppholdApiData
+    BarnToSendToApi,
+    OmsorgspengesøknadApiData,
+    UtenlandsoppholdApiData
 } from '../types/OmsorgspengesøknadApiData';
 import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../types/Søkerdata';
+
+const mapUtenlandsoppholdTilApiData = (opphold: Utenlandsopphold, locale: string): UtenlandsoppholdApiData => ({
+    landnavn: getCountryName(opphold.landkode, locale),
+    landkode: opphold.landkode,
+    fraOgMed: formatDateToApiFormat(opphold.fom),
+    tilOgMed: formatDateToApiFormat(opphold.tom)
+});
+
+export const mapBarnToApiData = (
+    barn: BarnReceivedFromApi[],
+    barnetsNavn: string,
+    barnetsFødselsnummer: string | undefined,
+    barnetsFødselsdato: string | undefined,
+    barnetSøknadenGjelder: string | undefined
+): BarnToSendToApi => {
+    if (barnetSøknadenGjelder) {
+        const barnChosenFromList = barn.find((currentBarn) => currentBarn.aktørId === barnetSøknadenGjelder)!;
+        const { fornavn, etternavn, mellomnavn, aktørId } = barnChosenFromList;
+        return {
+            navn: formatName(fornavn, etternavn, mellomnavn),
+            norskIdentifikator: null,
+            aktørId,
+            fødselsdato: formatDateToApiFormat(barnChosenFromList.fødselsdato)
+        };
+    } else {
+        const barnFDato = datepickerUtils.getDateFromDateString(barnetsFødselsdato);
+        return {
+            navn: barnetsNavn && barnetsNavn !== '' ? barnetsNavn : null,
+            norskIdentifikator: barnetsFødselsnummer || null,
+            aktørId: null,
+            fødselsdato: barnFDato !== undefined ? formatDateToApiFormat(barnFDato) : null
+        };
+    }
+};
 
 export const mapFormDataToApiData = (
     {
@@ -75,37 +112,4 @@ export const mapFormDataToApiData = (
     };
 
     return apiData;
-};
-
-const mapUtenlandsoppholdTilApiData = (opphold: Utenlandsopphold, locale: string): UtenlandsoppholdApiData => ({
-    landnavn: getCountryName(opphold.landkode, locale),
-    landkode: opphold.landkode,
-    fraOgMed: formatDateToApiFormat(opphold.fom),
-    tilOgMed: formatDateToApiFormat(opphold.tom)
-});
-
-export const mapBarnToApiData = (
-    barn: BarnReceivedFromApi[],
-    barnetsNavn: string,
-    barnetsFødselsnummer: string | undefined,
-    barnetsFødselsdato: Date | undefined,
-    barnetSøknadenGjelder: string | undefined
-): BarnToSendToApi => {
-    if (barnetSøknadenGjelder) {
-        const barnChosenFromList = barn.find((currentBarn) => currentBarn.aktørId === barnetSøknadenGjelder)!;
-        const { fornavn, etternavn, mellomnavn, aktørId } = barnChosenFromList;
-        return {
-            navn: formatName(fornavn, etternavn, mellomnavn),
-            norskIdentifikator: null,
-            aktørId,
-            fødselsdato: formatDateToApiFormat(barnChosenFromList.fødselsdato)
-        };
-    } else {
-        return {
-            navn: barnetsNavn && barnetsNavn !== '' ? barnetsNavn : null,
-            norskIdentifikator: barnetsFødselsnummer || null,
-            aktørId: null,
-            fødselsdato: barnetsFødselsdato !== undefined ? formatDateToApiFormat(barnetsFødselsdato) : null
-        };
-    }
 };
