@@ -23,8 +23,7 @@ const LenkerBokmål: Lenker = {
 const LenkerNynorsk: Partial<Lenker> = {
     medlemskap: 'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Nynorsk/medlemskap-i-folketrygda',
     papirskjemaPrivat: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger',
-    vilkårOmsorgspenger:
-        'https://www.nav.no/no/Person/Familie/Sykdom+i+familien/Nynorsk/pleiepengar+for+pleie+av+sjukt+barn',
+    vilkårOmsorgspenger: 'https://www.nav.no/familie/sykdom-i-familien/nn/omsorgspenger',
     rettOgPlikt:
         'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Nynorsk/du-har-plikt-til-%C3%A5-gje-nav-riktige-opplysningar'
 };

@@ -10,7 +10,11 @@ const getDecorator = require('./src/build/scripts/decorator');
 createEnvSettingsFile(path.resolve(`${__dirname}/dist/js/settings.js`));
 
 const server = express();
-server.use(helmet());
+server.use(
+    helmet({
+        contentSecurityPolicy: false
+    })
+);
 server.use(compression());
 server.set('views', `${__dirname}/dist`);
 server.set('view engine', 'mustache');
@@ -44,7 +48,6 @@ const renderApp = (decoratorFragments) =>
     });
 
 const startServer = (html) => {
-
     server.get(/^\/(?!.*dist).*$/, (req, res) => {
         res.send(html);
     });

@@ -12,6 +12,7 @@ import intlHelper from 'common/utils/intlUtils';
 import { validateYesOrNoIsAnswered } from 'common/validation/fieldValidations';
 import getLenker from '../../../lenker';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
+import FormattedHtmlMessage from '@navikt/sif-common-core/lib/components/formatted-html-message/FormattedHtmlMessage';
 
 interface Props {
     onConfirm: () => void;
@@ -27,7 +28,7 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
     onConfirm,
     onOpenDinePlikterModal,
     openBehandlingAvPersonopplysningerModal
-}) => {
+}: Props) => {
     const { values: formValues } = useFormikContext<OmsorgspengesøknadFormData>();
     const intl = useIntl();
     return (
@@ -46,32 +47,31 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
                 {formValues.kroniskEllerFunksjonshemming === YesOrNo.NO && (
                     <CounsellorPanel>
                         <p>
-                            Denne søknaden kan <strong>kun</strong> brukes til å søke om ekstra omsorgsdager for barn
-                            med kronisk sykdom eller funksjonshemning.
+                            <FormattedHtmlMessage id="welcomingPage.veileder.1.html" />
                         </p>
                         <div>
-                            Du må foreløpig{' '}
+                            <FormattedHtmlMessage id="welcomingPage.veileder.2.1" />{' '}
                             <Lenke href={getLenker(intl.locale).papirskjemaPrivat} target="_blank">
-                                sende skjema i posten
+                                <FormattedHtmlMessage id="welcomingPage.veileder.2.2" />
                             </Lenke>{' '}
-                            hvis du skal
+                            <FormattedHtmlMessage id="welcomingPage.veileder.2.3" />
                             <ol>
-                                <li>dele omsorgsdager med en annen omsorgsperson</li>
                                 <li>
-                                    søke om å bli regnet som alene om omsorgen fordi den andre forelderen ikke kan ha
-                                    tilsyn med barnet i en periode på minst 6 måneder
+                                    <FormattedHtmlMessage id="welcomingPage.veileder.2.4.1" />
+                                </li>
+                                <li>
+                                    <FormattedHtmlMessage id="welcomingPage.veileder.2.4.2" />
                                 </li>
                             </ol>
                         </div>
                         <div>
-                            Hvis du skal overføre dager til en annen omsorgsperson pga. stengt barnehage eller skole i
-                            forbindelse med koronaviruset{' '}
+                            <FormattedHtmlMessage id="welcomingPage.veileder.3.1" />{' '}
                             <Lenke
                                 href="https://www.nav.no/familie/sykdom-i-familien/soknad/overfore-omsorgsdager"
                                 target="_blank">
-                                gjør du det her
+                                <FormattedHtmlMessage id="welcomingPage.veileder.3.2" />
                             </Lenke>
-                            .
+                            <FormattedHtmlMessage id="welcomingPage.veileder.3.3" />
                         </div>
                     </CounsellorPanel>
                 )}
@@ -79,12 +79,10 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
                     <>
                         <CounsellorPanel>
                             <p>
-                                For å søke om ekstra omsorgsdager må du ha legeerklæring for barnet. Hvis du ikke har
-                                legeerklæringen tilgjengelig nå, kan du ettersende den.
+                                <FormattedHtmlMessage id="welcomingPage.kronisk.1" />
                             </p>
                             <p>
-                                Hvis du ikke bor på samme folkeregistrerte adresse som barnet, men har en avtale om delt
-                                bosted, må du laste opp avtalen.
+                                <FormattedHtmlMessage id="welcomingPage.kronisk.2" />
                             </p>
                         </CounsellorPanel>
                         <FormBlock>
