@@ -87,12 +87,21 @@ const SummaryStep = ({ formValues }: StepConfigProps) => {
 
                                 <Box margin="l">
                                     <ContentWithHeader
+                                        header={intlHelper(
+                                            intl,
+                                            'steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header'
+                                        )}>
+                                        {apiValues.kroniskEllerFunksjonshemming === true && intlHelper(intl, 'Ja')}
+                                        {apiValues.kroniskEllerFunksjonshemming === false && intlHelper(intl, 'Nei')}
+                                    </ContentWithHeader>
+                                </Box>
+                                <Box margin="l">
+                                    <ContentWithHeader
                                         header={intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.header')}>
                                         {apiValues.sammeAdresse === true && intlHelper(intl, 'Ja')}
                                         {apiValues.sammeAdresse === false && intlHelper(intl, 'Nei')}
                                     </ContentWithHeader>
                                 </Box>
-
                                 <Box margin="l">
                                     <ContentWithHeader
                                         header={intlHelper(intl, 'steg.oppsummering.arbeidssituasjon.header')}>

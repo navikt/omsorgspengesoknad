@@ -91,7 +91,6 @@
 
     "introPage.tittel": "Søknad om ekstra omsorgsdager",
     "introPage.stegTittel": "Kan jeg bruke den digitale omsorgspengesøknaden?",
-    "introPage.spm.kroniskEllerFunksjonshemmende": "Har du et barn som har en kronisk sykdom eller funksjonshemming?",
     "welcomingPage.sidetittel": "Søknad om ekstra omsorgsdager",
     "welcomingPage.banner.tittel": "Hei,",
     "welcomingPage.banner.tekst": "jeg vil hjelpe deg med å fylle ut søknaden!",
@@ -145,6 +144,8 @@
     "steg.omBarnet.navn": "Barnets navn",
     "steg.omBarnet.relasjon": "Min relasjon til barnet",
     "steg.omBarnet.veileder.samværsavtale": "Senere i søknaden laster du opp avtale om delt bosted for barnet.",
+    "steg.omBarnet.spm.kroniskEllerFunksjonshemmende": "Har barnet en kronisk sykdom eller funksjonshemming?",
+    "steg.omBarnet.alert.ikkeKroniskSykdom": "Søknad om ekstra omsorgsdager gjelder kun for de som har kronisk sykt eller funksjonshemmet barn.",
 
     "steg.arbeid.spm": "Hva er din arbeidssituasjon? Du kan velge flere.",
 
@@ -172,6 +173,7 @@
     "steg.oppsummering.barnet.søkersRelasjonTilBarnet": "Din relasjon til barnet: {relasjon}",
     "steg.oppsummering.barnet.sammeAdresse.header": "Er du folkeregistrert på samme adresse som barnet?",
     "steg.oppsummering.barnet.deltOmsorg.header": "Deler du omsorgen med den andre forelderen?",
+    "steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header": "Har barnet en kronisk sykdom eller funksjonshemming?",
 
     "steg.oppsummering.arbeidssituasjon.header": "Din arbeidssituasjon",
 
