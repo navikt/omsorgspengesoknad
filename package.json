@@ -36,6 +36,7 @@
         "@navikt/sif-common-formik": "^12.0.3",
         "@navikt/sif-common-forms": "10.0.4",
         "@navikt/sif-common-sentry": "0.0.13",
+        "@navikt/sif-common-soknad": "^1.0.10",
         "@sentry/browser": "^5.27.3",
         "@testing-library/react": "^11.1.2",
         "axios": "^0.21.0",
