@@ -68,10 +68,15 @@ const SummaryStep = ({ formValues }: StepConfigProps) => {
                             <Panel border={true}>
                                 {/* Om deg */}
                                 <SummarySection header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
-                                    <Normaltekst>{formatName(fornavn, etternavn, mellomnavn)}</Normaltekst>
-                                    <Normaltekst>
-                                        <FormattedMessage id="steg.oppsummering.søker.fnr" values={{ fødselsnummer }} />
-                                    </Normaltekst>
+                                    <Box margin="l">
+                                        <Normaltekst>{formatName(fornavn, etternavn, mellomnavn)}</Normaltekst>
+                                        <Normaltekst>
+                                            <FormattedMessage
+                                                id="steg.oppsummering.søker.fnr"
+                                                values={{ fødselsnummer }}
+                                            />
+                                        </Normaltekst>
+                                    </Box>
                                     <Box margin="l">
                                         <ContentWithHeader
                                             header={intlHelper(intl, 'steg.oppsummering.arbeidssituasjon.header')}>

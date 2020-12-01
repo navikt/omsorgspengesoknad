@@ -55,7 +55,6 @@ const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepConfigProps) => {
                                     </AlertStripe>
                                 </Box>
                             )}
-                            {console.log(values)}
                         </>
                     )}
                 </>
