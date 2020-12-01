@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { IntlProvider as Provider } from 'react-intl';
+import '@formatjs/intl-pluralrules/locale-data/nb';
+import '@formatjs/intl-pluralrules/locale-data/nn';
+import '@formatjs/intl-pluralrules/polyfill';
 import bostedUtlandMessages from 'common/forms/bosted-utland/bostedUtlandMessages';
 import { allCommonMessages } from 'common/i18n/allCommonMessages';
 import { Locale } from 'common/types/Locale';
