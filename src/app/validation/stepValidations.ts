@@ -2,11 +2,8 @@ import { YesOrNo } from 'common/types/YesOrNo';
 import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import * as fieldValidations from './fieldValidations';
 
-export const welcomingPageIsValid = ({
-    harForståttRettigheterOgPlikter,
-    kroniskEllerFunksjonshemming
-}: OmsorgspengesøknadFormData) =>
-    kroniskEllerFunksjonshemming === YesOrNo.YES && harForståttRettigheterOgPlikter === true;
+export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: OmsorgspengesøknadFormData) =>
+    harForståttRettigheterOgPlikter === true;
 
 export const opplysningerOmBarnetStepIsValid = ({
     barnetsNavn,

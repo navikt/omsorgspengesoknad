@@ -7,9 +7,7 @@ import FormBlock from 'common/components/form-block/FormBlock';
 import { prettifyDate } from 'common/utils/dateUtils';
 import intlHelper from 'common/utils/intlUtils';
 import { formatName } from 'common/utils/personUtils';
-import {
-    AppFormField, initialValues, OmsorgspengesøknadFormData
-} from '../../../types/OmsorgspengesøknadFormData';
+import { AppFormField, initialValues, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../../../types/Søkerdata';
 import { validateValgtBarn } from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
@@ -73,7 +71,8 @@ const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }
                                     AppFormField.barnetHarIkkeFåttFødselsnummerEnda,
                                     AppFormField.barnetsFødselsdato,
                                     AppFormField.barnetsNavn,
-                                    AppFormField.søkersRelasjonTilBarnet
+                                    AppFormField.søkersRelasjonTilBarnet,
+                                    AppFormField.kroniskEllerFunksjonshemming
                                 ],
                                 setFieldValue,
                                 initialValues
