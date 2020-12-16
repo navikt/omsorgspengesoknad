@@ -153,7 +153,8 @@
     "modal.minePlikter.part2a": "Jeg har lest og forstått det som står på",
     "modal.minePlikter.part2b": "nav.no/rettogplikt",
 
-    "steg.omBarnet.hvilketBarn.spm": "Hvilket barn gjelder søknaden for?",
+    "steg.omBarnet.hvilketBarn.spm": "Hvilket barn gjelder søknaden?",
+    "steg.omBarnet.hvilketBarn.registrerteBarn": "Barn registrert på deg:",
     "steg.omBarnet.hvilketBarn.info": "Hvis du skal søke for flere barn, må du sende én søknad for hvert barn.",
     "steg.omBarnet.hvilketBarn.født": "Født {dato}",
     "steg.omBarnet.gjelderAnnetBarn": "Søknaden gjelder et annet barn",
@@ -217,6 +218,8 @@
 
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
     "page.confirmation.tittel": "Vi har mottatt søknad fra deg om ekstra omsorgsdager",
+
+    "page.form.ubesvarteSpørsmålInfo": "For å komme videre, må du svare på alle spørsmålene ovenfor",
 
     "page.generalErrorPage.sidetittel": "Feil",
     "page.generalErrorPage.tittel": "Noe gikk galt...",
