@@ -25,7 +25,7 @@ const ConfirmationPage: React.FunctionComponent = () => {
                 </Box>
             </div>
             <Box margin="xl">
-                <Ingress>Hva skjer videre nå?</Ingress>
+                <Ingress tag="h2">Hva skjer videre nå?</Ingress>
                 <ul className="checklist">
                     <li>
                         Søknaden din vil bli synlig på Ditt NAV etter omkring en uke. Da vil du også kunne se hva slags
@@ -37,7 +37,7 @@ const ConfirmationPage: React.FunctionComponent = () => {
                     </li>
                     <li>
                         Når søknaden er ferdig behandlet, får du et svarbrev fra oss. Du kan se{' '}
-                        <Lenke href={getLenker(intl.locale).saksbehandlingstider} target="_blankg">
+                        <Lenke href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
                             saksbehandlingstiden
                         </Lenke>{' '}
                         for ditt fylke her.
