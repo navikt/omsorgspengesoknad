@@ -25,22 +25,22 @@ const ConfirmationPage: React.FunctionComponent = () => {
                 </Box>
             </div>
             <Box margin="xl">
-                <Ingress tag="h2">Hva skjer videre nå?</Ingress>
+                <Ingress tag="h2">
+                    <FormattedMessage id="page.confirmation.info.tittel" />
+                </Ingress>
                 <ul className="checklist">
                     <li>
-                        Søknaden din vil bli synlig på Ditt NAV etter omkring en uke. Da vil du også kunne se hva slags
-                        dokumentasjon vi har fått fra deg.
+                        <FormattedMessage id="page.confirmation.info.1" />
                     </li>
                     <li>
-                        Vi starter behandlingen av søknaden din når vi har mottatt all nødvendig dokumentasjon. Vi
-                        kontakter deg hvis vi trenger flere opplysninger i saken din.
+                        <FormattedMessage id="page.confirmation.info.2" />
                     </li>
                     <li>
-                        Når søknaden er ferdig behandlet, får du et svarbrev fra oss. Du kan se{' '}
+                        <FormattedMessage id="page.confirmation.info.3.1" />{' '}
                         <Lenke href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
-                            saksbehandlingstiden
+                            <FormattedMessage id="page.confirmation.info.3.2" />
                         </Lenke>{' '}
-                        for ditt fylke her.
+                        <FormattedMessage id="page.confirmation.info.3.3" />
                     </li>
                 </ul>
             </Box>
