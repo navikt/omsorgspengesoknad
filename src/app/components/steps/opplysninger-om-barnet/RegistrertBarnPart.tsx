@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { resetFieldValue, resetFieldValues } from '@navikt/sif-common-formik';
+import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik';
 import { useFormikContext } from 'formik';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import FormBlock from 'common/components/form-block/FormBlock';
 import { prettifyDate } from 'common/utils/dateUtils';
 import intlHelper from 'common/utils/intlUtils';
@@ -20,13 +20,18 @@ const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }
     const intl = useIntl();
     const {
         values: { søknadenGjelderEtAnnetBarn },
-        setFieldValue
+        setFieldValue,
     } = useFormikContext<OmsorgspengesøknadFormData>();
 
     return (
-        <>
+        <SkjemagruppeQuestion
+            legend={
+                <Undertittel tag="h2" style={{ display: 'inline-block', marginBottom: '.75rem', fontSize: '1.125rem' }}>
+                    {intlHelper(intl, 'steg.omBarnet.hvilketBarn.spm')}
+                </Undertittel>
+            }>
             <AppForm.RadioPanelGroup
-                legend={intlHelper(intl, 'steg.omBarnet.hvilketBarn.spm')}
+                legend={intlHelper(intl, 'steg.omBarnet.hvilketBarn.registrerteBarn')}
                 description={intlHelper(intl, 'steg.omBarnet.hvilketBarn.info')}
                 name={AppFormField.barnetSøknadenGjelder}
                 useTwoColumns={true}
@@ -47,7 +52,7 @@ const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }
                                 </Normaltekst>
                             </>
                         ),
-                        disabled: søknadenGjelderEtAnnetBarn
+                        disabled: søknadenGjelderEtAnnetBarn,
                     };
                 })}
                 validate={(value) => {
@@ -72,7 +77,7 @@ const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }
                                     AppFormField.barnetsFødselsdato,
                                     AppFormField.barnetsNavn,
                                     AppFormField.søkersRelasjonTilBarnet,
-                                    AppFormField.kroniskEllerFunksjonshemming
+                                    AppFormField.kroniskEllerFunksjonshemming,
                                 ],
                                 setFieldValue,
                                 initialValues
@@ -81,7 +86,7 @@ const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }
                     }}
                 />
             </FormBlock>
-        </>
+        </SkjemagruppeQuestion>
     );
 };
 

@@ -153,7 +153,8 @@
     "modal.minePlikter.part2a": "Jeg har lest og forstått det som står på",
     "modal.minePlikter.part2b": "nav.no/rettogplikt",
 
-    "steg.omBarnet.hvilketBarn.spm": "Hvilket barn gjelder søknaden for?",
+    "steg.omBarnet.hvilketBarn.spm": "Hvilket barn gjelder søknaden?",
+    "steg.omBarnet.hvilketBarn.registrerteBarn": "Barn registrert på deg:",
     "steg.omBarnet.hvilketBarn.info": "Hvis du skal søke for flere barn, må du sende én søknad for hvert barn.",
     "steg.omBarnet.hvilketBarn.født": "Født {dato}",
     "steg.omBarnet.gjelderAnnetBarn": "Søknaden gjelder et annet barn",
@@ -217,6 +218,14 @@
 
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
     "page.confirmation.tittel": "Vi har mottatt søknad fra deg om ekstra omsorgsdager",
+    "page.confirmation.info.tittel": "Hva skjer videre nå?",
+    "page.confirmation.info.1": "Søknaden din vil bli synlig på Ditt NAV etter omkring en uke. Da vil du også kunne se hva slags dokumentasjon vi har fått fra deg.",
+    "page.confirmation.info.2": "Vi starter behandlingen av søknaden din når vi har mottatt all nødvendig dokumentasjon. Vi kontakter deg hvis vi trenger flere opplysninger i saken din.",
+    "page.confirmation.info.3.1": "Når søknaden er ferdig behandlet, får du et svarbrev fra oss. Du kan se",
+    "page.confirmation.info.3.2": "saksbehandlingstiden",
+    "page.confirmation.info.3.3": "for ditt fylke her.",
+
+    "page.form.ubesvarteSpørsmålInfo": "For å komme videre, må du svare på alle spørsmålene ovenfor",
 
     "page.generalErrorPage.sidetittel": "Feil",
     "page.generalErrorPage.tittel": "Noe gikk galt...",

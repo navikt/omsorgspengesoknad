@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormattedHtmlMessage from '@navikt/sif-common-core/lib/components/formatted-html-message/FormattedHtmlMessage';
 import { commonFieldErrorRenderer } from '@navikt/sif-common-core/lib/utils/commonFieldErrorRenderer';
-import { getTypedFormComponents, YesOrNo } from '@navikt/sif-common-formik/lib';
+import { getTypedFormComponents, UnansweredQuestionsInfo, YesOrNo } from '@navikt/sif-common-formik/lib';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Box from 'common/components/box/Box';
 import InformationPoster from 'common/components/information-poster/InformationPoster';
@@ -17,7 +17,7 @@ import './introPage.less';
 const bem = bemUtils('introPage');
 
 enum PageFormField {
-    'harKroniskSyktBarn' = 'harKroniskSyktBarn'
+    'harKroniskSyktBarn' = 'harKroniskSyktBarn',
 }
 
 interface PageFormValues {
@@ -29,11 +29,12 @@ const PageForm = getTypedFormComponents<PageFormField, PageFormValues>();
 const IntroPage: React.StatelessComponent = () => {
     const intl = useIntl();
     const initialValues = {};
+
     return (
         <Page
             className={bem.block}
             title={intlHelper(intl, 'introPage.tittel')}
-            topContentRenderer={() => <StepBanner text={intlHelper(intl, 'introPage.stegTittel')} />}>
+            topContentRenderer={() => <StepBanner tag="h1" text={intlHelper(intl, 'introPage.stegTittel')} />}>
             <Box margin="xxxl" padBottom="xxl">
                 <InformationPoster>
                     <p>
@@ -59,35 +60,48 @@ const IntroPage: React.StatelessComponent = () => {
             <PageForm.FormikWrapper
                 onSubmit={() => null}
                 initialValues={initialValues}
-                renderForm={({ values }) => (
-                    <PageForm.Form
-                        fieldErrorRenderer={(error) => commonFieldErrorRenderer(intl, error)}
-                        includeButtons={false}>
-                        <PageForm.YesOrNoQuestion
-                            name={PageFormField.harKroniskSyktBarn}
-                            legend={intlHelper(intl, 'introPage.spm.kroniskEllerFunksjonshemmende')}
-                        />
-                        {values[PageFormField.harKroniskSyktBarn] === YesOrNo.NO && (
-                            <Box margin="xl">
-                                <AlertStripeInfo>
-                                    <p data-cy="harIkkeKroniskSyktBarn" style={{ marginTop: 0, marginBottom: 0 }}>
-                                        <FormattedHtmlMessage id="introPage.info.harIkkeKroniskSyktBarn.html" />
-                                    </p>
-                                </AlertStripeInfo>
-                            </Box>
-                        )}
-                        {values[PageFormField.harKroniskSyktBarn] === YesOrNo.YES && (
-                            <Box
-                                margin="xl"
-                                textAlignCenter={true}
-                                className={bem.element('gaTilSoknadenKnappelenkeWrapper')}>
-                                <Knappelenke type={'hoved'} href={getRouteUrl(RouteConfig.WELCOMING_PAGE_ROUTE)}>
-                                    <FormattedMessage id="gotoApplicationLink.lenketekst" />
-                                </Knappelenke>
-                            </Box>
-                        )}
-                    </PageForm.Form>
-                )}
+                renderForm={({ values }) => {
+                    const showNotAllQuestionsAnsweredMessage = values.harKroniskSyktBarn === undefined;
+
+                    return (
+                        <PageForm.Form
+                            fieldErrorRenderer={(error) => commonFieldErrorRenderer(intl, error)}
+                            includeButtons={false}
+                            noButtonsContentRenderer={
+                                showNotAllQuestionsAnsweredMessage
+                                    ? () => (
+                                          <UnansweredQuestionsInfo>
+                                              <FormattedMessage id="page.form.ubesvarteSpørsmålInfo" />
+                                          </UnansweredQuestionsInfo>
+                                      )
+                                    : undefined
+                            }>
+                            <PageForm.YesOrNoQuestion
+                                name={PageFormField.harKroniskSyktBarn}
+                                legend={intlHelper(intl, 'introPage.spm.kroniskEllerFunksjonshemmende')}
+                            />
+                            {values[PageFormField.harKroniskSyktBarn] === YesOrNo.NO && (
+                                <Box margin="xl">
+                                    <AlertStripeInfo>
+                                        <p data-cy="harIkkeKroniskSyktBarn" style={{ marginTop: 0, marginBottom: 0 }}>
+                                            <FormattedHtmlMessage id="introPage.info.harIkkeKroniskSyktBarn.html" />
+                                        </p>
+                                    </AlertStripeInfo>
+                                </Box>
+                            )}
+                            {values[PageFormField.harKroniskSyktBarn] === YesOrNo.YES && (
+                                <Box
+                                    margin="xl"
+                                    textAlignCenter={true}
+                                    className={bem.element('gaTilSoknadenKnappelenkeWrapper')}>
+                                    <Knappelenke type={'hoved'} href={getRouteUrl(RouteConfig.WELCOMING_PAGE_ROUTE)}>
+                                        <FormattedMessage id="gotoApplicationLink.lenketekst" />
+                                    </Knappelenke>
+                                </Box>
+                            )}
+                        </PageForm.Form>
+                    );
+                }}
             />
         </Page>
     );

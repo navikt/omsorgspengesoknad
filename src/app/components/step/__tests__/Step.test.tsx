@@ -17,7 +17,11 @@ describe('<Step>', () => {
     let renderResult: RenderResult;
 
     beforeAll(() => {
-        renderResult = renderWrappedInMemoryRouter(<Step id={stepID} stepConfig={getStepConfig()} />);
+        renderResult = renderWrappedInMemoryRouter(
+            <Step id={stepID} stepConfig={getStepConfig()}>
+                a
+            </Step>
+        );
     });
 
     it('should render common <Step> content', () => {
