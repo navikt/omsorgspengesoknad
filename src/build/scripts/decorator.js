@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const { JSDOM } = jsdom;
 
-const requestDecorator = (callback) => request(`https://www.nav.no/dekoratoren/?simple=true`, callback);
+const requestDecorator = (callback) => request(`${process.env.DECORATOR_URL}`, callback);
 
 const getDecorator = () =>
     new Promise((resolve, reject) => {
@@ -15,8 +15,8 @@ const getDecorator = () =>
                 const data = {
                     NAV_SCRIPTS: document.getElementById('scripts')[prop],
                     NAV_STYLES: document.getElementById('styles')[prop],
-                    NAV_HEADING: document.getElementById('header')[prop],
-                    NAV_FOOTER: document.getElementById('footer')[prop],
+                    NAV_HEADING: document.getElementById('header-withmenu')[prop],
+                    NAV_FOOTER: document.getElementById('footer-withmenu')[prop],
                     PUBLIC_PATH: `${process.env.PUBLIC_PATH}`,
                 };
                 resolve(data);

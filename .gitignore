@@ -8,3 +8,4 @@
 /e2e/cypress/videos/
 /yarn-error.log
 /omsorgspengesoknad.iml
+.env

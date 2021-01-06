@@ -8,12 +8,12 @@ require('dotenv').config();
 
 const webpackConfig = {
     entry: {
-        bundle: ['babel-polyfill', `${__dirname}/../../app/App.tsx`]
+        bundle: ['babel-polyfill', `${__dirname}/../../app/App.tsx`],
     },
     output: {
         path: path.resolve(__dirname, './../../../dist'),
         filename: 'js/[name].js',
-        publicPath: `${process.env.PUBLIC_PATH}/dist`
+        publicPath: `/familie/sykdom-i-familien/soknad/omsorgspenger/dist`,
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
@@ -21,15 +21,15 @@ const webpackConfig = {
             app: path.resolve(__dirname, './../../app'),
             ['common/forms']: path.resolve(__dirname, './../../../node_modules/@navikt/sif-common-forms/lib'),
             ['common/formik']: path.resolve(__dirname, './../../../node_modules/@navikt/sif-common-formik/lib'),
-            ['common']: path.resolve(__dirname, './../../../node_modules/@navikt/sif-common-core/lib')
-        }
+            ['common']: path.resolve(__dirname, './../../../node_modules/@navikt/sif-common-core/lib'),
+        },
     },
     module: {
         rules: [
             {
                 test: /\.(ts|tsx)$/,
                 include: [path.resolve(__dirname, './../../app'), path.resolve(__dirname, './../../common')],
-                loader: require.resolve('awesome-typescript-loader')
+                loader: require.resolve('awesome-typescript-loader'),
             },
             {
                 test: /\.less$/,
@@ -37,35 +37,35 @@ const webpackConfig = {
                     fallback: 'style-loader',
                     use: [
                         {
-                            loader: 'css-loader'
+                            loader: 'css-loader',
                         },
                         {
-                            loader: 'postcss-loader'
+                            loader: 'postcss-loader',
                         },
                         {
-                            loader: 'less-loader'
-                        }
-                    ]
-                })
+                            loader: 'less-loader',
+                        },
+                    ],
+                }),
             },
             {
                 test: /\.svg$/,
-                use: 'svg-sprite-loader'
-            }
-        ]
+                use: 'svg-sprite-loader',
+            },
+        ],
     },
     plugins: [
         new CaseSensitivePathsPlugin(),
         new ExtractTextPlugin({
             filename: 'css/[name].css?[hash]-[chunkhash]-[name]',
             disable: false,
-            allChunks: true
+            allChunks: true,
         }),
         new SpriteLoaderPlugin({
-            plainSprite: true
+            plainSprite: true,
         }),
-        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /nb|nn|en/)
-    ]
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /nb|nn|en/),
+    ],
 };
 
 module.exports = webpackConfig;
