@@ -44,7 +44,7 @@ spec:
         enabled: false
     env:
         - name: DECORATOR_URL
-          value: https://www.nav.no/dekoratoren/?simple=true&chatbot=false
+          value: https://dekoratoren.dev.nav.no/?simple=true&chatbot=false
         - name: API_URL
           value: https://omsorgspengesoknad-api-q.nav.no
         - name: PUBLIC_PATH
