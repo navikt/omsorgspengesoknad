@@ -2,7 +2,6 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Route, Switch } from 'react-router-dom';
 import AppStatusWrapper from '@navikt/sif-common-core/lib/components/app-status-wrapper/AppStatusWrapper';
-import moment from 'moment';
 import Modal from 'nav-frontend-modal';
 import { Locale } from 'common/types/Locale';
 import ApplicationWrapper from './components/application-wrapper/ApplicationWrapper';
@@ -18,7 +17,6 @@ import 'common/styles/globalStyles.less';
 appSentryLogger.init();
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
-moment.locale(localeFromSessionStorage);
 
 const getAppStatusSanityConfig = ():
     | {

@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { Attachment } from 'common/types/Attachment';
 import { YesOrNo } from 'common/types/YesOrNo';
 import * as attachmentUtils from 'common/utils/attachmentUtils';
@@ -5,19 +6,15 @@ import { OmsorgspengesøknadApiData } from '../../types/OmsorgspengesøknadApiDa
 import {
     AppFormField,
     OmsorgspengesøknadFormData,
-    SøkersRelasjonTilBarnet
+    SøkersRelasjonTilBarnet,
 } from '../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../../types/Søkerdata';
 import { mapFormDataToApiData } from '../mapFormDataToApiData';
 
-const moment = require('moment');
-
-const todaysDate = moment()
-    .startOf('day')
-    .toDate();
+const todaysDate = dayjs().startOf('day').toDate();
 
 const barnMock: BarnReceivedFromApi[] = [
-    { fødselsdato: todaysDate, fornavn: 'Mock', etternavn: 'Mocknes', aktørId: '123' }
+    { fødselsdato: todaysDate, fornavn: 'Mock', etternavn: 'Mocknes', aktørId: '123' },
 ];
 
 type AttachmentMock = Attachment & { failed: boolean };
@@ -35,18 +32,18 @@ const formDataMock: Partial<OmsorgspengesøknadFormData> = {
     [AppFormField.utenlandsoppholdSiste12Mnd]: [],
     [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.NO,
     [AppFormField.legeerklæring]: [attachmentMock1 as AttachmentMock, attachmentMock2 as AttachmentMock],
-    [AppFormField.samværsavtale]: [attachmentMock3 as AttachmentMock]
+    [AppFormField.samværsavtale]: [attachmentMock3 as AttachmentMock],
 };
 
 jest.mock('common/utils/dateUtils', () => {
     return {
-        formatDate: jest.fn((date: Date) => date.toDateString())
+        formatDate: jest.fn((date: Date) => date.toDateString()),
     };
 });
 
 jest.mock('common/utils/attachmentUtils', () => {
     return {
-        attachmentUploadHasFailed: jest.fn((attachment: AttachmentMock) => attachment.failed)
+        attachmentUploadHasFailed: jest.fn((attachment: AttachmentMock) => attachment.failed),
     };
 });
 
@@ -85,7 +82,7 @@ describe('mapFormDataToApiData', () => {
         expect(resultingApiData.barn.norskIdentifikator).toBeNull();
         const formDataWithFnr: Partial<OmsorgspengesøknadFormData> = {
             ...formDataMock,
-            [AppFormField.barnetsFødselsnummer]: fnr
+            [AppFormField.barnetsFødselsnummer]: fnr,
         };
         const result = mapFormDataToApiData(formDataWithFnr as OmsorgspengesøknadFormData, barnMock, 'nb');
         expect(result.barn.norskIdentifikator).toEqual(fnr);
