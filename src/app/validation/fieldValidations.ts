@@ -1,11 +1,12 @@
-import moment from 'moment';
+import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
+import dayjs from 'dayjs';
 import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
 import { Attachment } from 'common/types/Attachment';
 import { YesOrNo } from 'common/types/YesOrNo';
 import {
     attachmentHasBeenUploaded,
     getTotalSizeOfAttachments,
-    MAX_TOTAL_ATTACHMENT_SIZE_BYTES
+    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from 'common/utils/attachmentUtils';
 import {
     date1YearAgo,
@@ -13,13 +14,12 @@ import {
     DateRange,
     dateRangesCollide,
     dateRangesExceedsRange,
-    dateToday
+    dateToday,
 } from 'common/utils/dateUtils';
 import { createFieldValidationError } from 'common/validation/fieldValidations';
 import { FieldValidationResult } from 'common/validation/types';
 import { Arbeidssituasjon, SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
 import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
-import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
 
 export const fieldValidationError = (
     key: AppFieldValidationErrors | undefined,
@@ -28,7 +28,7 @@ export const fieldValidationError = (
     return key
         ? {
               key,
-              values
+              values,
           }
         : undefined;
 };
@@ -50,7 +50,7 @@ export enum AppFieldValidationErrors {
     'samlet_storrelse_for_hoy' = 'fieldvalidation.samlet_storrelse_for_hoy',
     'utenlandsopphold_ikke_registrert' = 'fieldvalidation.utenlandsopphold_ikke_registrert',
     'utenlandsopphold_overlapper' = 'fieldvalidation.utenlandsopphold_overlapper',
-    'utenlandsopphold_utenfor_periode' = 'fieldvalidation.utenlandsopphold_utenfor_periode'
+    'utenlandsopphold_utenfor_periode' = 'fieldvalidation.utenlandsopphold_utenfor_periode',
 }
 
 export const hasValue = (v: any) => v !== '' && v !== undefined && v !== null;
@@ -203,7 +203,7 @@ export const validateFødselsdato = (dateString?: string): FieldValidationResult
     if (!hasValue(date)) {
         return fieldIsRequiredError();
     }
-    if (moment(date).isAfter(dateToday)) {
+    if (dayjs(date).isAfter(dateToday)) {
         return createAppFieldValidationError(AppFieldValidationErrors.fødselsdato_ugyldig);
     }
     return undefined;
