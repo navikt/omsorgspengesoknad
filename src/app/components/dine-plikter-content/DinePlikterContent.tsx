@@ -6,7 +6,7 @@ import getLenker from 'app/lenker';
 
 const getText = (part: string) => <FormattedMessage id={`modal.minePlikter.${part}`} />;
 
-const DinePlikterContent: React.FunctionComponent = () => {
+const DinePlikterContent = () => {
     const intl = useIntl();
     return (
         <>

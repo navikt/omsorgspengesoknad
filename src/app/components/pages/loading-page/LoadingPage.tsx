@@ -4,7 +4,7 @@ import LoadingSpinner from 'common/components/loading-spinner/LoadingSpinner';
 import Page from 'common/components/page/Page';
 import intlHelper from 'common/utils/intlUtils';
 
-const LoadingPage: React.FunctionComponent = () => {
+const LoadingPage = () => {
     const intl = useIntl();
     return (
         <Page title={intlHelper(intl, 'page.loadingPage.tekst')}>

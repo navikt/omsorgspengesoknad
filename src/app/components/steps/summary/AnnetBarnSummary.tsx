@@ -9,7 +9,7 @@ interface Props {
     apiValues: OmsorgspengesøknadApiData;
 }
 
-const AnnetBarnSummary: React.FunctionComponent<Props> = ({ apiValues }) => {
+const AnnetBarnSummary = ({ apiValues }: Props) => {
     const intl = useIntl();
     return (
         <>
@@ -18,7 +18,7 @@ const AnnetBarnSummary: React.FunctionComponent<Props> = ({ apiValues }) => {
                     <FormattedMessage
                         id="steg.oppsummering.barnet.fødselsdato"
                         values={{
-                            dato: prettifyDate(apiStringDateToDate(apiValues.barn.fødselsdato))
+                            dato: prettifyDate(apiStringDateToDate(apiValues.barn.fødselsdato)),
                         }}
                     />
                 </Normaltekst>
@@ -32,7 +32,7 @@ const AnnetBarnSummary: React.FunctionComponent<Props> = ({ apiValues }) => {
                 <FormattedMessage
                     id="steg.oppsummering.barnet.søkersRelasjonTilBarnet"
                     values={{
-                        relasjon: intlHelper(intl, `relasjonTilBarnet.${apiValues.relasjonTilBarnet}`)
+                        relasjon: intlHelper(intl, `relasjonTilBarnet.${apiValues.relasjonTilBarnet}`),
                     }}
                 />
             </Normaltekst>

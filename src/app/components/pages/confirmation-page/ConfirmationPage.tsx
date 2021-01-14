@@ -12,7 +12,7 @@ import Lenke from 'nav-frontend-lenker';
 
 const bem = bemUtils('confirmationPage');
 
-const ConfirmationPage: React.FunctionComponent = () => {
+const ConfirmationPage = () => {
     const intl = useIntl();
     return (
         <Page title={intlHelper(intl, 'page.confirmation.sidetittel')} className={bem.block}>
