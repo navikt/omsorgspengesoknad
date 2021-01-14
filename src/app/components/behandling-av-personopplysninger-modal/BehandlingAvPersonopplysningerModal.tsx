@@ -5,7 +5,10 @@ import BehandlingAvPersonopplysningerContent from '../behandling-av-personopplys
 import './behandlingAvPersonopplysningerModal.less';
 
 const bem = bemUtils('behandlingAvPersonopplysningerModal');
-const BehandlingAvPersonopplysningerModal: React.FunctionComponent<ModalProps> = (props) => (
+
+type Props = Omit<ModalProps, 'children'>;
+
+const BehandlingAvPersonopplysningerModal = (props: Props) => (
     <Modal className={bem.block} {...props}>
         <BehandlingAvPersonopplysningerContent />
     </Modal>

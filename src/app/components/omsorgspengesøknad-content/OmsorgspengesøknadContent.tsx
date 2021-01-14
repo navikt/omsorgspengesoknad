@@ -16,7 +16,7 @@ import OpplysningerOmBarnetStep from '../steps/opplysninger-om-barnet/Opplysning
 import DeltBostedAvtaleStep from '../steps/delt-bosted-avtale/DeltBostedAvtaleStep';
 import SummaryStep from '../steps/summary/SummaryStep';
 
-const OmsorgspengesøknadContent: React.FunctionComponent = () => {
+const OmsorgspengesøknadContent = () => {
     const [søknadHasBeenSent, setSøknadHasBeenSent] = React.useState(false);
     const formik = useFormikContext<OmsorgspengesøknadFormData>();
     const history = useHistory();

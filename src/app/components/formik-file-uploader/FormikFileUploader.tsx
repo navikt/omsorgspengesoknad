@@ -8,7 +8,7 @@ import {
     attachmentUploadHasFailed,
     getPendingAttachmentFromFile,
     isFileObject,
-    VALID_EXTENSIONS
+    VALID_EXTENSIONS,
 } from 'common/utils/attachmentUtils';
 import { uploadFile } from '../../api/api';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
@@ -19,7 +19,7 @@ export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
 export type FieldArrayRemoveFn = (index: number) => undefined;
 
-interface FormikFileUploader {
+interface Props {
     name: AppFormField;
     label: string;
     validate?: FormikValidateFunction;
@@ -28,15 +28,13 @@ interface FormikFileUploader {
     onUnauthorizedOrForbiddenUpload: () => void;
 }
 
-type Props = FormikFileUploader;
-
-const FormikFileUploader: React.FunctionComponent<Props> = ({
+const FormikFileUploader = ({
     name,
     onFileInputClick,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
     ...otherProps
-}) => {
+}: Props) => {
     const { values } = useFormikContext();
     async function uploadAttachment(attachment: Attachment) {
         const { file } = attachment;

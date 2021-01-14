@@ -3,9 +3,7 @@ import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Undertittel } from 'nav-frontend-typografi';
 
-interface Props {}
-
-const CoronaWarning: React.FunctionComponent<Props> = (props) => (
+const CoronaWarning = () => (
     <div style={{ margin: '0 auto', maxWidth: '50rem', lineHeight: '1.5rem' }}>
         <AlertStripeInfo>
             <Box padBottom="m">

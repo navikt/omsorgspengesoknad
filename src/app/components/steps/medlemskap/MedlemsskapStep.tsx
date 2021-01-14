@@ -11,7 +11,7 @@ import intlHelper from 'common/utils/intlUtils';
 import {
     validateUtenlandsoppholdNeste12Mnd,
     validateUtenlandsoppholdSiste12Mnd,
-    validateYesOrNoIsAnswered
+    validateYesOrNoIsAnswered,
 } from 'app/validation/fieldValidations';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import getLenker from '../../../lenker';
@@ -19,7 +19,7 @@ import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import AppForm from '../../app-form/AppForm';
 import FormikStep from '../../formik-step/FormikStep';
 
-const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit, formValues }: StepConfigProps) => {
+const MedlemsskapStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
     const intl = useIntl();
     return (
         <FormikStep id={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>
@@ -52,7 +52,7 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                         labels={{
                             addLabel: intlHelper(intl, 'steg.medlemsskap.opphold.addLabel'),
                             modalTitle: intlHelper(intl, 'steg.medlemsskap.oppholdSiste12.modalTitle'),
-                            listTitle: intlHelper(intl, 'steg.medlemsskap.oppholdSiste12.listTitle')
+                            listTitle: intlHelper(intl, 'steg.medlemsskap.oppholdSiste12.listTitle'),
                         }}
                     />
                 </FormBlock>
@@ -79,7 +79,7 @@ const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubm
                         labels={{
                             addLabel: intlHelper(intl, 'steg.medlemsskap.opphold.addLabel'),
                             modalTitle: intlHelper(intl, 'steg.medlemsskap.oppholdNeste12.modalTitle'),
-                            listTitle: intlHelper(intl, 'steg.medlemsskap.oppholdNeste12.listTitle')
+                            listTitle: intlHelper(intl, 'steg.medlemsskap.oppholdNeste12.listTitle'),
                         }}
                     />
                 </FormBlock>

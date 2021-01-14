@@ -26,7 +26,7 @@ interface PageFormValues {
 
 const PageForm = getTypedFormComponents<PageFormField, PageFormValues>();
 
-const IntroPage: React.StatelessComponent = () => {
+const IntroPage = () => {
     const intl = useIntl();
     const initialValues = {};
 

@@ -31,7 +31,7 @@ const getAppStatusSanityConfig = ():
 
 const APPLICATION_KEY = 'omsorgspengersoknad';
 
-const App: React.FunctionComponent = () => {
+const App = () => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const appStatusSanityConfig = getAppStatusSanityConfig();
     const renderContent = (): React.ReactNode => (

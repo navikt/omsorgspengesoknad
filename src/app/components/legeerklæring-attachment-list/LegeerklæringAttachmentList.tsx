@@ -11,17 +11,12 @@ import { removeElementFromArray } from 'common/utils/listUtils';
 import { deleteFile } from '../../api/api';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 
-interface LegeerklæringAttachmentListProps {
+interface Props {
     includeDeletionFunctionality: boolean;
     wrapNoAttachmentsInBox?: boolean;
 }
 
-type Props = LegeerklæringAttachmentListProps;
-
-const LegeerklæringAttachmentList: React.FunctionComponent<Props> = ({
-    wrapNoAttachmentsInBox,
-    includeDeletionFunctionality
-}) => {
+const LegeerklæringAttachmentList = ({ wrapNoAttachmentsInBox, includeDeletionFunctionality }: Props) => {
     const { values, setFieldValue } = useFormikContext<OmsorgspengesøknadFormData>();
 
     const legeerklæring: Attachment[] = values.legeerklæring.filter(({ file }: Attachment) =>
@@ -47,20 +42,22 @@ const LegeerklæringAttachmentList: React.FunctionComponent<Props> = ({
                 onRemoveAttachmentClick={(attachment: Attachment) => {
                     attachment.pending = true;
                     setFieldValue(AppFormField.legeerklæring, legeerklæring);
-                    deleteFile(attachment.url!).then(
-                        () => {
-                            setFieldValue(
-                                AppFormField.legeerklæring,
-                                removeElementFromArray(attachment, legeerklæring)
-                            );
-                        },
-                        () => {
-                            setFieldValue(
-                                AppFormField.legeerklæring,
-                                removeElementFromArray(attachment, legeerklæring)
-                            );
-                        }
-                    );
+                    if (attachment.url) {
+                        deleteFile(attachment.url).then(
+                            () => {
+                                setFieldValue(
+                                    AppFormField.legeerklæring,
+                                    removeElementFromArray(attachment, legeerklæring)
+                                );
+                            },
+                            () => {
+                                setFieldValue(
+                                    AppFormField.legeerklæring,
+                                    removeElementFromArray(attachment, legeerklæring)
+                                );
+                            }
+                        );
+                    }
                 }}
             />
         );
@@ -69,4 +66,4 @@ const LegeerklæringAttachmentList: React.FunctionComponent<Props> = ({
     }
 };
 
-export default connect<LegeerklæringAttachmentListProps, AppFormField>(LegeerklæringAttachmentList);
+export default connect<Props, AppFormField>(LegeerklæringAttachmentList);

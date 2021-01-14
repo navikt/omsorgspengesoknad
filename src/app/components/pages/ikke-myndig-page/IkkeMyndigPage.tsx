@@ -9,7 +9,7 @@ import intlHelper from 'common/utils/intlUtils';
 import getLenker from 'app/lenker';
 import './ikkeMyndigPage.less';
 
-const IkkeMyndigPage: React.FunctionComponent = () => {
+const IkkeMyndigPage = () => {
     const intl = useIntl();
     return (
         <Page
@@ -25,7 +25,7 @@ const IkkeMyndigPage: React.FunctionComponent = () => {
                             <Lenke href={getLenker(intl.locale).papirskjemaPrivat} target="_blank">
                                 <FormattedMessage id="page.ikkeMyndig.banner.lastNed" />
                             </Lenke>
-                        )
+                        ),
                     }}
                 />
             )}>

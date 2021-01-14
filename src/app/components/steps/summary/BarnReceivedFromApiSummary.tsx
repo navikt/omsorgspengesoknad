@@ -10,7 +10,7 @@ interface Props {
     barnetSøknadenGjelder: string;
 }
 
-const BarnRecveivedFormSApiSummary: React.FunctionComponent<Props> = ({ barn, barnetSøknadenGjelder }) => {
+const BarnRecveivedFormSApiSummary = ({ barn, barnetSøknadenGjelder }: Props) => {
     const barnReceivedFromApi = barn.find(({ aktørId }) => aktørId === barnetSøknadenGjelder);
     return barnReceivedFromApi ? (
         <>
@@ -19,10 +19,10 @@ const BarnRecveivedFormSApiSummary: React.FunctionComponent<Props> = ({ barn, ba
                     id="steg.oppsummering.barnet.navn"
                     values={{
                         navn: formatName(
-                            barnReceivedFromApi!.fornavn,
-                            barnReceivedFromApi!.etternavn,
-                            barnReceivedFromApi!.mellomnavn
-                        )
+                            barnReceivedFromApi.fornavn,
+                            barnReceivedFromApi.etternavn,
+                            barnReceivedFromApi.mellomnavn
+                        ),
                     }}
                 />
             </Normaltekst>
@@ -30,7 +30,7 @@ const BarnRecveivedFormSApiSummary: React.FunctionComponent<Props> = ({ barn, ba
                 <FormattedMessage
                     id="steg.oppsummering.barnet.fødselsdato"
                     values={{
-                        dato: prettifyDate(barnReceivedFromApi!.fødselsdato)
+                        dato: prettifyDate(barnReceivedFromApi.fødselsdato),
                     }}
                 />
             </Normaltekst>

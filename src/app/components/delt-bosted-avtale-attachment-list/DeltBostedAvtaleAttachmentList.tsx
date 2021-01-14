@@ -11,17 +11,12 @@ import { removeElementFromArray } from 'common/utils/listUtils';
 import { deleteFile } from '../../api/api';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 
-interface DeltBostedAvtaleAttachmentListProps {
+interface Props {
     includeDeletionFunctionality: boolean;
     wrapNoAttachmentsInBox?: boolean;
 }
 
-type Props = DeltBostedAvtaleAttachmentListProps;
-
-const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
-    wrapNoAttachmentsInBox,
-    includeDeletionFunctionality
-}) => {
+const DeltBostedAvtaleAttachmentList = ({ wrapNoAttachmentsInBox, includeDeletionFunctionality }: Props) => {
     const { values, setFieldValue } = useFormikContext<AppFormField>();
     const avtale: Attachment[] = values[AppFormField.samværsavtale].filter(({ file }: Attachment) =>
         fileExtensionIsValid(file.name)
@@ -46,14 +41,16 @@ const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
                 onRemoveAttachmentClick={(attachment: Attachment) => {
                     attachment.pending = true;
                     setFieldValue(AppFormField.samværsavtale, avtale);
-                    deleteFile(attachment.url!).then(
-                        () => {
-                            setFieldValue(AppFormField.samværsavtale, removeElementFromArray(attachment, avtale));
-                        },
-                        () => {
-                            setFieldValue(AppFormField.samværsavtale, removeElementFromArray(attachment, avtale));
-                        }
-                    );
+                    if (attachment.url) {
+                        deleteFile(attachment.url).then(
+                            () => {
+                                setFieldValue(AppFormField.samværsavtale, removeElementFromArray(attachment, avtale));
+                            },
+                            () => {
+                                setFieldValue(AppFormField.samværsavtale, removeElementFromArray(attachment, avtale));
+                            }
+                        );
+                    }
                 }}
             />
         );
@@ -62,4 +59,4 @@ const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     }
 };
 
-export default connect<DeltBostedAvtaleAttachmentListProps, AppFormField>(DeltBostedAvtaleAttachmentList);
+export default connect<Props, AppFormField>(DeltBostedAvtaleAttachmentList);

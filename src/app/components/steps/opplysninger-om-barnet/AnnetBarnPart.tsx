@@ -8,16 +8,16 @@ import { validateFødselsnummer } from 'common/validation/fieldValidations';
 import {
     AppFormField,
     OmsorgspengesøknadFormData,
-    SøkersRelasjonTilBarnet
+    SøkersRelasjonTilBarnet,
 } from '../../../types/OmsorgspengesøknadFormData';
 import { validateFødselsdato, validateNavn, validateRelasjonTilBarnet } from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
 
-const AnnetBarnPart: React.FunctionComponent = () => {
+const AnnetBarnPart = () => {
     const intl = useIntl();
     const {
         values: { barnetHarIkkeFåttFødselsnummerEnda },
-        setFieldValue
+        setFieldValue,
     } = useFormikContext<OmsorgspengesøknadFormData>();
     return (
         <>
