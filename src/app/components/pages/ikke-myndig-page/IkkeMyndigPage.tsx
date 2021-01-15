@@ -8,9 +8,12 @@ import Page from 'common/components/page/Page';
 import intlHelper from 'common/utils/intlUtils';
 import getLenker from 'app/lenker';
 import './ikkeMyndigPage.less';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const IkkeMyndigPage = () => {
     const intl = useIntl();
+    useLogSidevisning('ikkeMyndig');
+
     return (
         <Page
             className="ikkeMyndigPage"

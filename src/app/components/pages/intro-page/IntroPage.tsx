@@ -13,6 +13,7 @@ import bemUtils from 'common/utils/bemUtils';
 import intlHelper from 'common/utils/intlUtils';
 import RouteConfig, { getRouteUrl } from '../../../config/routeConfig';
 import './introPage.less';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const bem = bemUtils('introPage');
 
@@ -29,6 +30,7 @@ const PageForm = getTypedFormComponents<PageFormField, PageFormValues>();
 const IntroPage = () => {
     const intl = useIntl();
     const initialValues = {};
+    useLogSidevisning('intro');
 
     return (
         <Page

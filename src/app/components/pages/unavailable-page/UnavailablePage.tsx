@@ -6,6 +6,7 @@ import Page from 'common/components/page/Page';
 import StepBanner from 'common/components/step-banner/StepBanner';
 import bemUtils from 'common/utils/bemUtils';
 import './unavailablePage.less';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const bem = bemUtils('introPage');
 
@@ -14,6 +15,8 @@ const link =
 
 const UnavailablePage = () => {
     const title = 'Søknad om ekstra omsorgsdager';
+    useLogSidevisning('ikkeTilgjengelig');
+
     return (
         <Page className={bem.block} title={title} topContentRenderer={() => <StepBanner text={title} />}>
             <Box margin="xxxl">

@@ -11,97 +11,57 @@ import BehandlingAvPersonopplysningerModal from '../../behandling-av-personopply
 import DinePlikterModal from '../../dine-plikter-modal/DinePlikterModal';
 import SamtykkeForm from './SamtykkeForm';
 import './welcomingPage.less';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const bem = bemHelper('welcomingPage');
 
-interface WelcomingPageState {
-    dinePlikterModalOpen: boolean;
-    behandlingAvPersonopplysningerModalOpen: boolean;
-}
-
 type Props = Omit<StepConfigProps, 'formValues'> & WrappedComponentProps;
 
-class WelcomingPage extends React.Component<Props, WelcomingPageState> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            dinePlikterModalOpen: false,
-            behandlingAvPersonopplysningerModalOpen: false,
-        };
+const WelcomingPage = (props: Props) => {
+    const [dinePlikterModalOpen, setDinePlikterModalOpen] = React.useState(false);
+    const [behandlingAvPersonopplysningerModalOpen, setBehandlingAvPersonopplysningerModalOpen] = React.useState(false);
+    const { onValidSubmit, intl } = props;
 
-        this.openDinePlikterModal = this.openDinePlikterModal.bind(this);
-        this.closeDinePlikterModal = this.closeDinePlikterModal.bind(this);
-        this.openBehandlingAvPersonopplysningerModal = this.openBehandlingAvPersonopplysningerModal.bind(this);
-        this.closeBehandlingAvPersonopplysningerModal = this.closeBehandlingAvPersonopplysningerModal.bind(this);
-    }
+    useLogSidevisning('velkommen');
 
-    openDinePlikterModal() {
-        this.setState({
-            dinePlikterModalOpen: true,
-        });
-    }
-
-    closeDinePlikterModal() {
-        this.setState({
-            dinePlikterModalOpen: false,
-        });
-    }
-
-    openBehandlingAvPersonopplysningerModal() {
-        this.setState({
-            behandlingAvPersonopplysningerModalOpen: true,
-        });
-    }
-
-    closeBehandlingAvPersonopplysningerModal() {
-        this.setState({
-            behandlingAvPersonopplysningerModalOpen: false,
-        });
-    }
-
-    render() {
-        const { onValidSubmit, intl } = this.props;
-        const { dinePlikterModalOpen, behandlingAvPersonopplysningerModalOpen } = this.state;
-
-        return (
-            <>
-                <Page
-                    title={intlHelper(intl, 'welcomingPage.sidetittel')}
-                    className={bem.block}
-                    topContentRenderer={() => (
-                        <FrontPageBanner
-                            bannerSize="large"
-                            counsellorWithSpeechBubbleProps={{
-                                strongText: intlHelper(intl, 'welcomingPage.banner.tittel'),
-                                normalText: intlHelper(intl, 'welcomingPage.banner.tekst'),
-                            }}
-                        />
-                    )}>
-                    <Box margin="xxl">
-                        <Sidetittel className={bem.element('title')}>
-                            <FormattedMessage id="welcomingPage.introtittel" />
-                        </Sidetittel>
-                    </Box>
-                    <SamtykkeForm
-                        onOpenDinePlikterModal={this.openDinePlikterModal}
-                        openBehandlingAvPersonopplysningerModal={this.openBehandlingAvPersonopplysningerModal}
-                        onConfirm={onValidSubmit}
+    return (
+        <>
+            <Page
+                title={intlHelper(intl, 'welcomingPage.sidetittel')}
+                className={bem.block}
+                topContentRenderer={() => (
+                    <FrontPageBanner
+                        bannerSize="large"
+                        counsellorWithSpeechBubbleProps={{
+                            strongText: intlHelper(intl, 'welcomingPage.banner.tittel'),
+                            normalText: intlHelper(intl, 'welcomingPage.banner.tekst'),
+                        }}
                     />
-                </Page>
+                )}>
+                <Box margin="xxl">
+                    <Sidetittel className={bem.element('title')}>
+                        <FormattedMessage id="welcomingPage.introtittel" />
+                    </Sidetittel>
+                </Box>
+                <SamtykkeForm
+                    onOpenDinePlikterModal={() => setDinePlikterModalOpen(true)}
+                    openBehandlingAvPersonopplysningerModal={() => setBehandlingAvPersonopplysningerModalOpen(true)}
+                    onConfirm={onValidSubmit}
+                />
+            </Page>
 
-                <DinePlikterModal
-                    isOpen={dinePlikterModalOpen}
-                    onRequestClose={this.closeDinePlikterModal}
-                    contentLabel={intlHelper(intl, 'welcomingPage.modal.omDinePlikter.tittel')}
-                />
-                <BehandlingAvPersonopplysningerModal
-                    isOpen={behandlingAvPersonopplysningerModalOpen}
-                    onRequestClose={this.closeBehandlingAvPersonopplysningerModal}
-                    contentLabel={intlHelper(intl, 'welcomingPage.modal.behandlingAvPersonalia.tittel')}
-                />
-            </>
-        );
-    }
-}
+            <DinePlikterModal
+                isOpen={dinePlikterModalOpen}
+                onRequestClose={() => setDinePlikterModalOpen(false)}
+                contentLabel={intlHelper(intl, 'welcomingPage.modal.omDinePlikter.tittel')}
+            />
+            <BehandlingAvPersonopplysningerModal
+                isOpen={behandlingAvPersonopplysningerModalOpen}
+                onRequestClose={() => setBehandlingAvPersonopplysningerModalOpen(false)}
+                contentLabel={intlHelper(intl, 'welcomingPage.modal.behandlingAvPersonalia.tittel')}
+            />
+        </>
+    );
+};
 
 export default injectIntl(WelcomingPage);

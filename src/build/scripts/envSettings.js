@@ -10,6 +10,8 @@ const createEnvSettingsFile = async (settingsFile) => {
     const NYNORSK = process.env.NYNORSK;
     const APPSTATUS_PROJECT_ID = process.env.APPSTATUS_PROJECT_ID;
     const APPSTATUS_DATASET = process.env.APPSTATUS_DATASET;
+    const USE_AMPLITUDE = process.env.USE_AMPLITUDE;
+    const APP_VERSION = process.env.APP_VERSION;
 
     const appSettings = `
     window.appSettings = {
@@ -19,7 +21,8 @@ const createEnvSettingsFile = async (settingsFile) => {
         NYNORSK: '${NYNORSK}',
         APPSTATUS_PROJECT_ID: '${APPSTATUS_PROJECT_ID}',
         APPSTATUS_DATASET: '${APPSTATUS_DATASET}',
-
+        USE_AMPLITUDE: '${USE_AMPLITUDE}',
+        APP_VERSION: '${APP_VERSION}'
     };`
         .trim()
         .replace(/ /g, '');

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { Route, Switch } from 'react-router-dom';
+import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import AppStatusWrapper from '@navikt/sif-common-core/lib/components/app-status-wrapper/AppStatusWrapper';
 import Modal from 'nav-frontend-modal';
 import { Locale } from 'common/types/Locale';
@@ -13,6 +14,9 @@ import appSentryLogger from './utils/appSentryLogger';
 import { getEnvironmentVariable } from './utils/envUtils';
 import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
 import 'common/styles/globalStyles.less';
+
+export const APPLICATION_KEY = 'omsorgspengersoknad';
+export const SKJEMANAVN = 'Søknad om omsorgspenger - utvidet rett';
 
 appSentryLogger.init();
 
@@ -29,8 +33,6 @@ const getAppStatusSanityConfig = ():
     return !projectId || !dataset ? undefined : { projectId, dataset };
 };
 
-const APPLICATION_KEY = 'omsorgspengersoknad';
-
 const App = () => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const appStatusSanityConfig = getAppStatusSanityConfig();
@@ -41,23 +43,29 @@ const App = () => {
         </Switch>
     );
     return (
-        <ApplicationWrapper
-            locale={locale}
-            onChangeLocale={(activeLocale: Locale) => {
-                setLocaleInSessionStorage(activeLocale);
-                setLocale(activeLocale);
-            }}>
-            {appStatusSanityConfig ? (
-                <AppStatusWrapper
-                    applicationKey={APPLICATION_KEY}
-                    sanityConfig={appStatusSanityConfig}
-                    contentRenderer={renderContent}
-                    unavailableContentRenderer={(): React.ReactNode => <UnavailablePage />}
-                />
-            ) : (
-                renderContent()
-            )}
-        </ApplicationWrapper>
+        <AmplitudeProvider
+            applicationKey={APPLICATION_KEY}
+            team="sykdom-i-familien"
+            isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}
+            logToConsoleOnly={getEnvironmentVariable('APP_VERSION') === 'dev'}>
+            <ApplicationWrapper
+                locale={locale}
+                onChangeLocale={(activeLocale: Locale) => {
+                    setLocaleInSessionStorage(activeLocale);
+                    setLocale(activeLocale);
+                }}>
+                {appStatusSanityConfig ? (
+                    <AppStatusWrapper
+                        applicationKey={APPLICATION_KEY}
+                        sanityConfig={appStatusSanityConfig}
+                        contentRenderer={renderContent}
+                        unavailableContentRenderer={(): React.ReactNode => <UnavailablePage />}
+                    />
+                ) : (
+                    renderContent()
+                )}
+            </ApplicationWrapper>
+        </AmplitudeProvider>
     );
 };
 

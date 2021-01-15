@@ -15,12 +15,16 @@ import MedlemsskapStep from '../steps/medlemskap/MedlemsskapStep';
 import OpplysningerOmBarnetStep from '../steps/opplysninger-om-barnet/OpplysningerOmBarnetStep';
 import DeltBostedAvtaleStep from '../steps/delt-bosted-avtale/DeltBostedAvtaleStep';
 import SummaryStep from '../steps/summary/SummaryStep';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
+import { SKJEMANAVN } from '../../App';
 
 const OmsorgspengesøknadContent = () => {
     const [søknadHasBeenSent, setSøknadHasBeenSent] = React.useState(false);
     const formik = useFormikContext<OmsorgspengesøknadFormData>();
     const history = useHistory();
     const { values, resetForm } = formik;
+
+    const { logSoknadStartet } = useAmplitudeInstance();
 
     const navigateToNextStep = (stepId: StepID) => {
         setTimeout(() => {
@@ -30,22 +34,19 @@ const OmsorgspengesøknadContent = () => {
             }
         });
     };
+
+    const startSoknad = async () => {
+        await logSoknadStartet(SKJEMANAVN);
+        setTimeout(() => {
+            navigateTo(`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${StepID.OPPLYSNINGER_OM_BARNET}`, history);
+        });
+    };
+
     return (
         <Switch>
             <Route
                 path={RouteConfig.WELCOMING_PAGE_ROUTE}
-                render={() => (
-                    <WelcomingPage
-                        onValidSubmit={() =>
-                            setTimeout(() => {
-                                navigateTo(
-                                    `${RouteConfig.SØKNAD_ROUTE_PREFIX}/${StepID.OPPLYSNINGER_OM_BARNET}`,
-                                    history
-                                );
-                            })
-                        }
-                    />
-                )}
+                render={() => <WelcomingPage onValidSubmit={startSoknad} />}
             />
 
             {isAvailable(StepID.OPPLYSNINGER_OM_BARNET, values) && (
@@ -108,7 +109,7 @@ const OmsorgspengesøknadContent = () => {
             {isAvailable(StepID.SUMMARY, values) && (
                 <Route
                     path={getSøknadRoute(StepID.SUMMARY)}
-                    render={(props) => <SummaryStep formValues={values} onValidSubmit={() => null} />}
+                    render={() => <SummaryStep formValues={values} onValidSubmit={() => null} />}
                 />
             )}
 

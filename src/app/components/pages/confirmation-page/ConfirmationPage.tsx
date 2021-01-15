@@ -9,11 +9,14 @@ import intlHelper from 'common/utils/intlUtils';
 import getLenker from 'app/lenker';
 import './confirmationPage.less';
 import Lenke from 'nav-frontend-lenker';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const bem = bemUtils('confirmationPage');
 
 const ConfirmationPage = () => {
     const intl = useIntl();
+    useLogSidevisning('søknad-sendt');
+
     return (
         <Page title={intlHelper(intl, 'page.confirmation.sidetittel')} className={bem.block}>
             <div className={bem.element('centeredContent')}>
