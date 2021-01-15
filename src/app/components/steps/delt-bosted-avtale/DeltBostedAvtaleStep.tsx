@@ -7,7 +7,7 @@ import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/Omsorg
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import {
     validateDeltBostedAvtale,
-    validateSumOfAllAttachmentsAndValidateStep
+    validateSumOfAllAttachmentsAndValidateStep,
 } from '../../../validation/fieldValidations';
 import FileUploadErrors from 'common/components/file-upload-errors/FileUploadErrors';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';

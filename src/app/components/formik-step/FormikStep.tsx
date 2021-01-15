@@ -10,6 +10,7 @@ import { getStepTexts } from '../../utils/stepUtils';
 import AppForm from '../app-form/AppForm';
 import Step, { StepProps } from '../step/Step';
 import bemUtils from 'common/utils/bemUtils';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const bem = bemUtils('step');
 
@@ -30,6 +31,9 @@ const FormikStep = (props: Props) => {
     const { children, onValidFormSubmit, showButtonSpinner, buttonDisabled, id } = props;
     const stepConfig = getStepConfig(formik.values);
     const texts = getStepTexts(intl, id, stepConfig);
+
+    useLogSidevisning(props.id);
+
     return (
         <Step stepConfig={stepConfig} {...props}>
             <AppForm.Form
