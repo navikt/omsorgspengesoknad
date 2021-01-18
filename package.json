@@ -52,7 +52,7 @@
         "flat": "^5.0.2",
         "formik": "^2.2.6",
         "fs-extra": "^9.0.1",
-        "helmet": "^4.3.1",
+        "helmet": "^4.4.0",
         "history": "^5.0.0",
         "http-status-codes": "^2.1.4",
         "i18n-iso-countries": "^6.4.0",
