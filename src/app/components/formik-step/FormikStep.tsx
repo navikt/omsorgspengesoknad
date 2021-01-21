@@ -2,20 +2,19 @@ import * as React from 'react';
 import { useIntl } from 'react-intl';
 import { useFormikContext } from 'formik';
 import { Knapp } from 'nav-frontend-knapper';
-import FormBlock from 'common/components/form-block/FormBlock';
-import { commonFieldErrorRenderer } from 'common/utils/commonFieldErrorRenderer';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import { commonFieldErrorRenderer } from '@navikt/sif-common-core/lib/utils/commonFieldErrorRenderer';
 import { getStepConfig } from '../../config/stepConfig';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import { getStepTexts } from '../../utils/stepUtils';
 import AppForm from '../app-form/AppForm';
 import Step, { StepProps } from '../step/Step';
-import bemUtils from 'common/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const bem = bemUtils('step');
 
 export interface FormikStepProps {
-    children: React.ReactNode;
     showSubmitButton?: boolean;
     showButtonSpinner?: boolean;
     buttonDisabled?: boolean;
@@ -25,7 +24,7 @@ export interface FormikStepProps {
 
 type Props = FormikStepProps & StepProps;
 
-const FormikStep = (props: Props) => {
+const FormikStep: React.FunctionComponent<Props> = (props) => {
     const formik = useFormikContext<OmsorgspengesøknadFormData>();
     const intl = useIntl();
     const { children, onValidFormSubmit, showButtonSpinner, buttonDisabled, id } = props;

@@ -1,15 +1,15 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { apiStringDateToDate, prettifyDate } from 'common/utils/dateUtils';
-import intlHelper from 'common/utils/intlUtils';
+import { apiStringDateToDate, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { OmsorgspengesøknadApiData } from '../../../types/OmsorgspengesøknadApiData';
 
 interface Props {
     apiValues: OmsorgspengesøknadApiData;
 }
 
-const AnnetBarnSummary = ({ apiValues }: Props) => {
+const AnnetBarnSummary: React.FunctionComponent<Props> = ({ apiValues }) => {
     const intl = useIntl();
     return (
         <>

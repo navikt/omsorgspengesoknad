@@ -1,4 +1,4 @@
-import { YesOrNo } from 'common/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import * as fieldValidations from './fieldValidations';
 
@@ -10,7 +10,7 @@ export const opplysningerOmBarnetStepIsValid = ({
     barnetsFødselsnummer,
     barnetHarIkkeFåttFødselsnummerEnda,
     søkersRelasjonTilBarnet,
-    barnetSøknadenGjelder
+    barnetSøknadenGjelder,
 }: OmsorgspengesøknadFormData) => {
     if (barnetHarIkkeFåttFødselsnummerEnda) {
         return fieldValidations.validateRelasjonTilBarnet(søkersRelasjonTilBarnet) === undefined;
@@ -33,7 +33,7 @@ export const arbeidStepIsValid = ({ arbeidssituasjon }: OmsorgspengesøknadFormD
 
 export const medlemskapStepIsValid = ({
     harBoddUtenforNorgeSiste12Mnd,
-    skalBoUtenforNorgeNeste12Mnd
+    skalBoUtenforNorgeNeste12Mnd,
 }: OmsorgspengesøknadFormData) =>
     (harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES || harBoddUtenforNorgeSiste12Mnd === YesOrNo.NO) &&
     (skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES || skalBoUtenforNorgeNeste12Mnd === YesOrNo.NO);

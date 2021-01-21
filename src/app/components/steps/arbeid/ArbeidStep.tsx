@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
 import { FormikCheckboxPanelGroup } from '@navikt/sif-common-formik/lib';
-import intlHelper from 'common/utils/intlUtils';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField, Arbeidssituasjon } from '../../../types/OmsorgspengesøknadFormData';
 import { validateArbeid } from '../../../validation/fieldValidations';
 import FormikStep from '../../formik-step/FormikStep';
 
-const ArbeidStep = ({ onValidSubmit }: StepConfigProps) => {
+const ArbeidStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
     const intl = useIntl();
     return (
         <FormikStep id={StepID.ARBEID} onValidFormSubmit={onValidSubmit}>
@@ -17,16 +17,16 @@ const ArbeidStep = ({ onValidSubmit }: StepConfigProps) => {
                 checkboxes={[
                     {
                         label: intlHelper(intl, 'arbeidssituasjon.arbeidstaker'),
-                        value: Arbeidssituasjon.arbeidstaker
+                        value: Arbeidssituasjon.arbeidstaker,
                     },
                     {
                         label: intlHelper(intl, 'arbeidssituasjon.selvstendigNæringsdrivende'),
-                        value: Arbeidssituasjon.selvstendigNæringsdrivende
+                        value: Arbeidssituasjon.selvstendigNæringsdrivende,
                     },
                     {
                         label: intlHelper(intl, 'arbeidssituasjon.frilanser'),
-                        value: Arbeidssituasjon.frilanser
-                    }
+                        value: Arbeidssituasjon.frilanser,
+                    },
                 ]}
                 validate={validateArbeid}
             />

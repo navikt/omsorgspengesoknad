@@ -2,8 +2,8 @@ import * as React from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import NAVStepIndicator from 'nav-frontend-stegindikator/lib/stegindikator';
 import { default as Step } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
-import { getStepTexts } from 'app/utils/stepUtils';
 import { StepConfigInterface, StepID } from '../../config/stepConfig';
+import { getStepTexts } from '../../utils/stepUtils';
 
 interface Props {
     activeStep: number;
@@ -17,7 +17,7 @@ const renderSteps = (stepConfig: StepConfigInterface, intl: IntlShape) =>
         return <Step label={stepIndicatorLabel} index={index} key={`${stepIndicatorLabel + index}`} />;
     });
 
-const StepIndicator = ({ activeStep, stepConfig }: Props) => {
+const StepIndicator: React.FunctionComponent<Props> = ({ activeStep, stepConfig }) => {
     const intl = useIntl();
     return (
         <NAVStepIndicator visLabel={false} autoResponsiv={false} aktivtSteg={activeStep}>

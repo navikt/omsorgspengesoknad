@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import { Route, Switch } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import AppStatusWrapper from '@navikt/sif-common-core/lib/components/app-status-wrapper/AppStatusWrapper';
+import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import Modal from 'nav-frontend-modal';
-import { Locale } from 'common/types/Locale';
 import ApplicationWrapper from './components/application-wrapper/ApplicationWrapper';
 import Omsorgspengesøknad from './components/omsorgspengesøknad/Omsorgspengesøknad';
 import IntroPage from './components/pages/intro-page/IntroPage';
@@ -13,7 +13,7 @@ import RouteConfig from './config/routeConfig';
 import appSentryLogger from './utils/appSentryLogger';
 import { getEnvironmentVariable } from './utils/envUtils';
 import { getLocaleFromSessionStorage, setLocaleInSessionStorage } from './utils/localeUtils';
-import 'common/styles/globalStyles.less';
+import '@navikt/sif-common-core/lib/styles/globalStyles.less';
 
 export const APPLICATION_KEY = 'omsorgspengersoknad';
 export const SKJEMANAVN = 'Søknad om omsorgspenger - utvidet rett';
@@ -33,7 +33,7 @@ const getAppStatusSanityConfig = ():
     return !projectId || !dataset ? undefined : { projectId, dataset };
 };
 
-const App = () => {
+const App: React.FunctionComponent = () => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const appStatusSanityConfig = getAppStatusSanityConfig();
     const renderContent = (): React.ReactNode => (
@@ -43,11 +43,7 @@ const App = () => {
         </Switch>
     );
     return (
-        <AmplitudeProvider
-            applicationKey={APPLICATION_KEY}
-            team="sykdom-i-familien"
-            isActive={getEnvironmentVariable('USE_AMPLITUDE') === 'true'}
-            logToConsoleOnly={getEnvironmentVariable('APP_VERSION') === 'dev'}>
+        <AmplitudeProvider applicationKey={APPLICATION_KEY}>
             <ApplicationWrapper
                 locale={locale}
                 onChangeLocale={(activeLocale: Locale) => {

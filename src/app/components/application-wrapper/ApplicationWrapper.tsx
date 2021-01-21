@@ -1,21 +1,20 @@
 import * as React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import LanguageToggle from '@navikt/sif-common-core/lib/components/language-toggle/LanguageToggle';
+import ApplicationMessages from '@navikt/sif-common-core/lib/dev-utils/intl/application-messages/ApplicationMessages';
+import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import { Normaltekst } from 'nav-frontend-typografi';
-import ApplicationMessages from 'common/dev-utils/intl/application-messages/ApplicationMessages';
-import { Locale } from 'common/types/Locale';
 import { Søkerdata } from '../../types/Søkerdata';
 import { getEnvironmentVariable } from '../../utils/envUtils';
 import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
 import IntlProvider, { appBokmålstekster, appNynorsktekster } from '../intl-provider/IntlProvider';
 
-interface ApplicationWrapperProps {
-    children: React.ReactNode;
+interface Props {
     søkerdata?: Søkerdata;
     locale: Locale;
     onChangeLocale: (locale: Locale) => void;
 }
-const ApplicationWrapper = ({ locale, onChangeLocale, children }: ApplicationWrapperProps) => {
+const ApplicationWrapper: React.FunctionComponent<Props> = ({ locale, onChangeLocale, children }) => {
     console.log(isFeatureEnabled(Feature.NYNORSK));
     return (
         <IntlProvider locale={locale}>
@@ -26,7 +25,7 @@ const ApplicationWrapper = ({ locale, onChangeLocale, children }: ApplicationWra
                     <ApplicationMessages
                         messages={{
                             nb: appBokmålstekster,
-                            nn: appNynorsktekster
+                            nn: appNynorsktekster,
                         }}
                         title="Søknad om ekstra omsorgsdager"
                     />

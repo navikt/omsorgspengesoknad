@@ -3,10 +3,10 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik';
 import { useFormikContext } from 'formik';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import FormBlock from 'common/components/form-block/FormBlock';
-import { prettifyDate } from 'common/utils/dateUtils';
-import intlHelper from 'common/utils/intlUtils';
-import { formatName } from 'common/utils/personUtils';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import { prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import { AppFormField, initialValues, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../../../types/Søkerdata';
 import { validateValgtBarn } from '../../../validation/fieldValidations';
@@ -16,7 +16,7 @@ interface Props {
     søkersBarn: BarnReceivedFromApi[];
 }
 
-const RegistrertBarnPart = ({ søkersBarn = [] }: Props) => {
+const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }) => {
     const intl = useIntl();
     const {
         values: { søknadenGjelderEtAnnetBarn },

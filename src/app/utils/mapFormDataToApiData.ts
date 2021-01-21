@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { getCountryName } from '@navikt/sif-common-formik/lib';
 import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
-import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
-import { Locale } from 'common/types/Locale';
-import { YesOrNo } from 'common/types/YesOrNo';
-import { attachmentUploadHasFailed } from 'common/utils/attachmentUtils';
-import { formatDateToApiFormat } from 'common/utils/dateUtils';
-import { formatName } from 'common/utils/personUtils';
+import { Utenlandsopphold } from '@navikt/sif-common-forms/lib/utenlandsopphold/types';
+import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
+import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { attachmentUploadHasFailed } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+import { formatDateToApiFormat } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import {
     BarnToSendToApi,
     OmsorgspengesøknadApiData,
-    UtenlandsoppholdApiData
+    UtenlandsoppholdApiData,
 } from '../types/OmsorgspengesøknadApiData';
 import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../types/Søkerdata';
@@ -18,7 +19,7 @@ const mapUtenlandsoppholdTilApiData = (opphold: Utenlandsopphold, locale: string
     landnavn: getCountryName(opphold.landkode, locale),
     landkode: opphold.landkode,
     fraOgMed: formatDateToApiFormat(opphold.fom),
-    tilOgMed: formatDateToApiFormat(opphold.tom)
+    tilOgMed: formatDateToApiFormat(opphold.tom),
 });
 
 export const mapBarnToApiData = (
@@ -35,7 +36,7 @@ export const mapBarnToApiData = (
             navn: formatName(fornavn, etternavn, mellomnavn),
             norskIdentifikator: null,
             aktørId,
-            fødselsdato: formatDateToApiFormat(barnChosenFromList.fødselsdato)
+            fødselsdato: formatDateToApiFormat(barnChosenFromList.fødselsdato),
         };
     } else {
         const barnFDato = datepickerUtils.getDateFromDateString(barnetsFødselsdato);
@@ -43,7 +44,7 @@ export const mapBarnToApiData = (
             navn: barnetsNavn && barnetsNavn !== '' ? barnetsNavn : null,
             norskIdentifikator: barnetsFødselsnummer || null,
             aktørId: null,
-            fødselsdato: barnFDato !== undefined ? formatDateToApiFormat(barnFDato) : null
+            fødselsdato: barnFDato !== undefined ? formatDateToApiFormat(barnFDato) : null,
         };
     }
 };
@@ -66,7 +67,7 @@ export const mapFormDataToApiData = (
         arbeidssituasjon,
         skalBoUtenforNorgeNeste12Mnd,
         utenlandsoppholdNeste12Mnd,
-        utenlandsoppholdSiste12Mnd
+        utenlandsoppholdSiste12Mnd,
     }: OmsorgspengesøknadFormData,
     barn: BarnReceivedFromApi[],
     sprak: Locale
@@ -98,7 +99,7 @@ export const mapFormDataToApiData = (
             utenlandsoppholdNeste12Mnd:
                 skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES
                     ? utenlandsoppholdNeste12Mnd.map((o) => mapUtenlandsoppholdTilApiData(o, sprak))
-                    : []
+                    : [],
         },
         legeerklæring: legeerklæring
             .filter((attachment) => !attachmentUploadHasFailed(attachment))
@@ -108,7 +109,7 @@ export const mapFormDataToApiData = (
                 ? samværsavtale.filter((attachment) => !attachmentUploadHasFailed(attachment)).map(({ url }) => url!)
                 : undefined,
         harBekreftetOpplysninger,
-        harForståttRettigheterOgPlikter
+        harForståttRettigheterOgPlikter,
     };
 
     return apiData;

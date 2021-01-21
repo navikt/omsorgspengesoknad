@@ -20,7 +20,7 @@ interface State {
     søkerdata?: Søkerdata;
 }
 
-const AppEssentialsLoader = (props: Props) => {
+const AppEssentialsLoader: React.FunctionComponent<Props> = (props) => {
     const [state, setState] = useState<State>({ doApiCalls: true, isLoading: true });
 
     async function loadAppEssentials() {
@@ -30,10 +30,10 @@ const AppEssentialsLoader = (props: Props) => {
                 ...state,
                 søkerdata: {
                     person: søkerResponse.data,
-                    barn: barnResponse.data.barn
+                    barn: barnResponse.data.barn,
                 },
                 isLoading: false,
-                doApiCalls: false
+                doApiCalls: false,
             });
         } catch (error) {
             handleSøkerdataFetchError(error);

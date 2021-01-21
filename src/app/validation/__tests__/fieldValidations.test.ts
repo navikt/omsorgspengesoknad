@@ -1,8 +1,14 @@
-import { Attachment } from 'common/types/Attachment';
-import { YesOrNo } from 'common/types/YesOrNo';
+import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import {
-    AppFieldValidationErrors, fieldValidationError, hasValue, validateFødselsnummer,
-    validerAlleDokumenterISøknaden, validateNavn, validateRelasjonTilBarnet, validateYesOrNoIsAnswered
+    AppFieldValidationErrors,
+    fieldValidationError,
+    hasValue,
+    validateFødselsnummer,
+    validerAlleDokumenterISøknaden,
+    validateNavn,
+    validateRelasjonTilBarnet,
+    validateYesOrNoIsAnswered,
 } from '../fieldValidations';
 import * as fødselsnummerValidator from '../fødselsnummerValidator';
 
@@ -11,14 +17,14 @@ jest.mock('../fødselsnummerValidator', () => {
     return {
         fødselsnummerIsValid: jest.fn(),
         FødselsnummerValidationErrorReason: {
-            MustConsistOf11Digits: 'MustConsistOf11Digits'
-        }
+            MustConsistOf11Digits: 'MustConsistOf11Digits',
+        },
     };
 });
 
-jest.mock('common/utils/dateUtils', () => {
+jest.mock('@navikt/sif-common-core/lib/utils/dateUtils', () => {
     return {
-        isMoreThan3YearsAgo: jest.fn()
+        isMoreThan3YearsAgo: jest.fn(),
     };
 });
 
@@ -48,7 +54,7 @@ describe('fieldValidations', () => {
         it('should return an error message specific for fødselsnummer not being 11 digits when reason for validation failure is MustConsistOf11Digits', () => {
             (fødselsnummerValidator.fødselsnummerIsValid as Mock).mockReturnValue([
                 false,
-                fødselsnummerValidator.FødselsnummerValidationErrorReason.MustConsistOf11Digits
+                fødselsnummerValidator.FødselsnummerValidationErrorReason.MustConsistOf11Digits,
             ]);
             const result = validateFødselsnummer(mockedFnr);
             expect(fødselsnummerValidator.fødselsnummerIsValid).toHaveBeenCalledWith(mockedFnr);
@@ -132,8 +138,9 @@ describe('fieldValidations', () => {
         it('should return undefined if list contains between 1-3 successfully uploaded attachments', () => {
             expect(validerAlleDokumenterISøknaden([uploadedAttachment])).toBeUndefined();
             expect(validerAlleDokumenterISøknaden([uploadedAttachment, uploadedAttachment])).toBeUndefined();
-            expect(validerAlleDokumenterISøknaden([uploadedAttachment, uploadedAttachment, uploadedAttachment])).toBeUndefined();
+            expect(
+                validerAlleDokumenterISøknaden([uploadedAttachment, uploadedAttachment, uploadedAttachment])
+            ).toBeUndefined();
         });
-
     });
 });

@@ -1,11 +1,11 @@
-import { YesOrNo } from 'common/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import * as fieldValidations from '../fieldValidations';
 import {
     legeerklæringStepIsValid,
     medlemskapStepIsValid,
     opplysningerOmBarnetStepIsValid,
-    welcomingPageIsValid
+    welcomingPageIsValid,
 } from '../stepValidations';
 
 import Mock = jest.Mock;
@@ -14,7 +14,7 @@ jest.mock('./../fieldValidations', () => {
         validateRelasjonTilBarnet: jest.fn(() => undefined),
         validateNavn: jest.fn(() => undefined),
         validateFødselsnummer: jest.fn(() => undefined),
-        validateValgtBarn: jest.fn(() => undefined)
+        validateValgtBarn: jest.fn(() => undefined),
     };
 });
 

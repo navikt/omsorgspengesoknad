@@ -2,24 +2,24 @@ import * as React from 'react';
 import { useIntl } from 'react-intl';
 import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
 import Lenke from 'nav-frontend-lenker';
-import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
-import FormBlock from 'common/components/form-block/FormBlock';
-import BostedUtlandListAndDialog from 'common/forms/bosted-utland/BostedUtlandListAndDialog';
-import { YesOrNo } from 'common/types/YesOrNo';
-import { date1YearAgo, date1YearFromNow, dateToday } from 'common/utils/dateUtils';
-import intlHelper from 'common/utils/intlUtils';
+import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import BostedUtlandListAndDialog from '@navikt/sif-common-forms/lib/bosted-utland/BostedUtlandListAndDialog';
+import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import { date1YearAgo, date1YearFromNow, dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { StepConfigProps, StepID } from '../../../config/stepConfig';
+import getLenker from '../../../lenker';
+import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import {
     validateUtenlandsoppholdNeste12Mnd,
     validateUtenlandsoppholdSiste12Mnd,
     validateYesOrNoIsAnswered,
-} from 'app/validation/fieldValidations';
-import { StepConfigProps, StepID } from '../../../config/stepConfig';
-import getLenker from '../../../lenker';
-import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
+} from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
 import FormikStep from '../../formik-step/FormikStep';
 
-const MedlemsskapStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
+const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit, formValues }) => {
     const intl = useIntl();
     return (
         <FormikStep id={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>

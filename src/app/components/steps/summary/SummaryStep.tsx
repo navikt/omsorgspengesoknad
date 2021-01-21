@@ -1,18 +1,20 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
+import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import { FormikConfirmationCheckboxPanel } from '@navikt/sif-common-formik/lib';
 import Panel from 'nav-frontend-paneler';
 import { Normaltekst } from 'nav-frontend-typografi';
-import Box from 'common/components/box/Box';
-import ContentWithHeader from 'common/components/content-with-header/ContentWithHeader';
-import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
-import SummaryList from 'common/components/summary-list/SummaryList';
-import { Locale } from 'common/types/Locale';
-import intlHelper from 'common/utils/intlUtils';
-import { formatName } from 'common/utils/personUtils';
-import { renderUtenlandsoppholdSummary } from 'app/components/summary-renderers/renderUtenlandsoppholdSummary';
+import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import ContentWithHeader from '@navikt/sif-common-core/lib/components/content-with-header/ContentWithHeader';
+import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
+import SummaryList from '@navikt/sif-common-core/lib/components/summary-list/SummaryList';
+import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import { sendApplication } from '../../../api/api';
+import { SKJEMANAVN } from '../../../App';
+import { renderUtenlandsoppholdSummary } from '../../../components/summary-renderers/renderUtenlandsoppholdSummary';
 import routeConfig from '../../../config/routeConfig';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
@@ -28,10 +30,8 @@ import LegeerklæringAttachmentList from '../../legeerklæring-attachment-list/L
 import SummarySection from '../../summary-section/SummarySection';
 import AnnetBarnSummary from './AnnetBarnSummary';
 import BarnRecveivedFormSApiSummary from './BarnReceivedFromApiSummary';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import { SKJEMANAVN } from '../../../App';
 
-const SummaryStep = ({ formValues }: StepConfigProps) => {
+const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) => {
     const intl = useIntl();
     const [sendingInProgress, setSendingInProgress] = React.useState<boolean>(false);
     const history = useHistory();

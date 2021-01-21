@@ -2,12 +2,15 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect, useFormikContext } from 'formik';
 import { Normaltekst } from 'nav-frontend-typografi';
-import AttachmentListWithDeletion from 'common/components/attachment-list-with-deletion/AttachmentListWithDeletion';
-import AttachmentList from 'common/components/attachment-list/AttachmentList';
-import Box from 'common/components/box/Box';
-import { Attachment } from 'common/types/Attachment';
-import { containsAnyUploadedAttachments, fileExtensionIsValid } from 'common/utils/attachmentUtils';
-import { removeElementFromArray } from 'common/utils/listUtils';
+import AttachmentListWithDeletion from '@navikt/sif-common-core/lib/components/attachment-list-with-deletion/AttachmentListWithDeletion';
+import AttachmentList from '@navikt/sif-common-core/lib/components/attachment-list/AttachmentList';
+import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import {
+    containsAnyUploadedAttachments,
+    fileExtensionIsValid,
+} from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+import { removeElementFromArray } from '@navikt/sif-common-core/lib/utils/listUtils';
 import { deleteFile } from '../../api/api';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 
@@ -16,7 +19,10 @@ interface Props {
     wrapNoAttachmentsInBox?: boolean;
 }
 
-const DeltBostedAvtaleAttachmentList = ({ wrapNoAttachmentsInBox, includeDeletionFunctionality }: Props) => {
+const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
+    wrapNoAttachmentsInBox,
+    includeDeletionFunctionality,
+}) => {
     const { values, setFieldValue } = useFormikContext<AppFormField>();
     const avtale: Attachment[] = values[AppFormField.samværsavtale].filter(({ file }: Attachment) =>
         fileExtensionIsValid(file.name)

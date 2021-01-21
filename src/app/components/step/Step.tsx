@@ -3,13 +3,13 @@ import { useIntl } from 'react-intl';
 import { FormikValidationErrorSummary } from '@navikt/sif-common-formik/lib';
 import { History } from 'history';
 import { Systemtittel } from 'nav-frontend-typografi';
-import BackLink from 'common/components/back-link/BackLink';
-import Box from 'common/components/box/Box';
-import Page from 'common/components/page/Page';
-import StepBanner from 'common/components/step-banner/StepBanner';
-import bemHelper from 'common/utils/bemUtils';
-import intlHelper from 'common/utils/intlUtils';
-import { getStepTexts } from 'app/utils/stepUtils';
+import BackLink from '@navikt/sif-common-core/lib/components/back-link/BackLink';
+import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Page from '@navikt/sif-common-core/lib/components/page/Page';
+import StepBanner from '@navikt/sif-common-core/lib/components/step-banner/StepBanner';
+import bemHelper from '@navikt/sif-common-core/lib/utils/bemUtils';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { getStepTexts } from '../../utils/stepUtils';
 import { StepConfigInterface, StepConfigItemTexts, StepID } from '../../config/stepConfig';
 import StepIndicator from '../step-indicator/StepIndicator';
 import './step.less';
@@ -23,12 +23,11 @@ export interface StepProps {
 
 interface OwnProps {
     stepConfig: StepConfigInterface;
-    children: React.ReactNode;
 }
 
 type Props = OwnProps & StepProps;
 
-const Step = ({ id, stepConfig, useValidationErrorSummary, children }: Props) => {
+const Step: React.FunctionComponent<Props> = ({ id, stepConfig, useValidationErrorSummary, children }) => {
     const intl = useIntl();
     const conf = stepConfig[id];
     const stepTexts: StepConfigItemTexts = getStepTexts(intl, id, stepConfig);

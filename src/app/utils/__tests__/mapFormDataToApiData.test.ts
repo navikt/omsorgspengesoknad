@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
-import { Attachment } from 'common/types/Attachment';
-import { YesOrNo } from 'common/types/YesOrNo';
-import * as attachmentUtils from 'common/utils/attachmentUtils';
+import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
+import * as attachmentUtils from '@navikt/sif-common-core/lib/utils/attachmentUtils';
 import { OmsorgspengesøknadApiData } from '../../types/OmsorgspengesøknadApiData';
 import {
     AppFormField,
@@ -35,13 +35,13 @@ const formDataMock: Partial<OmsorgspengesøknadFormData> = {
     [AppFormField.samværsavtale]: [attachmentMock3 as AttachmentMock],
 };
 
-jest.mock('common/utils/dateUtils', () => {
+jest.mock('@navikt/sif-common-core/lib/utils/dateUtils', () => {
     return {
         formatDate: jest.fn((date: Date) => date.toDateString()),
     };
 });
 
-jest.mock('common/utils/attachmentUtils', () => {
+jest.mock('@navikt/sif-common-core/lib/utils/attachmentUtils', () => {
     return {
         attachmentUploadHasFailed: jest.fn((attachment: AttachmentMock) => attachment.failed),
     };

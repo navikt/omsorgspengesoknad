@@ -1,24 +1,27 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Box from 'common/components/box/Box';
-import intlHelper from 'common/utils/intlUtils';
+import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import { validerAlleDokumenterISøknaden } from '../../../validation/fieldValidations';
-import FileUploadErrors from 'common/components/file-upload-errors/FileUploadErrors';
+import FileUploadErrors from '@navikt/sif-common-core/lib/components/file-upload-errors/FileUploadErrors';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringFileList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
-import CounsellorPanel from 'common/components/counsellor-panel/CounsellorPanel';
-import PictureScanningGuide from 'common/components/picture-scanning-guide/PictureScanningGuide';
+import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
+import PictureScanningGuide from '@navikt/sif-common-core/lib/components/picture-scanning-guide/PictureScanningGuide';
 import Lenke from 'nav-frontend-lenker';
-import { getTotalSizeOfAttachments, MAX_TOTAL_ATTACHMENT_SIZE_BYTES } from 'common/utils/attachmentUtils';
+import {
+    getTotalSizeOfAttachments,
+    MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
+} from '@navikt/sif-common-core/lib/utils/attachmentUtils';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { useFormikContext } from 'formik';
 import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils';
 
-const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
+const LegeerklæringStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit, formValues }) => {
     const intl = useIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const hasPendingUploads: boolean = (formValues.legeerklæring || []).find((a) => a.pending === true) !== undefined;

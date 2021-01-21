@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useFormikContext } from 'formik';
-import FormBlock from 'common/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { SøkerdataContext } from '../../../context/SøkerdataContext';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
@@ -16,7 +16,7 @@ import { YesOrNo } from '@navikt/sif-common-formik/lib';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import AlertStripe from 'nav-frontend-alertstriper';
 
-const OpplysningerOmBarnetStep = ({ onValidSubmit }: StepConfigProps) => {
+const OpplysningerOmBarnetStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
     const { values } = useFormikContext<OmsorgspengesøknadFormData>();
     const { søknadenGjelderEtAnnetBarn, barnetSøknadenGjelder } = values;
     const hasChosenRegisteredChild = barnetSøknadenGjelder && barnetSøknadenGjelder.length > 0;
