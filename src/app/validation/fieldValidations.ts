@@ -1,13 +1,13 @@
 import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
 import dayjs from 'dayjs';
-import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
-import { Attachment } from 'common/types/Attachment';
-import { YesOrNo } from 'common/types/YesOrNo';
+import { Utenlandsopphold } from '@navikt/sif-common-forms/lib/utenlandsopphold/types';
+import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import {
     attachmentHasBeenUploaded,
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
-} from 'common/utils/attachmentUtils';
+} from '@navikt/sif-common-core/lib/utils/attachmentUtils';
 import {
     date1YearAgo,
     date1YearFromNow,
@@ -15,9 +15,9 @@ import {
     dateRangesCollide,
     dateRangesExceedsRange,
     dateToday,
-} from 'common/utils/dateUtils';
-import { createFieldValidationError } from 'common/validation/fieldValidations';
-import { FieldValidationResult } from 'common/validation/types';
+} from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { createFieldValidationError } from '@navikt/sif-common-core/lib/validation/fieldValidations';
+import { FieldValidationResult } from '@navikt/sif-common-core/lib/validation/types';
 import { Arbeidssituasjon, SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
 import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
 

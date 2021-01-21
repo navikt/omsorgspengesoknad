@@ -30,10 +30,10 @@ const AppEssentialsLoader = (props: Props) => {
                 ...state,
                 søkerdata: {
                     person: søkerResponse.data,
-                    barn: barnResponse.data.barn
+                    barn: barnResponse.data.barn,
                 },
                 isLoading: false,
-                doApiCalls: false
+                doApiCalls: false,
             });
         } catch (error) {
             handleSøkerdataFetchError(error);

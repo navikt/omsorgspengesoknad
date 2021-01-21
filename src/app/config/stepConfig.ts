@@ -9,7 +9,7 @@ export enum StepID {
     'ARBEID' = 'arbeid',
     'LEGEERKLÆRING' = 'legeerklaering',
     'DELT_BOSTED' = 'deltBosted',
-    'SUMMARY' = 'oppsummering'
+    'SUMMARY' = 'oppsummering',
 }
 
 export interface StepConfigItemTexts {
@@ -35,7 +35,7 @@ const getStepConfigItemTextKeys = (stepId: StepID): StepConfigItemTexts => {
         stepTitle: `step.${stepId}.stepTitle`,
         stepIndicatorLabel: `step.${stepId}.stepIndicatorLabel`,
         nextButtonLabel: 'step.nextButtonLabel',
-        nextButtonAriaLabel: 'step.nextButtonAriaLabel'
+        nextButtonAriaLabel: 'step.nextButtonAriaLabel',
     };
 };
 
@@ -47,26 +47,26 @@ export const getStepConfig = (formData?: OmsorgspengesøknadFormData): StepConfi
             ...getStepConfigItemTextKeys(StepID.OPPLYSNINGER_OM_BARNET),
             index: idx++,
             nextStep: StepID.ARBEID,
-            backLinkHref: routeConfig.WELCOMING_PAGE_ROUTE
+            backLinkHref: routeConfig.WELCOMING_PAGE_ROUTE,
         },
         [StepID.ARBEID]: {
             ...getStepConfigItemTextKeys(StepID.ARBEID),
             index: idx++,
             nextStep: StepID.MEDLEMSKAP,
-            backLinkHref: getSøknadRoute(StepID.OPPLYSNINGER_OM_BARNET)
+            backLinkHref: getSøknadRoute(StepID.OPPLYSNINGER_OM_BARNET),
         },
         [StepID.MEDLEMSKAP]: {
             ...getStepConfigItemTextKeys(StepID.MEDLEMSKAP),
             index: idx++,
             nextStep: StepID.LEGEERKLÆRING,
-            backLinkHref: getSøknadRoute(StepID.ARBEID)
+            backLinkHref: getSøknadRoute(StepID.ARBEID),
         },
         [StepID.LEGEERKLÆRING]: {
             ...getStepConfigItemTextKeys(StepID.LEGEERKLÆRING),
             index: idx++,
             nextStep: avtaleStepIsIncluded ? StepID.DELT_BOSTED : StepID.SUMMARY,
-            backLinkHref: getSøknadRoute(StepID.MEDLEMSKAP)
-        }
+            backLinkHref: getSøknadRoute(StepID.MEDLEMSKAP),
+        },
     };
 
     if (avtaleStepIsIncluded) {
@@ -74,7 +74,7 @@ export const getStepConfig = (formData?: OmsorgspengesøknadFormData): StepConfi
             ...getStepConfigItemTextKeys(StepID.DELT_BOSTED),
             index: idx++,
             nextStep: StepID.SUMMARY,
-            backLinkHref: getSøknadRoute(StepID.LEGEERKLÆRING)
+            backLinkHref: getSøknadRoute(StepID.LEGEERKLÆRING),
         };
     }
 
@@ -83,7 +83,7 @@ export const getStepConfig = (formData?: OmsorgspengesøknadFormData): StepConfi
         index: idx++,
         backLinkHref: avtaleStepIsIncluded ? getSøknadRoute(StepID.DELT_BOSTED) : getSøknadRoute(StepID.LEGEERKLÆRING),
         nextButtonLabel: 'step.sendButtonLabel',
-        nextButtonAriaLabel: 'step.sendButtonAriaLabel'
+        nextButtonAriaLabel: 'step.sendButtonAriaLabel',
     };
 
     return config;

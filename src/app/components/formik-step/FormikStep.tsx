@@ -2,14 +2,14 @@ import * as React from 'react';
 import { useIntl } from 'react-intl';
 import { useFormikContext } from 'formik';
 import { Knapp } from 'nav-frontend-knapper';
-import FormBlock from 'common/components/form-block/FormBlock';
-import { commonFieldErrorRenderer } from 'common/utils/commonFieldErrorRenderer';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import { commonFieldErrorRenderer } from '@navikt/sif-common-core/lib/utils/commonFieldErrorRenderer';
 import { getStepConfig } from '../../config/stepConfig';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import { getStepTexts } from '../../utils/stepUtils';
 import AppForm from '../app-form/AppForm';
 import Step, { StepProps } from '../step/Step';
-import bemUtils from 'common/utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const bem = bemUtils('step');

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import Lenke from 'nav-frontend-lenker';
-import Box from 'common/components/box/Box';
-import Page from 'common/components/page/Page';
-import StepBanner from 'common/components/step-banner/StepBanner';
-import bemUtils from 'common/utils/bemUtils';
+import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import Page from '@navikt/sif-common-core/lib/components/page/Page';
+import StepBanner from '@navikt/sif-common-core/lib/components/step-banner/StepBanner';
+import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import './unavailablePage.less';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 

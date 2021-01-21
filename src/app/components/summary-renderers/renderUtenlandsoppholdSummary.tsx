@@ -1,7 +1,7 @@
 import React from 'react';
-import bemUtils from 'common/utils/bemUtils';
-import { apiStringDateToDate, prettifyDateExtended } from 'common/utils/dateUtils';
-import { UtenlandsoppholdApiData } from 'app/types/OmsorgspengesøknadApiData';
+import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
+import { apiStringDateToDate, prettifyDateExtended } from '@navikt/sif-common-core/lib/utils/dateUtils';
+import { UtenlandsoppholdApiData } from '../../types/OmsorgspengesøknadApiData';
 import './utenlandsoppholdSummaryItem.less';
 
 const bem = bemUtils('utenlandsoppholdSummaryItem');

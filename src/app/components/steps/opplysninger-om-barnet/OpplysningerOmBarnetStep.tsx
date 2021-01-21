@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useFormikContext } from 'formik';
-import FormBlock from 'common/components/form-block/FormBlock';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { SøkerdataContext } from '../../../context/SøkerdataContext';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';

@@ -1,17 +1,17 @@
-import { Utenlandsopphold } from 'common/forms/utenlandsopphold/types';
-import { Attachment } from 'common/types/Attachment';
-import { YesOrNo } from 'common/types/YesOrNo';
+import { Utenlandsopphold } from '@navikt/sif-common-forms/lib/utenlandsopphold/types';
+import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 
 export enum SøkersRelasjonTilBarnet {
     'MOR' = 'mor',
     'FAR' = 'far',
     'ADOPTIVFORELDER' = 'adoptivforelder',
-    'FOSTERFORELDER' = 'fosterforelder'
+    'FOSTERFORELDER' = 'fosterforelder',
 }
 export enum Arbeidssituasjon {
     'arbeidstaker' = 'arbeidstaker',
     'selvstendigNæringsdrivende' = 'selvstendigNæringsdrivende',
-    'frilanser' = 'frilanser'
+    'frilanser' = 'frilanser',
 }
 
 export enum AppFormField {
@@ -34,7 +34,7 @@ export enum AppFormField {
     erYrkesaktiv = 'erYrkesaktiv',
     kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
     sammeAdresse = 'sammeAdresse',
-    samværsavtale = 'samværsavtale'
+    samværsavtale = 'samværsavtale',
 }
 
 export interface OmsorgspengesøknadFormData {
@@ -77,5 +77,5 @@ export const initialValues: OmsorgspengesøknadFormData = {
     [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.UNANSWERED,
     [AppFormField.utenlandsoppholdSiste12Mnd]: [],
     [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.UNANSWERED,
-    [AppFormField.utenlandsoppholdNeste12Mnd]: []
+    [AppFormField.utenlandsoppholdNeste12Mnd]: [],
 };

@@ -1,4 +1,4 @@
-import { YesOrNo } from 'common/types/YesOrNo';
+import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { initialValues, SøkersRelasjonTilBarnet } from '../../types/OmsorgspengesøknadFormData';
 import * as stepUtils from '../stepUtils';
 
@@ -8,7 +8,7 @@ jest.mock('./../../validation/stepValidations', () => {
         opplysningerOmBarnetStepIsValid: jest.fn(() => true),
         arbeidStepIsValid: jest.fn(() => true),
         medlemskapStepIsValid: jest.fn(() => true),
-        legeerklæringStepIsValid: jest.fn(() => true)
+        legeerklæringStepIsValid: jest.fn(() => true),
     };
 });
 
@@ -25,7 +25,7 @@ describe('stepUtils', () => {
             const data = {
                 ...initialValues,
                 barnetSøknadenGjelder: 'id',
-                søknadenGjelderEtAnnetBarn: undefined
+                søknadenGjelderEtAnnetBarn: undefined,
             };
             it('should include avtalestep when NOT sammeAdresse', () => {
                 expect(stepUtils.includeAvtaleStep({ ...data, sammeAdresse: YesOrNo.NO })).toBeTruthy();
@@ -38,7 +38,7 @@ describe('stepUtils', () => {
             const data = {
                 ...initialValues,
                 barnetSøknadenGjelder: undefined,
-                søknadenGjelderEtAnnetBarn: true
+                søknadenGjelderEtAnnetBarn: true,
             };
             it('should include avtalestep when NOT sammeAdresse', () => {
                 expect(stepUtils.includeAvtaleStep({ ...data, sammeAdresse: YesOrNo.NO })).toBeTruthy();
@@ -48,7 +48,7 @@ describe('stepUtils', () => {
                     stepUtils.includeAvtaleStep({
                         ...data,
                         sammeAdresse: YesOrNo.NO,
-                        søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.FOSTERFORELDER
+                        søkersRelasjonTilBarnet: SøkersRelasjonTilBarnet.FOSTERFORELDER,
                     })
                 ).toBeFalsy();
             });

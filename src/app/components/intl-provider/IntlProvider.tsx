@@ -3,9 +3,9 @@ import { IntlProvider as Provider } from 'react-intl';
 import '@formatjs/intl-pluralrules/locale-data/nb';
 import '@formatjs/intl-pluralrules/locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
-import bostedUtlandMessages from 'common/forms/bosted-utland/bostedUtlandMessages';
-import { allCommonMessages } from 'common/i18n/allCommonMessages';
-import { Locale } from 'common/types/Locale';
+import bostedUtlandMessages from '@navikt/sif-common-forms/lib/bosted-utland/bostedUtlandMessages';
+import { allCommonMessages } from '@navikt/sif-common-core/lib/i18n/allCommonMessages';
+import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 
 export const appBokmålstekster = require('../../i18n/nb.json');
 export const appNynorsktekster = require('../../i18n/nn.json');

@@ -3,10 +3,10 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { getTypedFormComponents } from '@navikt/sif-common-formik/lib';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
-import FormBlock from 'common/components/form-block/FormBlock';
-import bemHelper from 'common/utils/bemUtils';
-import { commonFieldErrorRenderer } from 'common/utils/commonFieldErrorRenderer';
-import intlHelper from 'common/utils/intlUtils';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import bemHelper from '@navikt/sif-common-core/lib/utils/bemUtils';
+import { commonFieldErrorRenderer } from '@navikt/sif-common-core/lib/utils/commonFieldErrorRenderer';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 
 interface Props {
