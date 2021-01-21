@@ -10,7 +10,7 @@ interface Props {
     barnetSøknadenGjelder: string;
 }
 
-const BarnRecveivedFormSApiSummary = ({ barn, barnetSøknadenGjelder }: Props) => {
+const BarnRecveivedFormSApiSummary: React.FunctionComponent<Props> = ({ barn, barnetSøknadenGjelder }) => {
     const barnReceivedFromApi = barn.find(({ aktørId }) => aktørId === barnetSøknadenGjelder);
     return barnReceivedFromApi ? (
         <>

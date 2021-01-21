@@ -9,7 +9,7 @@ interface Props {
     apiValues: OmsorgspengesøknadApiData;
 }
 
-const AnnetBarnSummary = ({ apiValues }: Props) => {
+const AnnetBarnSummary: React.FunctionComponent<Props> = ({ apiValues }) => {
     const intl = useIntl();
     return (
         <>

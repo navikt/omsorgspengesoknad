@@ -19,7 +19,7 @@ import {
 import AppForm from '../../app-form/AppForm';
 import FormikStep from '../../formik-step/FormikStep';
 
-const MedlemsskapStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
+const MedlemsskapStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit, formValues }) => {
     const intl = useIntl();
     return (
         <FormikStep id={StepID.MEDLEMSKAP} onValidFormSubmit={onValidSubmit}>

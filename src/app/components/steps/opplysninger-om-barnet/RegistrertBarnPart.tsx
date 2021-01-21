@@ -16,7 +16,7 @@ interface Props {
     søkersBarn: BarnReceivedFromApi[];
 }
 
-const RegistrertBarnPart = ({ søkersBarn = [] }: Props) => {
+const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }) => {
     const intl = useIntl();
     const {
         values: { søknadenGjelderEtAnnetBarn },

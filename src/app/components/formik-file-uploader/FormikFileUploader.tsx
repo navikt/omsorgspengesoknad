@@ -28,13 +28,13 @@ interface Props {
     onUnauthorizedOrForbiddenUpload: () => void;
 }
 
-const FormikFileUploader = ({
+const FormikFileUploader: React.FunctionComponent<Props> = ({
     name,
     onFileInputClick,
     onErrorUploadingAttachments,
     onUnauthorizedOrForbiddenUpload,
     ...otherProps
-}: Props) => {
+}) => {
     const { values } = useFormikContext();
     async function uploadAttachment(attachment: Attachment) {
         const { file } = attachment;

@@ -31,7 +31,7 @@ import SummarySection from '../../summary-section/SummarySection';
 import AnnetBarnSummary from './AnnetBarnSummary';
 import BarnRecveivedFormSApiSummary from './BarnReceivedFromApiSummary';
 
-const SummaryStep = ({ formValues }: StepConfigProps) => {
+const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) => {
     const intl = useIntl();
     const [sendingInProgress, setSendingInProgress] = React.useState<boolean>(false);
     const history = useHistory();

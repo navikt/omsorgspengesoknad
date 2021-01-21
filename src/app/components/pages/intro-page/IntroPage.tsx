@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import FormattedHtmlMessage from '@navikt/sif-common-core/lib/components/formatted-html-message/FormattedHtmlMessage';
-import { commonFieldErrorRenderer } from '@navikt/sif-common-core/lib/utils/commonFieldErrorRenderer';
-import { getTypedFormComponents, UnansweredQuestionsInfo, YesOrNo } from '@navikt/sif-common-formik/lib';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { SIFCommonPageKey, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import FormattedHtmlMessage from '@navikt/sif-common-core/lib/components/formatted-html-message/FormattedHtmlMessage';
 import InformationPoster from '@navikt/sif-common-core/lib/components/information-poster/InformationPoster';
 import Knappelenke from '@navikt/sif-common-core/lib/components/knappelenke/Knappelenke';
 import Page from '@navikt/sif-common-core/lib/components/page/Page';
 import StepBanner from '@navikt/sif-common-core/lib/components/step-banner/StepBanner';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
+import { commonFieldErrorRenderer } from '@navikt/sif-common-core/lib/utils/commonFieldErrorRenderer';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { getTypedFormComponents, UnansweredQuestionsInfo, YesOrNo } from '@navikt/sif-common-formik/lib';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import RouteConfig, { getRouteUrl } from '../../../config/routeConfig';
 import './introPage.less';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const bem = bemUtils('introPage');
 
@@ -27,10 +27,10 @@ interface PageFormValues {
 
 const PageForm = getTypedFormComponents<PageFormField, PageFormValues>();
 
-const IntroPage = () => {
+const IntroPage: React.FunctionComponent = () => {
     const intl = useIntl();
     const initialValues = {};
-    useLogSidevisning('intro');
+    useLogSidevisning(SIFCommonPageKey.intro);
 
     return (
         <Page

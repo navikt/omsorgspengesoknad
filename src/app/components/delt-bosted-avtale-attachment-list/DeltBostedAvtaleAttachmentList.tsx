@@ -19,7 +19,10 @@ interface Props {
     wrapNoAttachmentsInBox?: boolean;
 }
 
-const DeltBostedAvtaleAttachmentList = ({ wrapNoAttachmentsInBox, includeDeletionFunctionality }: Props) => {
+const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
+    wrapNoAttachmentsInBox,
+    includeDeletionFunctionality,
+}) => {
     const { values, setFieldValue } = useFormikContext<AppFormField>();
     const avtale: Attachment[] = values[AppFormField.samværsavtale].filter(({ file }: Attachment) =>
         fileExtensionIsValid(file.name)

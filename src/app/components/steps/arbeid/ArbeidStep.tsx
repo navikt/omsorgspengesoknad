@@ -7,7 +7,7 @@ import { AppFormField, Arbeidssituasjon } from '../../../types/Omsorgspengesøkn
 import { validateArbeid } from '../../../validation/fieldValidations';
 import FormikStep from '../../formik-step/FormikStep';
 
-const ArbeidStep = ({ onValidSubmit }: StepConfigProps) => {
+const ArbeidStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
     const intl = useIntl();
     return (
         <FormikStep id={StepID.ARBEID} onValidFormSubmit={onValidSubmit}>

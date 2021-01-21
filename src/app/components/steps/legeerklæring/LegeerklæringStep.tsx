@@ -21,7 +21,7 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { useFormikContext } from 'formik';
 import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils';
 
-const LegeerklæringStep = ({ onValidSubmit, formValues }: StepConfigProps) => {
+const LegeerklæringStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit, formValues }) => {
     const intl = useIntl();
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const hasPendingUploads: boolean = (formValues.legeerklæring || []).find((a) => a.pending === true) !== undefined;

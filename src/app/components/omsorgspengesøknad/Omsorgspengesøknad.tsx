@@ -5,7 +5,7 @@ import AppEssentialsLoader from '../app-essentials-loader/AppEssentialsLoader';
 import OmsorgspengesøknadContent from '../omsorgspengesøknad-content/OmsorgspengesøknadContent';
 import IkkeMyndigPage from '../pages/ikke-myndig-page/IkkeMyndigPage';
 
-const Omsorgspengesøknad = () => (
+const Omsorgspengesøknad: React.FunctionComponent = () => (
     <AppEssentialsLoader
         contentLoadedRenderer={(søkerdata) => {
             if (søkerdata) {

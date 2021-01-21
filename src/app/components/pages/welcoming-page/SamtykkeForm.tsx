@@ -19,7 +19,11 @@ const AppForm = getTypedFormComponents<AppFormField, OmsorgspengesøknadFormData
 
 const bem = bemHelper('welcomingPage');
 
-const SamtykkeForm = ({ onConfirm, onOpenDinePlikterModal, openBehandlingAvPersonopplysningerModal }: Props) => {
+const SamtykkeForm: React.FunctionComponent<Props> = ({
+    onConfirm,
+    onOpenDinePlikterModal,
+    openBehandlingAvPersonopplysningerModal,
+}) => {
     const intl = useIntl();
     return (
         <AppForm.Form

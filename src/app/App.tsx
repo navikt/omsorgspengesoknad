@@ -33,7 +33,7 @@ const getAppStatusSanityConfig = ():
     return !projectId || !dataset ? undefined : { projectId, dataset };
 };
 
-const App = () => {
+const App: React.FunctionComponent = () => {
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const appStatusSanityConfig = getAppStatusSanityConfig();
     const renderContent = (): React.ReactNode => (

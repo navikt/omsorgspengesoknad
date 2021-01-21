@@ -15,7 +15,6 @@ import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 const bem = bemUtils('step');
 
 export interface FormikStepProps {
-    children: React.ReactNode;
     showSubmitButton?: boolean;
     showButtonSpinner?: boolean;
     buttonDisabled?: boolean;
@@ -25,7 +24,7 @@ export interface FormikStepProps {
 
 type Props = FormikStepProps & StepProps;
 
-const FormikStep = (props: Props) => {
+const FormikStep: React.FunctionComponent<Props> = (props) => {
     const formik = useFormikContext<OmsorgspengesøknadFormData>();
     const intl = useIntl();
     const { children, onValidFormSubmit, showButtonSpinner, buttonDisabled, id } = props;

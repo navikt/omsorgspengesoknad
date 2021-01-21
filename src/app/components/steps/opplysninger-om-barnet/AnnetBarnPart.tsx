@@ -13,7 +13,7 @@ import {
 import { validateFødselsdato, validateNavn, validateRelasjonTilBarnet } from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
 
-const AnnetBarnPart = () => {
+const AnnetBarnPart: React.FunctionComponent = () => {
     const intl = useIntl();
     const {
         values: { barnetHarIkkeFåttFødselsnummerEnda },

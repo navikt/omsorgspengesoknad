@@ -24,7 +24,7 @@ import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-p
 import PictureScanningGuide from '@navikt/sif-common-core/lib/components/picture-scanning-guide/PictureScanningGuide';
 import Lenke from 'nav-frontend-lenker';
 
-const DeltBostedAvtaleStep = ({ onValidSubmit }: StepConfigProps) => {
+const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const intl = useIntl();
     const { values } = useFormikContext<OmsorgspengesøknadFormData>();

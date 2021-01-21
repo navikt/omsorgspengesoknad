@@ -19,7 +19,10 @@ interface Props {
     wrapNoAttachmentsInBox?: boolean;
 }
 
-const LegeerklæringAttachmentList = ({ wrapNoAttachmentsInBox, includeDeletionFunctionality }: Props) => {
+const LegeerklæringAttachmentList: React.FunctionComponent<Props> = ({
+    wrapNoAttachmentsInBox,
+    includeDeletionFunctionality,
+}) => {
     const { values, setFieldValue } = useFormikContext<OmsorgspengesøknadFormData>();
 
     const legeerklæring: Attachment[] = values.legeerklæring.filter(({ file }: Attachment) =>

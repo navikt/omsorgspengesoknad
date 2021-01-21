@@ -18,7 +18,7 @@ import SummaryStep from '../steps/summary/SummaryStep';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import { SKJEMANAVN } from '../../App';
 
-const OmsorgspengesøknadContent = () => {
+const OmsorgspengesøknadContent: React.FunctionComponent = () => {
     const [søknadHasBeenSent, setSøknadHasBeenSent] = React.useState(false);
     const formik = useFormikContext<OmsorgspengesøknadFormData>();
     const history = useHistory();
