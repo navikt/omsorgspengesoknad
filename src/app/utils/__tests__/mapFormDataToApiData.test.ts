@@ -62,14 +62,6 @@ describe('mapFormDataToApiData', () => {
         expect(resultingApiData.relasjonTilBarnet).toEqual(formDataMock[AppFormField.søkersRelasjonTilBarnet]);
     });
 
-    it("should set 'medlemskap.skalBoIUtlandetNeste12Mnd' in api data correctly", () => {
-        expect(resultingApiData.medlemskap.skalBoIUtlandetNeste12Mnd).toBe(false);
-    });
-
-    it("should set 'medlemskap.harBoddIUtlandetSiste12Mnd' in api data correctly", () => {
-        expect(resultingApiData.medlemskap.harBoddIUtlandetSiste12Mnd).toBe(true);
-    });
-
     it("should set 'vedlegg' in api data correctly by only including the urls of attachments that have been successfully uploaded", () => {
         expect(attachmentUtils.attachmentUploadHasFailed).toHaveBeenCalledWith(attachmentMock1);
         expect(attachmentUtils.attachmentUploadHasFailed).toHaveBeenCalledWith(attachmentMock2);

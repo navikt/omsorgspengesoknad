@@ -10,14 +10,6 @@ export interface BarnToSendToApi {
     aktørId: string | null;
     fødselsdato: ApiStringDate | null;
 }
-
-interface Medlemskap {
-    harBoddIUtlandetSiste12Mnd: boolean;
-    skalBoIUtlandetNeste12Mnd: boolean;
-    utenlandsoppholdNeste12Mnd: UtenlandsoppholdApiData[];
-    utenlandsoppholdSiste12Mnd: UtenlandsoppholdApiData[];
-}
-
 export interface UtenlandsoppholdApiData {
     fraOgMed: ApiStringDate;
     tilOgMed: ApiStringDate;
@@ -35,7 +27,6 @@ export interface OmsorgspengesøknadApiData {
     relasjonTilBarnet: SøkersRelasjonTilBarnet | undefined;
     legeerklæring: string[];
     samværsavtale?: string[];
-    medlemskap: Medlemskap;
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
 }

@@ -58,10 +58,6 @@
     "step.opplysninger-om-barnet.stepTitle": "Barn",
     "step.opplysninger-om-barnet.stepIndicatorLabel": "Om barnet",
 
-    "step.medlemskap.pageTitle": "Omsorgspengesøknad - medlemskap",
-    "step.medlemskap.stepTitle": "Medlemskap",
-    "step.medlemskap.stepIndicatorLabel": "Om medlemskap i folketrygden",
-
     "step.legeerklaering.pageTitle": "Omsorgspengesøknad - legeerklæring",
     "step.legeerklaering.stepTitle": "Legeerklæring",
     "step.legeerklaering.stepIndicatorLabel": "Last opp legeerklæringa di",
@@ -160,18 +156,6 @@
     "steg.omBarnet.spm.kroniskEllerFunksjonshemmende": "Har barnet ein kronisk sjukdom eller funksjonshemming?",
     "steg.omBarnet.alert.ikkeKroniskSykdom": "Søknad om ekstra omsorgsdagr gjeld berre for dei som har kronisk sjukt eller funksjonshemma barn",
 
-    "steg.medlemsskap.annetLandSiste12.spm": "Har du budd i utlandet i heile eller delar av dei siste 12 månadene?",
-    "steg.medlemsskap.annetLandNeste12.spm": "Planlegg du å bu i utlandet i heile eller delar av dei neste 12 månadene?",
-    "steg.medlemsskap.annetLandSiste12.hjelp": "Du svarer \"ja\" berre dersom du har opphalde deg fast i eit anna land enn Noreg. Korte utanlandsturar i samband med for eksempel ferie skal ikkje reknast med.",
-    "steg.medlemsskap.annetLandSiste12.listeTittel": "Utanlandsopphald dei siste 12 månadene",
-    "steg.medlemsskap.annetLandNeste12.hjelp": "Du svarer ja berre dersom du planlegg å opphalde deg i eit anna land enn Noreg. Korte utanlandsturar i samband med for eksempel ferie blir ikkje rekna med.",
-    "steg.medlemsskap.annetLandNeste12.listeTittel": "Utanlandsopphald dei neste 12 månadene",
-    "steg.medlemsskap.opphold.addLabel": "Legg til nytt utenlandsopphald",
-    "steg.medlemsskap.oppholdNeste12.modalTitle": "Utenlandsopphald neste 12 månedar",
-    "steg.medlemsskap.oppholdNeste12.listTitle": "Utenlandsopphald neste 12 månedar",
-    "steg.medlemsskap.oppholdSiste12.modalTitle": "Utenlandsopphald siste 12 månedar",
-    "steg.medlemsskap.oppholdSiste12.listTitle": "Utenlandsopphald siste 12 månedar",
-    "steg.medlemskap.veileder": "Medlemskap i folketrygda er nøkkelen til rettar frå NAV. Viss du bur eller jobbar i Noreg er du vanlegvis medlem. Du kan lesa meir om medlemskap på",
     "expandableInfo.hvaBetyrDette": "Kva betyr dette?",
 
     "steg.lege.vedlegg": "Last opp legeerklæringa",
@@ -192,12 +176,6 @@
     "steg.oppsummering.barnet.sammeAdresse.header": "Er du folkeregistrert på same adressa som barnet?",
     "steg.oppsummering.barnet.deltOmsorg.header": "Deler du omsorga med den andre forelderen?",
     "steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header": "Har barnet ein kronisk sjukdom eller funksjonshemming?",
-
-    "steg.oppsummering.medlemskap.header": "Medlemskap i folketrygda",
-    "steg.oppsummering.utlandetSiste12.header": "Har budd i utlandet dei siste 12 månadene",
-    "steg.oppsummering.utlandetNeste12.header": "Skal bu i utlandet dei neste 12 månadene",
-    "steg.oppsummering.utlandetSiste12.liste.header": "Utanlandsopphald dei siste 12 månadene",
-    "steg.oppsummering.utlandetNeste12.liste.header": "Utanlandsopphald dei neste 12 månadene",
 
     "steg.oppsummering.vedlegg.header": "Vedlegg",
     "steg.oppsummering.legeerklæring.header": "Legeerklæring",

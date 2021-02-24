@@ -5,7 +5,6 @@ import { StepConfigInterface, StepConfigItemTexts, StepID } from '../config/step
 import { AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
 import {
     legeerklæringStepIsValid,
-    medlemskapStepIsValid,
     opplysningerOmBarnetStepIsValid,
     welcomingPageIsValid,
 } from '../validation/stepValidations';
@@ -29,10 +28,8 @@ export const getStepTexts = (intl: IntlShape, stepId: StepID, stepConfig: StepCo
 export const opplysningerOmBarnetStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     welcomingPageIsValid(formData);
 
-export const medlemskapStepAvailable = (formData: OmsorgspengesøknadFormData) =>
+export const legeerklæringStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     opplysningerOmBarnetStepIsValid(formData);
-
-export const legeerklæringStepAvailable = (formData: OmsorgspengesøknadFormData) => medlemskapStepIsValid(formData);
 
 export const samværsavtaleStepAvailable = () => legeerklæringStepIsValid();
 

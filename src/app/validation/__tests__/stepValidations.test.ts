@@ -1,12 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import * as fieldValidations from '../fieldValidations';
-import {
-    legeerklæringStepIsValid,
-    medlemskapStepIsValid,
-    opplysningerOmBarnetStepIsValid,
-    welcomingPageIsValid,
-} from '../stepValidations';
+import { legeerklæringStepIsValid, opplysningerOmBarnetStepIsValid, welcomingPageIsValid } from '../stepValidations';
 
 import Mock = jest.Mock;
 jest.mock('./../fieldValidations', () => {
@@ -81,39 +76,6 @@ describe('stepValidation tests', () => {
                 (fieldValidations.validateRelasjonTilBarnet as Mock).mockReturnValue('some error message');
                 expect(opplysningerOmBarnetStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
             });
-        });
-    });
-
-    describe('medlemskapStepIsValid', () => {
-        it('should be valid if both harBoddUtenforNorgeSiste12Mnd and skalBoUtenforNorgeNeste12Mnd are either answered with YES or NO', () => {
-            formData[AppFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.YES;
-            formData[AppFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.YES;
-            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
-            formData[AppFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.NO;
-            formData[AppFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.NO;
-            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
-            formData[AppFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.YES;
-            formData[AppFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.NO;
-            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
-            formData[AppFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.NO;
-            formData[AppFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.YES;
-            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(true);
-        });
-
-        it(`should be invalid if ${AppFormField.harBoddUtenforNorgeSiste12Mnd} is UNANSWERED`, () => {
-            formData[AppFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.UNANSWERED;
-            formData[AppFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.YES;
-            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
-            formData[AppFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.NO;
-            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
-        });
-
-        it(`should be invalid if ${AppFormField.skalBoUtenforNorgeNeste12Mnd} is UNANSWERED`, () => {
-            formData[AppFormField.skalBoUtenforNorgeNeste12Mnd] = YesOrNo.UNANSWERED;
-            formData[AppFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.YES;
-            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
-            formData[AppFormField.harBoddUtenforNorgeSiste12Mnd] = YesOrNo.NO;
-            expect(medlemskapStepIsValid(formData as OmsorgspengesøknadFormData)).toBe(false);
         });
     });
 

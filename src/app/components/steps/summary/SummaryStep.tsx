@@ -8,13 +8,11 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import ContentWithHeader from '@navikt/sif-common-core/lib/components/content-with-header/ContentWithHeader';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
-import SummaryList from '@navikt/sif-common-core/lib/components/summary-list/SummaryList';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import { sendApplication } from '../../../api/api';
 import { SKJEMANAVN } from '../../../App';
-import { renderUtenlandsoppholdSummary } from '../../../components/summary-renderers/renderUtenlandsoppholdSummary';
 import routeConfig from '../../../config/routeConfig';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
@@ -62,7 +60,6 @@ const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) =
         <SøkerdataContextConsumer>
             {({ person: { fornavn, mellomnavn, etternavn, fødselsnummer }, barn }: Søkerdata) => {
                 const apiValues = mapFormDataToApiData(formValues, barn, intl.locale as Locale);
-                const { medlemskap } = apiValues;
                 return (
                     <FormikStep
                         id={StepID.SUMMARY}
@@ -118,58 +115,6 @@ const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) =
                                             {apiValues.sammeAdresse === false && intlHelper(intl, 'Nei')}
                                         </ContentWithHeader>
                                     </Box>
-                                </SummarySection>
-
-                                {/* Medlemskap i folketrygden */}
-                                <SummarySection header={intlHelper(intl, 'steg.oppsummering.medlemskap.header')}>
-                                    <Box margin="l">
-                                        <ContentWithHeader
-                                            header={intlHelper(intl, 'steg.oppsummering.utlandetSiste12.header')}>
-                                            {medlemskap.harBoddIUtlandetSiste12Mnd === true && intlHelper(intl, 'Ja')}
-                                            {medlemskap.harBoddIUtlandetSiste12Mnd === false && intlHelper(intl, 'Nei')}
-                                        </ContentWithHeader>
-                                    </Box>
-                                    {apiValues.medlemskap.harBoddIUtlandetSiste12Mnd === true &&
-                                        medlemskap.utenlandsoppholdSiste12Mnd.length > 0 && (
-                                            <Box margin="l">
-                                                <ContentWithHeader
-                                                    header={intlHelper(
-                                                        intl,
-                                                        'steg.oppsummering.utlandetSiste12.liste.header'
-                                                    )}>
-                                                    <SummaryList
-                                                        items={medlemskap.utenlandsoppholdSiste12Mnd}
-                                                        itemRenderer={renderUtenlandsoppholdSummary}
-                                                    />
-                                                </ContentWithHeader>
-                                            </Box>
-                                        )}
-
-                                    <Box margin="l">
-                                        <ContentWithHeader
-                                            header={intlHelper(intl, 'steg.oppsummering.utlandetNeste12.header')}>
-                                            {apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true &&
-                                                intlHelper(intl, 'Ja')}
-                                            {apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === false &&
-                                                intlHelper(intl, 'Nei')}
-                                        </ContentWithHeader>
-                                    </Box>
-
-                                    {apiValues.medlemskap.skalBoIUtlandetNeste12Mnd === true &&
-                                        medlemskap.utenlandsoppholdNeste12Mnd.length > 0 && (
-                                            <Box margin="l">
-                                                <ContentWithHeader
-                                                    header={intlHelper(
-                                                        intl,
-                                                        'steg.oppsummering.utlandetNeste12.liste.header'
-                                                    )}>
-                                                    <SummaryList
-                                                        items={medlemskap.utenlandsoppholdNeste12Mnd}
-                                                        itemRenderer={renderUtenlandsoppholdSummary}
-                                                    />
-                                                </ContentWithHeader>
-                                            </Box>
-                                        )}
                                 </SummarySection>
 
                                 {/* Vedlegg */}
