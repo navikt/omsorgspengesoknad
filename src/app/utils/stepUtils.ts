@@ -4,7 +4,6 @@ import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { StepConfigInterface, StepConfigItemTexts, StepID } from '../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
 import {
-    arbeidStepIsValid,
     legeerklæringStepIsValid,
     medlemskapStepIsValid,
     opplysningerOmBarnetStepIsValid,
@@ -30,10 +29,8 @@ export const getStepTexts = (intl: IntlShape, stepId: StepID, stepConfig: StepCo
 export const opplysningerOmBarnetStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     welcomingPageIsValid(formData);
 
-export const arbeidStepIsAvailable = (formData: OmsorgspengesøknadFormData) =>
+export const medlemskapStepAvailable = (formData: OmsorgspengesøknadFormData) =>
     opplysningerOmBarnetStepIsValid(formData);
-
-export const medlemskapStepAvailable = (formData: OmsorgspengesøknadFormData) => arbeidStepIsValid(formData);
 
 export const legeerklæringStepAvailable = (formData: OmsorgspengesøknadFormData) => medlemskapStepIsValid(formData);
 

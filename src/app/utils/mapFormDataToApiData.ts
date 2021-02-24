@@ -64,7 +64,6 @@ export const mapFormDataToApiData = (
         legeerklæring,
         samværsavtale,
         harBoddUtenforNorgeSiste12Mnd,
-        arbeidssituasjon,
         skalBoUtenforNorgeNeste12Mnd,
         utenlandsoppholdNeste12Mnd,
         utenlandsoppholdSiste12Mnd,
@@ -88,7 +87,6 @@ export const mapFormDataToApiData = (
         barn: barnObject,
         relasjonTilBarnet: barnObject.aktørId ? undefined : søkersRelasjonTilBarnet,
         sammeAdresse: sammeAdresse === YesOrNo.YES,
-        arbeidssituasjon,
         medlemskap: {
             harBoddIUtlandetSiste12Mnd: harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES,
             skalBoIUtlandetNeste12Mnd: skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES,

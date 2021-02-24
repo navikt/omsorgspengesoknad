@@ -86,16 +86,6 @@ const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) =
                                             />
                                         </Normaltekst>
                                     </Box>
-                                    <Box margin="l">
-                                        <ContentWithHeader
-                                            header={intlHelper(intl, 'steg.oppsummering.arbeidssituasjon.header')}>
-                                            {apiValues.arbeidssituasjon.map((a) => (
-                                                <li key={a}>
-                                                    <FormattedMessage id={`arbeidssituasjon.${a}`} />
-                                                </li>
-                                            ))}
-                                        </ContentWithHeader>
-                                    </Box>
                                 </SummarySection>
 
                                 {/* Om barnet */}

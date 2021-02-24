@@ -18,7 +18,7 @@ import {
 } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { createFieldValidationError } from '@navikt/sif-common-core/lib/validation/fieldValidations';
 import { FieldValidationResult } from '@navikt/sif-common-core/lib/validation/types';
-import { Arbeidssituasjon, SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
+import { SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
 import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
 
 export const fieldValidationError = (
@@ -169,13 +169,6 @@ export const validateDeltBostedAvtale = (attachments: Attachment[]): FieldValida
 
 export const validateRequiredField = (value: any): FieldValidationResult => {
     if (!hasValue(value)) {
-        return fieldIsRequiredError();
-    }
-    return undefined;
-};
-
-export const validateArbeid = (value: Arbeidssituasjon[]): FieldValidationResult => {
-    if (value === undefined || value.length === 0) {
         return fieldIsRequiredError();
     }
     return undefined;
