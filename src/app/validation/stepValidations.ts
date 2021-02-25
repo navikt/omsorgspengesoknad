@@ -7,14 +7,9 @@ export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: Omsor
 export const opplysningerOmBarnetStepIsValid = ({
     barnetsNavn,
     barnetsFødselsnummer,
-    barnetHarIkkeFåttFødselsnummerEnda,
     søkersRelasjonTilBarnet,
     barnetSøknadenGjelder,
 }: OmsorgspengesøknadFormData) => {
-    if (barnetHarIkkeFåttFødselsnummerEnda) {
-        return fieldValidations.validateRelasjonTilBarnet(søkersRelasjonTilBarnet) === undefined;
-    }
-
     const formIsValid =
         fieldValidations.validateNavn(barnetsNavn) === undefined &&
         fieldValidations.validateFødselsnummer(barnetsFødselsnummer) === undefined &&
