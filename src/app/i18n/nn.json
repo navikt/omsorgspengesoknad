@@ -148,8 +148,6 @@
     "steg.omBarnet.hvilketBarn.født": "Født {dato}",
     "steg.omBarnet.gjelderAnnetBarn": "Søknaden gjeld eit anna barn",
     "steg.omBarnet.fnr.spm": "Fødselsnummeret/D-nummeret til barnet",
-    "steg.omBarnet.fnr.ikkeFnrEnda": "Barnet har ikkje fått fødselsnummer/D-nummer enno",
-    "steg.omBarnet.fødselsdato": "Fødselsdatoen til barnet",
     "steg.omBarnet.navn": "Namnet til barnet",
     "steg.omBarnet.relasjon": "Relasjonen min til barnet",
     "steg.omBarnet.veileder.samværsavtale": "Seinare i søknaden lastar du opp avtalen om delt bustad for barnet.",
