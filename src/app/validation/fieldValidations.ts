@@ -1,5 +1,3 @@
-import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
-import dayjs from 'dayjs';
 import { Utenlandsopphold } from '@navikt/sif-common-forms/lib/utenlandsopphold/types';
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
@@ -14,11 +12,10 @@ import {
     DateRange,
     dateRangesCollide,
     dateRangesExceedsRange,
-    dateToday,
 } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { createFieldValidationError } from '@navikt/sif-common-core/lib/validation/fieldValidations';
 import { FieldValidationResult } from '@navikt/sif-common-core/lib/validation/types';
-import { Arbeidssituasjon, SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
+import { SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
 import { fødselsnummerIsValid, FødselsnummerValidationErrorReason } from './fødselsnummerValidator';
 
 export const fieldValidationError = (
@@ -174,13 +171,6 @@ export const validateRequiredField = (value: any): FieldValidationResult => {
     return undefined;
 };
 
-export const validateArbeid = (value: Arbeidssituasjon[]): FieldValidationResult => {
-    if (value === undefined || value.length === 0) {
-        return fieldIsRequiredError();
-    }
-    return undefined;
-};
-
 export const validateUtenlandsoppholdIPerioden = (
     periode: DateRange,
     utenlandsopphold: Utenlandsopphold[]
@@ -194,17 +184,6 @@ export const validateUtenlandsoppholdIPerioden = (
     }
     if (dateRangesExceedsRange(dateRanges, periode)) {
         return fieldValidationError(AppFieldValidationErrors.utenlandsopphold_utenfor_periode);
-    }
-    return undefined;
-};
-
-export const validateFødselsdato = (dateString?: string): FieldValidationResult => {
-    const date = datepickerUtils.getDateFromDateString(dateString);
-    if (!hasValue(date)) {
-        return fieldIsRequiredError();
-    }
-    if (dayjs(date).isAfter(dateToday)) {
-        return createAppFieldValidationError(AppFieldValidationErrors.fødselsdato_ugyldig);
     }
     return undefined;
 };

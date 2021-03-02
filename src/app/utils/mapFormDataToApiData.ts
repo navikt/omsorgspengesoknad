@@ -1,26 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { getCountryName } from '@navikt/sif-common-formik/lib';
 import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
-import { Utenlandsopphold } from '@navikt/sif-common-forms/lib/utenlandsopphold/types';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { attachmentUploadHasFailed } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
 import { formatDateToApiFormat } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
-import {
-    BarnToSendToApi,
-    OmsorgspengesøknadApiData,
-    UtenlandsoppholdApiData,
-} from '../types/OmsorgspengesøknadApiData';
+import { BarnToSendToApi, OmsorgspengesøknadApiData } from '../types/OmsorgspengesøknadApiData';
 import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../types/Søkerdata';
-
-const mapUtenlandsoppholdTilApiData = (opphold: Utenlandsopphold, locale: string): UtenlandsoppholdApiData => ({
-    landnavn: getCountryName(opphold.landkode, locale),
-    landkode: opphold.landkode,
-    fraOgMed: formatDateToApiFormat(opphold.fom),
-    tilOgMed: formatDateToApiFormat(opphold.tom),
-});
 
 export const mapBarnToApiData = (
     barn: BarnReceivedFromApi[],
@@ -63,11 +50,6 @@ export const mapFormDataToApiData = (
         søkersRelasjonTilBarnet,
         legeerklæring,
         samværsavtale,
-        harBoddUtenforNorgeSiste12Mnd,
-        arbeidssituasjon,
-        skalBoUtenforNorgeNeste12Mnd,
-        utenlandsoppholdNeste12Mnd,
-        utenlandsoppholdSiste12Mnd,
     }: OmsorgspengesøknadFormData,
     barn: BarnReceivedFromApi[],
     sprak: Locale
@@ -88,19 +70,6 @@ export const mapFormDataToApiData = (
         barn: barnObject,
         relasjonTilBarnet: barnObject.aktørId ? undefined : søkersRelasjonTilBarnet,
         sammeAdresse: sammeAdresse === YesOrNo.YES,
-        arbeidssituasjon,
-        medlemskap: {
-            harBoddIUtlandetSiste12Mnd: harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES,
-            skalBoIUtlandetNeste12Mnd: skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES,
-            utenlandsoppholdSiste12Mnd:
-                harBoddUtenforNorgeSiste12Mnd === YesOrNo.YES
-                    ? utenlandsoppholdSiste12Mnd.map((o) => mapUtenlandsoppholdTilApiData(o, sprak))
-                    : [],
-            utenlandsoppholdNeste12Mnd:
-                skalBoUtenforNorgeNeste12Mnd === YesOrNo.YES
-                    ? utenlandsoppholdNeste12Mnd.map((o) => mapUtenlandsoppholdTilApiData(o, sprak))
-                    : [],
-        },
         legeerklæring: legeerklæring
             .filter((attachment) => !attachmentUploadHasFailed(attachment))
             .map(({ url }) => url!),

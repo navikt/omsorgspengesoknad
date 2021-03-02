@@ -8,11 +8,6 @@ export enum SøkersRelasjonTilBarnet {
     'ADOPTIVFORELDER' = 'adoptivforelder',
     'FOSTERFORELDER' = 'fosterforelder',
 }
-export enum Arbeidssituasjon {
-    'arbeidstaker' = 'arbeidstaker',
-    'selvstendigNæringsdrivende' = 'selvstendigNæringsdrivende',
-    'frilanser' = 'frilanser',
-}
 
 export enum AppFormField {
     harForståttRettigheterOgPlikter = 'harForståttRettigheterOgPlikter',
@@ -30,7 +25,6 @@ export enum AppFormField {
     utenlandsoppholdSiste12Mnd = 'utenlandsoppholdSiste12Mnd',
     skalBoUtenforNorgeNeste12Mnd = 'skalBoUtenforNorgeNeste12Mnd',
     utenlandsoppholdNeste12Mnd = 'utenlandsoppholdNeste12Mnd',
-    arbeidssituasjon = 'arbeidssituasjon',
     erYrkesaktiv = 'erYrkesaktiv',
     kroniskEllerFunksjonshemming = 'kroniskEllerFunksjonshemming',
     sammeAdresse = 'sammeAdresse',
@@ -48,7 +42,6 @@ export interface OmsorgspengesøknadFormData {
     [AppFormField.søknadenGjelderEtAnnetBarn]: boolean;
     [AppFormField.barnetSøknadenGjelder]: string;
     [AppFormField.sammeAdresse]?: YesOrNo;
-    [AppFormField.arbeidssituasjon]: Arbeidssituasjon[];
     [AppFormField.legeerklæring]: Attachment[];
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: boolean;
     [AppFormField.barnetsFødselsdato]?: string;
@@ -69,7 +62,6 @@ export const initialValues: OmsorgspengesøknadFormData = {
     [AppFormField.harBekreftetOpplysninger]: false,
     [AppFormField.søkersRelasjonTilBarnet]: undefined,
     [AppFormField.søknadenGjelderEtAnnetBarn]: false,
-    [AppFormField.arbeidssituasjon]: [],
     [AppFormField.legeerklæring]: [],
     [AppFormField.samværsavtale]: [],
     [AppFormField.barnetHarIkkeFåttFødselsnummerEnda]: false,

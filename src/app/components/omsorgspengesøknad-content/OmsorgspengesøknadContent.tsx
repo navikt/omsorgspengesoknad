@@ -9,9 +9,7 @@ import { getNextStepRoute, getSøknadRoute, isAvailable } from '../../utils/rout
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import GeneralErrorPage from '../pages/general-error-page/GeneralErrorPage';
 import WelcomingPage from '../pages/welcoming-page/WelcomingPage';
-import ArbeidStep from '../steps/arbeid/ArbeidStep';
 import LegeerklæringStep from '../steps/legeerklæring/LegeerklæringStep';
-import MedlemsskapStep from '../steps/medlemskap/MedlemsskapStep';
 import OpplysningerOmBarnetStep from '../steps/opplysninger-om-barnet/OpplysningerOmBarnetStep';
 import DeltBostedAvtaleStep from '../steps/delt-bosted-avtale/DeltBostedAvtaleStep';
 import SummaryStep from '../steps/summary/SummaryStep';
@@ -55,27 +53,6 @@ const OmsorgspengesøknadContent: React.FunctionComponent = () => {
                     render={() => (
                         <OpplysningerOmBarnetStep
                             onValidSubmit={() => navigateToNextStep(StepID.OPPLYSNINGER_OM_BARNET)}
-                            formValues={values}
-                        />
-                    )}
-                />
-            )}
-
-            {isAvailable(StepID.ARBEID, values) && (
-                <Route
-                    path={getSøknadRoute(StepID.ARBEID)}
-                    render={() => (
-                        <ArbeidStep onValidSubmit={() => navigateToNextStep(StepID.ARBEID)} formValues={values} />
-                    )}
-                />
-            )}
-
-            {isAvailable(StepID.MEDLEMSKAP, values) && (
-                <Route
-                    path={getSøknadRoute(StepID.MEDLEMSKAP)}
-                    render={() => (
-                        <MedlemsskapStep
-                            onValidSubmit={() => navigateToNextStep(StepID.MEDLEMSKAP)}
                             formValues={values}
                         />
                     )}

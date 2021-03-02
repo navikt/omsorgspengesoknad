@@ -1,6 +1,6 @@
 import { ApiStringDate } from '@navikt/sif-common-core/lib/types/ApiStringDate';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
-import { Arbeidssituasjon, SøkersRelasjonTilBarnet } from './OmsorgspengesøknadFormData';
+import { SøkersRelasjonTilBarnet } from './OmsorgspengesøknadFormData';
 
 export type ISO8601Duration = string;
 
@@ -10,14 +10,6 @@ export interface BarnToSendToApi {
     aktørId: string | null;
     fødselsdato: ApiStringDate | null;
 }
-
-interface Medlemskap {
-    harBoddIUtlandetSiste12Mnd: boolean;
-    skalBoIUtlandetNeste12Mnd: boolean;
-    utenlandsoppholdNeste12Mnd: UtenlandsoppholdApiData[];
-    utenlandsoppholdSiste12Mnd: UtenlandsoppholdApiData[];
-}
-
 export interface UtenlandsoppholdApiData {
     fraOgMed: ApiStringDate;
     tilOgMed: ApiStringDate;
@@ -33,10 +25,8 @@ export interface OmsorgspengesøknadApiData {
     barn: BarnToSendToApi;
     sammeAdresse?: boolean;
     relasjonTilBarnet: SøkersRelasjonTilBarnet | undefined;
-    arbeidssituasjon: Arbeidssituasjon[];
     legeerklæring: string[];
     samværsavtale?: string[];
-    medlemskap: Medlemskap;
     harForståttRettigheterOgPlikter: boolean;
     harBekreftetOpplysninger: boolean;
 }
