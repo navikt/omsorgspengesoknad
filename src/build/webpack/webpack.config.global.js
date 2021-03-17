@@ -39,7 +39,18 @@ const webpackConfig = {
             },
             {
                 test: /\.less$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                                math: 'always',
+                            },
+                        },
+                    },
+                ],
             },
             {
                 test: /\.svg$/,
