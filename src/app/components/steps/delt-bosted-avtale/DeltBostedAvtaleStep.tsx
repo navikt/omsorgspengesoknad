@@ -46,6 +46,9 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
                     <p>
                         <FormattedMessage id={'step.deltBosted.helperTextPanel.1'} />
                     </p>
+                    <p>
+                        <FormattedMessage id={'step.deltBosted.helperTextPanel.2'} />
+                    </p>
                 </CounsellorPanel>
             </Box>
             <Box margin={'l'}>
