@@ -61,8 +61,9 @@
     "step.legeerklaering.pageTitle": "Omsorgspengesøknad - legeerklæring",
     "step.legeerklaering.stepTitle": "Legeerklæring",
     "step.legeerklaering.stepIndicatorLabel": "Last opp legeerklæringa di",
-    "step.legeerklaering.counsellorpanel.1": "Her skal du laste opp legeerklæringa. Det gjør du enten ved å ta bilete av leggerklæringa, eller ved å scanne den. Du må vera nøye med at all tekst er med, inkludert legen sin signatur. Dersom du ikkje har legeerklæringa tilgjengeleg når du søkjer, kan du ettersende den.",
-    "step.legeerklaering.counsellorpanel.2": "Her får du veiledning til korleis du ettersender dokumentasjon",
+    "step.legeerklaering.counsellorpanel.1": "Her skal du laste opp legeerklæringa. Det gjer du anten ved å ta bilete av legeerklæringa eller ved å skanne henne. Ver nøye med at all tekst er med, inkludert signaturen til legen.",
+    "step.legeerklaering.counsellorpanel.2": "Vi kan ikkje behandle søknaden din før vi får legeerklæringa. Dersom du ikkje har legeerklæringa tilgjengeleg no, rår vi deg til å vente med å søkje til du har erklæringa tilgjengeleg. Dersom du ikkje kan vente med å sende søknaden, kan du halde fram utan, men då må du ettersende legeerklæring så snart som mogleg.",
+    "step.legeerklaering.counsellorpanel.ettersendLenke": "Her får du rettleiing om korleis du ettersender dokumentasjon.",
 
     "step.deltBosted.pageTitle": "Omsorgspengesøknad – avtale om delt bustad",
     "step.deltBosted.stepTitle": "Avtale om delt bustad",
