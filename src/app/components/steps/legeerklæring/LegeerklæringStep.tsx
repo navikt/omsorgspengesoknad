@@ -41,12 +41,14 @@ const LegeerklæringStep: React.FunctionComponent<StepConfigProps> = ({ onValidS
                 <CounsellorPanel>
                     <p>
                         <FormattedMessage id={'step.legeerklaering.counsellorpanel.1'} />
+                    </p>
+                    <p>
+                        <FormattedMessage id={'step.legeerklaering.counsellorpanel.2'} />{' '}
                         <Lenke
                             href="https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/ettersendelse"
                             target="_blank">
-                            <FormattedMessage id={'step.legeerklaering.counsellorpanel.2'} />
+                            <FormattedMessage id={'step.legeerklaering.counsellorpanel.ettersendLenke'} />
                         </Lenke>
-                        .
                     </p>
                 </CounsellorPanel>
             </Box>
