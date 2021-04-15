@@ -68,11 +68,10 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
                         validate={(attachments) => {
                             const error = validateAll([
                                 () => validateAlleDokumenterISøknaden(otherAttachmentsInSøknad),
-                                () => validateList({ required: true, minItems: 1 })(attachments),
+                                () => validateList({ required: true })(attachments),
                             ]);
                             switch (error) {
                                 case ValidateListErrors.isEmpty:
-                                case ValidateListErrors.tooFewItems:
                                     return intlHelper(intl, 'validation.samværsavtale.mangler');
                                 case ValidateAlleDokumenterISøknadeErrors.forMangeFiler:
                                     return intlHelper(intl, 'validation.alleDokumenter.forMangeFiler');
