@@ -26,7 +26,7 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ søkersFnr }: Props) =>
                     label={intlHelper(intl, 'steg.omBarnet.fnr.spm')}
                     name={AppFormField.barnetsFødselsnummer}
                     validate={(value) => {
-                        const error = validateFødselsnummer({ required: false, disallowedValues: [søkersFnr] })(value);
+                        const error = validateFødselsnummer({ required: true, disallowedValues: [søkersFnr] })(value);
                         switch (error) {
                             case undefined:
                                 return undefined;

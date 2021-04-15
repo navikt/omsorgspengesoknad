@@ -175,6 +175,7 @@
     "vedleggsliste.ingenBostedsavtaleLastetOpp": "Ingen vedlegg er lastet opp",
 
     "validation.barnetSøknadenGjelder.ikkeValgt": "Du må velge hvilket barn søknaden gjelder, eller velge at søknaden gjelder et annet barn",
+    "validation.barnetsFødselsnummer.noValue": "Du må fylle ut barnets fødselsnummer",
     "validation.barnetsFødselsnummer.ikke11Siffer": "Fødselsnummeret til barnet er ikke gyldig. Dette må bestå av 11 siffer",
     "validation.barnetsFødselsnummer.ugyldigFormat": "Fødselsnummeret til barnet er ikke gyldig. Vennligst kontroller tallene du har tastet inn",
     "validation.barnetsFødselsnummer.søkersFnrErBrukt": "Fødselsnummeret til barnet er ikke gyldig, du har oppgitt ditt eget fødselsnummer",
