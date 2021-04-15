@@ -6,10 +6,10 @@ import {
     validateFødselsnummer,
     ValidateFødselsnummerErrors,
     validateRequiredValue,
+    validateString,
     ValidateStringErrors,
 } from '@navikt/sif-common-formik/lib/validation';
 import { AppFormField, SøkersRelasjonTilBarnet } from '../../../types/OmsorgspengesøknadFormData';
-import { validateBarnetsNavn } from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
 
 interface Props {
@@ -50,7 +50,7 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ søkersFnr }: Props) =>
                     label={intlHelper(intl, 'steg.omBarnet.navn')}
                     name={AppFormField.barnetsNavn}
                     validate={(value) => {
-                        const error = validateBarnetsNavn(value);
+                        const error = validateString({ required: false, maxLength: 50 })(value);
                         switch (error) {
                             case ValidateStringErrors.noValue:
                                 return intlHelper(intl, 'validation.barnetsNavn.noValue');

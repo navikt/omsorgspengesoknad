@@ -4,10 +4,7 @@ import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
-import { validateString } from '@navikt/sif-common-formik/lib/validation';
 import { ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
-
-export const validateBarnetsNavn = (value: any) => validateString({ required: true, maxLength: 50 })(value);
 
 export enum ValidateAlleDokumenterISøknadeErrors {
     'samletStørrelseForHøy' = 'samletStørrelseForHøy',

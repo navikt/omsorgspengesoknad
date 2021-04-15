@@ -1,6 +1,5 @@
-import { validateFødselsnummer, validateRequiredValue } from '@navikt/sif-common-formik/lib/validation';
+import { validateFødselsnummer, validateRequiredValue, validateString } from '@navikt/sif-common-formik/lib/validation';
 import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
-import { validateBarnetsNavn } from './fieldValidations';
 import { includeAvtaleStep } from '../utils/stepUtils';
 
 export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: OmsorgspengesøknadFormData) =>
@@ -13,7 +12,7 @@ export const opplysningerOmBarnetStepIsValid = ({
     barnetSøknadenGjelder,
 }: OmsorgspengesøknadFormData) => {
     const formIsValid =
-        validateBarnetsNavn(barnetsNavn) === undefined &&
+        validateString({ required: false, maxLength: 50 })(barnetsNavn) === undefined &&
         validateFødselsnummer()(barnetsFødselsnummer) === undefined &&
         validateRequiredValue(søkersRelasjonTilBarnet) === undefined;
 
