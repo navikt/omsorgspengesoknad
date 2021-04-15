@@ -20,6 +20,7 @@ import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import {
     validateAlleDokumenterISøknaden,
     ValidateAlleDokumenterISøknadeErrors,
+    reportUnhandledValidationError,
 } from '../../../validation/fieldValidations';
 import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
@@ -71,14 +72,17 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
                                 () => validateList({ required: true })(attachments),
                             ]);
                             switch (error) {
+                                case undefined:
+                                    return undefined;
                                 case ValidateListErrors.isEmpty:
                                     return intlHelper(intl, 'validation.samværsavtale.mangler');
                                 case ValidateAlleDokumenterISøknadeErrors.forMangeFiler:
                                     return intlHelper(intl, 'validation.alleDokumenter.forMangeFiler');
                                 case ValidateAlleDokumenterISøknadeErrors.samletStørrelseForHøy:
                                     return intlHelper(intl, 'validation.alleDokumenter.samletStørrelseForHøy');
+                                default:
+                                    return reportUnhandledValidationError(error, AppFormField.samværsavtale, intl);
                             }
-                            return undefined;
                         }}
                         onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                     />

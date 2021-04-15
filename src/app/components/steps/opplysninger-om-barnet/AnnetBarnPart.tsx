@@ -11,6 +11,7 @@ import {
 } from '@navikt/sif-common-formik/lib/validation';
 import { AppFormField, SøkersRelasjonTilBarnet } from '../../../types/OmsorgspengesøknadFormData';
 import AppForm from '../../app-form/AppForm';
+import { reportUnhandledValidationError } from '../../../validation/fieldValidations';
 
 interface Props {
     søkersFnr: string;
@@ -35,8 +36,10 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ søkersFnr }: Props) =>
                             case ValidateFødselsnummerErrors.fødselsnummerNot11Chars:
                                 return intlHelper(intl, 'validation.barnetsFødselsnummer.ikke11Siffer');
                             case ValidateFødselsnummerErrors.disallowedFødselsnummer:
+                            case ValidateFødselsnummerErrors.fødselsnummerChecksumError:
                                 return intlHelper(intl, 'validation.barnetsFødselsnummer.søkersFnrErBrukt');
                             default:
+                                reportUnhandledValidationError(error, AppFormField.barnetsFødselsnummer, intl);
                                 return intlHelper(intl, 'validation.barnetsFødselsnummer.ugyldigFormat');
                         }
                     }}
@@ -52,12 +55,15 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ søkersFnr }: Props) =>
                     validate={(value) => {
                         const error = validateString({ required: false, maxLength: 50 })(value);
                         switch (error) {
+                            case undefined:
+                                return undefined;
                             case ValidateStringErrors.noValue:
                                 return intlHelper(intl, 'validation.barnetsNavn.noValue');
                             case ValidateStringErrors.tooLong:
                                 return intlHelper(intl, 'validation.barnetsNavn.tooLong');
+                            default:
+                                return reportUnhandledValidationError(error, AppFormField.barnetsNavn, intl);
                         }
-                        return undefined;
                     }}
                     bredde="XL"
                 />

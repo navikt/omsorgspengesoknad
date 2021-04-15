@@ -19,6 +19,7 @@ import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import {
     validateAlleDokumenterISøknaden,
     ValidateAlleDokumenterISøknadeErrors,
+    reportUnhandledValidationError,
 } from '../../../validation/fieldValidations';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
@@ -70,10 +71,14 @@ const LegeerklæringStep: React.FunctionComponent<StepConfigProps> = ({ onValidS
                         validate={() => {
                             const error = validateAlleDokumenterISøknaden(alleDokumenterISøknaden);
                             switch (error) {
+                                case undefined:
+                                    return undefined;
                                 case ValidateAlleDokumenterISøknadeErrors.forMangeFiler:
                                     return intlHelper(intl, 'validation.alleDokumenter.forMangeFiler');
                                 case ValidateAlleDokumenterISøknadeErrors.samletStørrelseForHøy:
                                     return intlHelper(intl, 'validation.alleDokumenter.samletStørrelseForHøy');
+                                default:
+                                    return reportUnhandledValidationError(error, AppFormField.legeerklæring, intl);
                             }
                             return undefined;
                         }}

@@ -4,7 +4,11 @@ import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
+import { IntlShape } from 'react-intl';
+import { AppFormField } from '../types/OmsorgspengesøknadFormData';
+import appSentryLogger from '../utils/appSentryLogger';
 
 export enum ValidateAlleDokumenterISøknadeErrors {
     'samletStørrelseForHøy' = 'samletStørrelseForHøy',
@@ -22,4 +26,9 @@ export const validateAlleDokumenterISøknaden = (
         return ValidateAlleDokumenterISøknadeErrors.forMangeFiler;
     }
     return undefined;
+};
+
+export const reportUnhandledValidationError = (error: any, field: AppFormField, intl: IntlShape) => {
+    appSentryLogger.logError('unhandledValidationError', JSON.stringify({ field, error }));
+    return intlHelper(intl, 'validation.uhåndtertFeil', { error });
 };
