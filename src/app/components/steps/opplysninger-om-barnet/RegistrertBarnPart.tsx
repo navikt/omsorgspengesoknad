@@ -1,15 +1,15 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik';
-import { useFormikContext } from 'formik';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import { prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
+import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik';
+import { validateRequiredValue } from '@navikt/sif-common-formik/lib/validation';
+import { useFormikContext } from 'formik';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { AppFormField, initialValues, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi } from '../../../types/Søkerdata';
-import { validateValgtBarn } from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
 
 interface Props {
@@ -59,7 +59,8 @@ const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }
                     if (søknadenGjelderEtAnnetBarn) {
                         return undefined;
                     }
-                    return validateValgtBarn(value);
+                    const error = validateRequiredValue(value);
+                    return error ? intlHelper(intl, 'validation.barnetSøknadenGjelder.ikkeValgt') : undefined;
                 }}
             />
             <FormBlock margin="l">

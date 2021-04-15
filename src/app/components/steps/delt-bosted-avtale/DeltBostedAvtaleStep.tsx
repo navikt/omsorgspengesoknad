@@ -1,28 +1,30 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { StepConfigProps, StepID } from '../../../config/stepConfig';
-import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
-import { navigateToLoginPage } from '../../../utils/navigationUtils';
-import {
-    validateDeltBostedAvtale,
-    validateSumOfAllAttachmentsAndValidateStep,
-} from '../../../validation/fieldValidations';
-import FileUploadErrors from '@navikt/sif-common-core/lib/components/file-upload-errors/FileUploadErrors';
-import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
-import FormikStep from '../../formik-step/FormikStep';
-import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
+import FileUploadErrors from '@navikt/sif-common-core/lib/components/file-upload-errors/FileUploadErrors';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import PictureScanningGuide from '@navikt/sif-common-core/lib/components/picture-scanning-guide/PictureScanningGuide';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import validateAll from '@navikt/sif-common-formik/lib/validation/utils/validateAll';
 import { useFormikContext } from 'formik';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
-import PictureScanningGuide from '@navikt/sif-common-core/lib/components/picture-scanning-guide/PictureScanningGuide';
 import Lenke from 'nav-frontend-lenker';
+import { StepConfigProps, StepID } from '../../../config/stepConfig';
+import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
+import { navigateToLoginPage } from '../../../utils/navigationUtils';
+import {
+    validateAlleDokumenterISøknaden,
+    ValidateAlleDokumenterISøknadeErrors,
+} from '../../../validation/fieldValidations';
+import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
+import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
+import FormikStep from '../../formik-step/FormikStep';
+import { validateList, ValidateListErrors } from '@navikt/sif-common-formik/lib/validation';
 
 const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
@@ -63,10 +65,21 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
                         }}
-                        validate={validateSumOfAllAttachmentsAndValidateStep(
-                            otherAttachmentsInSøknad,
-                            validateDeltBostedAvtale
-                        )}
+                        validate={(attachments) => {
+                            const error = validateAll([
+                                () => validateAlleDokumenterISøknaden(otherAttachmentsInSøknad),
+                                () => validateList({ required: true, minItems: 1 })(attachments),
+                            ]);
+                            switch (error) {
+                                case ValidateListErrors.tooFewItems:
+                                    return intlHelper(intl, 'validation.samværsavtale.mangler');
+                                case ValidateAlleDokumenterISøknadeErrors.forMangeFiler:
+                                    return intlHelper(intl, 'validation.alleDokumenter.forMangeFiler');
+                                case ValidateAlleDokumenterISøknadeErrors.samletStørrelseForHøy:
+                                    return intlHelper(intl, 'validation.alleDokumenter.samletStørrelseForHøy');
+                            }
+                            return undefined;
+                        }}
                         onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                     />
                 </FormBlock>

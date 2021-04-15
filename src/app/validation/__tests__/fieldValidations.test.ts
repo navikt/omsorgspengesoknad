@@ -1,146 +1,35 @@
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import {
-    AppFieldValidationErrors,
-    fieldValidationError,
-    hasValue,
-    validateFødselsnummer,
-    validerAlleDokumenterISøknaden,
-    validateNavn,
-    validateRelasjonTilBarnet,
-    validateYesOrNoIsAnswered,
-} from '../fieldValidations';
-import * as fødselsnummerValidator from '../fødselsnummerValidator';
+import { MAX_TOTAL_ATTACHMENT_SIZE_BYTES } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+import { validateAlleDokumenterISøknaden, ValidateAlleDokumenterISøknadeErrors } from '../fieldValidations';
 
-import Mock = jest.Mock;
-jest.mock('../fødselsnummerValidator', () => {
-    return {
-        fødselsnummerIsValid: jest.fn(),
-        FødselsnummerValidationErrorReason: {
-            MustConsistOf11Digits: 'MustConsistOf11Digits',
-        },
+describe('validateAlleDokumenterISøknaden', () => {
+    const fileMock = new File([''], 'filename.png', { type: 'text/png' });
+
+    const largeFileSize = MAX_TOTAL_ATTACHMENT_SIZE_BYTES / 2 + 1;
+    const uploadedAttachment: Attachment = { file: fileMock, pending: false, uploaded: true };
+    const largeAttachment: Attachment = {
+        file: { ...fileMock, size: largeFileSize, name: 'filename.png' },
+        pending: false,
+        uploaded: true,
     };
-});
 
-jest.mock('@navikt/sif-common-core/lib/utils/dateUtils', () => {
-    return {
-        isMoreThan3YearsAgo: jest.fn(),
-    };
-});
+    const maxItems: Attachment[] = [];
+    for (let i = 0; i < 100; i++) {
+        maxItems.push(uploadedAttachment);
+    }
 
-describe('fieldValidations', () => {
-    const fieldRequiredError = fieldValidationError(AppFieldValidationErrors.påkrevd);
-
-    describe('hasValue', () => {
-        it('should return true if provided value is not undefined, null or empty string', () => {
-            expect(hasValue('someValue')).toBe(true);
-            expect(hasValue(1234)).toBe(true);
-            expect(hasValue([])).toBe(true);
-            expect(hasValue({})).toBe(true);
-            expect(hasValue(true)).toBe(true);
-            expect(hasValue(false)).toBe(true);
-        });
-
-        it('should return false if the provided value is undefined, null or empty string', () => {
-            expect(hasValue('')).toBe(false);
-            expect(hasValue(null)).toBe(false);
-            expect(hasValue(undefined)).toBe(false);
-        });
+    it(`should return undefined if list contains 100 or less`, () => {
+        expect(validateAlleDokumenterISøknaden(maxItems)).toBeUndefined();
     });
 
-    describe('validateFødselsnummer', () => {
-        const mockedFnr = '1'.repeat(11);
-
-        it('should return an error message specific for fødselsnummer not being 11 digits when reason for validation failure is MustConsistOf11Digits', () => {
-            (fødselsnummerValidator.fødselsnummerIsValid as Mock).mockReturnValue([
-                false,
-                fødselsnummerValidator.FødselsnummerValidationErrorReason.MustConsistOf11Digits,
-            ]);
-            const result = validateFødselsnummer(mockedFnr);
-            expect(fødselsnummerValidator.fødselsnummerIsValid).toHaveBeenCalledWith(mockedFnr);
-            expect(result).toEqual(fieldValidationError(AppFieldValidationErrors.fødselsnummer_11siffer));
-        });
-
-        it('should return an error message saying fnr format is validation has failed, but reason is not MustConsistOf11Digits', () => {
-            (fødselsnummerValidator.fødselsnummerIsValid as Mock).mockReturnValue([false, []]);
-            const result = validateFødselsnummer(mockedFnr);
-            expect(fødselsnummerValidator.fødselsnummerIsValid).toHaveBeenCalledWith(mockedFnr);
-            expect(result).toEqual(fieldValidationError(AppFieldValidationErrors.fødselsnummer_ugyldig));
-        });
-
-        it('should return undefined if fødselsnummer is valid', () => {
-            (fødselsnummerValidator.fødselsnummerIsValid as Mock).mockReturnValue([true]);
-            const result = validateFødselsnummer(mockedFnr);
-            expect(fødselsnummerValidator.fødselsnummerIsValid).toHaveBeenCalledWith(mockedFnr);
-            expect(result).toBeUndefined();
-        });
+    it(`should return ${ValidateAlleDokumenterISøknadeErrors.forMangeFiler} if list contains more than 100 attachements`, () => {
+        expect(validateAlleDokumenterISøknaden([...maxItems, uploadedAttachment])).toBe(
+            ValidateAlleDokumenterISøknadeErrors.forMangeFiler
+        );
     });
-
-    describe('validateNavn', () => {
-        it('should return an error message saying field is required if provided value is empty string and isRequired is set to true', () => {
-            expect(validateNavn('', true)).toEqual(fieldRequiredError);
-        });
-
-        it('should return an error message saying field has to be 50 letters or less, if length is longer than 50 letters', () => {
-            expect(validateNavn('a'.repeat(51))).toEqual(
-                fieldValidationError(AppFieldValidationErrors.navn_maksAntallTegn, { maxNumOfLetters: 50 })
-            );
-        });
-
-        it('should return undefined if value is valid (length > 0 && length <= 50)', () => {
-            expect(validateNavn('a'.repeat(50))).toBeUndefined();
-        });
-
-        it('should return undefined if value is empty string when isRequired set to false', () => {
-            expect(validateNavn('', false)).toBeUndefined();
-        });
-    });
-
-    describe('validateRelasjonTilBarnet', () => {
-        it('should return an error message saying field is required if provided value is empty string', () => {
-            expect(validateRelasjonTilBarnet('')).toEqual(fieldRequiredError);
-        });
-    });
-
-    describe('validateYesOrNoIsAnswered', () => {
-        it('should return undefined if value is YesOrNo.YES', () => {
-            expect(validateYesOrNoIsAnswered(YesOrNo.YES)).toBeUndefined();
-        });
-
-        it('should return undefined if value is YesOrNo.NO', () => {
-            expect(validateYesOrNoIsAnswered(YesOrNo.NO)).toBeUndefined();
-        });
-
-        it('should return error message saying that field is required if value is YesOrNo.UNANSWERED', () => {
-            expect(validateYesOrNoIsAnswered(YesOrNo.UNANSWERED)).toEqual(fieldRequiredError);
-        });
-    });
-
-    describe('validateLegeerklæring', () => {
-        const fileMock = new File([''], 'filename.png', { type: 'text/png' });
-
-        const uploadedAttachment: Attachment = { file: fileMock, pending: false, uploaded: true };
-        const failedAttachment1: Attachment = { file: fileMock, pending: true, uploaded: false };
-        const failedAttachment2: Attachment = { file: fileMock, pending: false, uploaded: false };
-
-        it.skip('should return error message saying that files must be uploaded if list is empty', () => {
-            expect(validerAlleDokumenterISøknaden([])).toEqual(
-                fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler)
-            );
-        });
-
-        it.skip('should return error message saying that files must be uploaded if list contains no successfully uploaded attachments', () => {
-            expect(validerAlleDokumenterISøknaden([failedAttachment1, failedAttachment2])).toEqual(
-                fieldValidationError(AppFieldValidationErrors.legeerklæring_mangler)
-            );
-        });
-
-        it('should return undefined if list contains between 1-3 successfully uploaded attachments', () => {
-            expect(validerAlleDokumenterISøknaden([uploadedAttachment])).toBeUndefined();
-            expect(validerAlleDokumenterISøknaden([uploadedAttachment, uploadedAttachment])).toBeUndefined();
-            expect(
-                validerAlleDokumenterISøknaden([uploadedAttachment, uploadedAttachment, uploadedAttachment])
-            ).toBeUndefined();
-        });
+    it(`should return ${ValidateAlleDokumenterISøknadeErrors.samletStørrelseForHøy} if attachments too large`, () => {
+        expect(validateAlleDokumenterISøknaden([largeAttachment, largeAttachment])).toBe(
+            ValidateAlleDokumenterISøknadeErrors.samletStørrelseForHøy
+        );
     });
 });

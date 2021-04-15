@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { useFormikContext } from 'formik';
+import { useIntl } from 'react-intl';
+import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { YesOrNo } from '@navikt/sif-common-formik/lib';
+import { validateYesOrNo } from '@navikt/sif-common-formik/lib/validation';
+import { useFormikContext } from 'formik';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { SøkerdataContext } from '../../../context/SøkerdataContext';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { harRegistrerteBarn } from '../../../utils/søkerdataUtils';
-import { validateYesOrNoIsAnswered } from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
 import FormikStep from '../../formik-step/FormikStep';
 import AnnetBarnPart from './AnnetBarnPart';
 import RegistrertBarnPart from './RegistrertBarnPart';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { useIntl } from 'react-intl';
-import { YesOrNo } from '@navikt/sif-common-formik/lib';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import AlertStripe from 'nav-frontend-alertstriper';
 
 const OpplysningerOmBarnetStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
     const { values } = useFormikContext<OmsorgspengesøknadFormData>();
@@ -27,7 +27,9 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<StepConfigProps> = ({ on
             {søkerdata && (
                 <>
                     {harRegistrerteBarn(søkerdata) && <RegistrertBarnPart søkersBarn={søkerdata.barn} />}
-                    {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && <AnnetBarnPart />}
+                    {(søknadenGjelderEtAnnetBarn || !harRegistrerteBarn(søkerdata)) && (
+                        <AnnetBarnPart søkersFnr={søkerdata.person.fødselsnummer} />
+                    )}
                     {(hasChosenRegisteredChild ||
                         søknadenGjelderEtAnnetBarn === true ||
                         søkerdata.barn.length === 0 ||
@@ -38,14 +40,24 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<StepConfigProps> = ({ on
                                 <AppForm.YesOrNoQuestion
                                     legend="Er du folkeregistrert på samme adresse som barnet?"
                                     name={AppFormField.sammeAdresse}
-                                    validate={validateYesOrNoIsAnswered}
+                                    validate={(value) => {
+                                        const error = validateYesOrNo(value);
+                                        return error
+                                            ? intlHelper(intl, 'validation.sammeAdresse.ikkeValgt')
+                                            : undefined;
+                                    }}
                                 />
                             </FormBlock>
                             <FormBlock>
                                 <AppForm.YesOrNoQuestion
                                     name={AppFormField.kroniskEllerFunksjonshemming}
                                     legend={intlHelper(intl, 'steg.omBarnet.spm.kroniskEllerFunksjonshemmende')}
-                                    validate={validateYesOrNoIsAnswered}
+                                    validate={(value) => {
+                                        const error = validateYesOrNo(value);
+                                        return error
+                                            ? intlHelper(intl, 'validation.kroniskEllerFunksjonshemming.ikkeValgt')
+                                            : undefined;
+                                    }}
                                 />
                             </FormBlock>
                             {values.kroniskEllerFunksjonshemming === YesOrNo.NO && (

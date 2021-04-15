@@ -223,5 +223,16 @@
     "fieldvalidation.utenlandsopphold_ikke_registrert": "Du har ikke registrert noen utenlandsopphold for perioden",
     "fieldvalidation.utenlandsopphold_overlapper": "Ett eller flere av utenlandsoppholdene har datoer som overlapper",
     "fieldvalidation.utenlandsopphold_utenfor_periode": "Ett eller flere av utenlandsoppholdene er utenfor tillatt tidsrom",
-    "fieldvalidation.fødelsdato.ugyldig": "Ugyldig dato"
+    "fieldvalidation.fødelsdato.ugyldig": "Ugyldig dato",
+
+    "validation.barnetSøknadenGjelder.ikkeValgt": "Du må velge hvilket barn søknaden gjelder, eller velge at søknaden gjelder et annet barn",
+    "validation.barnetsFødselsnummer.ikke11Siffer": "Fødselsnummeret til barnet er ikke gyldig. Dette må bestå av 11 siffer",
+    "validation.barnetsFødselsnummer.ugyldigFormat": "Fødselsnummeret til barnet er ikke gyldig. Vennligst kontroller tallene du har tastet inn",
+    "validation.barnetsFødselsnummer.søkersFnrErBrukt": "Fødselsnummeret til barnet er ikke gyldig, du har oppgitt ditt eget fødselsnummer",
+    "validation.barnetsNavn.noValue": "Du må oppgi barnets navn",
+    "validation.barnetsNavn.tooLong": "Barnets navn kan ikke inneholde over 50 tegn",
+    "validation.søkersRelasjonTilBarnet.ikkeValgt": "Du må velge din relasjon til barnet",
+    "validation.sammeAdresse.ikkeValgt": "Du må svare på om du er folkeregistrert på samme adresse som barnet",
+    "validation.kroniskEllerFunksjonshemming.ikkeValgt": "Du må svare på om barnet har en en kronisk sykdom eller funksjonshemming",
+    "validation.samværsavtale.mangler": "Du må laste opp samværsavtalen for å kunne gå videre"
 }
