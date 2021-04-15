@@ -74,8 +74,6 @@ const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }
                             resetFieldValues(
                                 [
                                     AppFormField.barnetsFødselsnummer,
-                                    AppFormField.barnetHarIkkeFåttFødselsnummerEnda,
-                                    AppFormField.barnetsFødselsdato,
                                     AppFormField.barnetsNavn,
                                     AppFormField.søkersRelasjonTilBarnet,
                                     AppFormField.kroniskEllerFunksjonshemming,

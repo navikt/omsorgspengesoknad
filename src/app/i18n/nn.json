@@ -6,24 +6,6 @@
     "locale.nb": "Bokmål - norsk",
     "locale.nn": "Nynorsk - norsk",
 
-    "mandag": "måndag",
-    "tirsdag": "tysdag",
-    "onsdag": "onsdag",
-    "torsdag": "torsdag",
-    "fredag": "fredag",
-
-    "mandag.caps": "Måndag",
-    "tirsdag.caps": "Tysdag",
-    "onsdag.caps": "Onsdag",
-    "torsdag.caps": "Torsdag",
-    "fredag.caps": "Fredag",
-
-    "Mandag": "Måndag",
-    "Tirsdag": "Tysdag",
-    "Onsdag": "Onsdag",
-    "Torsdag": "Torsdag",
-    "Fredag": "Fredag",
-
     "banner.title": "Søknad om ekstra omsorgsdagar",
 
     "page.loadingPage.tekst": "Lastar ...",
@@ -33,16 +15,7 @@
     "hjelpetekst.skjul": "Lukk hjelpeteksten",
     "hjelpetekst.vis": "Vis hjelpeteksten",
 
-    "timer": "{timer, plural, one {# time} other {# timar}}",
-    "minutter": "{minutter, plural, one {# minutt} other {# minutt}}",
-    "timerOgMinutter": "{timer, plural, one {# time} other {# timar}} og {minutter, plural, one {# minutt} other {# minutt}}",
-    "dager": "{dager, plural, one {# dag} other {# dagar}}",
-
-    "timeInput.hours": "Timar",
-    "timeInput.minutes": "Minutt",
-
     "fileUploadErrors.part1": "Det har dessverre skjedd ein feil under opplastinga av følgjande vedlegg:",
-    "formikValidationErrorSummary.tittel": "Du må rette opp i følgjande feil:",
 
     "relasjonTilBarnet.mor": "Mor",
     "relasjonTilBarnet.far": "Far",
@@ -169,11 +142,9 @@
     "steg.oppsummering.barnet.header": "Om barnet",
     "steg.oppsummering.barnet.navn": "Namn: {navn}",
     "steg.oppsummering.barnet.fødselsdato": "Fødselsdato: {dato}",
-    "steg.oppsummering.barnet.forelopigFnr": "Førebels fødselsnummer / D-nummer: {fnr}",
     "steg.oppsummering.barnet.fnr": "Fødselsnummer: {fnr}",
     "steg.oppsummering.barnet.søkersRelasjonTilBarnet": "Relasjonen din til barnet: {relasjon}",
     "steg.oppsummering.barnet.sammeAdresse.header": "Er du folkeregistrert på same adressa som barnet?",
-    "steg.oppsummering.barnet.deltOmsorg.header": "Deler du omsorga med den andre forelderen?",
     "steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header": "Har barnet ein kronisk sjukdom eller funksjonshemming?",
 
     "steg.oppsummering.vedlegg.header": "Vedlegg",
@@ -205,24 +176,5 @@
 
     "vedleggsliste.fjernKnapp": "Fjern vedlegg",
     "vedleggsliste.ingenLegeerklæringLastetOpp": "Ingen vedlegg er lasta opp",
-    "vedleggsliste.ingenBostedsavtaleLastetOpp": "Ingen vedlegg er lasta opp",
-
-    "fieldvalidation.påkrevd": "Feltet er påkravd",
-    "fieldvalidation.fødselsnummer.11siffer": "Fødselsnummeret må innehalde 11 siffer",
-    "fieldvalidation.fødselsnummer.ugyldig": "Fødselsnummeret er ugyldig",
-    "fieldvalidation.navn.maksAntallTegn": "Namnet kan vere på maks {maxNumOfLetters} teikn.",
-    "fieldvalidation.relasjon.maksAntallTegn": "Relasjonen din til barnet kan maks vere gjord greie for på {maxNumOfLetters} teikn",
-    "fieldvalidation.fradato.merEnnTreÅr": "Du kan ikkje søkje om omsorgspengar for ein periode som er meir enn tre år tilbake i tid",
-    "fieldvalidation.fradato.erEtterTildato": "Frå-datoen kan ikkje vere seinare enn til-datoen",
-    "fieldvalidation.tildato.merEnnTreÅr": "Du kan ikkje søkje om omsorgspengar for ein periode som er meir enn tre år tilbake i tid",
-    "fieldvalidation.tildato.erFørFradato": "Til-datoen kan ikkje vere tidlegare enn frå-datoen",
-    "fieldvalidation.legeerklæring.mangler": "Du må laste opp ei legeerklæring",
-    "fieldvalidation.legeerklæring.forMangeFiler": "Du har lasta opp for mange vedlegg",
-    "fieldvalidation.samværsavtale.mangler": "Du må laste opp ein avtale",
-    "fieldvalidation.samværsavtale.forMangeFiler": "Du har lasta opp for mange vedlegg",
-    "fieldvalidation.samlet_storrelse_for_hoy": "Total samla størrelse for dokumenta du har lasta opp overstig grensa på 24 Mb.",
-    "fieldvalidation.utenlandsopphold_ikke_registrert": "Du har ikkje registrert nokon utanlandsopphald for perioden",
-    "fieldvalidation.utenlandsopphold_overlapper": "Eitt eller fleire av utanlandsopphalda har datoar som overlappar.",
-    "fieldvalidation.utenlandsopphold_utenfor_periode": "Eitt eller fleire av utanlandsopphalda er utanfor tillate tidsrom",
-    "fieldvalidation.fødelsdato.ugyldig": "Ugyldig dato"
+    "vedleggsliste.ingenBostedsavtaleLastetOpp": "Ingen vedlegg er lasta opp"
 }

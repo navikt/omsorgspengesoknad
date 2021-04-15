@@ -6,43 +6,13 @@
     "locale.nb": "Bokmål - norsk",
     "locale.nn": "Nynorsk - norsk",
 
-    "mandag": "mandag",
-    "tirsdag": "tirsdag",
-    "onsdag": "onsdag",
-    "torsdag": "torsdag",
-    "fredag": "fredag",
-
-    "mandag.caps": "Mandag",
-    "tirsdag.caps": "Tirsdag",
-    "onsdag.caps": "Onsdag",
-    "torsdag.caps": "Torsdag",
-    "fredag.caps": "Fredag",
-
-    "Mandag": "Mandag",
-    "Tirsdag": "Tirsdag",
-    "Onsdag": "Onsdag",
-    "Torsdag": "Torsdag",
-    "Fredag": "Fredag",
-
     "banner.title": "Søknad om ekstra omsorgsdager",
 
     "page.loadingPage.tekst": "Laster ...",
     "gotoApplicationLink.lenketekst": "Gå til den digitale søknaden",
     "backlink.label": "Tilbake",
 
-    "hjelpetekst.skjul": "Lukk hjelpetekst",
-    "hjelpetekst.vis": "Vis hjelpetekst",
-
-    "timer": "{timer, plural, one {# time} other {# timer}}",
-    "minutter": "{minutter, plural, one {# minutt} other {# minutter}}",
-    "timerOgMinutter": "{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}",
-    "dager": "{dager, plural, one {# dag} other {# dager}}",
-
-    "timeInput.hours": "Timer",
-    "timeInput.minutes": "Minutter",
-
     "fileUploadErrors.part1": "Det har dessverre skjedd en feil under opplasting av følgende vedlegg:",
-    "formikValidationErrorSummary.tittel": "Du må rette opp i følgende feil:",
 
     "relasjonTilBarnet.mor": "Mor",
     "relasjonTilBarnet.far": "Far",
@@ -168,11 +138,9 @@
     "steg.oppsummering.barnet.header": "Om barnet",
     "steg.oppsummering.barnet.navn": "Navn: {navn}",
     "steg.oppsummering.barnet.fødselsdato": "Fødselsdato: {dato}",
-    "steg.oppsummering.barnet.forelopigFnr": "Foreløpig fødselsnummer / D-nummer: {fnr}",
     "steg.oppsummering.barnet.fnr": "Fødselsnummer: {fnr}",
     "steg.oppsummering.barnet.søkersRelasjonTilBarnet": "Din relasjon til barnet: {relasjon}",
     "steg.oppsummering.barnet.sammeAdresse.header": "Er du folkeregistrert på samme adresse som barnet?",
-    "steg.oppsummering.barnet.deltOmsorg.header": "Deler du omsorgen med den andre forelderen?",
     "steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header": "Har barnet en kronisk sykdom eller funksjonshemming?",
 
     "steg.oppsummering.vedlegg.header": "Vedlegg",
@@ -206,25 +174,6 @@
     "vedleggsliste.ingenLegeerklæringLastetOpp": "Ingen vedlegg er lastet opp",
     "vedleggsliste.ingenBostedsavtaleLastetOpp": "Ingen vedlegg er lastet opp",
 
-    "fieldvalidation.påkrevd": "Feltet er påkrevd",
-    "fieldvalidation.fødselsnummer.11siffer": "Fødselsnummeret må bestå av 11 siffer",
-    "fieldvalidation.fødselsnummer.ugyldig": "Fødselsnummeret er ugyldig",
-    "fieldvalidation.navn.maksAntallTegn": "Navnet kan være maks {maxNumOfLetters} tegn",
-    "fieldvalidation.relasjon.maksAntallTegn": "Din relasjon til barnet kan maks være beskrevet på {maxNumOfLetters} tegn",
-    "fieldvalidation.fradato.merEnnTreÅr": "Du kan ikke søke om omsorgspenger for en periode som er mer enn tre år tilbake i tid",
-    "fieldvalidation.fradato.erEtterTildato": "Fra-datoen kan ikke være senere enn til-datoen",
-    "fieldvalidation.tildato.merEnnTreÅr": "Du kan ikke søke om omsorgspenger for en periode som er mer enn tre år tilbake i tid",
-    "fieldvalidation.tildato.erFørFradato": "Til-datoen kan ikke være tidligere enn fra-datoen",
-    "fieldvalidation.legeerklæring.mangler": "Du må laste opp en legeerklæring",
-    "fieldvalidation.legeerklæring.forMangeFiler": "Du har lastet opp for mange vedlegg",
-    "fieldvalidation.samværsavtale.mangler": "Du må laste opp en avtale",
-    "fieldvalidation.samværsavtale.forMangeFiler": "Du har lastet opp for mange vedlegg",
-    "fieldvalidation.samlet_storrelse_for_hoy": "Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 Mb.",
-    "fieldvalidation.utenlandsopphold_ikke_registrert": "Du har ikke registrert noen utenlandsopphold for perioden",
-    "fieldvalidation.utenlandsopphold_overlapper": "Ett eller flere av utenlandsoppholdene har datoer som overlapper",
-    "fieldvalidation.utenlandsopphold_utenfor_periode": "Ett eller flere av utenlandsoppholdene er utenfor tillatt tidsrom",
-    "fieldvalidation.fødelsdato.ugyldig": "Ugyldig dato",
-
     "validation.barnetSøknadenGjelder.ikkeValgt": "Du må velge hvilket barn søknaden gjelder, eller velge at søknaden gjelder et annet barn",
     "validation.barnetsFødselsnummer.ikke11Siffer": "Fødselsnummeret til barnet er ikke gyldig. Dette må bestå av 11 siffer",
     "validation.barnetsFødselsnummer.ugyldigFormat": "Fødselsnummeret til barnet er ikke gyldig. Vennligst kontroller tallene du har tastet inn",
@@ -234,5 +183,7 @@
     "validation.søkersRelasjonTilBarnet.ikkeValgt": "Du må velge din relasjon til barnet",
     "validation.sammeAdresse.ikkeValgt": "Du må svare på om du er folkeregistrert på samme adresse som barnet",
     "validation.kroniskEllerFunksjonshemming.ikkeValgt": "Du må svare på om barnet har en en kronisk sykdom eller funksjonshemming",
-    "validation.samværsavtale.mangler": "Du må laste opp samværsavtalen for å kunne gå videre"
+    "validation.samværsavtale.mangler": "Du må laste opp samværsavtalen for å kunne gå videre",
+    "validation.alleDokumenter.forMangeFiler": "Du har lastet opp for mange vedlegg",
+    "validation.alleDokumenter.samletStørrelseForHøy": "Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 Mb."
 }
