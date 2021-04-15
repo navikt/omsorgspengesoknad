@@ -71,6 +71,7 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
                                 () => validateList({ required: true, minItems: 1 })(attachments),
                             ]);
                             switch (error) {
+                                case ValidateListErrors.isEmpty:
                                 case ValidateListErrors.tooFewItems:
                                     return intlHelper(intl, 'validation.samværsavtale.mangler');
                                 case ValidateAlleDokumenterISøknadeErrors.forMangeFiler:
