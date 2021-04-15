@@ -38,9 +38,10 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ søkersFnr }: Props) =>
                             case ValidateFødselsnummerErrors.disallowedFødselsnummer:
                             case ValidateFødselsnummerErrors.fødselsnummerChecksumError:
                                 return intlHelper(intl, 'validation.barnetsFødselsnummer.søkersFnrErBrukt');
-                            default:
-                                reportUnhandledValidationError(error, AppFormField.barnetsFødselsnummer, intl);
+                            case ValidateFødselsnummerErrors.invalidFødselsnummer:
                                 return intlHelper(intl, 'validation.barnetsFødselsnummer.ugyldigFormat');
+                            default:
+                                return reportUnhandledValidationError(error, AppFormField.barnetsFødselsnummer, intl);
                         }
                     }}
                     bredde="XL"
