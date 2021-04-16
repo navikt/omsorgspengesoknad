@@ -17,8 +17,8 @@ import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/Omsorg
 import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import {
-    validateAlleDokumenterISøknaden,
-    ValidateAlleDokumenterISøknadeErrors,
+    validateAttachments,
+    ValidateAttachmentsErrors,
     reportUnhandledValidationError,
 } from '../../../validation/fieldValidations';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
@@ -69,18 +69,17 @@ const LegeerklæringStep: React.FunctionComponent<StepConfigProps> = ({ onValidS
                             setFilesThatDidntGetUploaded([]);
                         }}
                         validate={() => {
-                            const error = validateAlleDokumenterISøknaden(alleDokumenterISøknaden);
+                            const error = validateAttachments(alleDokumenterISøknaden);
                             switch (error) {
                                 case undefined:
                                     return undefined;
-                                case ValidateAlleDokumenterISøknadeErrors.forMangeFiler:
+                                case ValidateAttachmentsErrors.forMangeFiler:
                                     return intlHelper(intl, 'validation.alleDokumenter.forMangeFiler');
-                                case ValidateAlleDokumenterISøknadeErrors.samletStørrelseForHøy:
+                                case ValidateAttachmentsErrors.samletStørrelseForHøy:
                                     return intlHelper(intl, 'validation.alleDokumenter.samletStørrelseForHøy');
                                 default:
                                     return reportUnhandledValidationError(error, AppFormField.legeerklæring, intl);
                             }
-                            return undefined;
                         }}
                         onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                     />

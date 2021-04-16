@@ -10,20 +10,18 @@ import { IntlShape } from 'react-intl';
 import { AppFormField } from '../types/OmsorgspengesøknadFormData';
 import appSentryLogger from '../utils/appSentryLogger';
 
-export enum ValidateAlleDokumenterISøknadeErrors {
+export enum ValidateAttachmentsErrors {
     'samletStørrelseForHøy' = 'samletStørrelseForHøy',
     'forMangeFiler' = 'forMangeFiler',
 }
-export const validateAlleDokumenterISøknaden = (
-    attachments: Attachment[]
-): ValidationResult<ValidateAlleDokumenterISøknadeErrors> => {
+export const validateAttachments = (attachments: Attachment[]): ValidationResult<ValidateAttachmentsErrors> => {
     const uploadedAttachments = attachments.filter((attachment) => attachmentHasBeenUploaded(attachment));
     const totalSizeInBytes: number = getTotalSizeOfAttachments(uploadedAttachments);
     if (totalSizeInBytes > MAX_TOTAL_ATTACHMENT_SIZE_BYTES) {
-        return ValidateAlleDokumenterISøknadeErrors.samletStørrelseForHøy;
+        return ValidateAttachmentsErrors.samletStørrelseForHøy;
     }
     if (uploadedAttachments.length > 100) {
-        return ValidateAlleDokumenterISøknadeErrors.forMangeFiler;
+        return ValidateAttachmentsErrors.forMangeFiler;
     }
     return undefined;
 };

@@ -18,8 +18,8 @@ import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
 import {
-    validateAlleDokumenterISøknaden,
-    ValidateAlleDokumenterISøknadeErrors,
+    validateAttachments,
+    ValidateAttachmentsErrors,
     reportUnhandledValidationError,
 } from '../../../validation/fieldValidations';
 import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
@@ -68,7 +68,7 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
                         }}
                         validate={(attachments) => {
                             const error = validateAll([
-                                () => validateAlleDokumenterISøknaden(otherAttachmentsInSøknad),
+                                () => validateAttachments(otherAttachmentsInSøknad),
                                 () => validateList({ required: true })(attachments),
                             ]);
                             switch (error) {
@@ -76,9 +76,9 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
                                     return undefined;
                                 case ValidateListErrors.isEmpty:
                                     return intlHelper(intl, 'validation.samværsavtale.mangler');
-                                case ValidateAlleDokumenterISøknadeErrors.forMangeFiler:
+                                case ValidateAttachmentsErrors.forMangeFiler:
                                     return intlHelper(intl, 'validation.alleDokumenter.forMangeFiler');
-                                case ValidateAlleDokumenterISøknadeErrors.samletStørrelseForHøy:
+                                case ValidateAttachmentsErrors.samletStørrelseForHøy:
                                     return intlHelper(intl, 'validation.alleDokumenter.samletStørrelseForHøy');
                                 default:
                                     return reportUnhandledValidationError(error, AppFormField.samværsavtale, intl);
