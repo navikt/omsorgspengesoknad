@@ -10,22 +10,18 @@ import {
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import validateAll from '@navikt/sif-common-formik/lib/validation/utils/validateAll';
+import { validateAll } from '@navikt/sif-common-formik/lib/validation/validationUtils';
 import { useFormikContext } from 'formik';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import Lenke from 'nav-frontend-lenker';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
-import {
-    validateAttachments,
-    ValidateAttachmentsErrors,
-    reportUnhandledValidationError,
-} from '../../../validation/fieldValidations';
+import { validateAttachments } from '../../../validation/fieldValidations';
 import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
-import { validateList, ValidateListErrors } from '@navikt/sif-common-formik/lib/validation';
+import { validateList } from '@navikt/sif-common-formik/lib/validation';
 
 const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
@@ -67,22 +63,10 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
                             setFilesThatDidntGetUploaded([]);
                         }}
                         validate={(attachments) => {
-                            const error = validateAll([
+                            return validateAll([
                                 () => validateAttachments(otherAttachmentsInSøknad),
                                 () => validateList({ required: true })(attachments),
                             ]);
-                            switch (error) {
-                                case undefined:
-                                    return undefined;
-                                case ValidateListErrors.isEmpty:
-                                    return intlHelper(intl, 'validation.samværsavtale.mangler');
-                                case ValidateAttachmentsErrors.forMangeFiler:
-                                    return intlHelper(intl, 'validation.alleDokumenter.forMangeFiler');
-                                case ValidateAttachmentsErrors.samletStørrelseForHøy:
-                                    return intlHelper(intl, 'validation.alleDokumenter.samletStørrelseForHøy');
-                                default:
-                                    return reportUnhandledValidationError(error, AppFormField.samværsavtale, intl);
-                            }
                         }}
                         onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                     />

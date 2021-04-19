@@ -2,15 +2,16 @@ import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
-import { FormikConfirmationCheckboxPanel } from '@navikt/sif-common-formik/lib';
-import Panel from 'nav-frontend-paneler';
-import { Normaltekst } from 'nav-frontend-typografi';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import ContentWithHeader from '@navikt/sif-common-core/lib/components/content-with-header/ContentWithHeader';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
+import { FormikConfirmationCheckboxPanel } from '@navikt/sif-common-formik/lib';
+import { validateChecked } from '@navikt/sif-common-formik/lib/validation';
+import Panel from 'nav-frontend-paneler';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { sendApplication } from '../../../api/api';
 import { SKJEMANAVN } from '../../../App';
 import routeConfig from '../../../config/routeConfig';
@@ -141,16 +142,7 @@ const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) =
                             <FormikConfirmationCheckboxPanel<AppFormField>
                                 label={intlHelper(intl, 'steg.oppsummering.bekrefterOpplysninger')}
                                 name={AppFormField.harBekreftetOpplysninger}
-                                validate={(value) => {
-                                    let result;
-                                    if (value !== true) {
-                                        result = intlHelper(
-                                            intl,
-                                            'steg.oppsummering.bekrefterOpplysninger.ikkeBekreftet'
-                                        );
-                                    }
-                                    return result;
-                                }}
+                                validate={validateChecked}
                             />
                         </Box>
                     </FormikStep>

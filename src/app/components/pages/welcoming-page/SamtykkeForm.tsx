@@ -31,11 +31,9 @@ const SamtykkeForm: React.FunctionComponent<Props> = ({
                     label={intlHelper(intl, 'welcomingPage.samtykke.tekst')}
                     name={AppFormField.harForståttRettigheterOgPlikter}
                     validate={(value) => {
-                        let result;
-                        if (value !== true) {
-                            result = intlHelper(intl, 'welcomingPage.samtykke.harIkkeGodkjentVilkår');
-                        }
-                        return result;
+                        return value !== true
+                            ? intlHelper(intl, 'welcomingPage.samtykke.harIkkeGodkjentVilkår')
+                            : undefined;
                     }}>
                     <FormattedMessage
                         id="welcomingPage.samtykke.harForståttLabel"

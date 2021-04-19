@@ -10,6 +10,8 @@ import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadForm
 import { getStepTexts } from '../../utils/stepUtils';
 import AppForm from '../app-form/AppForm';
 import Step, { StepProps } from '../step/Step';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { FeiloppsummeringFeil } from 'nav-frontend-skjema';
 
 const bem = bemUtils('step');
 
@@ -32,11 +34,24 @@ const FormikStep: React.FunctionComponent<Props> = (props) => {
 
     useLogSidevisning(props.id);
 
+    const constructIntlValidationErrorKey = (error: string, fieldName: string): string =>
+        `validation.${fieldName}.${error}`;
+
     return (
         <Step stepConfig={stepConfig} {...props}>
             <AppForm.Form
                 onValidSubmit={onValidFormSubmit}
                 includeButtons={false}
+                fieldErrorRenderer={(error, fieldName) => {
+                    return intlHelper(intl, constructIntlValidationErrorKey(error, fieldName));
+                }}
+                summaryFieldErrorRenderer={(error, fieldName) => {
+                    const feil: FeiloppsummeringFeil = {
+                        skjemaelementId: fieldName,
+                        feilmelding: intlHelper(intl, constructIntlValidationErrorKey(error, fieldName)),
+                    };
+                    return feil;
+                }}
                 runDelayedFormValidation={true}
                 includeValidationSummary={true}>
                 {children}

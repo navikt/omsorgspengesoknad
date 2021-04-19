@@ -16,11 +16,7 @@ import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
-import {
-    validateAttachments,
-    ValidateAttachmentsErrors,
-    reportUnhandledValidationError,
-} from '../../../validation/fieldValidations';
+import { validateAttachments } from '../../../validation/fieldValidations';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringFileList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
@@ -69,17 +65,7 @@ const LegeerklæringStep: React.FunctionComponent<StepConfigProps> = ({ onValidS
                             setFilesThatDidntGetUploaded([]);
                         }}
                         validate={() => {
-                            const error = validateAttachments(alleDokumenterISøknaden);
-                            switch (error) {
-                                case undefined:
-                                    return undefined;
-                                case ValidateAttachmentsErrors.forMangeFiler:
-                                    return intlHelper(intl, 'validation.alleDokumenter.forMangeFiler');
-                                case ValidateAttachmentsErrors.samletStørrelseForHøy:
-                                    return intlHelper(intl, 'validation.alleDokumenter.samletStørrelseForHøy');
-                                default:
-                                    return reportUnhandledValidationError(error, AppFormField.legeerklæring, intl);
-                            }
+                            return validateAttachments(alleDokumenterISøknaden);
                         }}
                         onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                     />

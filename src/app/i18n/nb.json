@@ -147,7 +147,6 @@
     "steg.oppsummering.legeerklæring.header": "Legeerklæring",
     "steg.oppsummering.samværsavtale.header": "Avtale om delt bosted",
     "steg.oppsummering.bekrefterOpplysninger": "Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.",
-    "steg.oppsummering.bekrefterOpplysninger.ikkeBekreftet": "Du må bekrefte opplysningene",
 
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
     "page.confirmation.tittel": "Vi har mottatt søknad fra deg om ekstra omsorgsdager",
@@ -174,18 +173,18 @@
     "vedleggsliste.ingenLegeerklæringLastetOpp": "Ingen vedlegg er lastet opp",
     "vedleggsliste.ingenBostedsavtaleLastetOpp": "Ingen vedlegg er lastet opp",
 
-    "validation.barnetSøknadenGjelder.ikkeValgt": "Du må velge hvilket barn søknaden gjelder, eller velge at søknaden gjelder et annet barn",
+    "validation.barnetSøknadenGjelder.noValue": "Du må velge hvilket barn søknaden gjelder, eller velge at søknaden gjelder et annet barn",
     "validation.barnetsFødselsnummer.noValue": "Du må fylle ut barnets fødselsnummer",
     "validation.barnetsFødselsnummer.ikke11Siffer": "Fødselsnummeret til barnet er ikke gyldig. Dette må bestå av 11 siffer",
     "validation.barnetsFødselsnummer.ugyldigFormat": "Fødselsnummeret til barnet er ikke gyldig. Vennligst kontroller tallene du har tastet inn",
     "validation.barnetsFødselsnummer.søkersFnrErBrukt": "Fødselsnummeret til barnet er ikke gyldig, du har oppgitt ditt eget fødselsnummer",
     "validation.barnetsNavn.noValue": "Du må oppgi barnets navn",
     "validation.barnetsNavn.tooLong": "Barnets navn kan ikke inneholde over 50 tegn",
-    "validation.søkersRelasjonTilBarnet.ikkeValgt": "Du må velge din relasjon til barnet",
-    "validation.sammeAdresse.ikkeValgt": "Du må svare på om du er folkeregistrert på samme adresse som barnet",
-    "validation.kroniskEllerFunksjonshemming.ikkeValgt": "Du må svare på om barnet har en en kronisk sykdom eller funksjonshemming",
-    "validation.samværsavtale.mangler": "Du må laste opp samværsavtalen for å kunne gå videre",
+    "validation.søkersRelasjonTilBarnet.noValue": "Du må velge din relasjon til barnet",
+    "validation.sammeAdresse.yesOrNoIsUnanswered": "Du må svare på om du er folkeregistrert på samme adresse som barnet",
+    "validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered": "Du må svare på om barnet har en en kronisk sykdom eller funksjonshemming",
+    "validation.samværsavtale.listIsEmpty": "Du må laste opp samværsavtalen for å kunne gå videre",
     "validation.alleDokumenter.forMangeFiler": "Du har lastet opp for mange vedlegg",
     "validation.alleDokumenter.samletStørrelseForHøy": "Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 Mb.",
-    "validation.uhåndtertFeil": "Feltet har en feil: {error}"
+    "validation.harBekreftetOpplysninger.notChecked": "Du må bekrefte opplysningene"
 }

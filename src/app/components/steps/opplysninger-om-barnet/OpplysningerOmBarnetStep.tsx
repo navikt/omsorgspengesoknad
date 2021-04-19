@@ -40,24 +40,14 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<StepConfigProps> = ({ on
                                 <AppForm.YesOrNoQuestion
                                     legend="Er du folkeregistrert på samme adresse som barnet?"
                                     name={AppFormField.sammeAdresse}
-                                    validate={(value) => {
-                                        const error = validateYesOrNo(value);
-                                        return error
-                                            ? intlHelper(intl, 'validation.sammeAdresse.ikkeValgt')
-                                            : undefined;
-                                    }}
+                                    validate={validateYesOrNo}
                                 />
                             </FormBlock>
                             <FormBlock>
                                 <AppForm.YesOrNoQuestion
                                     name={AppFormField.kroniskEllerFunksjonshemming}
                                     legend={intlHelper(intl, 'steg.omBarnet.spm.kroniskEllerFunksjonshemmende')}
-                                    validate={(value) => {
-                                        const error = validateYesOrNo(value);
-                                        return error
-                                            ? intlHelper(intl, 'validation.kroniskEllerFunksjonshemming.ikkeValgt')
-                                            : undefined;
-                                    }}
+                                    validate={validateYesOrNo}
                                 />
                             </FormBlock>
                             {values.kroniskEllerFunksjonshemming === YesOrNo.NO && (

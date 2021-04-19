@@ -55,13 +55,7 @@ const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }
                         disabled: søknadenGjelderEtAnnetBarn,
                     };
                 })}
-                validate={(value) => {
-                    if (søknadenGjelderEtAnnetBarn) {
-                        return undefined;
-                    }
-                    const error = validateRequiredValue(value);
-                    return error ? intlHelper(intl, 'validation.barnetSøknadenGjelder.ikkeValgt') : undefined;
-                }}
+                validate={søknadenGjelderEtAnnetBarn ? undefined : validateRequiredValue}
             />
             <FormBlock margin="l">
                 <AppForm.Checkbox
