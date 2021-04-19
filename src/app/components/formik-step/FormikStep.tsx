@@ -3,6 +3,10 @@ import { useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
+import {
+    getFieldErrorRenderer,
+    getSummaryFieldErrorRenderer,
+} from '@navikt/sif-common-core/lib/validation/renderUtils';
 import { useFormikContext } from 'formik';
 import { Knapp } from 'nav-frontend-knapper';
 import { getStepConfig } from '../../config/stepConfig';
@@ -10,8 +14,6 @@ import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadForm
 import { getStepTexts } from '../../utils/stepUtils';
 import AppForm from '../app-form/AppForm';
 import Step, { StepProps } from '../step/Step';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { FeiloppsummeringFeil } from 'nav-frontend-skjema';
 
 const bem = bemUtils('step');
 
@@ -34,24 +36,13 @@ const FormikStep: React.FunctionComponent<Props> = (props) => {
 
     useLogSidevisning(props.id);
 
-    const constructIntlValidationErrorKey = (error: string, fieldName: string): string =>
-        `validation.${fieldName}.${error}`;
-
     return (
         <Step stepConfig={stepConfig} {...props}>
             <AppForm.Form
                 onValidSubmit={onValidFormSubmit}
                 includeButtons={false}
-                fieldErrorRenderer={(error, fieldName) => {
-                    return intlHelper(intl, constructIntlValidationErrorKey(error, fieldName));
-                }}
-                summaryFieldErrorRenderer={(error, fieldName) => {
-                    const feil: FeiloppsummeringFeil = {
-                        skjemaelementId: fieldName,
-                        feilmelding: intlHelper(intl, constructIntlValidationErrorKey(error, fieldName)),
-                    };
-                    return feil;
-                }}
+                fieldErrorRenderer={getFieldErrorRenderer(intl)}
+                summaryFieldErrorRenderer={getSummaryFieldErrorRenderer(intl)}
                 runDelayedFormValidation={true}
                 includeValidationSummary={true}>
                 {children}
