@@ -9,7 +9,7 @@ import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import { FormikConfirmationCheckboxPanel } from '@navikt/sif-common-formik/lib';
-import { validateChecked } from '@navikt/sif-common-formik/lib/validation';
+import { getCheckedValidator } from '@navikt/sif-common-formik/lib/validation';
 import Panel from 'nav-frontend-paneler';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { sendApplication } from '../../../api/api';
@@ -142,7 +142,7 @@ const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) =
                             <FormikConfirmationCheckboxPanel<AppFormField>
                                 label={intlHelper(intl, 'steg.oppsummering.bekrefterOpplysninger')}
                                 name={AppFormField.harBekreftetOpplysninger}
-                                validate={validateChecked}
+                                validate={getCheckedValidator()}
                             />
                         </Box>
                     </FormikStep>

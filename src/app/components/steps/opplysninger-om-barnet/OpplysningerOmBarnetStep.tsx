@@ -4,7 +4,7 @@ import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { YesOrNo } from '@navikt/sif-common-formik/lib';
-import { validateYesOrNo } from '@navikt/sif-common-formik/lib/validation';
+import { getYesOrNoValidator } from '@navikt/sif-common-formik/lib/validation';
 import { useFormikContext } from 'formik';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
@@ -40,14 +40,14 @@ const OpplysningerOmBarnetStep: React.FunctionComponent<StepConfigProps> = ({ on
                                 <AppForm.YesOrNoQuestion
                                     legend="Er du folkeregistrert på samme adresse som barnet?"
                                     name={AppFormField.sammeAdresse}
-                                    validate={validateYesOrNo}
+                                    validate={getYesOrNoValidator()}
                                 />
                             </FormBlock>
                             <FormBlock>
                                 <AppForm.YesOrNoQuestion
                                     name={AppFormField.kroniskEllerFunksjonshemming}
                                     legend={intlHelper(intl, 'steg.omBarnet.spm.kroniskEllerFunksjonshemmende')}
-                                    validate={validateYesOrNo}
+                                    validate={getYesOrNoValidator()}
                                 />
                             </FormBlock>
                             {values.kroniskEllerFunksjonshemming === YesOrNo.NO && (

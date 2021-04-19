@@ -1,4 +1,8 @@
-import { validateFødselsnummer, validateRequiredValue, validateString } from '@navikt/sif-common-formik/lib/validation';
+import {
+    getFødselsnummerValidator,
+    getRequiredFieldValidator,
+    getStringValidator,
+} from '@navikt/sif-common-formik/lib/validation';
 import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
 import { includeAvtaleStep } from '../utils/stepUtils';
 
@@ -12,12 +16,12 @@ export const opplysningerOmBarnetStepIsValid = ({
     barnetSøknadenGjelder,
 }: OmsorgspengesøknadFormData) => {
     const formIsValid =
-        validateString({ required: false, maxLength: 50 })(barnetsNavn) === undefined &&
-        validateFødselsnummer()(barnetsFødselsnummer) === undefined &&
-        validateRequiredValue(søkersRelasjonTilBarnet) === undefined;
+        getStringValidator({ required: false, maxLength: 50 })(barnetsNavn) === undefined &&
+        getFødselsnummerValidator()(barnetsFødselsnummer) === undefined &&
+        getRequiredFieldValidator()(søkersRelasjonTilBarnet) === undefined;
 
     if (!formIsValid && barnetSøknadenGjelder !== undefined) {
-        return validateRequiredValue(barnetSøknadenGjelder) === undefined;
+        return getRequiredFieldValidator()(barnetSøknadenGjelder) === undefined;
     }
 
     return formIsValid;

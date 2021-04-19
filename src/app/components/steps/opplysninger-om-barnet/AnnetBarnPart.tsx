@@ -2,7 +2,11 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { validateFødselsnummer, validateRequiredValue, validateString } from '@navikt/sif-common-formik/lib/validation';
+import {
+    getFødselsnummerValidator,
+    getRequiredFieldValidator,
+    getStringValidator,
+} from '@navikt/sif-common-formik/lib/validation';
 import { AppFormField, SøkersRelasjonTilBarnet } from '../../../types/OmsorgspengesøknadFormData';
 import AppForm from '../../app-form/AppForm';
 
@@ -19,7 +23,7 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ søkersFnr }: Props) =>
                 <AppForm.Input
                     label={intlHelper(intl, 'steg.omBarnet.fnr.spm')}
                     name={AppFormField.barnetsFødselsnummer}
-                    validate={validateFødselsnummer({ required: true, disallowedValues: [søkersFnr] })}
+                    validate={getFødselsnummerValidator({ required: true, disallowedValues: [søkersFnr] })}
                     bredde="XL"
                     type="tel"
                     maxLength={11}
@@ -29,7 +33,7 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ søkersFnr }: Props) =>
                 <AppForm.Input
                     label={intlHelper(intl, 'steg.omBarnet.navn')}
                     name={AppFormField.barnetsNavn}
-                    validate={validateString({ required: false, maxLength: 50 })}
+                    validate={getStringValidator({ required: false, maxLength: 50 })}
                     bredde="XL"
                 />
             </FormBlock>
@@ -38,7 +42,7 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ søkersFnr }: Props) =>
                     bredde="xl"
                     label={intlHelper(intl, 'steg.omBarnet.relasjon')}
                     name={AppFormField.søkersRelasjonTilBarnet}
-                    validate={validateRequiredValue}>
+                    validate={getRequiredFieldValidator()}>
                     <option />
                     {Object.keys(SøkersRelasjonTilBarnet).map((key) => (
                         <option key={key} value={SøkersRelasjonTilBarnet[key]}>

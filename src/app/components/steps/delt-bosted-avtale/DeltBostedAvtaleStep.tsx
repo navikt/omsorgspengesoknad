@@ -21,7 +21,7 @@ import { validateAttachments } from '../../../validation/fieldValidations';
 import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
-import { validateList } from '@navikt/sif-common-formik/lib/validation';
+import { getListValidator } from '@navikt/sif-common-formik/lib/validation';
 
 const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
@@ -65,7 +65,7 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
                         validate={(attachments) => {
                             return validateAll([
                                 () => validateAttachments(otherAttachmentsInSøknad),
-                                () => validateList({ required: true })(attachments),
+                                () => getListValidator({ required: true })(attachments),
                             ]);
                         }}
                         onUnauthorizedOrForbiddenUpload={navigateToLoginPage}

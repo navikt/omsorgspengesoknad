@@ -5,7 +5,7 @@ import { prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik';
-import { validateRequiredValue } from '@navikt/sif-common-formik/lib/validation';
+import { getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
 import { useFormikContext } from 'formik';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { AppFormField, initialValues, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
@@ -55,7 +55,7 @@ const RegistrertBarnPart: React.FunctionComponent<Props> = ({ søkersBarn = [] }
                         disabled: søknadenGjelderEtAnnetBarn,
                     };
                 })}
-                validate={søknadenGjelderEtAnnetBarn ? undefined : validateRequiredValue}
+                validate={søknadenGjelderEtAnnetBarn ? undefined : getRequiredFieldValidator()}
             />
             <FormBlock margin="l">
                 <AppForm.Checkbox
