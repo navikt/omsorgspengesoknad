@@ -6,7 +6,7 @@ import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import {
     getFieldErrorRenderer,
     getSummaryFieldErrorRenderer,
-} from '@navikt/sif-common-core/lib/validation/renderUtils';
+} from '@navikt/sif-common-formik/lib/utils/formikErrorRenderUtils';
 import { useFormikContext } from 'formik';
 import { Knapp } from 'nav-frontend-knapper';
 import { getStepConfig } from '../../config/stepConfig';
