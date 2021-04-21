@@ -16,7 +16,6 @@ interface Props {
 
 const AnnetBarnPart: React.FunctionComponent<Props> = ({ søkersFnr }: Props) => {
     const intl = useIntl();
-
     return (
         <>
             <FormBlock>

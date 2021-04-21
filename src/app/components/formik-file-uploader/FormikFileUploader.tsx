@@ -19,7 +19,7 @@ export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
 export type FieldArrayRemoveFn = (index: number) => undefined;
 
-interface Props extends TypedFormInputValidationProps {
+interface Props extends TypedFormInputValidationProps<AppFormField> {
     name: AppFormField;
     label: string;
     onFileInputClick?: () => void;
