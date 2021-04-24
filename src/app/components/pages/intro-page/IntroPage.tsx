@@ -13,6 +13,8 @@ import { getTypedFormComponents, UnansweredQuestionsInfo, YesOrNo } from '@navik
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import RouteConfig, { getRouteUrl } from '../../../config/routeConfig';
 import './introPage.less';
+import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+import getFieldErrorHandler from '@navikt/sif-common-formik/lib/validation/fieldErrorHandler';
 
 const bem = bemUtils('introPage');
 
@@ -24,7 +26,7 @@ interface PageFormValues {
     [PageFormField.harKroniskSyktBarn]: YesOrNo;
 }
 
-const PageForm = getTypedFormComponents<PageFormField, PageFormValues>();
+const PageForm = getTypedFormComponents<PageFormField, PageFormValues, ValidationError>();
 
 const IntroPage: React.FunctionComponent = () => {
     const intl = useIntl();
@@ -67,6 +69,7 @@ const IntroPage: React.FunctionComponent = () => {
                     return (
                         <PageForm.Form
                             includeButtons={false}
+                            fieldErrorHandler={getFieldErrorHandler(intl, 'introForm')}
                             noButtonsContentRenderer={
                                 showNotAllQuestionsAnsweredMessage
                                     ? () => (

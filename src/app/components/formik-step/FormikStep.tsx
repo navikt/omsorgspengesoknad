@@ -3,10 +3,7 @@ import { useIntl } from 'react-intl';
 import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import {
-    getFieldErrorRenderer,
-    getSummaryFieldErrorRenderer,
-} from '@navikt/sif-common-formik/lib/utils/formikErrorRenderUtils';
+import getFieldErrorHandler from '@navikt/sif-common-formik/lib/validation/fieldErrorHandler';
 import { useFormikContext } from 'formik';
 import { Knapp } from 'nav-frontend-knapper';
 import { getStepConfig } from '../../config/stepConfig';
@@ -41,8 +38,7 @@ const FormikStep: React.FunctionComponent<Props> = (props) => {
             <AppForm.Form
                 onValidSubmit={onValidFormSubmit}
                 includeButtons={false}
-                fieldErrorRenderer={getFieldErrorRenderer(intl, 'validation')}
-                summaryFieldErrorRenderer={getSummaryFieldErrorRenderer(intl, 'validation')}
+                fieldErrorHandler={getFieldErrorHandler(intl, 'validation')}
                 runDelayedFormValidation={true}
                 includeValidationSummary={true}>
                 {children}

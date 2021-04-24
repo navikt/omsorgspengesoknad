@@ -14,12 +14,13 @@ import { uploadFile } from '../../api/api';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import * as apiUtils from '../../utils/apiUtils';
 import AppForm from '../app-form/AppForm';
+import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
 export type FieldArrayRemoveFn = (index: number) => undefined;
 
-interface Props extends TypedFormInputValidationProps<AppFormField> {
+interface Props extends TypedFormInputValidationProps<AppFormField, ValidationError> {
     name: AppFormField;
     label: string;
     onFileInputClick?: () => void;

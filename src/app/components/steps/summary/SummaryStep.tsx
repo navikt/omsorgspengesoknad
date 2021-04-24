@@ -29,6 +29,7 @@ import LegeerklæringAttachmentList from '../../legeerklæring-attachment-list/L
 import SummarySection from '../../summary-section/SummarySection';
 import AnnetBarnSummary from './AnnetBarnSummary';
 import BarnRecveivedFormSApiSummary from './BarnReceivedFromApiSummary';
+import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 
 const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) => {
     const intl = useIntl();
@@ -139,7 +140,7 @@ const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) =
                         </Box>
 
                         <Box margin="l">
-                            <FormikConfirmationCheckboxPanel<AppFormField>
+                            <FormikConfirmationCheckboxPanel<AppFormField, ValidationError>
                                 label={intlHelper(intl, 'steg.oppsummering.bekrefterOpplysninger')}
                                 name={AppFormField.harBekreftetOpplysninger}
                                 validate={getCheckedValidator()}

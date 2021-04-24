@@ -4,6 +4,7 @@ import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlo
 import bemHelper from '@navikt/sif-common-core/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { getTypedFormComponents } from '@navikt/sif-common-formik/lib';
+import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Lenke from 'nav-frontend-lenker';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
@@ -14,7 +15,7 @@ interface Props {
     openBehandlingAvPersonopplysningerModal: () => void;
 }
 
-const AppForm = getTypedFormComponents<AppFormField, OmsorgspengesøknadFormData>();
+const AppForm = getTypedFormComponents<AppFormField, OmsorgspengesøknadFormData, ValidationError>();
 
 const bem = bemHelper('welcomingPage');
 
