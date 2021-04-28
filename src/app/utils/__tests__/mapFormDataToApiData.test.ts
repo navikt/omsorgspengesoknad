@@ -1,7 +1,6 @@
-import dayjs from 'dayjs';
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
-import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import * as attachmentUtils from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+import dayjs from 'dayjs';
 import { OmsorgspengesøknadApiData } from '../../types/OmsorgspengesøknadApiData';
 import {
     AppFormField,
@@ -27,10 +26,6 @@ const formDataMock: Partial<OmsorgspengesøknadFormData> = {
     [AppFormField.harBekreftetOpplysninger]: true,
     [AppFormField.harForståttRettigheterOgPlikter]: true,
     [AppFormField.søkersRelasjonTilBarnet]: SøkersRelasjonTilBarnet.MOR,
-    [AppFormField.harBoddUtenforNorgeSiste12Mnd]: YesOrNo.YES,
-    [AppFormField.utenlandsoppholdNeste12Mnd]: [],
-    [AppFormField.utenlandsoppholdSiste12Mnd]: [],
-    [AppFormField.skalBoUtenforNorgeNeste12Mnd]: YesOrNo.NO,
     [AppFormField.legeerklæring]: [attachmentMock1 as AttachmentMock, attachmentMock2 as AttachmentMock],
     [AppFormField.samværsavtale]: [attachmentMock3 as AttachmentMock],
 };

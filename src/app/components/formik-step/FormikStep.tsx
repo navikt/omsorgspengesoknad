@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
+import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
+import intlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
 import { useFormikContext } from 'formik';
 import { Knapp } from 'nav-frontend-knapper';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import { commonFieldErrorRenderer } from '@navikt/sif-common-core/lib/utils/commonFieldErrorRenderer';
 import { getStepConfig } from '../../config/stepConfig';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import { getStepTexts } from '../../utils/stepUtils';
 import AppForm from '../app-form/AppForm';
 import Step, { StepProps } from '../step/Step';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 
 const bem = bemUtils('step');
 
@@ -38,9 +38,9 @@ const FormikStep: React.FunctionComponent<Props> = (props) => {
             <AppForm.Form
                 onValidSubmit={onValidFormSubmit}
                 includeButtons={false}
+                formErrorHandler={intlFormErrorHandler(intl, 'validation')}
                 runDelayedFormValidation={true}
-                includeValidationSummary={true}
-                fieldErrorRenderer={(error) => commonFieldErrorRenderer(intl, error)}>
+                includeValidationSummary={true}>
                 {children}
                 <FormBlock>
                     <div className={bem.element('buttonWrapper')}>

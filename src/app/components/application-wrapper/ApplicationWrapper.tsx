@@ -15,7 +15,6 @@ interface Props {
     onChangeLocale: (locale: Locale) => void;
 }
 const ApplicationWrapper: React.FunctionComponent<Props> = ({ locale, onChangeLocale, children }) => {
-    console.log(isFeatureEnabled(Feature.NYNORSK));
     return (
         <IntlProvider locale={locale}>
             <Normaltekst tag="div">

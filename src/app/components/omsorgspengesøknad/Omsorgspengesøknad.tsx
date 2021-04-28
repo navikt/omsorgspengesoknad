@@ -17,7 +17,9 @@ const Omsorgspengesøknad: React.FunctionComponent = () => (
             return (
                 <TypedFormikWrapper<OmsorgspengesøknadFormData>
                     initialValues={initialValues}
-                    onSubmit={() => null}
+                    onSubmit={() => {
+                        null;
+                    }}
                     renderForm={() => <OmsorgspengesøknadContent />}
                 />
             );

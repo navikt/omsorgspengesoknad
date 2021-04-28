@@ -1,8 +1,7 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { apiStringDateToDate, prettifyDate } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { OmsorgspengesøknadApiData } from '../../../types/OmsorgspengesøknadApiData';
 
 interface Props {
@@ -13,12 +12,12 @@ const AnnetBarnSummary: React.FunctionComponent<Props> = ({ apiValues }) => {
     const intl = useIntl();
     return (
         <>
-            {apiValues.barn.fødselsdato ? (
+            {apiValues.barn.norskIdentifikator ? (
                 <Normaltekst>
                     <FormattedMessage
-                        id="steg.oppsummering.barnet.fødselsdato"
+                        id="steg.oppsummering.barnet.fnr"
                         values={{
-                            dato: prettifyDate(apiStringDateToDate(apiValues.barn.fødselsdato)),
+                            fnr: apiValues.barn.norskIdentifikator,
                         }}
                     />
                 </Normaltekst>

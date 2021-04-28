@@ -1,28 +1,29 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { StepConfigProps, StepID } from '../../../config/stepConfig';
-import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
-import { navigateToLoginPage } from '../../../utils/navigationUtils';
-import {
-    validateDeltBostedAvtale,
-    validateSumOfAllAttachmentsAndValidateStep,
-} from '../../../validation/fieldValidations';
-import FileUploadErrors from '@navikt/sif-common-core/lib/components/file-upload-errors/FileUploadErrors';
-import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
-import FormikStep from '../../formik-step/FormikStep';
-import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
+import FileUploadErrors from '@navikt/sif-common-core/lib/components/file-upload-errors/FileUploadErrors';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import PictureScanningGuide from '@navikt/sif-common-core/lib/components/picture-scanning-guide/PictureScanningGuide';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { validateAll } from '@navikt/sif-common-formik/lib/validation/validationUtils';
 import { useFormikContext } from 'formik';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
-import PictureScanningGuide from '@navikt/sif-common-core/lib/components/picture-scanning-guide/PictureScanningGuide';
 import Lenke from 'nav-frontend-lenker';
+import { StepConfigProps, StepID } from '../../../config/stepConfig';
+import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
+import { navigateToLoginPage } from '../../../utils/navigationUtils';
+import { validateAttachments, ValidateAttachmentsErrors } from '../../../validation/fieldValidations';
+import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
+import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
+import FormikStep from '../../formik-step/FormikStep';
+import { getListValidator } from '@navikt/sif-common-formik/lib/validation';
+import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+import { getUploadedAttachments } from '../../../utils/attachmentUtils';
 
 const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
@@ -63,10 +64,12 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
                         }}
-                        validate={validateSumOfAllAttachmentsAndValidateStep(
-                            otherAttachmentsInSøknad,
-                            validateDeltBostedAvtale
-                        )}
+                        validate={(attachments) => {
+                            return validateAll<ValidateAttachmentsErrors | ValidationError>([
+                                () => validateAttachments([...attachments, ...otherAttachmentsInSøknad]),
+                                () => getListValidator({ required: true })(getUploadedAttachments(attachments)),
+                            ]);
+                        }}
                         onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                     />
                 </FormBlock>

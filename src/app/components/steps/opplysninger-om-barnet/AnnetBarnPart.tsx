@@ -2,12 +2,19 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { validateFødselsnummer } from '@navikt/sif-common-core/lib/validation/fieldValidations';
+import {
+    getFødselsnummerValidator,
+    getRequiredFieldValidator,
+    getStringValidator,
+} from '@navikt/sif-common-formik/lib/validation';
 import { AppFormField, SøkersRelasjonTilBarnet } from '../../../types/OmsorgspengesøknadFormData';
-import { validateNavn, validateRelasjonTilBarnet } from '../../../validation/fieldValidations';
 import AppForm from '../../app-form/AppForm';
 
-const AnnetBarnPart: React.FunctionComponent = () => {
+interface Props {
+    søkersFnr: string;
+}
+
+const AnnetBarnPart: React.FunctionComponent<Props> = ({ søkersFnr }: Props) => {
     const intl = useIntl();
     return (
         <>
@@ -15,18 +22,17 @@ const AnnetBarnPart: React.FunctionComponent = () => {
                 <AppForm.Input
                     label={intlHelper(intl, 'steg.omBarnet.fnr.spm')}
                     name={AppFormField.barnetsFødselsnummer}
-                    validate={validateFødselsnummer}
+                    validate={getFødselsnummerValidator({ required: true, disallowedValues: [søkersFnr] })}
                     bredde="XL"
                     type="tel"
                     maxLength={11}
                 />
             </FormBlock>
-
             <FormBlock>
                 <AppForm.Input
                     label={intlHelper(intl, 'steg.omBarnet.navn')}
                     name={AppFormField.barnetsNavn}
-                    validate={validateNavn}
+                    validate={getStringValidator({ required: false, maxLength: 50 })}
                     bredde="XL"
                 />
             </FormBlock>
@@ -35,7 +41,7 @@ const AnnetBarnPart: React.FunctionComponent = () => {
                     bredde="xl"
                     label={intlHelper(intl, 'steg.omBarnet.relasjon')}
                     name={AppFormField.søkersRelasjonTilBarnet}
-                    validate={validateRelasjonTilBarnet}>
+                    validate={getRequiredFieldValidator()}>
                     <option />
                     {Object.keys(SøkersRelasjonTilBarnet).map((key) => (
                         <option key={key} value={SøkersRelasjonTilBarnet[key]}>

@@ -6,6 +6,7 @@ import { AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet } f
 import {
     legeerklæringStepIsValid,
     opplysningerOmBarnetStepIsValid,
+    samværsavtaleStepIsValid,
     welcomingPageIsValid,
 } from '../validation/stepValidations';
 
@@ -33,4 +34,5 @@ export const legeerklæringStepAvailable = (formData: OmsorgspengesøknadFormDat
 
 export const samværsavtaleStepAvailable = () => legeerklæringStepIsValid();
 
-export const summaryStepAvailable = () => legeerklæringStepIsValid();
+export const summaryStepAvailable = (values: OmsorgspengesøknadFormData) =>
+    includeAvtaleStep(values) ? samværsavtaleStepIsValid(values) : legeerklæringStepIsValid();

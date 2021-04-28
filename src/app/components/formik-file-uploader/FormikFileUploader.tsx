@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { FormikValidateFunction } from '@navikt/sif-common-formik/lib';
-import { ArrayHelpers, useFormikContext } from 'formik';
 import { Attachment, PersistedFile } from '@navikt/sif-common-core/lib/types/Attachment';
 import {
     attachmentShouldBeProcessed,
@@ -10,6 +8,9 @@ import {
     isFileObject,
     VALID_EXTENSIONS,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+import { TypedFormInputValidationProps } from '@navikt/sif-common-formik';
+import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+import { ArrayHelpers, useFormikContext } from 'formik';
 import { uploadFile } from '../../api/api';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
 import * as apiUtils from '../../utils/apiUtils';
@@ -19,10 +20,9 @@ export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
 export type FieldArrayRemoveFn = (index: number) => undefined;
 
-interface Props {
+interface Props extends TypedFormInputValidationProps<AppFormField, ValidationError> {
     name: AppFormField;
     label: string;
-    validate?: FormikValidateFunction;
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
     onUnauthorizedOrForbiddenUpload: () => void;
