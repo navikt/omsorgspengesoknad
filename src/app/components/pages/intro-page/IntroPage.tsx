@@ -10,11 +10,11 @@ import StepBanner from '@navikt/sif-common-core/lib/components/step-banner/StepB
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { getTypedFormComponents, UnansweredQuestionsInfo, YesOrNo } from '@navikt/sif-common-formik/lib';
+import intlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
+import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import RouteConfig, { getRouteUrl } from '../../../config/routeConfig';
 import './introPage.less';
-import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
-import getFieldErrorHandler from '@navikt/sif-common-formik/lib/validation/fieldErrorHandler';
 
 const bem = bemUtils('introPage');
 
@@ -69,7 +69,7 @@ const IntroPage: React.FunctionComponent = () => {
                     return (
                         <PageForm.Form
                             includeButtons={false}
-                            fieldErrorHandler={getFieldErrorHandler(intl, 'introForm')}
+                            formErrorHandler={intlFormErrorHandler(intl, 'introForm')}
                             noButtonsContentRenderer={
                                 showNotAllQuestionsAnsweredMessage
                                     ? () => (
