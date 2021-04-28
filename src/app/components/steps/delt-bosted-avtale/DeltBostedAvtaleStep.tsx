@@ -17,11 +17,13 @@ import Lenke from 'nav-frontend-lenker';
 import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { navigateToLoginPage } from '../../../utils/navigationUtils';
-import { validateAttachments } from '../../../validation/fieldValidations';
+import { validateAttachments, ValidateAttachmentsErrors } from '../../../validation/fieldValidations';
 import DeltBostedAvtaleAttachmentList from '../../delt-bosted-avtale-attachment-list/DeltBostedAvtaleAttachmentList';
 import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
 import { getListValidator } from '@navikt/sif-common-formik/lib/validation';
+import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+import { getUploadedAttachments } from '../../../utils/attachmentUtils';
 
 const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
     const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
@@ -63,9 +65,9 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
                             setFilesThatDidntGetUploaded([]);
                         }}
                         validate={(attachments) => {
-                            return validateAll([
-                                () => validateAttachments(otherAttachmentsInSøknad),
-                                () => getListValidator({ required: true })(attachments),
+                            return validateAll<ValidateAttachmentsErrors | ValidationError>([
+                                () => validateAttachments([...attachments, ...otherAttachmentsInSøknad]),
+                                () => getListValidator({ required: true })(getUploadedAttachments(attachments)),
                             ]);
                         }}
                         onUnauthorizedOrForbiddenUpload={navigateToLoginPage}

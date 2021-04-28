@@ -177,9 +177,9 @@
 
     "validation.barnetSøknadenGjelder.ikkeValgt": "Du må velge hvilket barn søknaden gjelder, eller velge at søknaden gjelder et annet barn",
     "validation.barnetsFødselsnummer.noValue": "Du må fylle ut barnets fødselsnummer",
-    "validation.barnetsFødselsnummer.ikke11Siffer": "Fødselsnummeret til barnet er ikke gyldig. Dette må bestå av 11 siffer",
-    "validation.barnetsFødselsnummer.ugyldigFormat": "Fødselsnummeret til barnet er ikke gyldig. Vennligst kontroller tallene du har tastet inn",
-    "validation.barnetsFødselsnummer.søkersFnrErBrukt": "Fødselsnummeret til barnet er ikke gyldig, du har oppgitt ditt eget fødselsnummer",
+    "validation.barnetsFødselsnummer.fødselsnummerNot11Chars": "Fødselsnummeret til barnet er ikke gyldig. Dette må bestå av 11 siffer",
+    "validation.barnetsFødselsnummer.invalidFødselsnummer": "Fødselsnummeret til barnet er ikke gyldig. Vennligst kontroller tallene du har tastet inn.",
+    "validation.barnetsFødselsnummer.disallowedFødselsnummer": "Fødselsnummeret til barnet er ikke riktig, du har oppgitt ditt eget fødselsnummer",
     "validation.barnetsNavn.noValue": "Du må oppgi barnets navn",
     "validation.barnetsNavn.tooLong": "Barnets navn kan ikke inneholde over 50 tegn",
     "validation.søkersRelasjonTilBarnet.ikkeValgt": "Du må velge din relasjon til barnet",
