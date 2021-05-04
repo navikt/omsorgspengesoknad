@@ -32,7 +32,10 @@ const AnnetBarnPart: React.FunctionComponent<Props> = ({ søkersFnr }: Props) =>
                 <AppForm.Input
                     label={intlHelper(intl, 'steg.omBarnet.navn')}
                     name={AppFormField.barnetsNavn}
-                    validate={getStringValidator({ required: true, maxLength: 50 })}
+                    validate={(value) => {
+                        const error = getStringValidator({ required: true, maxLength: 50 })(value);
+                        return error ? { key: error, values: { maks: 50 } } : undefined;
+                    }}
                     bredde="XL"
                 />
             </FormBlock>
