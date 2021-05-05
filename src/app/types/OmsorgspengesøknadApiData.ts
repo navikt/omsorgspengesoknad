@@ -8,7 +8,6 @@ export interface BarnToSendToApi {
     navn: string | null;
     norskIdentifikator: string | null;
     aktørId: string | null;
-    fødselsdato: ApiStringDate | null;
 }
 export interface UtenlandsoppholdApiData {
     fraOgMed: ApiStringDate;
@@ -18,9 +17,7 @@ export interface UtenlandsoppholdApiData {
 }
 
 export interface OmsorgspengesøknadApiData {
-    newVersion: boolean;
     språk: Locale;
-    erYrkesaktiv: boolean;
     kroniskEllerFunksjonshemming: boolean;
     barn: BarnToSendToApi;
     sammeAdresse?: boolean;

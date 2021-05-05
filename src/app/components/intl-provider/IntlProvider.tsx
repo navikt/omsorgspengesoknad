@@ -5,13 +5,12 @@ import '@formatjs/intl-pluralrules/locale-data/nn';
 import '@formatjs/intl-pluralrules/polyfill';
 import { allCommonMessages } from '@navikt/sif-common-core/lib/i18n/allCommonMessages';
 import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
-import bostedUtlandMessages from '@navikt/sif-common-forms/lib/bosted-utland/bostedUtlandMessages';
 
 export const appBokmålstekster = require('../../i18n/nb.json');
 export const appNynorsktekster = require('../../i18n/nn.json');
 
-const bokmålstekster = { ...allCommonMessages.nb, ...bostedUtlandMessages.nb, ...appBokmålstekster };
-const nynorsktekster = { ...allCommonMessages.nn, ...bostedUtlandMessages.nn, ...appNynorsktekster };
+const bokmålstekster = { ...allCommonMessages.nb, ...appBokmålstekster };
+const nynorsktekster = { ...allCommonMessages.nn, ...appNynorsktekster };
 
 export interface IntlProviderProps {
     locale: Locale;

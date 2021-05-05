@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { StepConfigProps, StepID } from '../../../config/stepConfig';
-import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
-import { navigateToLoginPage } from '../../../utils/navigationUtils';
-import { validerAlleDokumenterISøknaden } from '../../../validation/fieldValidations';
-import FileUploadErrors from '@navikt/sif-common-core/lib/components/file-upload-errors/FileUploadErrors';
-import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
-import FormikStep from '../../formik-step/FormikStep';
-import LegeerklæringFileList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
 import CounsellorPanel from '@navikt/sif-common-core/lib/components/counsellor-panel/CounsellorPanel';
+import FileUploadErrors from '@navikt/sif-common-core/lib/components/file-upload-errors/FileUploadErrors';
 import PictureScanningGuide from '@navikt/sif-common-core/lib/components/picture-scanning-guide/PictureScanningGuide';
-import Lenke from 'nav-frontend-lenker';
 import {
     getTotalSizeOfAttachments,
     MAX_TOTAL_ATTACHMENT_SIZE_BYTES,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { useFormikContext } from 'formik';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import Lenke from 'nav-frontend-lenker';
+import { StepConfigProps, StepID } from '../../../config/stepConfig';
+import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
 import { valuesToAlleDokumenterISøknaden } from '../../../utils/attachmentUtils';
+import { navigateToLoginPage } from '../../../utils/navigationUtils';
+import { validateAttachments } from '../../../validation/fieldValidations';
+import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
+import FormikStep from '../../formik-step/FormikStep';
+import LegeerklæringFileList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
 
 const LegeerklæringStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit, formValues }) => {
     const intl = useIntl();
@@ -64,7 +64,9 @@ const LegeerklæringStep: React.FunctionComponent<StepConfigProps> = ({ onValidS
                         onFileInputClick={() => {
                             setFilesThatDidntGetUploaded([]);
                         }}
-                        validate={() => validerAlleDokumenterISøknaden(alleDokumenterISøknaden)}
+                        validate={() => {
+                            return validateAttachments(alleDokumenterISøknaden);
+                        }}
                         onUnauthorizedOrForbiddenUpload={navigateToLoginPage}
                     />
                 </Box>

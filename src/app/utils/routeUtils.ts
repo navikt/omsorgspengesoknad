@@ -1,7 +1,6 @@
 import RouteConfig from '../config/routeConfig';
 import { getStepConfig, StepID } from '../config/stepConfig';
 import { AppFormField, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
-import { appIsRunningInDevEnvironment } from './envUtils';
 import {
     legeerklæringStepAvailable,
     opplysningerOmBarnetStepAvailable,
@@ -22,19 +21,17 @@ export const getNextStepRoute = (stepId: StepID, formData?: OmsorgspengesøknadF
 };
 
 export const isAvailable = (path: StepID | RouteConfig, values: OmsorgspengesøknadFormData) => {
-    if (!appIsRunningInDevEnvironment()) {
-        switch (path) {
-            case StepID.OPPLYSNINGER_OM_BARNET:
-                return opplysningerOmBarnetStepAvailable(values);
-            case StepID.LEGEERKLÆRING:
-                return legeerklæringStepAvailable(values);
-            case StepID.DELT_BOSTED:
-                return samværsavtaleStepAvailable();
-            case StepID.SUMMARY:
-                return summaryStepAvailable();
-            case RouteConfig.SØKNAD_SENDT_ROUTE:
-                return values[AppFormField.harBekreftetOpplysninger];
-        }
+    switch (path) {
+        case StepID.OPPLYSNINGER_OM_BARNET:
+            return opplysningerOmBarnetStepAvailable(values);
+        case StepID.LEGEERKLÆRING:
+            return legeerklæringStepAvailable(values);
+        case StepID.DELT_BOSTED:
+            return samværsavtaleStepAvailable();
+        case StepID.SUMMARY:
+            return summaryStepAvailable(values);
+        case RouteConfig.SØKNAD_SENDT_ROUTE:
+            return values[AppFormField.harBekreftetOpplysninger];
     }
-    return true;
+    return false;
 };
