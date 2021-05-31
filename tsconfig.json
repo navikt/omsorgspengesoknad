@@ -2,8 +2,8 @@
     "compilerOptions": {
         "outDir": "build/dist",
         "module": "esnext",
-        "target": "es5",
-        "lib": ["es6", "dom", "es2017"],
+        "target": "es2015",
+        "lib": ["dom", "dom.iterable", "es2015", "es2016", "es2017"],
         "sourceMap": true,
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
@@ -18,14 +18,10 @@
         "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": true,
         "baseUrl": "./src",
-        "paths": {},
-
-        "typeRoots": ["./node_modules/@types", "./src/@types"]
+        "esModuleInterop": true
     },
     "awesomeTypescriptLoaderOptions": {
         "useCache": false
     },
-    "exclude": ["node_modules", "src/build", "**.js", "dist",
-      "e2e/cypress"
-    ]
+    "exclude": ["node_modules", "src/build", "**.js", "dist", "e2e/cypress"]
 }
