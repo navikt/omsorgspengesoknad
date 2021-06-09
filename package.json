@@ -82,7 +82,7 @@
         "react-intl": "^5.18.1",
         "react-modal": "^3.13.1",
         "react-router-dom": "^5.2.0",
-        "snyk": "^1.618.0"
+        "snyk": "^1.623.0"
     },
     "devDependencies": {
         "@babel/core": "^7.14.3",
