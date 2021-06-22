@@ -40,21 +40,23 @@ const FormikStep: React.FunctionComponent<Props> = (props) => {
                 includeButtons={false}
                 formErrorHandler={intlFormErrorHandler(intl, 'validation')}
                 runDelayedFormValidation={true}
-                includeValidationSummary={true}>
+                includeValidationSummary={true}
+                formFooter={
+                    <FormBlock>
+                        <div className={bem.element('buttonWrapper')}>
+                            <Knapp
+                                type="hoved"
+                                htmlType="submit"
+                                className={'step__button'}
+                                spinner={showButtonSpinner || false}
+                                disabled={buttonDisabled || false}
+                                aria-label={texts.nextButtonAriaLabel}>
+                                {texts.nextButtonLabel}
+                            </Knapp>
+                        </div>
+                    </FormBlock>
+                }>
                 {children}
-                <FormBlock>
-                    <div className={bem.element('buttonWrapper')}>
-                        <Knapp
-                            type="hoved"
-                            htmlType="submit"
-                            className={'step__button'}
-                            spinner={showButtonSpinner || false}
-                            disabled={buttonDisabled || false}
-                            aria-label={texts.nextButtonAriaLabel}>
-                            {texts.nextButtonLabel}
-                        </Knapp>
-                    </div>
-                </FormBlock>
             </AppForm.Form>
         </Step>
     );
