@@ -5,7 +5,7 @@ import Veilederpanel from 'nav-frontend-veilederpanel';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import Page from '@navikt/sif-common-core/lib/components/page/Page';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import VeilederLokal from './VeilederLokal';
+import VeilederSVG from '@navikt/sif-common-core/lib/components/veileder-svg/VeilederSVG';
 import './generalErrorPage.less';
 
 const GeneralErrorPage: React.FunctionComponent = () => {
@@ -13,7 +13,7 @@ const GeneralErrorPage: React.FunctionComponent = () => {
     return (
         <Page title={intlHelper(intl, 'page.generalErrorPage.sidetittel')}>
             <div className={'generalErrorPage'}>
-                <Veilederpanel type="plakat" kompakt={true} fargetema="normal" svg={<VeilederLokal mood="uncertain" />}>
+                <Veilederpanel type="plakat" kompakt={true} fargetema="normal" svg={<VeilederSVG mood="uncertain" />}>
                     <Systemtittel tag="h2">
                         <FormattedMessage id="page.generalErrorPage.tittel" />
                     </Systemtittel>
