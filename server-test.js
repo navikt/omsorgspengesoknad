@@ -9,34 +9,31 @@ require('dotenv').config();
 const envSettings = require('./envSettings');
 
 const server = express();
-server.use(helmet());
+server.use(
+    helmet({
+        contentSecurityPolicy: false,
+    })
+);
 server.use(compression());
 server.set('views', `${__dirname}/dist`);
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
+server.use(`${process.env.PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
+server.use(`${process.env.PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'dist/css')));
 
-console.error('process.env.PORT', process.env.PORT);
-console.error('process.env.PUBLIC_PATH', process.env.PUBLIC_PATH);
-console.error('process.env.API_URL', process.env.API_URL);
-
-const PUBLIC_PATH = process.env.PUBLIC_PATH; // '/familie/sykdom-i-familien/soknad/omsorgspenger';
-
-server.use(`${PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
-server.use(`${PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'dist/css')));
-
-server.get(`${PUBLIC_PATH}/dist/settings.js`, (req, res) => {
+server.get(`${process.env.PUBLIC_PATH}/dist/settings.js`, (req, res) => {
     res.set('content-type', 'application/javascript');
     res.send(`${envSettings()}`);
 });
-server.get(`${PUBLIC_PATH}/dist/settings.js`, (req, res) => {
+server.get(`/dist/settings.js`, (req, res) => {
     res.set('content-type', 'application/javascript');
     res.send(`${envSettings()}`);
 });
 
 const routerHealth = express.Router();
-routerHealth.get(`${PUBLIC_PATH}/isAlive`, (req, res) => res.sendStatus(200));
-routerHealth.get(`${PUBLIC_PATH}/isReady`, (req, res) => res.sendStatus(200));
-server.use(`${PUBLIC_PATH}/health`, routerHealth);
+routerHealth.get(`${process.env.PUBLIC_PATH}/isAlive`, (req, res) => res.sendStatus(200));
+routerHealth.get(`${process.env.PUBLIC_PATH}/isReady`, (req, res) => res.sendStatus(200));
+server.use(`${process.env.PUBLIC_PATH}/health`, routerHealth);
 
 const renderApp = () =>
     new Promise((resolve, reject) => {
