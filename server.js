@@ -5,14 +5,13 @@ const mustacheExpress = require('mustache-express');
 const Promise = require('promise');
 const compression = require('compression');
 const helmet = require('helmet');
-const createEnvSettingsFile = require('./src/build/scripts/envSettings');
 const getDecorator = require('./src/build/scripts/decorator');
-createEnvSettingsFile(path.resolve(`${__dirname}/dist/js/settings.js`));
+const envSettings = require('./envSettings');
 
 const server = express();
 server.use(
     helmet({
-        contentSecurityPolicy: false
+        contentSecurityPolicy: false,
     })
 );
 server.use(compression());
@@ -26,6 +25,11 @@ server.use(`${PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'di
 
 server.get(`${PUBLIC_PATH}/health/isAlive`, (req, res) => res.sendStatus(200));
 server.get(`${PUBLIC_PATH}/health/isReady`, (req, res) => res.sendStatus(200));
+
+server.get(`${process.env.PUBLIC_PATH}/dist/settings.js`, (req, res) => {
+    res.set('content-type', 'application/javascript');
+    res.send(`${envSettings()}`);
+});
 
 const verifyLoginUrl = () =>
     new Promise((resolve, reject) => {
