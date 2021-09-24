@@ -5,6 +5,7 @@ const mustacheExpress = require('mustache-express');
 const Promise = require('promise');
 const compression = require('compression');
 const helmet = require('helmet');
+require('dotenv').config();
 const envSettings = require('./envSettings');
 
 const server = express();
@@ -20,24 +21,22 @@ console.error('process.env.API_URL', process.env.API_URL);
 
 const PUBLIC_PATH = process.env.PUBLIC_PATH; // '/familie/sykdom-i-familien/soknad/omsorgspenger';
 
-server.use(`/dist`, express.static(path.resolve(__dirname, 'dist')));
 server.use(`${PUBLIC_PATH}/dist/js`, express.static(path.resolve(__dirname, 'dist/js')));
 server.use(`${PUBLIC_PATH}/dist/css`, express.static(path.resolve(__dirname, 'dist/css')));
 
+server.get(`${PUBLIC_PATH}/dist/settings.js`, (req, res) => {
+    res.set('content-type', 'application/javascript');
+    res.send(`${envSettings()}`);
+});
+server.get(`${PUBLIC_PATH}/dist/settings.js`, (req, res) => {
+    res.set('content-type', 'application/javascript');
+    res.send(`${envSettings()}`);
+});
+
 const routerHealth = express.Router();
+routerHealth.get(`${PUBLIC_PATH}/isAlive`, (req, res) => res.sendStatus(200));
+routerHealth.get(`${PUBLIC_PATH}/isReady`, (req, res) => res.sendStatus(200));
 server.use(`${PUBLIC_PATH}/health`, routerHealth);
-routerHealth.get('/isAlive', (req, res) => res.sendStatus(200));
-routerHealth.get('/isReady', (req, res) => res.sendStatus(200));
-
-server.get(`${process.env.PUBLIC_PATH}/dist/settings.js`, (req, res) => {
-    res.set('content-type', 'application/javascript');
-    res.send(`${envSettings()}`);
-});
-
-server.get(`${process.env.PUBLIC_PATH}/dist/settings.js`, (req, res) => {
-    res.set('content-type', 'application/javascript');
-    res.send(`${envSettings()}`);
-});
 
 const renderApp = () =>
     new Promise((resolve, reject) => {
