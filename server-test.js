@@ -34,6 +34,11 @@ server.get(`${process.env.PUBLIC_PATH}/dist/settings.js`, (req, res) => {
     res.send(`${envSettings()}`);
 });
 
+server.get(`${process.env.PUBLIC_PATH}/dist/settings.js`, (req, res) => {
+    res.set('content-type', 'application/javascript');
+    res.send(`${envSettings()}`);
+});
+
 const renderApp = () =>
     new Promise((resolve, reject) => {
         server.render('index.html', (err, html) => {
