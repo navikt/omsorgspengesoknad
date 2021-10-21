@@ -7,7 +7,6 @@
     "author": "NAV",
     "scripts": {
         "build": "node src/build/scripts/production-build.js",
-        "build-heroku": "node src/build/scripts/heroku-build.js",
         "start": "node ./src/build/scripts/start-dev.js",
         "dev-api": "PORT=8088 node ./server/api-mock.js",
         "dev": "npm-run-all -p dev-api start-no-decorator",
