@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import axios, { AxiosError } from 'axios';
+import { axiosMultipartConfig } from '../../config/axiosConfig';
 import { ResourceType } from '../../types/ResourceType';
-import {
-    getApiUrlByResourceType, isForbidden, isUnauthorized, multipartConfig, sendMultipartPostRequest
-} from '../apiUtils';
+import { getApiUrlByResourceType, isForbidden, isUnauthorized, sendMultipartPostRequest } from '../apiUtils';
 
 let axiosErrorMock: AxiosError;
 
@@ -19,7 +19,7 @@ describe('apiUtils', () => {
             name: '',
             message: '',
             toJSON: () => ({}),
-            response: { status: 200, data: {}, statusText: '', headers: [], config: {} }
+            response: { status: 200, data: {}, statusText: '', headers: [], config: {} },
         };
     });
 
@@ -56,7 +56,7 @@ describe('apiUtils', () => {
             const formData = new FormData();
             formData.set('foo', 'bar');
             sendMultipartPostRequest('nav.no', formData);
-            expect(axios.post).toHaveBeenCalledWith('nav.no', formData, multipartConfig);
+            expect(axios.post).toHaveBeenCalledWith('nav.no', formData, axiosMultipartConfig);
         });
     });
 

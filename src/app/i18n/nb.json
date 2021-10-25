@@ -172,8 +172,8 @@
 
     "validation.barnetSøknadenGjelder.noValue": "Du må velge hvilket barn søknaden gjelder, eller velge at søknaden gjelder et annet barn.",
     "validation.barnetsFødselsnummer.fødselsnummerHasNoValue": "Skriv inn barnets fødselsnummer.",
-    "validation.barnetsFødselsnummer.fødselsnummerIsInvalid": "Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.",
-    "validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars": "Du har oppgitt et ugyldig fødselsnummer som ikke består av 11 siffer. Et gyldig fødselsnummer består av 11 siffer.",
+    "validation.barnetsFødselsnummer.fødselsnummerIsInvalid": "Du har oppgitt et ugyldig fødselsnummer. Kontroller at du har tastet inn riktig.",
+    "validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars": "Du har oppgitt et ugyldig fødselsnummer. Et gyldig fødselsnummer består av 11 siffer.",
     "validation.barnetsFødselsnummer.fødselsnummerIsNotAllowed": "Du har oppgitt ditt eget fødselsnummer som barnets fødselsnummer. Skriv inn barnets fødselsnummer.",
     "validation.barnetsNavn.stringHasNoValue": "Skriv inn barnets navn.",
     "validation.barnetsNavn.stringIsTooLong": "Navnet på barnet kan ikke inneholde flere enn {maks}.",
