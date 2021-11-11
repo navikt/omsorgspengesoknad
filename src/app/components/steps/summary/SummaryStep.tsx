@@ -19,7 +19,7 @@ import { StepConfigProps, StepID } from '../../../config/stepConfig';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi, Søkerdata } from '../../../types/Søkerdata';
-import * as apiUtils from '../../../utils/apiUtils';
+import * as apiUtils from '@navikt/sif-common-core/lib/utils/apiUtils';
 import appSentryLogger from '../../../utils/appSentryLogger';
 import { mapFormDataToApiData } from '../../../utils/mapFormDataToApiData';
 import { navigateTo, navigateToLoginPage } from '../../../utils/navigationUtils';

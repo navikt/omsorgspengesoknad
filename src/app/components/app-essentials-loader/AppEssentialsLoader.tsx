@@ -5,10 +5,11 @@ import { getBarn, getSøker } from '../../api/api';
 import routeConfig, { getRouteUrl } from '../../config/routeConfig';
 import { SøkerdataContextProvider } from '../../context/SøkerdataContext';
 import { Søkerdata } from '../../types/Søkerdata';
-import * as apiUtils from '../../utils/apiUtils';
+import * as apiUtils from '@navikt/sif-common-core/lib/utils/apiUtils';
 import { navigateToLoginPage, userIsCurrentlyOnErrorPage } from '../../utils/navigationUtils';
 import LoadingPage from '../pages/loading-page/LoadingPage';
 import appSentryLogger from '../../utils/appSentryLogger';
+import IkkeTilgangPage from '../pages/ikke-tilgang-page/IkkeTilgangPage';
 
 interface Props {
     contentLoadedRenderer: (søkerdata?: Søkerdata) => React.ReactNode;
@@ -18,6 +19,7 @@ interface State {
     doApiCalls: boolean;
     isLoading: boolean;
     søkerdata?: Søkerdata;
+    hasNoAccess?: boolean;
 }
 
 const AppEssentialsLoader: React.FunctionComponent<Props> = (props) => {
@@ -41,8 +43,10 @@ const AppEssentialsLoader: React.FunctionComponent<Props> = (props) => {
     }
 
     function handleSøkerdataFetchError(response: AxiosError) {
-        if (apiUtils.isForbidden(response) || apiUtils.isUnauthorized(response)) {
+        if (apiUtils.isUnauthorized(response)) {
             navigateToLoginPage();
+        } else if (apiUtils.isForbidden(response)) {
+            setState({ ...state, hasNoAccess: true, isLoading: false });
         } else if (!userIsCurrentlyOnErrorPage()) {
             appSentryLogger.logApiError(response);
             window.location.assign(getRouteUrl(routeConfig.ERROR_PAGE_ROUTE));
@@ -57,10 +61,14 @@ const AppEssentialsLoader: React.FunctionComponent<Props> = (props) => {
     });
 
     const { contentLoadedRenderer } = props;
-    const { isLoading, søkerdata } = state;
+    const { isLoading, søkerdata, hasNoAccess } = state;
 
     if (isLoading) {
         return <LoadingPage />;
+    }
+
+    if (hasNoAccess) {
+        return <IkkeTilgangPage />;
     }
 
     return (

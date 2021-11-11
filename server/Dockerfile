@@ -7,5 +7,5 @@ COPY package-lock.json .
 RUN npm ci
 #RUN apk update && apk add bash && apk add curl
 ENV PUBLIC_PATH '/familie/sykdom-i-familien/soknad/omsorgspenger'
-EXPOSE 8083
+EXPOSE 8080
 CMD ["npm", "run", "start-api-mock"]

@@ -6,5 +6,5 @@ ENV PUBLIC_PATH=/familie/sykdom-i-familien/soknad/omsorgspenger
 COPY . .
 RUN CYPRESS_INSTALL_BINARY=0 npm ci
 RUN npm run build
-EXPOSE 8083
+EXPOSE 8080
 CMD ["npm", "run", "server-test"]

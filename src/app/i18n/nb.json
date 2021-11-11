@@ -7,6 +7,7 @@
     "locale.nn": "Nynorsk - norsk",
 
     "banner.title": "Søknad om ekstra omsorgsdager",
+    "application.title": "Søknad om ekstra omsorgsdager",
 
     "page.loadingPage.tekst": "Laster ...",
     "gotoApplicationLink.lenketekst": "Gå til den digitale søknaden",
@@ -160,11 +161,9 @@
     "page.generalErrorPage.tittel": "Noe gikk galt...",
     "page.generalErrorPage.tekst": "Beklager, her har det dessverre skjedd en feil. Vennligst prøv igjen senere.",
 
-    "page.ikkeMyndig.sidetittel": "Søknad om ekstra omsorgsdager - ikke myndig",
-    "page.ikkeMyndig.banner.tittel": "Hei!",
-    "page.ikkeMyndig.banner.tekst": "Fordi du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.",
-    "page.ikkeMyndig.banner.lastNed": "Her kan du laste ned papirsøknaden",
-    "page.ikkeMyndig.tittel": "Søknad om ekstra omsorgsdager",
+    "page.ikkeTilgang.sidetittel": "Søknad om ekstra omsorgsdager",
+    "page.ikkeTilgang.tekst": "Fordi du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.",
+    "page.ikkeTilgang.lastNed": "Her kan du laste ned papirsøknaden",
 
     "vedleggsliste.fjernKnapp": "Fjern vedlegg",
     "vedleggsliste.ingenLegeerklæringLastetOpp": "Ingen vedlegg er lastet opp",
