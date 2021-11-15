@@ -46,7 +46,8 @@ const AppEssentialsLoader: React.FunctionComponent<Props> = (props) => {
         if (apiUtils.isUnauthorized(response)) {
             navigateToLoginPage();
         } else if (apiUtils.isForbidden(response)) {
-            setState({ ...state, hasNoAccess: true, isLoading: false });
+            setState({ ...state, hasNoAccess: true, isLoading: false, doApiCalls: false });
+            return;
         } else if (!userIsCurrentlyOnErrorPage()) {
             appSentryLogger.logApiError(response);
             window.location.assign(getRouteUrl(routeConfig.ERROR_PAGE_ROUTE));
