@@ -7,10 +7,10 @@ const server = express();
 server.use(express.json());
 server.use((req, res, next) => {
     const allowedOrigins = [
-        'http://host.docker.internal:8083',
+        'http://host.docker.internal:8080',
         'https://omsorgspengesoknad-mock.nais.oera.no',
-        'http://localhost:8083',
-        'http://web:8083',
+        'http://localhost:8080',
+        'http://web:8080',
     ];
     const requestOrigin = req.headers.origin;
     if (allowedOrigins.indexOf(requestOrigin) >= 0) {
@@ -32,7 +32,6 @@ const søkerMock = {
     mellomnavn: undefined,
     etternavn: 'Testesen',
     fødselsnummer: '12345123456',
-    myndig: true,
 };
 
 const barnMock = {
@@ -75,6 +74,10 @@ const startExpressServer = () => {
         } else {
             res.status(401).send();
         }
+    });
+
+    server.get('/soker-umyndig', (req, res) => {
+        res.send(451);
     });
 
     server.post('/vedlegg', (req, res) => {

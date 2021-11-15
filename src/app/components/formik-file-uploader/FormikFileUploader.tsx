@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Attachment, PersistedFile } from '@navikt/sif-common-core/lib/types/Attachment';
+import * as apiUtils from '@navikt/sif-common-core/lib/utils/apiUtils';
 import {
     attachmentShouldBeProcessed,
     attachmentShouldBeUploaded,
@@ -13,7 +14,6 @@ import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types'
 import { ArrayHelpers, useFormikContext } from 'formik';
 import { uploadFile } from '../../api/api';
 import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
-import * as apiUtils from '../../utils/apiUtils';
 import AppForm from '../app-form/AppForm';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
