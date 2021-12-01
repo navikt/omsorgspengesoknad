@@ -43,6 +43,9 @@ const IntroPage: React.FunctionComponent = () => {
                     <p>
                         <FormattedHtmlMessage id="introPage.intro.1.html" />
                     </p>
+                    <p>
+                        <FormattedHtmlMessage id="introPage.intro.1.2" />
+                    </p>
                     <div>
                         <FormattedMessage id="introPage.intro.2" />
                         <ul>

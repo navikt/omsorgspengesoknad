@@ -51,7 +51,6 @@
     "introPage.tittel": "Søknad om ekstra omsorgsdagar",
     "introPage.stegTittel": "Kan eg søka om ekstra omsorgsdagar?",
     "introPage.spm.kroniskEllerFunksjonshemmende": "Har du eit barn som har ein kronisk sjukdom eller ei funksjonshemming?",
-    "introPage.intro.1.html": "Denne søknaden bruker du for å søka om ekstra omsorgsdagar fordi du har barn med kronisk sjukdom eller funksjonshemning. Det er berre foreldre/fosterforeldre som barnet bur fast hos, som kan få ekstra omsorgsdagar. Har du fleire barn med kronisk sjukdom eller funksjonshemning må du senda ein søknad for kvart barn",
     "introPage.intro.2": "For å ha rett til å bruka omsorgsdagar må du vera i minst éin av disse arbeidssituasjonane:",
     "introPage.intro.2.1": "Arbeidstakar",
     "introPage.intro.2.2": "Sjølvstendig næringsdrivande",
@@ -163,10 +162,8 @@
     "page.generalErrorPage.tekst": "Beklagar, her har det dessverre skjedd ein feil. Ver vennleg og prøv igjen seinare.",
 
     "page.ikkeTilgang.sidetittel": "Søknad om ekstra omsorgsdagar – ikkje myndig",
-    "page.ikkeTilgang.tittel": "Hei!",
     "page.ikkeTilgang.tekst": "Fordi du er under 18 år, må ein av foreldra dine eller ein føresett skrive under på søknaden saman med deg. Du må derfor fylle ut søknaden på papir og sende han i posten.",
     "page.ikkeTilgang.lastNed": "Her kan du laste ned papirsøknaden",
-    "page.ikkeTilgang.tittel": "Søknad om ekstra omsorgsdagar",
 
     "vedleggsliste.fjernKnapp": "Fjern vedlegg",
     "vedleggsliste.ingenLegeerklæringLastetOpp": "Ingen vedlegg er lasta opp",
