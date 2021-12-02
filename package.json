@@ -35,7 +35,7 @@
         "@navikt/fnrvalidator": "^1.1.4",
         "@navikt/sif-common-amplitude": "^2.1.0",
         "@navikt/sif-common-core": "^9.6.0",
-        "@navikt/sif-common-formik": "20.5.4",
+        "@navikt/sif-common-formik": "21.0.1",
         "@navikt/sif-common-sentry": "^0.2.0",
         "@sentry/browser": "^6.14.1",
         "@sentry/react": "^6.14.1",
