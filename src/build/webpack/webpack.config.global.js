@@ -1,7 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 require('dotenv').config();
 
@@ -20,22 +20,22 @@ const webpackConfig = {
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/,
-                enforce: 'pre',
-                use: [
-                    {
-                        options: {
-                            eslintPath: require.resolve('eslint'),
-                        },
-                        loader: require.resolve('eslint-loader'),
-                    },
-                ],
-                exclude: /node_modules/,
+                test: /\.m?jsx?$/,
+                resolve: {
+                    fullySpecified: false,
+                },
             },
             {
                 test: /\.(ts|tsx)$/,
-                include: [path.resolve(__dirname, './../../app'), path.resolve(__dirname, './../../common')],
-                loader: require.resolve('ts-loader'),
+                include: [path.resolve(__dirname, './../../app')],
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            experimentalFileCaching: false,
+                        },
+                    },
+                ],
             },
             {
                 test: /\.less$/,
@@ -52,11 +52,6 @@ const webpackConfig = {
                     },
                 ],
             },
-            {
-                test: /\.svg$/,
-                loader: 'svg-sprite-loader',
-                options: {},
-            },
         ],
     },
     plugins: [
@@ -65,8 +60,9 @@ const webpackConfig = {
             filename: 'css/[name].css?[fullhash]-[chunkhash]-[name]',
             linkType: 'text/css',
         }),
-        new SpriteLoaderPlugin({
-            plainSprite: true,
+        new ESLintPlugin({
+            extensions: ['ts', 'tsx'],
+            failOnWarning: false,
         }),
     ],
 };
