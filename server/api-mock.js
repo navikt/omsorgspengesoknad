@@ -1,5 +1,6 @@
 const express = require('express');
-const Busboy = require('busboy');
+const busboyCons = require('busboy');
+
 const path = require('path');
 
 const server = express();
@@ -83,7 +84,7 @@ const startExpressServer = () => {
     server.post('/vedlegg', (req, res) => {
         res.set('Access-Control-Expose-Headers', 'Location');
         res.set('Location', 'nav.no');
-        const busboy = new Busboy({ headers: req.headers });
+        const busboy = busboyCons({ headers: req.headers });
         busboy.on('finish', () => {
             res.writeHead(200, { Location: '/vedlegg' });
             res.end();

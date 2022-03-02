@@ -1,7 +1,5 @@
 # Søknad om omsorgspenger
 
-[![CircleCI](https://circleci.com/gh/navikt/omsorgspengesoknad/tree/master.svg?style=svg)](https://circleci.com/gh/navikt/omsorgspengesoknad/tree/master)
-
 Kildekoden til frontend-appen for ny selvbetjeningsløsning for
 søknad om omsorgspenger.
 
@@ -10,7 +8,7 @@ søknad om omsorgspenger.
 For å kjøre opp app-en i dev:
 
 1.  `npm install`.
-2.  `npm run start`.
+2.  `npm run dev`.
 
 For å kjøre enhetstester:
 
