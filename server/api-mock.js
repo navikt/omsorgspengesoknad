@@ -69,7 +69,7 @@ const startExpressServer = () => {
         res.cookie('omsLocalLoginCookie', 'mysecrettoken').sendStatus(201);
     });
 
-    server.get('/soker', (req, res) => {
+    server.get('/oppslag/soker', (req, res) => {
         if (isLoggedIn(req)) {
             res.send(søkerMock);
         } else {
@@ -77,7 +77,7 @@ const startExpressServer = () => {
         }
     });
 
-    server.get('/soker-umyndig', (req, res) => {
+    server.get('/oppslag/soker-umyndig', (req, res) => {
         res.send(451);
     });
 
@@ -92,9 +92,9 @@ const startExpressServer = () => {
         req.pipe(busboy);
     });
 
-    server.get('/barn', (req, res) => res.send(barnMock));
+    server.get('/oppslag/barn', (req, res) => res.send(barnMock));
 
-    server.post('/soknad', (req, res) => {
+    server.post('/omsorgspenger-utvidet-rett/innsending', (req, res) => {
         res.sendStatus(200);
     });
 
