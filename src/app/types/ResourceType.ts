@@ -1,6 +1,6 @@
 export enum ResourceType {
-    BARN = 'barn',
-    SEND_SØKNAD = 'soknad',
-    SØKER = 'soker',
+    BARN = 'oppslag/barn',
+    SEND_SØKNAD = 'omsorgspenger-utvidet-rett/innsending',
+    SØKER = 'oppslag/soker',
     VEDLEGG = 'vedlegg',
 }
