@@ -95,7 +95,11 @@ const startExpressServer = () => {
     server.get('/oppslag/barn', (req, res) => res.send(barnMock));
 
     server.post('/omsorgspenger-utvidet-rett/innsending', (req, res) => {
-        res.sendStatus(200);
+        const body = req.body;
+        console.log('[POST] body', body);
+        setTimeout(() => {
+            res.sendStatus(200);
+        }, 2500);
     });
 
     server.listen(port, () => {

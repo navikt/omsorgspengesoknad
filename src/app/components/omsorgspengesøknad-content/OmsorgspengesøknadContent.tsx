@@ -16,7 +16,7 @@ import SummaryStep from '../steps/summary/SummaryStep';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import { SKJEMANAVN } from '../../App';
 
-const OmsorgspengesøknadContent: React.FunctionComponent = () => {
+const OmsorgspengesøknadContent: React.FC = () => {
     const [søknadHasBeenSent, setSøknadHasBeenSent] = React.useState(false);
     const formik = useFormikContext<OmsorgspengesøknadFormData>();
     const history = useHistory();
@@ -86,24 +86,22 @@ const OmsorgspengesøknadContent: React.FunctionComponent = () => {
             {isAvailable(StepID.SUMMARY, values) && (
                 <Route
                     path={getSøknadRoute(StepID.SUMMARY)}
-                    render={() => <SummaryStep formValues={values} onValidSubmit={() => null} />}
+                    render={() => (
+                        <SummaryStep
+                            formValues={values}
+                            onValidSubmit={() => null}
+                            onApplicationSent={() => {
+                                setSøknadHasBeenSent(true);
+                                resetForm();
+                                navigateTo(RouteConfig.SØKNAD_SENDT_ROUTE, history);
+                            }}
+                        />
+                    )}
                 />
             )}
 
             {(isAvailable(RouteConfig.SØKNAD_SENDT_ROUTE, values) || søknadHasBeenSent) && (
-                <Route
-                    path={RouteConfig.SØKNAD_SENDT_ROUTE}
-                    render={() => {
-                        // we clear form state here to ensure that no steps will be available
-                        // after the application has been sent. this is done in a setTimeout
-                        // because we do not want to update state during render.
-                        setTimeout(() => {
-                            resetForm();
-                        });
-                        setSøknadHasBeenSent(true);
-                        return <ConfirmationPage />;
-                    }}
-                />
+                <Route path={RouteConfig.SØKNAD_SENDT_ROUTE} render={() => <ConfirmationPage />} />
             )}
 
             <Route path={RouteConfig.ERROR_PAGE_ROUTE} component={GeneralErrorPage} />
