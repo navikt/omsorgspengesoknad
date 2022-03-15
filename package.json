@@ -32,7 +32,7 @@
     },
     "dependencies": {
         "@formatjs/intl-pluralrules": "^4.3.2",
-        "@navikt/fnrvalidator": "^1.1.4",
+        "@navikt/fnrvalidator": "^1.2.0",
         "@navikt/sif-common-amplitude": "^2.2.3",
         "@navikt/sif-common-core": "^11.1.0",
         "@navikt/sif-common-formik": "22.0.2",
