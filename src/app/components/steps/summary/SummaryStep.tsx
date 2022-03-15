@@ -30,10 +30,15 @@ import SummarySection from '../../summary-section/SummarySection';
 import AnnetBarnSummary from './AnnetBarnSummary';
 import BarnRecveivedFormSApiSummary from './BarnReceivedFromApiSummary';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+import { useState } from 'react';
 
-const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) => {
+interface Props {
+    onApplicationSent: () => void;
+}
+
+const SummaryStep: React.FC<StepConfigProps & Props> = ({ formValues, onApplicationSent }) => {
     const intl = useIntl();
-    const [sendingInProgress, setSendingInProgress] = React.useState<boolean>(false);
+    const [sendingInProgress, setSendingInProgress] = useState(false);
     const history = useHistory();
 
     const { logSoknadFailed, logSoknadSent } = useAmplitudeInstance();
@@ -44,12 +49,13 @@ const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) =
         navigateTo(routeConfig.ERROR_PAGE_ROUTE, history);
     };
 
-    async function sendSoknad(barn: BarnReceivedFromApi[]) {
+    const sendSoknad = async (barn: BarnReceivedFromApi[]) => {
         setSendingInProgress(true);
+        const apiValues = mapFormDataToApiData(formValues, barn, intl.locale as Locale);
         try {
-            await sendApplication(mapFormDataToApiData(formValues, barn, intl.locale as Locale));
+            await sendApplication(apiValues);
             await logSoknadSent(SKJEMANAVN);
-            navigateTo(routeConfig.SØKNAD_SENDT_ROUTE, history);
+            onApplicationSent();
         } catch (error) {
             if (apiUtils.isForbidden(error) || apiUtils.isUnauthorized(error)) {
                 navigateToLoginPage();
@@ -57,7 +63,7 @@ const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) =
                 soknadFailed(error);
             }
         }
-    }
+    };
     return (
         <SøkerdataContextConsumer>
             {({ person: { fornavn, mellomnavn, etternavn, fødselsnummer }, barn }: Søkerdata) => {
@@ -65,7 +71,13 @@ const SummaryStep: React.FunctionComponent<StepConfigProps> = ({ formValues }) =
                 return (
                     <FormikStep
                         id={StepID.SUMMARY}
-                        onValidFormSubmit={() => sendSoknad(barn)}
+                        onValidFormSubmit={
+                            () => {
+                                setTimeout(() => {
+                                    sendSoknad(barn);
+                                });
+                            } // La view oppdatere seg først
+                        }
                         useValidationErrorSummary={false}
                         showButtonSpinner={sendingInProgress}
                         buttonDisabled={sendingInProgress}>

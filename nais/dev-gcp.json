@@ -6,11 +6,11 @@
     "minReplicas": "1",
     "maxReplicas": "1",
     "ingresses": ["https://omsorgspengesoknad.dev.nav.no"],
-    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.dev.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isReady",
     "env": {
-        "DECORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false",
+        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false",
         "API_URL": "https://k9-brukerdialog-api.dev.nav.no",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
         "LOGIN_URL": "https://loginservice.dev.nav.no/login?redirect=https://omsorgspengesoknad.dev.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",
