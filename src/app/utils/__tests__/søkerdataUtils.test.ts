@@ -2,7 +2,7 @@ import { BarnReceivedFromApi, Søkerdata } from '../../types/Søkerdata';
 import { harRegistrerteBarn } from '../søkerdataUtils';
 
 const barnMock: Partial<BarnReceivedFromApi> = {
-    fornavn: 'Ola'
+    fornavn: 'Ola',
 };
 
 describe('søkerdataUtils', () => {

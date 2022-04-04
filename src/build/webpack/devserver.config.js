@@ -29,7 +29,6 @@ const configureDevServer = (decoratorFragments) => ({
         stats: 'minimal',
         publicPath: `${process.env.PUBLIC_PATH}/dist`,
     },
-    port: 8080,
 });
 
 module.exports = configureDevServer;
