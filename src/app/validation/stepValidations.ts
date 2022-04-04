@@ -16,8 +16,8 @@ export const opplysningerOmBarnetStepIsValid = ({
     barnetSøknadenGjelder,
 }: OmsorgspengesøknadFormData) => {
     const formIsValid =
-        getStringValidator({ required: false, maxLength: 50 })(barnetsNavn) === undefined &&
-        getFødselsnummerValidator()(barnetsFødselsnummer) === undefined &&
+        getStringValidator({ required: true, maxLength: 50 })(barnetsNavn) === undefined &&
+        getFødselsnummerValidator({ required: true })(barnetsFødselsnummer) === undefined &&
         getRequiredFieldValidator()(søkersRelasjonTilBarnet) === undefined;
 
     if (!formIsValid && barnetSøknadenGjelder !== undefined) {
