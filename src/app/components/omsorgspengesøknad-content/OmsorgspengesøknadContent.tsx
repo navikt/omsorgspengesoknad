@@ -18,10 +18,9 @@ import { SKJEMANAVN } from '../../App';
 
 const OmsorgspengesøknadContent: React.FC = () => {
     const [søknadHasBeenSent, setSøknadHasBeenSent] = React.useState(false);
-    const formik = useFormikContext<OmsorgspengesøknadFormData>();
+    const { values, resetForm } = useFormikContext<OmsorgspengesøknadFormData>();
     const history = useHistory();
-    const { values, resetForm } = formik;
-
+    console.log(values);
     const { logSoknadStartet } = useAmplitudeInstance();
 
     const navigateToNextStep = (stepId: StepID) => {

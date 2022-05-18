@@ -6,10 +6,10 @@ import OmsorgspengesøknadContent from '../omsorgspengesøknad-content/Omsorgspe
 
 const Omsorgspengesøknad: React.FunctionComponent = () => (
     <AppEssentialsLoader
-        contentLoadedRenderer={() => {
+        contentLoadedRenderer={(formdata: Partial<OmsorgspengesøknadFormData>) => {
             return (
                 <TypedFormikWrapper<OmsorgspengesøknadFormData>
-                    initialValues={initialValues}
+                    initialValues={formdata || initialValues}
                     onSubmit={() => {
                         null;
                     }}

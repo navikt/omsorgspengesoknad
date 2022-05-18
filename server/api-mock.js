@@ -1,18 +1,13 @@
 const express = require('express');
 const busboyCons = require('busboy');
-
-const path = require('path');
+const os = require('os');
+const fs = require('fs');
 
 const server = express();
 
 server.use(express.json());
 server.use((req, res, next) => {
-    const allowedOrigins = [
-        'http://host.docker.internal:8080',
-        'https://omsorgspengesoknad-mock.nais.oera.no',
-        'http://localhost:8080',
-        'http://web:8080',
-    ];
+    const allowedOrigins = ['http://localhost:8080'];
     const requestOrigin = req.headers.origin;
     if (allowedOrigins.indexOf(requestOrigin) >= 0) {
         res.set('Access-Control-Allow-Origin', requestOrigin);
@@ -27,6 +22,30 @@ server.use((req, res, next) => {
     res.set('Access-Control-Allow-Credentials', true);
     next();
 });
+const MELLOMLAGRING_JSON = `${os.tmpdir()}/omsorgspengesoknad-mellomlagring.json`;
+
+const isJSON = (str) => {
+    try {
+        return JSON.parse(str) && !!str;
+    } catch (e) {
+        return false;
+    }
+};
+
+const writeFileAsync = async (path, text) => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(path, text, 'utf8', (err) => {
+            if (err) reject(err);
+            else resolve();
+        });
+    });
+};
+
+const readFileSync = (path) => {
+    return fs.readFileSync(path, 'utf8');
+};
+
+const existsSync = (path) => fs.existsSync(path);
 
 const søkerMock = {
     fornavn: 'Test',
@@ -62,11 +81,9 @@ const startExpressServer = () => {
     server.get('/health/isReady', (req, res) => res.sendStatus(200));
 
     server.get('/auth-mock', (req, res) => {
-        let authMockHtmlFilePath = path.resolve(__dirname, 'auth-mock-index.html');
-        res.sendFile(authMockHtmlFilePath);
-    });
-    server.get('/auth-mock/cookie', (req, res) => {
-        res.cookie('omsLocalLoginCookie', 'mysecrettoken').sendStatus(201);
+        setTimeout(() => {
+            res.sendStatus(404);
+        }, 2000);
     });
 
     server.get('/oppslag/soker', (req, res) => {
@@ -100,6 +117,34 @@ const startExpressServer = () => {
         setTimeout(() => {
             res.sendStatus(200);
         }, 2500);
+    });
+
+    server.get('/mellomlagring', (req, res) => {
+        if (existsSync(MELLOMLAGRING_JSON)) {
+            const body = readFileSync(MELLOMLAGRING_JSON);
+            res.send(JSON.parse(body));
+        } else {
+            res.send({});
+        }
+    });
+
+    server.put('/mellomlagring', (req, res) => {
+        const body = req.body;
+        const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
+        res.sendStatus(200);
+    });
+
+    server.post('/mellomlagring', (req, res) => {
+        const body = req.body;
+        const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
+        res.sendStatus(200);
+    });
+
+    server.delete('/mellomlagring', (req, res) => {
+        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
+        res.sendStatus(200);
     });
 
     server.listen(port, () => {

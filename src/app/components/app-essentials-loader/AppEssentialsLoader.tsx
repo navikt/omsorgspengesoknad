@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { getBarn, getSøker } from '../../api/api';
 import routeConfig, { getRouteUrl } from '../../config/routeConfig';
 import { SøkerdataContextProvider } from '../../context/SøkerdataContext';
@@ -10,20 +10,97 @@ import { navigateToLoginPage, userIsCurrentlyOnErrorPage } from '../../utils/nav
 import LoadingPage from '../pages/loading-page/LoadingPage';
 import appSentryLogger from '../../utils/appSentryLogger';
 import IkkeTilgangPage from '../pages/ikke-tilgang-page/IkkeTilgangPage';
+import { AppFormField, initialValues, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
+import { StepID } from '../../config/stepConfig';
+import { MELLOMLAGRING_VERSION, SoknadTempStorageData } from '../../types/SoknadTempStorageData';
+import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
+
+export const VERIFY_MELLOMLAGRING_VERSION = true;
 
 interface Props {
-    contentLoadedRenderer: (søkerdata?: Søkerdata) => React.ReactNode;
+    contentLoadedRenderer: (
+        formData: OmsorgspengesøknadFormData,
+        søkerdata: Søkerdata,
+        lastStepID: StepID | undefined
+    ) => React.ReactNode;
 }
 
 interface State {
-    doApiCalls: boolean;
     isLoading: boolean;
+    formData: OmsorgspengesøknadFormData;
     søkerdata?: Søkerdata;
+    lastStepID?: StepID;
     hasNoAccess?: boolean;
 }
 
-const AppEssentialsLoader: React.FunctionComponent<Props> = (props) => {
-    const [state, setState] = useState<State>({ doApiCalls: true, isLoading: true });
+const initialState: State = {
+    isLoading: true,
+    formData: initialValues,
+    lastStepID: undefined,
+};
+
+const getValidAttachments = (attachments: Attachment[] = []): Attachment[] => {
+    return attachments.filter((a) => {
+        return a.file?.name !== undefined;
+    });
+};
+
+const AppEssentialsLoader: React.FC<Props> = (props) => {
+    const [state, setState] = useState<State>(initialState);
+    const [apiCallError, setApiCallError] = useState<boolean>(false);
+    const { contentLoadedRenderer } = props;
+    const { isLoading, søkerdata, formData, lastStepID } = state;
+    const [doApiCalls, setDoApiCalls] = useState<boolean>(true);
+
+    const getValidMellomlagring = (data?: SoknadTempStorageData): SoknadTempStorageData | undefined => {
+        if (VERIFY_MELLOMLAGRING_VERSION) {
+            if (
+                data?.metadata?.version === MELLOMLAGRING_VERSION &&
+                data?.formData?.harForståttRettigheterOgPlikter === true
+            ) {
+                return data;
+            }
+            return undefined;
+        }
+        return data;
+    };
+
+    const handleSøkerdataFetchSuccess = (
+        søkerResponse: AxiosResponse,
+        barnResponse?: AxiosResponse,
+        tempStorageResponse: AxiosResponse
+    ) => {
+        const mellomlagring = getValidMellomlagring(tempStorageResponse?.data);
+        const formData = mellomlagring?.formData
+            ? {
+                  ...mellomlagring.formData,
+                  [AppFormField.legeerklæring]: getValidAttachments(mellomlagring.formData.legeerklæring),
+                  [AppFormField.samværsavtale]: getValidAttachments(mellomlagring.formData.samværsavtale),
+              }
+            : undefined;
+
+        const lastStepID = mellomlagring?.metadata?.lastStepID;
+
+        const updatedSokerData: Søkerdata | undefined = isSøkerApiResponse(søkerResponse.data)
+            ? {
+                  søkerdata: {
+                    person:søkerResponse.data,
+                    
+                  }
+              }
+            : undefined;
+
+        setState({
+            isLoading: false,
+            lastStepID: isSøknadFormData(søknadFormData) ? maybeStoredLastStepID : undefined,
+            formData: isSøknadFormData(søknadFormData) ? søknadFormData : { ...initialValues },
+            søkerdata: updatedSokerData,
+        });
+        if (!isSøkerApiResponse(søkerResponse.data)) {
+            setApiCallError(true);
+            appSentryLogger.logError('søkerApiResponse invalid (SøknadEssentialsLoader)');
+        }
+    };
 
     async function loadAppEssentials() {
         try {
@@ -62,7 +139,7 @@ const AppEssentialsLoader: React.FunctionComponent<Props> = (props) => {
     });
 
     const { contentLoadedRenderer } = props;
-    const { isLoading, søkerdata, hasNoAccess } = state;
+    const { isLoading, formdata, søkerdata, hasNoAccess } = state;
 
     if (isLoading) {
         return <LoadingPage />;
@@ -74,7 +151,9 @@ const AppEssentialsLoader: React.FunctionComponent<Props> = (props) => {
 
     return (
         <>
-            <SøkerdataContextProvider value={søkerdata}>{contentLoadedRenderer(søkerdata)}</SøkerdataContextProvider>
+            <SøkerdataContextProvider value={søkerdata}>
+                {contentLoadedRenderer(formdata, søkerdata)}
+            </SøkerdataContextProvider>
         </>
     );
 };

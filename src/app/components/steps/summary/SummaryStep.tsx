@@ -15,7 +15,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { sendApplication } from '../../../api/api';
 import { SKJEMANAVN } from '../../../App';
 import routeConfig from '../../../config/routeConfig';
-import { StepConfigProps, StepID } from '../../../config/stepConfig';
+import { getStepConfig, StepConfigProps, StepID } from '../../../config/stepConfig';
 import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
 import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
 import { BarnReceivedFromApi, Søkerdata } from '../../../types/Søkerdata';
@@ -31,6 +31,9 @@ import AnnetBarnSummary from './AnnetBarnSummary';
 import BarnRecveivedFormSApiSummary from './BarnReceivedFromApiSummary';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import { useState } from 'react';
+import { validateApiValues } from '../../../validation/apiValuesValidation';
+import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
+import ApiValidationSummary from './api-validation-summary/ApiValidationSummary';
 
 interface Props {
     onApplicationSent: () => void;
@@ -40,7 +43,8 @@ const SummaryStep: React.FC<StepConfigProps & Props> = ({ formValues, onApplicat
     const intl = useIntl();
     const [sendingInProgress, setSendingInProgress] = useState(false);
     const history = useHistory();
-
+    const søknadStepConfig = getStepConfig(formValues);
+    console.log('formValues1: ', formValues);
     const { logSoknadFailed, logSoknadSent } = useAmplitudeInstance();
 
     const soknadFailed = async (error: any) => {
@@ -68,22 +72,37 @@ const SummaryStep: React.FC<StepConfigProps & Props> = ({ formValues, onApplicat
         <SøkerdataContextConsumer>
             {({ person: { fornavn, mellomnavn, etternavn, fødselsnummer }, barn }: Søkerdata) => {
                 const apiValues = mapFormDataToApiData(formValues, barn, intl.locale as Locale);
+                const apiValuesValidationErrors = validateApiValues(apiValues, intl);
+                console.log('formValues: ', formValues);
                 return (
                     <FormikStep
                         id={StepID.SUMMARY}
-                        onValidFormSubmit={
-                            () => {
+                        onValidFormSubmit={() => {
+                            if (apiValuesValidationErrors === undefined) {
                                 setTimeout(() => {
+                                    // La view oppdatere seg først
                                     sendSoknad(barn);
                                 });
-                            } // La view oppdatere seg først
-                        }
+                            } else {
+                                document.getElementsByClassName('validationErrorSummary');
+                            }
+                        }}
                         useValidationErrorSummary={false}
                         showButtonSpinner={sendingInProgress}
-                        buttonDisabled={sendingInProgress}>
+                        buttonDisabled={
+                            sendingInProgress || (apiValuesValidationErrors && apiValuesValidationErrors.length > 0)
+                        }>
                         <CounsellorPanel>
                             <FormattedMessage id="steg.oppsummering.info" />
                         </CounsellorPanel>
+                        {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
+                            <FormBlock>
+                                <ApiValidationSummary
+                                    errors={apiValuesValidationErrors}
+                                    søknadStepConfig={søknadStepConfig}
+                                />
+                            </FormBlock>
+                        )}
                         <Box margin="xl">
                             <Panel border={true}>
                                 {/* Om deg */}

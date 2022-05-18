@@ -22,6 +22,7 @@
         "testEnvironment": "node"
     },
     "dependencies": {
+        "@devexperts/remote-data-ts": "^2.1.1",
         "@formatjs/intl-pluralrules": "^4.3.3",
         "@navikt/sif-common-amplitude": "^2.2.3",
         "@navikt/sif-common-core": "^11.1.0",
