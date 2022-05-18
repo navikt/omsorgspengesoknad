@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-import { useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
+import { ApplikasjonHendelse, useAmplitudeInstance, useLogSidevisning } from '@navikt/sif-common-amplitude/lib';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import intlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
@@ -11,6 +11,9 @@ import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadForm
 import { getStepTexts } from '../../utils/stepUtils';
 import AppForm from '../app-form/AppForm';
 import Step, { StepProps } from '../step/Step';
+import { navigateToNAVno, navigateToWelcomePage } from '../../utils/navigationUtils';
+import SøknadTempStorage from '../omsorgspengesøknad/SøknadTempStorage';
+import StepFooter from '@navikt/sif-common-core/lib/components/step-footer/StepFooter';
 
 const bem = bemUtils('step');
 
@@ -29,9 +32,22 @@ const FormikStep: React.FunctionComponent<Props> = (props) => {
     const intl = useIntl();
     const { children, onValidFormSubmit, showButtonSpinner, buttonDisabled, id } = props;
     const stepConfig = getStepConfig(formik.values);
+    const { logHendelse } = useAmplitudeInstance();
     const texts = getStepTexts(intl, id, stepConfig);
 
-    useLogSidevisning(props.id);
+    useLogSidevisning(id);
+
+    const handleAvsluttOgFortsettSenere = async () => {
+        await logHendelse(ApplikasjonHendelse.fortsettSenere);
+        navigateToNAVno();
+    };
+
+    const handleAvbrytOgSlettSøknad = async () => {
+        await logHendelse(ApplikasjonHendelse.avbryt);
+        SøknadTempStorage.purge().then(() => {
+            navigateToWelcomePage();
+        });
+    };
 
     return (
         <Step stepConfig={stepConfig} {...props}>
@@ -58,6 +74,10 @@ const FormikStep: React.FunctionComponent<Props> = (props) => {
                 }>
                 {children}
             </AppForm.Form>
+            <StepFooter
+                onAvbrytOgFortsettSenere={handleAvsluttOgFortsettSenere}
+                onAvbrytOgSlett={handleAvbrytOgSlettSøknad}
+            />
         </Step>
     );
 };

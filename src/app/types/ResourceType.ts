@@ -3,5 +3,5 @@ export enum ResourceType {
     SEND_SØKNAD = 'omsorgspenger-utvidet-rett/innsending',
     SØKER = 'oppslag/soker',
     VEDLEGG = 'vedlegg',
-    MELLOMLAGRING = 'mellomlagring',
+    MELLOMLAGRING = 'mellomlagring/OMSORGSPENGER_UTVIDET_RETT',
 }

@@ -18,7 +18,7 @@ server.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
     res.set('X-Content-Type-Options', 'nosniff');
     res.set('Access-Control-Allow-Headers', 'content-type');
-    res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'DELETE']);
+    res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'PUT', 'DELETE']);
     res.set('Access-Control-Allow-Credentials', true);
     next();
 });
@@ -119,30 +119,33 @@ const startExpressServer = () => {
         }, 2500);
     });
 
-    server.get('/mellomlagring', (req, res) => {
+    server.get('/mellomlagring/OMSORGSPENGER_UTVIDET_RETT', (req, res) => {
         if (existsSync(MELLOMLAGRING_JSON)) {
             const body = readFileSync(MELLOMLAGRING_JSON);
+
             res.send(JSON.parse(body));
         } else {
             res.send({});
         }
     });
 
-    server.put('/mellomlagring', (req, res) => {
+    server.put('/mellomlagring/OMSORGSPENGER_UTVIDET_RETT', (req, res) => {
         const body = req.body;
+
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
 
-    server.post('/mellomlagring', (req, res) => {
+    server.post('/mellomlagring/OMSORGSPENGER_UTVIDET_RETT', (req, res) => {
         const body = req.body;
+
         const jsBody = isJSON(body) ? JSON.parse(body) : body;
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
         res.sendStatus(200);
     });
 
-    server.delete('/mellomlagring', (req, res) => {
+    server.delete('/mellomlagring/OMSORGSPENGER_UTVIDET_RETT', (req, res) => {
         writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
         res.sendStatus(200);
     });

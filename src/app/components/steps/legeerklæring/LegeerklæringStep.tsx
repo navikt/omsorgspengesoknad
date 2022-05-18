@@ -21,11 +21,12 @@ import FormikFileUploader from '../../formik-file-uploader/FormikFileUploader';
 import FormikStep from '../../formik-step/FormikStep';
 import LegeerklæringFileList from '../../legeerklæring-attachment-list/LegeerklæringAttachmentList';
 
-const LegeerklæringStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit, formValues }) => {
+const LegeerklæringStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
     const intl = useIntl();
-    const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
-    const hasPendingUploads: boolean = (formValues.legeerklæring || []).find((a) => a.pending === true) !== undefined;
     const { values } = useFormikContext<OmsorgspengesøknadFormData>();
+    const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
+    const hasPendingUploads: boolean = (values.legeerklæring || []).find((a) => a.pending === true) !== undefined;
+
     const alleDokumenterISøknaden = valuesToAlleDokumenterISøknaden(values);
     const totalSize = getTotalSizeOfAttachments(alleDokumenterISøknaden);
     const totalSizeOfAttachmentsOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;

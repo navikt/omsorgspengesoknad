@@ -7,13 +7,14 @@ import {
     attachmentUploadHasFailed,
     getPendingAttachmentFromFile,
     isFileObject,
+    mapFileToPersistedFile,
     VALID_EXTENSIONS,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
 import { TypedFormInputValidationProps } from '@navikt/sif-common-formik';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import { ArrayHelpers, useFormikContext } from 'formik';
 import { uploadFile } from '../../api/api';
-import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
+import { AppFormField, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 import AppForm from '../app-form/AppForm';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
@@ -35,7 +36,7 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
     onUnauthorizedOrForbiddenUpload,
     ...otherProps
 }) => {
-    const { values } = useFormikContext();
+    const { values } = useFormikContext<OmsorgspengesøknadFormData>();
     async function uploadAttachment(attachment: Attachment) {
         const { file } = attachment;
         if (isFileObject(file)) {
@@ -96,7 +97,7 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
         attachment: Attachment,
         replaceFn: FieldArrayReplaceFn
     ) {
-        replaceFn(attachments.indexOf(attachment), attachment);
+        replaceFn(attachments.indexOf(attachment), { ...attachment, file: mapFileToPersistedFile(attachment.file) });
     }
 
     function setAttachmentPendingToFalse(attachment: Attachment) {

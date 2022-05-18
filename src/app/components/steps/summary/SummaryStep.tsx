@@ -15,10 +15,9 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { sendApplication } from '../../../api/api';
 import { SKJEMANAVN } from '../../../App';
 import routeConfig from '../../../config/routeConfig';
-import { getStepConfig, StepConfigProps, StepID } from '../../../config/stepConfig';
-import { SøkerdataContextConsumer } from '../../../context/SøkerdataContext';
-import { AppFormField } from '../../../types/OmsorgspengesøknadFormData';
-import { BarnReceivedFromApi, Søkerdata } from '../../../types/Søkerdata';
+import { getStepConfig, StepID } from '../../../config/stepConfig';
+import { AppFormField, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
+import { BarnReceivedFromApi } from '../../../types/Søkerdata';
 import * as apiUtils from '@navikt/sif-common-core/lib/utils/apiUtils';
 import appSentryLogger from '../../../utils/appSentryLogger';
 import { mapFormDataToApiData } from '../../../utils/mapFormDataToApiData';
@@ -34,17 +33,23 @@ import { useState } from 'react';
 import { validateApiValues } from '../../../validation/apiValuesValidation';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import ApiValidationSummary from './api-validation-summary/ApiValidationSummary';
+import { useFormikContext } from 'formik';
+import { SøkerdataContext } from '../../../context/SøkerdataContext';
+import { OmsorgspengesøknadApiData } from '../../../types/OmsorgspengesøknadApiData';
 
 interface Props {
+    registrerteBarn: BarnReceivedFromApi[];
     onApplicationSent: () => void;
 }
 
-const SummaryStep: React.FC<StepConfigProps & Props> = ({ formValues, onApplicationSent }) => {
+const SummaryStep: React.FC<Props> = ({ registrerteBarn, onApplicationSent }) => {
     const intl = useIntl();
+    const { values } = useFormikContext<OmsorgspengesøknadFormData>();
+    const søkerdata = React.useContext(SøkerdataContext);
     const [sendingInProgress, setSendingInProgress] = useState(false);
     const history = useHistory();
-    const søknadStepConfig = getStepConfig(formValues);
-    console.log('formValues1: ', formValues);
+    const søknadStepConfig = getStepConfig(values);
+
     const { logSoknadFailed, logSoknadSent } = useAmplitudeInstance();
 
     const soknadFailed = async (error: any) => {
@@ -53,11 +58,11 @@ const SummaryStep: React.FC<StepConfigProps & Props> = ({ formValues, onApplicat
         navigateTo(routeConfig.ERROR_PAGE_ROUTE, history);
     };
 
-    const sendSoknad = async (barn: BarnReceivedFromApi[]) => {
+    const sendSoknad = async (data: OmsorgspengesøknadApiData) => {
         setSendingInProgress(true);
-        const apiValues = mapFormDataToApiData(formValues, barn, intl.locale as Locale);
+
         try {
-            await sendApplication(apiValues);
+            await sendApplication(data);
             await logSoknadSent(SKJEMANAVN);
             onApplicationSent();
         } catch (error) {
@@ -68,119 +73,106 @@ const SummaryStep: React.FC<StepConfigProps & Props> = ({ formValues, onApplicat
             }
         }
     };
+
+    if (!søkerdata) {
+        return null;
+    }
+
+    const {
+        person: { fornavn, mellomnavn, etternavn, fødselsnummer },
+    } = søkerdata;
+
+    const apiValues = mapFormDataToApiData(values, registrerteBarn, intl.locale as Locale);
+    const apiValuesValidationErrors = validateApiValues(apiValues, intl);
+
     return (
-        <SøkerdataContextConsumer>
-            {({ person: { fornavn, mellomnavn, etternavn, fødselsnummer }, barn }: Søkerdata) => {
-                const apiValues = mapFormDataToApiData(formValues, barn, intl.locale as Locale);
-                const apiValuesValidationErrors = validateApiValues(apiValues, intl);
-                console.log('formValues: ', formValues);
-                return (
-                    <FormikStep
-                        id={StepID.SUMMARY}
-                        onValidFormSubmit={() => {
-                            if (apiValuesValidationErrors === undefined) {
-                                setTimeout(() => {
-                                    // La view oppdatere seg først
-                                    sendSoknad(barn);
-                                });
-                            } else {
-                                document.getElementsByClassName('validationErrorSummary');
-                            }
-                        }}
-                        useValidationErrorSummary={false}
-                        showButtonSpinner={sendingInProgress}
-                        buttonDisabled={
-                            sendingInProgress || (apiValuesValidationErrors && apiValuesValidationErrors.length > 0)
-                        }>
-                        <CounsellorPanel>
-                            <FormattedMessage id="steg.oppsummering.info" />
-                        </CounsellorPanel>
-                        {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
-                            <FormBlock>
-                                <ApiValidationSummary
-                                    errors={apiValuesValidationErrors}
-                                    søknadStepConfig={søknadStepConfig}
-                                />
-                            </FormBlock>
-                        )}
-                        <Box margin="xl">
-                            <Panel border={true}>
-                                {/* Om deg */}
-                                <SummarySection header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
-                                    <Box margin="l">
-                                        <Normaltekst>{formatName(fornavn, etternavn, mellomnavn)}</Normaltekst>
-                                        <Normaltekst>
-                                            <FormattedMessage
-                                                id="steg.oppsummering.søker.fnr"
-                                                values={{ fødselsnummer }}
-                                            />
-                                        </Normaltekst>
-                                    </Box>
-                                </SummarySection>
-
-                                {/* Om barnet */}
-                                <SummarySection header={intlHelper(intl, 'steg.oppsummering.barnet.header')}>
-                                    <Box margin="l">
-                                        {!formValues.søknadenGjelderEtAnnetBarn && barn && barn.length > 0 ? (
-                                            <BarnRecveivedFormSApiSummary
-                                                barn={barn}
-                                                barnetSøknadenGjelder={formValues.barnetSøknadenGjelder}
-                                            />
-                                        ) : (
-                                            <AnnetBarnSummary apiValues={apiValues} />
-                                        )}
-                                    </Box>
-                                    <Box margin="l">
-                                        <ContentWithHeader
-                                            header={intlHelper(
-                                                intl,
-                                                'steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header'
-                                            )}>
-                                            {apiValues.kroniskEllerFunksjonshemming === true && intlHelper(intl, 'Ja')}
-                                            {apiValues.kroniskEllerFunksjonshemming === false &&
-                                                intlHelper(intl, 'Nei')}
-                                        </ContentWithHeader>
-                                    </Box>
-                                    <Box margin="l">
-                                        <ContentWithHeader
-                                            header={intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.header')}>
-                                            {apiValues.sammeAdresse === true && intlHelper(intl, 'Ja')}
-                                            {apiValues.sammeAdresse === false && intlHelper(intl, 'Nei')}
-                                        </ContentWithHeader>
-                                    </Box>
-                                </SummarySection>
-
-                                {/* Vedlegg */}
-                                <SummarySection header={intlHelper(intl, 'steg.oppsummering.vedlegg.header')}>
-                                    <Box margin="m">
-                                        <ContentWithHeader
-                                            header={intlHelper(intl, 'steg.oppsummering.legeerklæring.header')}>
-                                            <LegeerklæringAttachmentList includeDeletionFunctionality={false} />
-                                        </ContentWithHeader>
-                                    </Box>
-                                    {apiValues.samværsavtale && (
-                                        <Box margin="m">
-                                            <ContentWithHeader
-                                                header={intlHelper(intl, 'steg.oppsummering.samværsavtale.header')}>
-                                                <DeltBostedAvtaleAttachmentList includeDeletionFunctionality={false} />
-                                            </ContentWithHeader>
-                                        </Box>
-                                    )}
-                                </SummarySection>
-                            </Panel>
-                        </Box>
-
-                        <Box margin="l">
-                            <FormikConfirmationCheckboxPanel<AppFormField, ValidationError>
-                                label={intlHelper(intl, 'steg.oppsummering.bekrefterOpplysninger')}
-                                name={AppFormField.harBekreftetOpplysninger}
-                                validate={getCheckedValidator()}
-                            />
-                        </Box>
-                    </FormikStep>
-                );
+        <FormikStep
+            id={StepID.SUMMARY}
+            onValidFormSubmit={() => {
+                setTimeout(() => {
+                    sendSoknad(apiValues); // La view oppdatere seg først
+                });
             }}
-        </SøkerdataContextConsumer>
+            useValidationErrorSummary={false}
+            showButtonSpinner={sendingInProgress}
+            buttonDisabled={sendingInProgress || (apiValuesValidationErrors && apiValuesValidationErrors.length > 0)}>
+            <CounsellorPanel>
+                <FormattedMessage id="steg.oppsummering.info" />
+            </CounsellorPanel>
+            {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
+                <FormBlock>
+                    <ApiValidationSummary errors={apiValuesValidationErrors} søknadStepConfig={søknadStepConfig} />
+                </FormBlock>
+            )}
+            <Box margin="xl">
+                <Panel border={true}>
+                    {/* Om deg */}
+                    <SummarySection header={intlHelper(intl, 'steg.oppsummering.søker.header')}>
+                        <Box margin="l">
+                            <Normaltekst>{formatName(fornavn, etternavn, mellomnavn)}</Normaltekst>
+                            <Normaltekst>
+                                <FormattedMessage id="steg.oppsummering.søker.fnr" values={{ fødselsnummer }} />
+                            </Normaltekst>
+                        </Box>
+                    </SummarySection>
+
+                    {/* Om barnet */}
+                    <SummarySection header={intlHelper(intl, 'steg.oppsummering.barnet.header')}>
+                        <Box margin="l">
+                            {!values.søknadenGjelderEtAnnetBarn && registrerteBarn && registrerteBarn.length > 0 ? (
+                                <BarnRecveivedFormSApiSummary
+                                    barn={registrerteBarn}
+                                    barnetSøknadenGjelder={values.barnetSøknadenGjelder}
+                                />
+                            ) : (
+                                <AnnetBarnSummary apiValues={apiValues} />
+                            )}
+                        </Box>
+                        <Box margin="l">
+                            <ContentWithHeader
+                                header={intlHelper(
+                                    intl,
+                                    'steg.oppsummering.barnet.kroniskEllerFunksjonshemmende.header'
+                                )}>
+                                {apiValues.kroniskEllerFunksjonshemming === true && intlHelper(intl, 'Ja')}
+                                {apiValues.kroniskEllerFunksjonshemming === false && intlHelper(intl, 'Nei')}
+                            </ContentWithHeader>
+                        </Box>
+                        <Box margin="l">
+                            <ContentWithHeader
+                                header={intlHelper(intl, 'steg.oppsummering.barnet.sammeAdresse.header')}>
+                                {apiValues.sammeAdresse === true && intlHelper(intl, 'Ja')}
+                                {apiValues.sammeAdresse === false && intlHelper(intl, 'Nei')}
+                            </ContentWithHeader>
+                        </Box>
+                    </SummarySection>
+
+                    {/* Vedlegg */}
+                    <SummarySection header={intlHelper(intl, 'steg.oppsummering.vedlegg.header')}>
+                        <Box margin="m">
+                            <ContentWithHeader header={intlHelper(intl, 'steg.oppsummering.legeerklæring.header')}>
+                                <LegeerklæringAttachmentList includeDeletionFunctionality={false} />
+                            </ContentWithHeader>
+                        </Box>
+                        {apiValues.samværsavtale && (
+                            <Box margin="m">
+                                <ContentWithHeader header={intlHelper(intl, 'steg.oppsummering.samværsavtale.header')}>
+                                    <DeltBostedAvtaleAttachmentList includeDeletionFunctionality={false} />
+                                </ContentWithHeader>
+                            </Box>
+                        )}
+                    </SummarySection>
+                </Panel>
+            </Box>
+
+            <Box margin="l">
+                <FormikConfirmationCheckboxPanel<AppFormField, ValidationError>
+                    label={intlHelper(intl, 'steg.oppsummering.bekrefterOpplysninger')}
+                    name={AppFormField.harBekreftetOpplysninger}
+                    validate={getCheckedValidator()}
+                />
+            </Box>
+        </FormikStep>
     );
 };
 

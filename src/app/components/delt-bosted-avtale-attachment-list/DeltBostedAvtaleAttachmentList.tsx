@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { connect, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 import { Normaltekst } from 'nav-frontend-typografi';
 import AttachmentListWithDeletion from '@navikt/sif-common-core/lib/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core/lib/components/attachment-list/AttachmentList';
@@ -12,7 +12,7 @@ import {
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
 import { removeElementFromArray } from '@navikt/sif-common-core/lib/utils/listUtils';
 import { deleteFile } from '../../api/api';
-import { AppFormField } from '../../types/OmsorgspengesøknadFormData';
+import { AppFormField, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -23,10 +23,8 @@ const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     wrapNoAttachmentsInBox,
     includeDeletionFunctionality,
 }) => {
-    const { values, setFieldValue } = useFormikContext<AppFormField>();
-    const avtale: Attachment[] = values[AppFormField.samværsavtale].filter(({ file }: Attachment) =>
-        fileExtensionIsValid(file.name)
-    );
+    const { values, setFieldValue } = useFormikContext<OmsorgspengesøknadFormData>();
+    const avtale: Attachment[] = values.samværsavtale.filter(({ file }: Attachment) => fileExtensionIsValid(file.name));
 
     if (!containsAnyUploadedAttachments(avtale)) {
         const noAttachmentsText = (
@@ -65,4 +63,4 @@ const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     }
 };
 
-export default connect<Props, AppFormField>(DeltBostedAvtaleAttachmentList);
+export default DeltBostedAvtaleAttachmentList;

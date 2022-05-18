@@ -112,6 +112,21 @@
     "modal.minePlikter.part2a": "Jeg har lest og forstått det som står på",
     "modal.minePlikter.part2b": "nav.no/rettogplikt",
 
+    "avbrytSøknadDialog.avbrytSøknadLabel": "Ja, avbryt søknad",
+    "avbrytSøknadDialog.fortsettSøknadLabel": "Nei",
+    "avbrytSøknadDialog.intro": "Det du har fylt ut i søknaden blir slettet, og du kommer tilbake til velkomstsiden.",
+    "avbrytSøknadDialog.spørsmål": "Ønsker du å slette søknaden?",
+    "avbrytSøknadDialog.tittel": "Avbryt og slett søknad",
+
+    "fortsettSøknadSenereDialog.avbrytSøknadLabel": "Ja, fortsett senere",
+    "fortsettSøknadSenereDialog.fortsettSøknadLabel": "Nei",
+    "fortsettSøknadSenereDialog.intro": "Vi lagrer søknaden din for deg i 24 timer.",
+    "fortsettSøknadSenereDialog.spørsmål": "Vil du avslutte nå og fortsette senere?",
+    "fortsettSøknadSenereDialog.tittel": "Avslutt og fortsett senere",
+
+    "steg.footer.avbryt": "Avbryt og slett søknad",
+    "steg.footer.fortsettSenere": "Avslutt og fortsett senere",
+
     "steg.omBarnet.hvilketBarn.spm": "Hvilket barn gjelder søknaden?",
     "steg.omBarnet.hvilketBarn.registrerteBarn": "Barn registrert på deg:",
     "steg.omBarnet.hvilketBarn.info": "Hvis du skal søke for flere barn, må du sende én søknad for hvert barn.",

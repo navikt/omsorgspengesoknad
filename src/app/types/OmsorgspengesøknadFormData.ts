@@ -33,7 +33,7 @@ export interface OmsorgspengesøknadFormData {
     [AppFormField.barnetSøknadenGjelder]: string;
     [AppFormField.sammeAdresse]?: YesOrNo;
     [AppFormField.legeerklæring]: Attachment[];
-    [AppFormField.samværsavtale]?: Attachment[];
+    [AppFormField.samværsavtale]: Attachment[];
 }
 
 export const initialValues: OmsorgspengesøknadFormData = {

@@ -26,14 +26,15 @@ import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types'
 import { getUploadedAttachments } from '../../../utils/attachmentUtils';
 
 const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onValidSubmit }) => {
-    const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
     const intl = useIntl();
     const { values } = useFormikContext<OmsorgspengesøknadFormData>();
+    const [filesThatDidntGetUploaded, setFilesThatDidntGetUploaded] = React.useState<File[]>([]);
+
+    const hasPendingUploads: boolean = (values.samværsavtale || []).find((a: any) => a.pending === true) !== undefined;
     const otherAttachmentsInSøknad = values.legeerklæring;
     const samværsavtaleAttachments = values.samværsavtale ? values.samværsavtale : [];
     const totalSize = getTotalSizeOfAttachments([...samværsavtaleAttachments, ...otherAttachmentsInSøknad]);
     const totalSizeOfAttachmentsOver24Mb = totalSize > MAX_TOTAL_ATTACHMENT_SIZE_BYTES;
-    const hasPendingUploads: boolean = (values.samværsavtale || []).find((a: any) => a.pending === true) !== undefined;
 
     return (
         <FormikStep
@@ -55,6 +56,7 @@ const DeltBostedAvtaleStep: React.FunctionComponent<StepConfigProps> = ({ onVali
             <Box margin={'l'}>
                 <PictureScanningGuide />
             </Box>
+
             {totalSize <= MAX_TOTAL_ATTACHMENT_SIZE_BYTES && (
                 <FormBlock>
                     <FormikFileUploader

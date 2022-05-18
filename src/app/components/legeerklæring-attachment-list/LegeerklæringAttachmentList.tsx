@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { connect, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 import { Normaltekst } from 'nav-frontend-typografi';
 import AttachmentListWithDeletion from '@navikt/sif-common-core/lib/components/attachment-list-with-deletion/AttachmentListWithDeletion';
 import AttachmentList from '@navikt/sif-common-core/lib/components/attachment-list/AttachmentList';
@@ -72,4 +72,4 @@ const LegeerklæringAttachmentList: React.FunctionComponent<Props> = ({
     }
 };
 
-export default connect<Props, AppFormField>(LegeerklæringAttachmentList);
+export default LegeerklæringAttachmentList;

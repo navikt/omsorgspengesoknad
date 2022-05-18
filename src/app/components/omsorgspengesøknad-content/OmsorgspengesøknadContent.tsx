@@ -4,7 +4,7 @@ import { useFormikContext } from 'formik';
 import RouteConfig from '../../config/routeConfig';
 import { StepID } from '../../config/stepConfig';
 import { OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
-import { navigateTo } from '../../utils/navigationUtils';
+import { navigateTo, navigateToLoginPage } from '../../utils/navigationUtils';
 import { getNextStepRoute, getSøknadRoute, isAvailable } from '../../utils/routeUtils';
 import ConfirmationPage from '../pages/confirmation-page/ConfirmationPage';
 import GeneralErrorPage from '../pages/general-error-page/GeneralErrorPage';
@@ -15,19 +15,39 @@ import DeltBostedAvtaleStep from '../steps/delt-bosted-avtale/DeltBostedAvtaleSt
 import SummaryStep from '../steps/summary/SummaryStep';
 import { useAmplitudeInstance } from '@navikt/sif-common-amplitude/lib';
 import { SKJEMANAVN } from '../../App';
+import SøknadTempStorage from '../omsorgspengesøknad/SøknadTempStorage';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core/lib/utils/apiUtils';
+import appSentryLogger from '../../utils/appSentryLogger';
+import { BarnReceivedFromApi, Person } from '../../types/Søkerdata';
 
-const OmsorgspengesøknadContent: React.FC = () => {
+interface Props {
+    søker: Person;
+    barn?: BarnReceivedFromApi[];
+}
+
+const OmsorgspengesøknadContent: React.FC<Props> = ({ søker, barn = [] }) => {
     const [søknadHasBeenSent, setSøknadHasBeenSent] = React.useState(false);
     const { values, resetForm } = useFormikContext<OmsorgspengesøknadFormData>();
     const history = useHistory();
-    console.log(values);
+
     const { logSoknadStartet } = useAmplitudeInstance();
 
-    const navigateToNextStep = (stepId: StepID) => {
+    const navigateToNextStep = async (stepId: StepID) => {
         setTimeout(() => {
             const nextStepRoute = getNextStepRoute(stepId, values);
             if (nextStepRoute) {
-                navigateTo(nextStepRoute, history);
+                SøknadTempStorage.update(values, stepId)
+                    .then(() => {
+                        navigateTo(nextStepRoute, history);
+                    })
+                    .catch((error) => {
+                        if (isForbidden(error) || isUnauthorized(error)) {
+                            navigateToLoginPage();
+                        } else {
+                            appSentryLogger.logApiError(error);
+                            navigateTo(RouteConfig.ERROR_PAGE_ROUTE, history);
+                        }
+                    });
             }
         });
     };
@@ -35,7 +55,9 @@ const OmsorgspengesøknadContent: React.FC = () => {
     const startSoknad = async () => {
         await logSoknadStartet(SKJEMANAVN);
         setTimeout(() => {
-            navigateTo(`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${StepID.OPPLYSNINGER_OM_BARNET}`, history);
+            SøknadTempStorage.create().then(() => {
+                navigateTo(`${RouteConfig.SØKNAD_ROUTE_PREFIX}/${StepID.OPPLYSNINGER_OM_BARNET}`, history);
+            });
         });
     };
 
@@ -51,8 +73,10 @@ const OmsorgspengesøknadContent: React.FC = () => {
                     path={getSøknadRoute(StepID.OPPLYSNINGER_OM_BARNET)}
                     render={() => (
                         <OpplysningerOmBarnetStep
-                            onValidSubmit={() => navigateToNextStep(StepID.OPPLYSNINGER_OM_BARNET)}
+                            barn={barn}
+                            søker={søker}
                             formValues={values}
+                            onValidSubmit={() => navigateToNextStep(StepID.OPPLYSNINGER_OM_BARNET)}
                         />
                     )}
                 />
@@ -61,24 +85,14 @@ const OmsorgspengesøknadContent: React.FC = () => {
             {isAvailable(StepID.LEGEERKLÆRING, values) && (
                 <Route
                     path={getSøknadRoute(StepID.LEGEERKLÆRING)}
-                    render={() => (
-                        <LegeerklæringStep
-                            onValidSubmit={() => navigateToNextStep(StepID.LEGEERKLÆRING)}
-                            formValues={values}
-                        />
-                    )}
+                    render={() => <LegeerklæringStep onValidSubmit={() => navigateToNextStep(StepID.LEGEERKLÆRING)} />}
                 />
             )}
 
             {isAvailable(StepID.DELT_BOSTED, values) && (
                 <Route
                     path={getSøknadRoute(StepID.DELT_BOSTED)}
-                    render={() => (
-                        <DeltBostedAvtaleStep
-                            onValidSubmit={() => navigateToNextStep(StepID.DELT_BOSTED)}
-                            formValues={values}
-                        />
-                    )}
+                    render={() => <DeltBostedAvtaleStep onValidSubmit={() => navigateToNextStep(StepID.DELT_BOSTED)} />}
                 />
             )}
 
@@ -87,11 +101,11 @@ const OmsorgspengesøknadContent: React.FC = () => {
                     path={getSøknadRoute(StepID.SUMMARY)}
                     render={() => (
                         <SummaryStep
-                            formValues={values}
-                            onValidSubmit={() => null}
+                            registrerteBarn={barn}
                             onApplicationSent={() => {
                                 setSøknadHasBeenSent(true);
                                 resetForm();
+                                SøknadTempStorage.purge();
                                 navigateTo(RouteConfig.SØKNAD_SENDT_ROUTE, history);
                             }}
                         />

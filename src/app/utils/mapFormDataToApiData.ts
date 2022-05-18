@@ -63,7 +63,7 @@ export const mapFormDataToApiData = (
             .filter((attachment) => !attachmentUploadHasFailed(attachment))
             .map(({ url }) => url!),
         samværsavtale:
-            samværsavtale && samværsavtale.length > 0
+            sammeAdresse === YesOrNo.NO && samværsavtale && samværsavtale.length > 0
                 ? samværsavtale.filter((attachment) => !attachmentUploadHasFailed(attachment)).map(({ url }) => url!)
                 : undefined,
         harBekreftetOpplysninger,

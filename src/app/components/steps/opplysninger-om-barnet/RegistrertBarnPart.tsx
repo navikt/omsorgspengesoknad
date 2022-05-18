@@ -9,8 +9,8 @@ import { getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validat
 import { useFormikContext } from 'formik';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { AppFormField, initialValues, OmsorgspengesøknadFormData } from '../../../types/OmsorgspengesøknadFormData';
-import { BarnReceivedFromApi } from '../../../types/Søkerdata';
 import AppForm from '../../app-form/AppForm';
+import { BarnReceivedFromApi } from '../../../types/Søkerdata';
 
 interface Props {
     søkersBarn: BarnReceivedFromApi[];
