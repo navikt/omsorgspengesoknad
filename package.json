@@ -1,6 +1,6 @@
 {
     "name": "omsorgspengesoknad",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Selvbetjeningsløsning for søknad om omsorgspenger",
     "repository": "https://github.com/navikt/omsorgspengesoknad",
     "license": "MIT",
@@ -22,13 +22,12 @@
         "testEnvironment": "node"
     },
     "dependencies": {
-        "@formatjs/intl-pluralrules": "^4.3.3",
-        "@navikt/sif-common-amplitude": "^2.2.3",
+        "@navikt/sif-common-amplitude": "^2.4.0",
         "@navikt/sif-common-core": "^11.3.0",
         "@navikt/sif-common-formik": "23.1.0",
         "@navikt/sif-common-sentry": "^0.3.1",
         "@navikt/sif-common-soknad": "^5.3.0",
-        "@snyk/protect": "^1.932.0",
+        "@snyk/protect": "^1.935.0",
         "amplitude-js": "^8.18.2",
         "axios": "^0.27.2",
         "busboy": "^1.6.0",
@@ -63,9 +62,9 @@
         "ulid": "^2.3.0"
     },
     "devDependencies": {
-        "@babel/plugin-proposal-object-rest-spread": "^7.17.12",
-        "@babel/plugin-transform-modules-commonjs": "^7.17.12",
-        "@babel/preset-env": "^7.17.12",
+        "@babel/plugin-proposal-object-rest-spread": "^7.18.0",
+        "@babel/plugin-transform-modules-commonjs": "^7.18.0",
+        "@babel/preset-env": "^7.18.0",
         "@babel/preset-react": "^7.17.12",
         "@types/enzyme": "^3.10.12",
         "@types/jest": "^27.5.1",
@@ -83,7 +82,7 @@
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-prettier": "^4.0.0",
-        "eslint-plugin-react": "^7.29.4",
+        "eslint-plugin-react": "^7.30.0",
         "html-webpack-harddisk-plugin": "^2.0.0",
         "html-webpack-plugin": "^5.5.0",
         "jest": "^28.1.0",
