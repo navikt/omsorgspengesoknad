@@ -11,8 +11,8 @@ import {
     fileExtensionIsValid,
 } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
 import { removeElementFromArray } from '@navikt/sif-common-core/lib/utils/listUtils';
-import { deleteFile } from '../../api/api';
-import { AppFormField, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
+import { SoknadFormField, SoknadFormData } from '../../types/SoknadFormData';
+import api from '../../api/api';
 
 interface Props {
     includeDeletionFunctionality: boolean;
@@ -23,7 +23,7 @@ const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
     wrapNoAttachmentsInBox,
     includeDeletionFunctionality,
 }) => {
-    const { values, setFieldValue } = useFormikContext<OmsorgspengesøknadFormData>();
+    const { values, setFieldValue } = useFormikContext<SoknadFormData>();
     const avtale: Attachment[] = values.samværsavtale.filter(({ file }: Attachment) => fileExtensionIsValid(file.name));
 
     if (!containsAnyUploadedAttachments(avtale)) {
@@ -44,14 +44,20 @@ const DeltBostedAvtaleAttachmentList: React.FunctionComponent<Props> = ({
                 attachments={avtale}
                 onRemoveAttachmentClick={(attachment: Attachment) => {
                     attachment.pending = true;
-                    setFieldValue(AppFormField.samværsavtale, avtale);
+                    setFieldValue(SoknadFormField.samværsavtale, avtale);
                     if (attachment.url) {
-                        deleteFile(attachment.url).then(
+                        api.deleteFile(attachment.url).then(
                             () => {
-                                setFieldValue(AppFormField.samværsavtale, removeElementFromArray(attachment, avtale));
+                                setFieldValue(
+                                    SoknadFormField.samværsavtale,
+                                    removeElementFromArray(attachment, avtale)
+                                );
                             },
                             () => {
-                                setFieldValue(AppFormField.samværsavtale, removeElementFromArray(attachment, avtale));
+                                setFieldValue(
+                                    SoknadFormField.samværsavtale,
+                                    removeElementFromArray(attachment, avtale)
+                                );
                             }
                         );
                     }

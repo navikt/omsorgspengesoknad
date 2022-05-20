@@ -1,17 +1,24 @@
+import { StepID } from '../soknad/soknadStepsConfig';
 import { History } from 'history';
-import routeConfig, { getRouteUrl } from '../config/routeConfig';
 import { getEnvironmentVariable } from './envUtils';
-import { StepID } from '../config/stepConfig';
+import RouteConfig, { getRouteUrl } from '../config/routeConfig';
 
 const loginUrl = getEnvironmentVariable('LOGIN_URL');
 const navNoUrl = 'https://www.nav.no/';
-const welcomePageUrl = `${getEnvironmentVariable('PUBLIC_PATH')}${routeConfig.WELCOMING_PAGE_ROUTE}`;
+const welcomePageUrl = `${getEnvironmentVariable('PUBLIC_PATH')}${RouteConfig.SØKNAD_ROUTE_PREFIX}`;
+const relocateTo = (url: string) => {
+    window.location.assign(url);
+};
 
 export const navigateTo = (route: string, history: History) => history.push(route);
-export const navigateToErrorPage = (history: History) => history.push(routeConfig.ERROR_PAGE_ROUTE);
-export const navigateToLoginPage = () => window.location.assign(loginUrl);
-export const userIsCurrentlyOnErrorPage = () => window.location.pathname === getRouteUrl(routeConfig.ERROR_PAGE_ROUTE);
+
+export const userIsCurrentlyOnErrorPage = () => window.location.pathname === getRouteUrl(RouteConfig.ERROR_PAGE_ROUTE);
 export const navigateToSoknadStep = (step: StepID, history: History): void => history.push(`${step}`);
 export const navigateToWelcomePage = () => window.location.assign(welcomePageUrl);
 export const userIsOnStep = (stepID: StepID, history: History) => history.location.pathname.indexOf(`/${stepID}`) >= 0;
-export const navigateToNAVno = () => window.location.assign(navNoUrl);
+
+export const relocateToLoginPage = () => relocateTo(getEnvironmentVariable(loginUrl));
+export const relocateToNavFrontpage = () => relocateTo(navNoUrl);
+export const relocateToSoknad = () => relocateTo(getRouteUrl(RouteConfig.SØKNAD_ROUTE_PREFIX));
+export const navigateToErrorPage = (history: History) => navigateTo(RouteConfig.ERROR_PAGE_ROUTE, history);
+export const navigateToKvitteringPage = (history: History) => navigateTo(RouteConfig.SØKNAD_SENDT_ROUTE, history);

@@ -1,38 +1,14 @@
-import { IntlShape } from 'react-intl';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { StepConfigInterface, StepConfigItemTexts, StepID } from '../config/stepConfig';
-import { AppFormField, OmsorgspengesøknadFormData, SøkersRelasjonTilBarnet } from '../types/OmsorgspengesøknadFormData';
-import {
-    legeerklæringStepIsValid,
-    opplysningerOmBarnetStepIsValid,
-    samværsavtaleStepIsValid,
-    welcomingPageIsValid,
-} from '../validation/stepValidations';
+import { SoknadFormField, SoknadFormData, SøkersRelasjonTilBarnet } from '../types/SoknadFormData';
+import { legeerklæringStepIsValid, samværsavtaleStepIsValid } from '../validation/stepValidations';
 
-export const includeAvtaleStep = (formData: Partial<OmsorgspengesøknadFormData>): boolean =>
+export const includeAvtaleStep = (formData: Partial<SoknadFormData>): boolean =>
     formData !== undefined &&
-    formData[AppFormField.sammeAdresse] === YesOrNo.NO &&
-    formData[AppFormField.søkersRelasjonTilBarnet] !== SøkersRelasjonTilBarnet.FOSTERFORELDER;
+    formData[SoknadFormField.sammeAdresse] === YesOrNo.NO &&
+    formData[SoknadFormField.søkersRelasjonTilBarnet] !== SøkersRelasjonTilBarnet.FOSTERFORELDER;
 
-export const getStepTexts = (intl: IntlShape, stepId: StepID, stepConfig: StepConfigInterface): StepConfigItemTexts => {
-    const conf = stepConfig[stepId];
-    return {
-        pageTitle: intlHelper(intl, conf.pageTitle),
-        stepTitle: intlHelper(intl, conf.stepTitle),
-        stepIndicatorLabel: intlHelper(intl, conf.stepIndicatorLabel),
-        nextButtonLabel: conf.nextButtonLabel ? intlHelper(intl, conf.nextButtonLabel) : undefined,
-        nextButtonAriaLabel: conf.nextButtonAriaLabel ? intlHelper(intl, conf.nextButtonAriaLabel) : undefined,
-    };
-};
+export const samværsavtaleStepAvailable = (values: SoknadFormData) =>
+    includeAvtaleStep(values) && legeerklæringStepIsValid();
 
-export const opplysningerOmBarnetStepAvailable = (formData: OmsorgspengesøknadFormData) =>
-    welcomingPageIsValid(formData);
-
-export const legeerklæringStepAvailable = (formData: OmsorgspengesøknadFormData) =>
-    opplysningerOmBarnetStepIsValid(formData);
-
-export const samværsavtaleStepAvailable = () => legeerklæringStepIsValid();
-
-export const summaryStepAvailable = (values: OmsorgspengesøknadFormData) =>
+export const summaryStepAvailable = (values: SoknadFormData) =>
     includeAvtaleStep(values) ? samværsavtaleStepIsValid(values) : legeerklæringStepIsValid();

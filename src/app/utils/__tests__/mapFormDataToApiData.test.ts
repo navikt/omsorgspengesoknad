@@ -1,33 +1,27 @@
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import * as attachmentUtils from '@navikt/sif-common-core/lib/utils/attachmentUtils';
+import { Barn } from '../../types/Barn';
 import dayjs from 'dayjs';
-import { OmsorgspengesøknadApiData } from '../../types/OmsorgspengesøknadApiData';
-import {
-    AppFormField,
-    OmsorgspengesøknadFormData,
-    SøkersRelasjonTilBarnet,
-} from '../../types/OmsorgspengesøknadFormData';
-import { BarnReceivedFromApi } from '../../types/Søkerdata';
+import { SoknadApiData } from '../../types/SoknadApiData';
+import { SoknadFormField, SoknadFormData, SøkersRelasjonTilBarnet } from '../../types/SoknadFormData';
 import { mapFormDataToApiData } from '../mapFormDataToApiData';
 
 const todaysDate = dayjs().startOf('day').toDate();
 
-const barnMock: BarnReceivedFromApi[] = [
-    { fødselsdato: todaysDate, fornavn: 'Mock', etternavn: 'Mocknes', aktørId: '123' },
-];
+const barnMock: Barn[] = [{ fødselsdato: todaysDate, fornavn: 'Mock', etternavn: 'Mocknes', aktørId: '123' }];
 
 type AttachmentMock = Attachment & { failed: boolean };
 const attachmentMock1: Partial<AttachmentMock> = { url: 'nav.no/1', failed: true };
 const attachmentMock2: Partial<AttachmentMock> = { url: 'nav.no/2', failed: false };
 const attachmentMock3: Partial<AttachmentMock> = { url: 'nav.no/3', failed: false };
 
-const formDataMock: Partial<OmsorgspengesøknadFormData> = {
-    [AppFormField.barnetsNavn]: 'Ola Foobar',
-    [AppFormField.harBekreftetOpplysninger]: true,
-    [AppFormField.harForståttRettigheterOgPlikter]: true,
-    [AppFormField.søkersRelasjonTilBarnet]: SøkersRelasjonTilBarnet.MOR,
-    [AppFormField.legeerklæring]: [attachmentMock1 as AttachmentMock, attachmentMock2 as AttachmentMock],
-    [AppFormField.samværsavtale]: [attachmentMock3 as AttachmentMock],
+const formDataMock: Partial<SoknadFormData> = {
+    [SoknadFormField.barnetsNavn]: 'Ola Foobar',
+    [SoknadFormField.harBekreftetOpplysninger]: true,
+    [SoknadFormField.harForståttRettigheterOgPlikter]: true,
+    [SoknadFormField.søkersRelasjonTilBarnet]: SøkersRelasjonTilBarnet.MOR,
+    [SoknadFormField.legeerklæring]: [attachmentMock1 as AttachmentMock, attachmentMock2 as AttachmentMock],
+    [SoknadFormField.samværsavtale]: [attachmentMock3 as AttachmentMock],
 };
 
 jest.mock('@navikt/sif-common-core/lib/utils/dateUtils', () => {
@@ -43,18 +37,18 @@ jest.mock('@navikt/sif-common-core/lib/utils/attachmentUtils', () => {
 });
 
 describe('mapFormDataToApiData', () => {
-    let resultingApiData: OmsorgspengesøknadApiData;
+    let resultingApiData: SoknadApiData;
 
     beforeAll(() => {
-        resultingApiData = mapFormDataToApiData(formDataMock as OmsorgspengesøknadFormData, barnMock, 'nb');
+        resultingApiData = mapFormDataToApiData(formDataMock as SoknadFormData, barnMock, 'nb');
     });
 
     it("should set 'barnetsNavn' in api data correctly", () => {
-        expect(resultingApiData.barn.navn).toEqual(formDataMock[AppFormField.barnetsNavn]);
+        expect(resultingApiData.barn.navn).toEqual(formDataMock[SoknadFormField.barnetsNavn]);
     });
 
     it("should set 'relasjonTilBarnet' in api data correctly", () => {
-        expect(resultingApiData.relasjonTilBarnet).toEqual(formDataMock[AppFormField.søkersRelasjonTilBarnet]);
+        expect(resultingApiData.relasjonTilBarnet).toEqual(formDataMock[SoknadFormField.søkersRelasjonTilBarnet]);
     });
 
     it("should set 'vedlegg' in api data correctly by only including the urls of attachments that have been successfully uploaded", () => {
@@ -67,21 +61,21 @@ describe('mapFormDataToApiData', () => {
     it("should set 'fødselsnummer' in api data to undefined if it doesnt exist, and otherwise it should assign value to 'fødselsnummer' in api data", () => {
         const fnr = '12345123456';
         expect(resultingApiData.barn.norskIdentifikator).toBeNull();
-        const formDataWithFnr: Partial<OmsorgspengesøknadFormData> = {
+        const formDataWithFnr: Partial<SoknadFormData> = {
             ...formDataMock,
-            [AppFormField.barnetsFødselsnummer]: fnr,
+            [SoknadFormField.barnetsFødselsnummer]: fnr,
         };
-        const result = mapFormDataToApiData(formDataWithFnr as OmsorgspengesøknadFormData, barnMock, 'nb');
+        const result = mapFormDataToApiData(formDataWithFnr as SoknadFormData, barnMock, 'nb');
         expect(result.barn.norskIdentifikator).toEqual(fnr);
     });
 
     it('should set harBekreftetOpplysninger to value of harBekreftetOpplysninger in form data', () => {
-        expect(resultingApiData.harBekreftetOpplysninger).toBe(formDataMock[AppFormField.harBekreftetOpplysninger]);
+        expect(resultingApiData.harBekreftetOpplysninger).toBe(formDataMock[SoknadFormField.harBekreftetOpplysninger]);
     });
 
     it('should set har_forstått_rettigheter_og_plikter to value of harForståttRettigheterOgPlikter in form data', () => {
         expect(resultingApiData.harForståttRettigheterOgPlikter).toBe(
-            formDataMock[AppFormField.harForståttRettigheterOgPlikter]
+            formDataMock[SoknadFormField.harForståttRettigheterOgPlikter]
         );
     });
 });

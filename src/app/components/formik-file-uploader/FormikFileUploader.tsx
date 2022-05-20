@@ -13,16 +13,17 @@ import {
 import { TypedFormInputValidationProps } from '@navikt/sif-common-formik';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import { ArrayHelpers, useFormikContext } from 'formik';
-import { uploadFile } from '../../api/api';
-import { AppFormField, OmsorgspengesøknadFormData } from '../../types/OmsorgspengesøknadFormData';
-import AppForm from '../app-form/AppForm';
+import api from '../../api/api';
+import { SoknadFormField, SoknadFormData } from '../../types/SoknadFormData';
+import SoknadFormComponents from '../../soknad/SoknadFormComponents';
+import { ApiEndpoint } from '../../types/ApiEndpoint';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
 export type FieldArrayRemoveFn = (index: number) => undefined;
 
-interface Props extends TypedFormInputValidationProps<AppFormField, ValidationError> {
-    name: AppFormField;
+interface Props extends TypedFormInputValidationProps<SoknadFormField, ValidationError> {
+    name: SoknadFormField;
     label: string;
     onFileInputClick?: () => void;
     onErrorUploadingAttachments: (files: File[]) => void;
@@ -36,12 +37,12 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
     onUnauthorizedOrForbiddenUpload,
     ...otherProps
 }) => {
-    const { values } = useFormikContext<OmsorgspengesøknadFormData>();
+    const { values } = useFormikContext<SoknadFormData>();
     async function uploadAttachment(attachment: Attachment) {
         const { file } = attachment;
         if (isFileObject(file)) {
             try {
-                const response = await uploadFile(file);
+                const response = await api.uploadFile(ApiEndpoint.VEDLEGG, file);
                 attachment = setAttachmentPendingToFalse(attachment);
                 attachment.url = response.headers.location;
                 attachment.uploaded = true;
@@ -112,7 +113,7 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
     }
 
     return (
-        <AppForm.FileInput
+        <SoknadFormComponents.FileInput
             name={name}
             acceptedExtensions={VALID_EXTENSIONS.join(', ')}
             onFilesSelect={async (files: File[], { push, replace }: ArrayHelpers) => {

@@ -72,26 +72,16 @@ const barnMock = {
     ],
 };
 
-const isLoggedIn = (req) => req.headers.cookie !== undefined;
-
 const startExpressServer = () => {
     const port = process.env.PORT || 8088;
 
     server.get('/health/isAlive', (req, res) => res.sendStatus(200));
     server.get('/health/isReady', (req, res) => res.sendStatus(200));
 
-    server.get('/auth-mock', (req, res) => {
-        setTimeout(() => {
-            res.sendStatus(404);
-        }, 2000);
-    });
-
     server.get('/oppslag/soker', (req, res) => {
-        if (isLoggedIn(req)) {
+        setTimeout(() => {
             res.send(søkerMock);
-        } else {
-            res.status(401).send();
-        }
+        }, 200);
     });
 
     server.get('/oppslag/soker-umyndig', (req, res) => {

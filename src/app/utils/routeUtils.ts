@@ -1,37 +1,57 @@
-import RouteConfig from '../config/routeConfig';
-import { getStepConfig, StepID } from '../config/stepConfig';
-import { AppFormField, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
+import { SoknadFormData } from '../types/SoknadFormData';
+import { samværsavtaleStepAvailable, summaryStepAvailable } from './stepUtils';
+import { StepID } from '../soknad/soknadStepsConfig';
 import {
-    legeerklæringStepAvailable,
-    opplysningerOmBarnetStepAvailable,
-    samværsavtaleStepAvailable,
-    summaryStepAvailable,
-} from './stepUtils';
+    getFødselsnummerValidator,
+    getRequiredFieldValidator,
+    getStringValidator,
+} from '@navikt/sif-common-formik/lib/validation';
 
-export const getSøknadRoute = (stepId: StepID | undefined) => {
-    if (stepId !== undefined) {
-        return `${RouteConfig.SØKNAD_ROUTE_PREFIX}/${stepId}`;
-    }
-    return undefined;
+const welcomingPageIsComplete = (harForståttRettigheterOgPlikter: boolean) => {
+    return harForståttRettigheterOgPlikter === true;
 };
 
-export const getNextStepRoute = (stepId: StepID, formData?: OmsorgspengesøknadFormData): string | undefined => {
-    const stepConfig = getStepConfig(formData);
-    return stepConfig[stepId] ? getSøknadRoute(stepConfig[stepId].nextStep) : undefined;
+const opplysningerOmBarnetStepIsComplete = (values: SoknadFormData) => {
+    const {
+        barnetsNavn,
+        barnetsFødselsnummer,
+        søkersRelasjonTilBarnet,
+        barnetSøknadenGjelder,
+        harForståttRettigheterOgPlikter,
+    } = values;
+    const formIsValid =
+        welcomingPageIsComplete(harForståttRettigheterOgPlikter) &&
+        getStringValidator({ required: true, maxLength: 50 })(barnetsNavn) === undefined &&
+        getFødselsnummerValidator({ required: true })(barnetsFødselsnummer) === undefined &&
+        getRequiredFieldValidator()(søkersRelasjonTilBarnet) === undefined;
+
+    if (!formIsValid && barnetSøknadenGjelder !== undefined) {
+        return getRequiredFieldValidator()(barnetSøknadenGjelder) === undefined;
+    }
+
+    return formIsValid;
 };
 
-export const isAvailable = (path: StepID | RouteConfig, values: OmsorgspengesøknadFormData) => {
-    switch (path) {
-        case StepID.OPPLYSNINGER_OM_BARNET:
-            return opplysningerOmBarnetStepAvailable(values);
-        case StepID.LEGEERKLÆRING:
-            return legeerklæringStepAvailable(values);
-        case StepID.DELT_BOSTED:
-            return samværsavtaleStepAvailable();
-        case StepID.SUMMARY:
-            return summaryStepAvailable(values);
-        case RouteConfig.SØKNAD_SENDT_ROUTE:
-            return values[AppFormField.harBekreftetOpplysninger];
+const legeerklæringStepIsComplete = (values: SoknadFormData) => opplysningerOmBarnetStepIsComplete(values);
+
+export const getAvailableSteps = (values: SoknadFormData): StepID[] => {
+    const steps: StepID[] = [];
+
+    if (welcomingPageIsComplete(values.harForståttRettigheterOgPlikter)) {
+        steps.push(StepID.OPPLYSNINGER_OM_BARNET);
     }
-    return false;
+
+    if (opplysningerOmBarnetStepIsComplete(values)) {
+        steps.push(StepID.LEGEERKLÆRING);
+    }
+
+    if (legeerklæringStepIsComplete(values) && samværsavtaleStepAvailable(values)) {
+        steps.push(StepID.DELT_BOSTED);
+    }
+
+    if (summaryStepAvailable(values)) {
+        steps.push(StepID.SUMMARY);
+    }
+
+    return steps;
 };

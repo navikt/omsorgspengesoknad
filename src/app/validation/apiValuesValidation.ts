@@ -1,14 +1,14 @@
-import { StepID } from '../config/stepConfig';
 import { IntlShape } from 'react-intl';
-import { OmsorgspengesøknadApiData } from '../types/OmsorgspengesøknadApiData';
+import { SoknadApiData } from '../types/SoknadApiData';
 import { FeiloppsummeringFeil } from 'nav-frontend-skjema';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import { StepID } from '../soknad/soknadStepsConfig';
 
 export interface ApiValidationError extends FeiloppsummeringFeil {
     stepId: StepID;
 }
 
-export const isBarnApiDataValid = (values: OmsorgspengesøknadApiData): boolean => {
+export const isBarnApiDataValid = (values: SoknadApiData): boolean => {
     const validereBarn = values.barn.navn
         ? values.barn.aktørId
             ? true
@@ -22,15 +22,12 @@ export const isBarnApiDataValid = (values: OmsorgspengesøknadApiData): boolean 
     return validereBarn && validateKroniskEllerFunksjonshemmingSvar && validateSammeAdresseSvar;
 };
 
-export const isDeltBostedApiDataValid = (values: OmsorgspengesøknadApiData): boolean => {
+export const isDeltBostedApiDataValid = (values: SoknadApiData): boolean => {
     const validerSamværsavtale = values.samværsavtale !== undefined && values.samværsavtale.length > 0;
     return values.sammeAdresse === false ? validerSamværsavtale : true;
 };
 
-export const validateApiValues = (
-    values: OmsorgspengesøknadApiData,
-    intl: IntlShape
-): ApiValidationError[] | undefined => {
+export const validateApiValues = (values: SoknadApiData, intl: IntlShape): ApiValidationError[] | undefined => {
     const errors: ApiValidationError[] = [];
 
     if (!isBarnApiDataValid(values)) {
