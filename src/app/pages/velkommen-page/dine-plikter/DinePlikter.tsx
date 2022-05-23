@@ -1,42 +1,31 @@
-import React from 'react';
+import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Lenke from 'nav-frontend-lenker';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import getLenker from '../../../lenker';
 
+const getText = (part: string) => <FormattedMessage id={`modal.minePlikter.${part}`} />;
+
 const DinePlikterContent: React.FunctionComponent = () => {
     const intl = useIntl();
     return (
         <>
-            <Systemtittel>
-                <FormattedMessage id="modal.dinePlikter.tittel" />
-            </Systemtittel>
+            <Systemtittel>{getText('tittel')}</Systemtittel>
             <ul>
                 <li>
-                    <Normaltekst>
-                        <FormattedMessage id="modal.dinePlikter.part1" />
-                    </Normaltekst>
+                    <Normaltekst>{getText('part1')}</Normaltekst>
                     <ul>
-                        <li>
-                            <Normaltekst>
-                                <FormattedMessage id="modal.dinePlikter.part1a" />
-                            </Normaltekst>
-                        </li>
-                        <li>
-                            <Normaltekst>
-                                <FormattedMessage id="modal.dinePlikter.part1b" />
-                            </Normaltekst>
-                        </li>
+                        <li>{getText('part1a')}</li>
+                        <li>{getText('part1b')}</li>
                     </ul>
                 </li>
                 <li style={{ marginTop: '0.5rem' }}>
                     <span>
-                        <Normaltekst>
-                            <FormattedMessage id="modal.dinePlikter.part2a" />{' '}
-                            <Lenke href={getLenker(intl.locale).rettOgPlikt} target="_blank">
-                                <FormattedMessage id="modal.dinePlikter.part2b" />
-                            </Lenke>
-                        </Normaltekst>
+                        {getText('part2a')}{' '}
+                        <Lenke href={getLenker(intl.locale).rettOgPlikt} target="_blank">
+                            {getText('part2b')}
+                        </Lenke>
+                        .
                     </span>
                 </li>
             </ul>

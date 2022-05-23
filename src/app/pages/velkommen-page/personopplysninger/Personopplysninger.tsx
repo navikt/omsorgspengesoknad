@@ -2,52 +2,76 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import Lenke from 'nav-frontend-lenker';
-import { Ingress, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Ingress, Systemtittel } from 'nav-frontend-typografi';
 import getLenker from '../../../lenker';
-
-const getText = (part: string) => <FormattedMessage id={`modal.personopplysninger.${part}`} />;
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     const intl = useIntl();
     return (
         <>
-            <Systemtittel>{getText('tittel')}</Systemtittel>
-
-            <Box margin="l">
-                <Normaltekst>{getText('intro.1')}</Normaltekst>
+            <Systemtittel tag="h1">
+                <FormattedMessage id="modal.personopplysninger.1" />
+            </Systemtittel>
+            <Box margin="xl">
+                <FormattedMessage id="modal.personopplysninger.2" />
             </Box>
             <Box margin="xl">
-                <Ingress>{getText('opplysninger.tittel')}</Ingress>
-                <Normaltekst>{getText('opplysninger.part1')}</Normaltekst>
+                <Ingress tag="h2">
+                    <FormattedMessage id="modal.personopplysninger.3" />
+                </Ingress>
+                <p>
+                    <FormattedMessage id="modal.personopplysninger.4" />
+                </p>
                 <ul>
                     <li>
-                        <Normaltekst>{getText('opplysninger.1')}</Normaltekst>
+                        <FormattedMessage id="modal.personopplysninger.4.1" />
                     </li>
                     <li>
-                        <Normaltekst>{getText('opplysninger.2')}</Normaltekst>
+                        <FormattedMessage id="modal.personopplysninger.4.2" />
                     </li>
                     <li>
-                        <Normaltekst>{getText('opplysninger.3')}</Normaltekst>
+                        <FormattedMessage id="modal.personopplysninger.4.3" />
                     </li>
                     <li>
-                        <Normaltekst>{getText('opplysninger.4')}</Normaltekst>
+                        <FormattedMessage id="modal.personopplysninger.4.4" />
+                    </li>
+                    <li>
+                        <FormattedMessage id="modal.personopplysninger.4.5" />
+                    </li>
+                    <li>
+                        <FormattedMessage id="modal.personopplysninger.4.6" />
                     </li>
                 </ul>
             </Box>
 
             <Box margin="xl">
-                <Ingress>{getText('svar.tittel')}</Ingress>
-                <Normaltekst>{getText('svar.part1')}</Normaltekst>
+                <Ingress tag="h2">
+                    <FormattedMessage id="modal.personopplysninger.5" />
+                </Ingress>
+                <p>
+                    <FormattedMessage id="modal.personopplysninger.6" />
+                </p>
+                <ul>
+                    <li>
+                        <FormattedMessage id="modal.personopplysninger.6.1" />
+                    </li>
+                    <li>
+                        <FormattedMessage id="modal.personopplysninger.6.2" />
+                    </li>
+                    <li>
+                        <FormattedMessage id="modal.personopplysninger.6.3" />
+                    </li>
+                </ul>
             </Box>
-
             <Box margin="xl">
-                <Normaltekst>
-                    {getText('personvern.part1a')}{' '}
+                <p>
+                    <FormattedMessage id="modal.personopplysninger.7.1" />
+                    {` `}
                     <Lenke href={getLenker(intl.locale).personvern} target="_blank">
-                        {getText('personvern.part1b')}
+                        <FormattedMessage id="modal.personopplysninger.7.2" />
                     </Lenke>
-                    .
-                </Normaltekst>
+                    <FormattedMessage id="modal.personopplysninger.7.3" />
+                </p>
             </Box>
         </>
     );
