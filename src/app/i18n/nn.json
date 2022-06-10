@@ -195,5 +195,6 @@
     "validation.samværsavtale.mangler": "Du må laste opp samværsavtalen for å kunne gå videre",
     "validation.alleDokumenter.forMangeFiler": "Du har lastet opp for mange vedlegg",
     "validation.alleDokumenter.samletStørrelseForHøy": "Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 Mb.",
-    "validation.uhåndtertFeil": "Feltet har en feil: {error}"
+    "validation.uhåndtertFeil": "Feltet har en feil: {error}",
+    "validation.harForståttRettigheterOgPlikter.notChecked": "Du må bekrefte at du har lest og forstått dine plikter."
 }
