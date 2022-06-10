@@ -3,21 +3,18 @@ import {
     getRequiredFieldValidator,
     getStringValidator,
 } from '@navikt/sif-common-formik/lib/validation';
-import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
+import { SoknadFormData } from '../types/SoknadFormData';
 import { includeAvtaleStep } from '../utils/stepUtils';
-
-export const welcomingPageIsValid = ({ harForståttRettigheterOgPlikter }: OmsorgspengesøknadFormData) =>
-    harForståttRettigheterOgPlikter === true;
 
 export const opplysningerOmBarnetStepIsValid = ({
     barnetsNavn,
     barnetsFødselsnummer,
     søkersRelasjonTilBarnet,
     barnetSøknadenGjelder,
-}: OmsorgspengesøknadFormData) => {
+}: SoknadFormData) => {
     const formIsValid =
-        getStringValidator({ required: false, maxLength: 50 })(barnetsNavn) === undefined &&
-        getFødselsnummerValidator()(barnetsFødselsnummer) === undefined &&
+        getStringValidator({ required: true, maxLength: 50 })(barnetsNavn) === undefined &&
+        getFødselsnummerValidator({ required: true })(barnetsFødselsnummer) === undefined &&
         getRequiredFieldValidator()(søkersRelasjonTilBarnet) === undefined;
 
     if (!formIsValid && barnetSøknadenGjelder !== undefined) {
@@ -29,7 +26,7 @@ export const opplysningerOmBarnetStepIsValid = ({
 
 export const legeerklæringStepIsValid = () => true;
 
-export const samværsavtaleStepIsValid = (values: OmsorgspengesøknadFormData): boolean => {
+export const samværsavtaleStepIsValid = (values: SoknadFormData): boolean => {
     if (includeAvtaleStep(values)) {
         return values.samværsavtale !== undefined && values.samværsavtale.length > 0;
     }

@@ -7,7 +7,7 @@ import {
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
 import { IntlShape } from 'react-intl';
-import { AppFormField } from '../types/OmsorgspengesøknadFormData';
+import { SoknadFormField } from '../types/SoknadFormData';
 import appSentryLogger from '../utils/appSentryLogger';
 
 export enum ValidateAttachmentsErrors {
@@ -26,7 +26,7 @@ export const validateAttachments = (attachments: Attachment[]): ValidationResult
     return undefined;
 };
 
-export const reportUnhandledValidationError = (error: any, field: AppFormField, intl: IntlShape) => {
+export const reportUnhandledValidationError = (error: any, field: SoknadFormField, intl: IntlShape) => {
     appSentryLogger.logError('unhandledValidationError', JSON.stringify({ field, error }));
     return intlHelper(intl, 'validation.uhåndtertFeil', { error });
 };

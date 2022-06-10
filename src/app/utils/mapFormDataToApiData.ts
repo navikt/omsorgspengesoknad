@@ -3,12 +3,12 @@ import { Locale } from '@navikt/sif-common-core/lib/types/Locale';
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
 import { attachmentUploadHasFailed } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
 import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
-import { BarnToSendToApi, OmsorgspengesøknadApiData } from '../types/OmsorgspengesøknadApiData';
-import { OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
-import { BarnReceivedFromApi } from '../types/Søkerdata';
+import { Barn } from '../types/Barn';
+import { BarnToSendToApi, SoknadApiData } from '../types/SoknadApiData';
+import { SoknadFormData, SøkersRelasjonTilBarnet } from '../types/SoknadFormData';
 
 export const mapBarnToApiData = (
-    barn: BarnReceivedFromApi[],
+    barn: Barn[],
     barnetsNavn: string,
     barnetsFødselsnummer: string | undefined,
     barnetSøknadenGjelder: string | undefined
@@ -42,10 +42,10 @@ export const mapFormDataToApiData = (
         søkersRelasjonTilBarnet,
         legeerklæring,
         samværsavtale,
-    }: OmsorgspengesøknadFormData,
-    barn: BarnReceivedFromApi[],
+    }: SoknadFormData,
+    barn: Barn[],
     sprak: Locale
-): OmsorgspengesøknadApiData => {
+): SoknadApiData => {
     const barnObject: BarnToSendToApi = mapBarnToApiData(
         barn,
         barnetsNavn,
@@ -53,7 +53,7 @@ export const mapFormDataToApiData = (
         barnetSøknadenGjelder
     );
 
-    const apiData: OmsorgspengesøknadApiData = {
+    const apiData: SoknadApiData = {
         språk: (sprak as any) === 'en' ? 'nn' : sprak,
         kroniskEllerFunksjonshemming: kroniskEllerFunksjonshemming === YesOrNo.YES,
         barn: barnObject,
@@ -63,7 +63,10 @@ export const mapFormDataToApiData = (
             .filter((attachment) => !attachmentUploadHasFailed(attachment))
             .map(({ url }) => url!),
         samværsavtale:
-            samværsavtale && samværsavtale.length > 0
+            sammeAdresse === YesOrNo.NO &&
+            søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER &&
+            samværsavtale &&
+            samværsavtale.length > 0
                 ? samværsavtale.filter((attachment) => !attachmentUploadHasFailed(attachment)).map(({ url }) => url!)
                 : undefined,
         harBekreftetOpplysninger,

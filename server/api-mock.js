@@ -1,18 +1,13 @@
 const express = require('express');
 const busboyCons = require('busboy');
-
-const path = require('path');
+const os = require('os');
+const fs = require('fs');
 
 const server = express();
 
 server.use(express.json());
 server.use((req, res, next) => {
-    const allowedOrigins = [
-        'http://host.docker.internal:8080',
-        'https://omsorgspengesoknad-mock.nais.oera.no',
-        'http://localhost:8080',
-        'http://web:8080',
-    ];
+    const allowedOrigins = ['http://localhost:8080'];
     const requestOrigin = req.headers.origin;
     if (allowedOrigins.indexOf(requestOrigin) >= 0) {
         res.set('Access-Control-Allow-Origin', requestOrigin);
@@ -23,10 +18,34 @@ server.use((req, res, next) => {
     res.set('X-XSS-Protection', '1; mode=block');
     res.set('X-Content-Type-Options', 'nosniff');
     res.set('Access-Control-Allow-Headers', 'content-type');
-    res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'DELETE']);
+    res.set('Access-Control-Allow-Methods', ['GET', 'POST', 'PUT', 'DELETE']);
     res.set('Access-Control-Allow-Credentials', true);
     next();
 });
+const MELLOMLAGRING_JSON = `${os.tmpdir()}/omsorgspengesoknad-mellomlagring.json`;
+
+const isJSON = (str) => {
+    try {
+        return JSON.parse(str) && !!str;
+    } catch (e) {
+        return false;
+    }
+};
+
+const writeFileAsync = async (path, text) => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(path, text, 'utf8', (err) => {
+            if (err) reject(err);
+            else resolve();
+        });
+    });
+};
+
+const readFileSync = (path) => {
+    return fs.readFileSync(path, 'utf8');
+};
+
+const existsSync = (path) => fs.existsSync(path);
 
 const søkerMock = {
     fornavn: 'Test',
@@ -53,28 +72,16 @@ const barnMock = {
     ],
 };
 
-const isLoggedIn = (req) => req.headers.cookie !== undefined;
-
 const startExpressServer = () => {
     const port = process.env.PORT || 8088;
 
     server.get('/health/isAlive', (req, res) => res.sendStatus(200));
     server.get('/health/isReady', (req, res) => res.sendStatus(200));
 
-    server.get('/auth-mock', (req, res) => {
-        let authMockHtmlFilePath = path.resolve(__dirname, 'auth-mock-index.html');
-        res.sendFile(authMockHtmlFilePath);
-    });
-    server.get('/auth-mock/cookie', (req, res) => {
-        res.cookie('omsLocalLoginCookie', 'mysecrettoken').sendStatus(201);
-    });
-
     server.get('/oppslag/soker', (req, res) => {
-        if (isLoggedIn(req)) {
+        setTimeout(() => {
             res.send(søkerMock);
-        } else {
-            res.status(401).send();
-        }
+        }, 200);
     });
 
     server.get('/oppslag/soker-umyndig', (req, res) => {
@@ -100,6 +107,37 @@ const startExpressServer = () => {
         setTimeout(() => {
             res.sendStatus(200);
         }, 2500);
+    });
+
+    server.get('/mellomlagring/OMSORGSPENGER_UTVIDET_RETT', (req, res) => {
+        if (existsSync(MELLOMLAGRING_JSON)) {
+            const body = readFileSync(MELLOMLAGRING_JSON);
+
+            res.send(JSON.parse(body));
+        } else {
+            res.send({});
+        }
+    });
+
+    server.put('/mellomlagring/OMSORGSPENGER_UTVIDET_RETT', (req, res) => {
+        const body = req.body;
+
+        const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
+        res.sendStatus(200);
+    });
+
+    server.post('/mellomlagring/OMSORGSPENGER_UTVIDET_RETT', (req, res) => {
+        const body = req.body;
+
+        const jsBody = isJSON(body) ? JSON.parse(body) : body;
+        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify(jsBody, null, 2));
+        res.sendStatus(200);
+    });
+
+    server.delete('/mellomlagring/OMSORGSPENGER_UTVIDET_RETT', (req, res) => {
+        writeFileAsync(MELLOMLAGRING_JSON, JSON.stringify({}, null, 2));
+        res.sendStatus(200);
     });
 
     server.listen(port, () => {

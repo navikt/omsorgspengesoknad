@@ -9,7 +9,6 @@
     "banner.title": "Søknad om ekstra omsorgsdager",
     "application.title": "Søknad om ekstra omsorgsdager",
 
-    "page.loadingPage.tekst": "Laster ...",
     "gotoApplicationLink.lenketekst": "Gå til den digitale søknaden",
     "backlink.label": "Tilbake",
 
@@ -21,17 +20,16 @@
     "relasjonTilBarnet.fosterforelder": "Fosterforelder",
 
     "step.nextButtonLabel": "Fortsett",
-    "step.nextButtonAriaLabel": "Gå til neste steg",
-    "step.sendButtonLabel": "Send inn søknaden",
-    "step.sendButtonAriaLabel": "Send inn søknaden",
 
     "step.opplysninger-om-barnet.pageTitle": "Omsorgspengesøknad - opplysninger om barnet",
     "step.opplysninger-om-barnet.stepTitle": "Barn",
     "step.opplysninger-om-barnet.stepIndicatorLabel": "Om barnet",
+    "step.opplysninger-om-barnet.nextButtonLabel": "Fortsett",
 
     "step.legeerklaering.pageTitle": "Omsorgspengesøknad - legeerklæring",
     "step.legeerklaering.stepTitle": "Legeerklæring",
     "step.legeerklaering.stepIndicatorLabel": "Last opp din legeerklæring",
+    "step.legeerklaering.nextButtonLabel": "Fortsett",
     "step.legeerklaering.counsellorpanel.1": "Her skal du laste opp legeerklæringen. Det gjør du enten ved å ta bilde av legeerklæringen, eller ved å skanne den. Vær nøye med at all tekst er med, inkludert legens signatur.",
     "step.legeerklaering.counsellorpanel.2": "Vi kan ikke behandle søknaden din før vi mottar legeerklæringen. Hvis du ikke har legeerklæringen tilgjengelig nå, anbefaler vi at du venter med å søke til du har den tilgjengelig. Hvis du ikke kan vente med å sende søknaden, kan du fortsette uten, men da må du ettersende legeerklæringen så snart som mulig.",
     "step.legeerklaering.counsellorpanel.ettersendLenke": "Her får du veiledning til hvordan du ettersender dokumentasjon.",
@@ -39,6 +37,7 @@
     "step.deltBosted.pageTitle": "Omsorgspengesøknad - avtale om delt bosted",
     "step.deltBosted.stepTitle": "Avtale om delt bosted",
     "step.deltBosted.stepIndicatorLabel": "Last opp din avtale om delt bosted",
+    "step.deltBosted.nextButtonLabel": "Fortsett",
     "step.deltBosted.helperTextPanel.1": "For å få ekstra omsorgsdager må du bo på samme folkeregistrerte adresse som barnet, eller ha en avtale om delt bosted med den andre forelderen.",
     "step.deltBosted.helperTextPanel.2": "Du har opplyst at du ikke bor på samme folkeregistrerte adresse som barnet, og derfor må du laste opp avtalen om delt bosted. Du laster opp avtalen enten ved å ta bilde av den, eller ved å skanne den.",
     "step.deltBosted.helperTextPanel.3.1": "å få all tekst med på bildet",
@@ -85,6 +84,8 @@
     "welcomingPage.kronisk.1": "For å søke om ekstra omsorgsdager må du ha legeerklæring for barnet. Hvis du ikke har legeerklæringen tilgjengelig nå, kan du ettersende den.",
     "welcomingPage.kronisk.2": "Hvis du ikke bor på samme folkeregistrerte adresse som barnet, men har en avtale om delt bosted, må du laste opp avtalen.",
 
+    "page.error.pageTitle": "Noe gikk galt ...",
+
     "modal.personopplysninger.dialogtittel": "Om behandling av personopplysninger",
     "modal.personopplysninger.1": "Slik behandler NAV personopplysningene dine",
     "modal.personopplysninger.2": "Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste. Deler av saken din behandles automatisk.",
@@ -112,6 +113,21 @@
     "modal.minePlikter.part2a": "Jeg har lest og forstått det som står på",
     "modal.minePlikter.part2b": "nav.no/rettogplikt",
 
+    "avbrytSøknadDialog.avbrytSøknadLabel": "Ja, avbryt søknad",
+    "avbrytSøknadDialog.fortsettSøknadLabel": "Nei",
+    "avbrytSøknadDialog.intro": "Det du har fylt ut i søknaden blir slettet, og du kommer tilbake til velkomstsiden.",
+    "avbrytSøknadDialog.spørsmål": "Ønsker du å slette søknaden?",
+    "avbrytSøknadDialog.tittel": "Avbryt og slett søknad",
+
+    "fortsettSøknadSenereDialog.avbrytSøknadLabel": "Ja, fortsett senere",
+    "fortsettSøknadSenereDialog.fortsettSøknadLabel": "Nei",
+    "fortsettSøknadSenereDialog.intro": "Vi lagrer søknaden din for deg i 24 timer.",
+    "fortsettSøknadSenereDialog.spørsmål": "Vil du avslutte nå og fortsette senere?",
+    "fortsettSøknadSenereDialog.tittel": "Avslutt og fortsett senere",
+
+    "steg.footer.avbryt": "Avbryt og slett søknad",
+    "steg.footer.fortsettSenere": "Avslutt og fortsett senere",
+
     "steg.omBarnet.hvilketBarn.spm": "Hvilket barn gjelder søknaden?",
     "steg.omBarnet.hvilketBarn.registrerteBarn": "Barn registrert på deg:",
     "steg.omBarnet.hvilketBarn.info": "Hvis du skal søke for flere barn, må du sende én søknad for hvert barn.",
@@ -121,6 +137,7 @@
     "steg.omBarnet.navn": "Barnets navn",
     "steg.omBarnet.relasjon": "Min relasjon til barnet",
     "steg.omBarnet.veileder.samværsavtale": "Senere i søknaden laster du opp avtale om delt bosted for barnet.",
+    "steg.omBarnet.spm.sammeAdresse": "Er du folkeregistrert på samme adresse som barnet?",
     "steg.omBarnet.spm.kroniskEllerFunksjonshemmende": "Har barnet en kronisk sykdom eller funksjonshemming?",
     "steg.omBarnet.alert.ikkeKroniskSykdom": "Søknad om ekstra omsorgsdager gjelder kun for de som har kronisk sykt eller funksjonshemmet barn.",
 
@@ -147,6 +164,7 @@
     "steg.oppsummering.legeerklæring.header": "Legeerklæring",
     "steg.oppsummering.samværsavtale.header": "Avtale om delt bosted",
     "steg.oppsummering.bekrefterOpplysninger": "Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.",
+    "step.oppsummering.nextButtonLabel": "Send inn søknaden",
 
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
     "page.confirmation.tittel": "Vi har mottatt søknad fra deg om ekstra omsorgsdager",
@@ -158,10 +176,6 @@
     "page.confirmation.info.3.3": "for ditt fylke her.",
 
     "page.form.ubesvarteSpørsmålInfo": "For å komme videre, må du svare på alle spørsmålene ovenfor",
-
-    "page.generalErrorPage.sidetittel": "Feil",
-    "page.generalErrorPage.tittel": "Noe gikk galt...",
-    "page.generalErrorPage.tekst": "Beklager, her har det dessverre skjedd en feil. Vennligst prøv igjen senere.",
 
     "page.ikkeTilgang.sidetittel": "Søknad om ekstra omsorgsdager",
     "page.ikkeTilgang.tekst": "Du har ikke tilgang til denne siden. Dersom du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.",
@@ -184,5 +198,6 @@
     "validation.samværsavtale.listIsEmpty": "Du må laste opp samværsavtalen for å kunne gå videre.",
     "validation.alleDokumenter.forMangeFiler": "Du har lastet opp for mange vedlegg.",
     "validation.alleDokumenter.samletStørrelseForHøy": "Total samlet størrelse for dokumentene du har lastet opp overstiger grensen på 24 Mb.",
-    "validation.harBekreftetOpplysninger.notChecked": "Du må bekrefte opplysningene."
+    "validation.harBekreftetOpplysninger.notChecked": "Du må bekrefte opplysningene.",
+    "validation.harForståttRettigheterOgPlikter.notChecked": "Du må bekrefte at du har lest og forstått dine plikter."
 }

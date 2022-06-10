@@ -1,10 +1,10 @@
 import { Attachment } from '@navikt/sif-common-core/lib/types/Attachment';
 import { attachmentHasBeenUploaded } from '@navikt/sif-common-core/lib/utils/attachmentUtils';
-import { AppFormField, OmsorgspengesøknadFormData } from '../types/OmsorgspengesøknadFormData';
+import { SoknadFormField, SoknadFormData } from '../types/SoknadFormData';
 
-export const valuesToAlleDokumenterISøknaden = (values: OmsorgspengesøknadFormData): Attachment[] => {
+export const valuesToAlleDokumenterISøknaden = (values: SoknadFormData): Attachment[] => {
     const samværsavtaleDokumenter: Attachment[] = values.samværsavtale ? values.samværsavtale : [];
-    return [...values[AppFormField.legeerklæring], ...samværsavtaleDokumenter];
+    return [...values[SoknadFormField.legeerklæring], ...samværsavtaleDokumenter];
 };
 
 export const getUploadedAttachments = (attachments: Attachment[]): Attachment[] =>

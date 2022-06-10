@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core/lib/types/YesOrNo';
-import { initialValues, SøkersRelasjonTilBarnet } from '../../types/OmsorgspengesøknadFormData';
+import { initialValues, SøkersRelasjonTilBarnet } from '../../types/SoknadFormData';
 import * as stepUtils from '../stepUtils';
 
 jest.mock('./../../validation/stepValidations', () => {
