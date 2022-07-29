@@ -2,6 +2,7 @@ import { allCommonMessages } from '@navikt/sif-common-core/lib/i18n/allCommonMes
 import { MessageFileFormat } from '@navikt/sif-common-core/lib/dev-utils/intl/devIntlUtils';
 import soknadErrorIntlMessages from '@navikt/sif-common-soknad/lib/soknad-error-messages/soknadErrorIntlMessages';
 import soknadIntlMessages from '@navikt/sif-common-soknad/lib/soknad-intl-messages/soknadIntlMessages';
+import { Feature, isFeatureEnabled } from '../utils/featureToggleUtils';
 
 export const appBokmålstekster = require('./nb.json');
 export const appNynorsktekster = require('./nn.json');
@@ -19,7 +20,17 @@ const nynorsktekster = {
     ...soknadIntlMessages.nn,
 };
 
-export const applicationIntlMessages: MessageFileFormat = {
-    nb: bokmålstekster,
-    nn: nynorsktekster,
+const getIntlMessages = (): MessageFileFormat => {
+    if (isFeatureEnabled(Feature.NYNORSK)) {
+        return {
+            nb: bokmålstekster,
+            nn: nynorsktekster,
+        };
+    } else {
+        return {
+            nb: bokmålstekster,
+        };
+    }
 };
+
+export const applicationIntlMessages = getIntlMessages();

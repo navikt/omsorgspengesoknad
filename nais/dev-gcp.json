@@ -17,6 +17,7 @@
         "NYNORSK": "on",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "APPSTATUS_DATASET": "staging",
-        "USE_AMPLITUDE": "true"
+        "USE_AMPLITUDE": "true",
+        "NPM_CONFIG_CACHE": "/tmp"
     }
 }
