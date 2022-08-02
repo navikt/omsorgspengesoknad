@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { useFormikContext } from 'formik';
 import RouteConfig from '../config/routeConfig';
 import { SoknadFormData } from '../types/SoknadFormData';
 import { getAvailableSteps } from '../utils/routeUtils';
@@ -24,7 +23,7 @@ import soknadStepUtils from '@navikt/sif-common-soknad/lib/soknad-step/soknadSte
 import VelkommenPage from '../pages/velkommen-page/VelkommenPage';
 import LoadWrapper from '@navikt/sif-common-core/lib/components/load-wrapper/LoadWrapper';
 import { isFailure, isInitial, isPending, isSuccess } from '@devexperts/remote-data-ts';
-
+import { useFormikContext } from 'formik';
 interface Props {
     soknadId?: string;
     barn?: Barn[];
@@ -33,7 +32,8 @@ interface Props {
 
 const SoknadRoutes: React.FC<Props> = ({ soknadId, søker, barn = [] }) => {
     const intl = useIntl();
-    const { values } = useFormikContext<SoknadFormData>();
+    const { values, resetForm } = useFormikContext<SoknadFormData>();
+
     const availableSteps = getAvailableSteps(values);
     const { soknadStepsConfig, sendSoknadStatus } = useSoknadContext();
 
@@ -76,8 +76,8 @@ const SoknadRoutes: React.FC<Props> = ({ soknadId, søker, barn = [] }) => {
                 <LoadWrapper
                     isLoading={isPending(sendSoknadStatus.status) || isInitial(sendSoknadStatus.status)}
                     contentRenderer={() => {
-                        if (isSuccess(sendSoknadStatus.status) && <ConfirmationPage />) {
-                            return <ConfirmationPage />;
+                        if (isSuccess(sendSoknadStatus.status)) {
+                            return <ConfirmationPage resetForm={resetForm} />;
                         }
                         if (isFailure(sendSoknadStatus.status)) {
                             return <ErrorPage />;

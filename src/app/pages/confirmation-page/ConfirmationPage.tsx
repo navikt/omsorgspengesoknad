@@ -10,12 +10,25 @@ import Lenke from 'nav-frontend-lenker';
 import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import getLenker from '../../lenker';
 import './confirmationPage.less';
+import { useEffect, useState } from 'react';
+
+interface Props {
+    resetForm: () => void;
+}
 
 const bem = bemUtils('confirmationPage');
 
-const ConfirmationPage: React.FunctionComponent = () => {
+const ConfirmationPage: React.FC<Props> = ({ resetForm }: Props) => {
     const intl = useIntl();
+    const [formResetet, setFormResetet] = useState<boolean>(false);
     useLogSidevisning(SIFCommonPageKey.kvittering);
+
+    useEffect(() => {
+        if (!formResetet) {
+            resetForm();
+            setFormResetet(true);
+        }
+    }, [formResetet, resetForm]);
 
     return (
         <Page title={intlHelper(intl, 'page.confirmation.sidetittel')} className={bem.block}>
