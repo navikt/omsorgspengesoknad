@@ -20,15 +20,15 @@ const bem = bemUtils('confirmationPage');
 
 const ConfirmationPage: React.FC<Props> = ({ resetForm }: Props) => {
     const intl = useIntl();
-    const [formResetet, setFormResetet] = useState<boolean>(false);
+    const [formReset, setFormReset] = useState<boolean>(false);
     useLogSidevisning(SIFCommonPageKey.kvittering);
 
     useEffect(() => {
-        if (!formResetet) {
+        if (!formReset) {
             resetForm();
-            setFormResetet(true);
+            setFormReset(true);
         }
-    }, [formResetet, resetForm]);
+    }, [formReset, resetForm]);
 
     return (
         <Page title={intlHelper(intl, 'page.confirmation.sidetittel')} className={bem.block}>
