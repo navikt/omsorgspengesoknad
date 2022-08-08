@@ -29,6 +29,7 @@ import { sendSoknad } from '../api/sendSoknad';
 import { isUserLoggedOut } from '@navikt/sif-common-core/lib/utils/apiUtils';
 import LoadWrapper from '@navikt/sif-common-core/lib/components/load-wrapper/LoadWrapper';
 import SoknadFormComponents from './SoknadFormComponents';
+import { FormikState } from 'formik';
 
 interface Props {
     søker: Person;
@@ -37,7 +38,7 @@ interface Props {
     route?: string;
 }
 
-type resetFormFunc = () => void;
+type resetFormFunc = (nextState?: Partial<FormikState<SoknadFormData>>) => void;
 
 const Soknad = ({ søker, barn, soknadTempStorage: tempStorage }: Props) => {
     const history = useHistory();
@@ -95,8 +96,9 @@ const Soknad = ({ søker, barn, soknadTempStorage: tempStorage }: Props) => {
         await soknadTempStorage.purge();
         await logSoknadSent(SKJEMANAVN);
         setSendSoknadStatus({ failures: 0, status: success(apiValues) });
+        setInitialFormData({ ...initialValues });
         setSoknadId(undefined);
-        resetFormikForm();
+        resetFormikForm({ values: initialValues });
         navigateToKvitteringPage(history);
     };
 
