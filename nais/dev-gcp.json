@@ -10,11 +10,11 @@
     "livenessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isAlive",
     "readinessPath": "/familie/sykdom-i-familien/soknad/omsorgspenger/health/isReady",
     "env": {
-        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false",
+        "DEKORATOR_URL": "https://dekoratoren.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgspengesoknad.dev.nav.no/oauth2/logout&redirectToApp=true",
         "API_URL": "https://k9-brukerdialog-api.dev.nav.no",
         "FRONTEND_API_PATH": "/api",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
-        "LOGIN_URL": "https://loginservice.dev.nav.no/login?redirect=https://omsorgspengesoknad.dev.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",
+        "LOGIN_URL": "https://omsorgspengesoknad.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",
         "NYNORSK": "on",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "APPSTATUS_DATASET": "staging",
