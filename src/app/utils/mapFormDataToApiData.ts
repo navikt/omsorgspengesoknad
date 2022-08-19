@@ -6,6 +6,7 @@ import { formatName } from '@navikt/sif-common-core/lib/utils/personUtils';
 import { Barn } from '../types/Barn';
 import { BarnToSendToApi, SoknadApiData } from '../types/SoknadApiData';
 import { SoknadFormData, SøkersRelasjonTilBarnet } from '../types/SoknadFormData';
+import { getAttachmentURLBackend } from './attachmentUtilsAuthToken';
 
 export const mapBarnToApiData = (
     barn: Barn[],
@@ -61,7 +62,7 @@ export const mapFormDataToApiData = (
         sammeAdresse: sammeAdresse === YesOrNo.YES,
         legeerklæring: legeerklæring
             .filter((attachment) => !attachmentUploadHasFailed(attachment))
-            .map(({ url }) => url!),
+            .map(({ url }) => getAttachmentURLBackend(url)),
         samværsavtale:
             sammeAdresse === YesOrNo.NO &&
             søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER &&

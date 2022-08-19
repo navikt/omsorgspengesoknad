@@ -13,6 +13,7 @@
         "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/oauth2/logout&redirectToApp=true",
         "API_URL": "https://k9-brukerdialog-api.nav.no",
         "FRONTEND_API_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger/api",
+        "FRONTEND_VEDLEGG_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/api",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
         "LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",
         "NYNORSK": "off",
