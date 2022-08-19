@@ -38,7 +38,10 @@ jest.mock('@navikt/sif-common-core/lib/utils/attachmentUtils', () => {
 
 describe('mapFormDataToApiData', () => {
     let resultingApiData: SoknadApiData;
-
+    (window as any).appSettings = {
+        API_URL: 'http://localhost:8088',
+        FRONTEND_VEDLEGG_URL: 'http://localhost:8080/api',
+    };
     beforeAll(() => {
         resultingApiData = mapFormDataToApiData(formDataMock as SoknadFormData, barnMock, 'nb');
     });

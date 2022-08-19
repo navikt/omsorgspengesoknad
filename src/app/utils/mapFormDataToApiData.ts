@@ -68,7 +68,9 @@ export const mapFormDataToApiData = (
             søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER &&
             samværsavtale &&
             samværsavtale.length > 0
-                ? samværsavtale.filter((attachment) => !attachmentUploadHasFailed(attachment)).map(({ url }) => url!)
+                ? samværsavtale
+                      .filter((attachment) => !attachmentUploadHasFailed(attachment))
+                      .map(({ url }) => getAttachmentURLBackend(url))
                 : undefined,
         harBekreftetOpplysninger,
         harForståttRettigheterOgPlikter,
