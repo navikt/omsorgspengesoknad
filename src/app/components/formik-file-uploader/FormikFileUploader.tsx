@@ -17,6 +17,7 @@ import api from '../../api/api';
 import { SoknadFormField, SoknadFormData } from '../../types/SoknadFormData';
 import SoknadFormComponents from '../../soknad/SoknadFormComponents';
 import { ApiEndpoint } from '../../types/ApiEndpoint';
+import { getAttachmentURLFrontend } from '../../utils/attachmentUtilsAuthToken';
 
 export type FieldArrayReplaceFn = (index: number, value: any) => void;
 export type FieldArrayPushFn = (obj: any) => void;
@@ -44,7 +45,7 @@ const FormikFileUploader: React.FunctionComponent<Props> = ({
             try {
                 const response = await api.uploadFile(ApiEndpoint.VEDLEGG, file);
                 attachment = setAttachmentPendingToFalse(attachment);
-                attachment.url = response.headers.location;
+                attachment.url = getAttachmentURLFrontend(response.headers.location);
                 attachment.uploaded = true;
             } catch (error) {
                 if (apiUtils.isForbidden(error) || apiUtils.isUnauthorized(error)) {

@@ -67,23 +67,43 @@ const Soknad = ({ søker, barn, soknadTempStorage: tempStorage }: Props) => {
     };
 
     const abortSoknad = async () => {
-        await soknadTempStorage.purge();
-        await logHendelse(ApplikasjonHendelse.avbryt);
-        relocateToSoknad();
+        try {
+            await soknadTempStorage.purge();
+            await logHendelse(ApplikasjonHendelse.avbryt);
+            relocateToSoknad();
+        } catch (error) {
+            if (isUserLoggedOut(error)) {
+                logUserLoggedOut('Ved abort av søknad');
+                relocateToLoginPage();
+            } else {
+                console.log('Feil ved abort av søknad: ', error);
+                navigateToErrorPage(history);
+            }
+        }
     };
 
     const startSoknad = async () => {
-        await resetSoknad();
-        const sId = ulid();
-        setSoknadId(sId);
-        const firstStep = StepID.OPPLYSNINGER_OM_BARNET;
+        try {
+            await resetSoknad();
+            const sId = ulid();
+            setSoknadId(sId);
+            const firstStep = StepID.OPPLYSNINGER_OM_BARNET;
 
-        await soknadTempStorage.create();
-        await logSoknadStartet(SKJEMANAVN);
+            await soknadTempStorage.create();
+            await logSoknadStartet(SKJEMANAVN);
 
-        setTimeout(() => {
-            navigateTo(soknadStepUtils.getStepRoute(firstStep, SoknadApplicationType.SOKNAD), history);
-        });
+            setTimeout(() => {
+                navigateTo(soknadStepUtils.getStepRoute(firstStep, SoknadApplicationType.SOKNAD), history);
+            });
+        } catch (error) {
+            if (isUserLoggedOut(error)) {
+                logUserLoggedOut('Ved start av søknad');
+                relocateToLoginPage();
+            } else {
+                console.log('Feil ved start av søknad: ', error);
+                navigateToErrorPage(history);
+            }
+        }
     };
 
     const continueSoknadLater = async (sId: string, stepID: StepID, values: SoknadFormData) => {
@@ -93,13 +113,23 @@ const Soknad = ({ søker, barn, soknadTempStorage: tempStorage }: Props) => {
     };
 
     const onSoknadSent = async (apiValues: SoknadApiData, resetFormikForm: resetFormFunc) => {
-        await soknadTempStorage.purge();
-        await logSoknadSent(SKJEMANAVN);
-        setSendSoknadStatus({ failures: 0, status: success(apiValues) });
-        setInitialFormData({ ...initialValues });
-        setSoknadId(undefined);
-        resetFormikForm({ values: initialValues });
-        navigateToKvitteringPage(history);
+        try {
+            await soknadTempStorage.purge();
+            await logSoknadSent(SKJEMANAVN);
+            setSendSoknadStatus({ failures: 0, status: success(apiValues) });
+            setInitialFormData({ ...initialValues });
+            setSoknadId(undefined);
+            resetFormikForm({ values: initialValues });
+            navigateToKvitteringPage(history);
+        } catch (error) {
+            if (isUserLoggedOut(error)) {
+                logUserLoggedOut('Ved continueSoknadLater');
+                relocateToLoginPage();
+            } else {
+                console.log('Feil ved continueSoknadLater: ', error);
+                navigateToErrorPage(history);
+            }
+        }
     };
 
     const send = async (apiValues: SoknadApiData, resetFormikForm: resetFormFunc) => {
