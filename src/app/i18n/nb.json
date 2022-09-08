@@ -167,13 +167,12 @@
     "step.oppsummering.nextButtonLabel": "Send inn søknaden",
 
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
-    "page.confirmation.tittel": "Vi har mottatt søknad fra deg om ekstra omsorgsdager",
+    "page.confirmation.tittel": "Vi har mottatt søknad om ekstra omsorgsdager",
     "page.confirmation.info.tittel": "Hva skjer videre nå?",
-    "page.confirmation.info.1": "Søknaden din vil bli synlig på Ditt NAV etter omkring en uke. Da vil du også kunne se hva slags dokumentasjon vi har fått fra deg.",
-    "page.confirmation.info.2": "Vi starter behandlingen av søknaden din når vi har mottatt all nødvendig dokumentasjon. Vi kontakter deg hvis vi trenger flere opplysninger i saken din.",
-    "page.confirmation.info.3.1": "Når søknaden er ferdig behandlet, får du et svarbrev fra oss. Du kan se",
-    "page.confirmation.info.3.2": "saksbehandlingstiden",
-    "page.confirmation.info.3.3": "for ditt fylke her.",
+    "page.confirmation.info.1": "Vi kontakter deg hvis vi trenger flere opplysninger.",
+    "page.confirmation.info.2.1": "Når søknaden er ferdigbehandlet, får du et svar fra oss på «Min side». Du kan se",
+    "page.confirmation.info.2.2": "saksbehandlingstiden",
+    "page.confirmation.info.2.3": "for ditt fylke her.",
 
     "page.form.ubesvarteSpørsmålInfo": "For å komme videre, må du svare på alle spørsmålene ovenfor",
 

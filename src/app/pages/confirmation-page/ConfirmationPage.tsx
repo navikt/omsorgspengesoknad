@@ -35,15 +35,13 @@ const ConfirmationPage: React.FunctionComponent = () => {
                     <li>
                         <FormattedMessage id="page.confirmation.info.1" />
                     </li>
+
                     <li>
-                        <FormattedMessage id="page.confirmation.info.2" />
-                    </li>
-                    <li>
-                        <FormattedMessage id="page.confirmation.info.3.1" />{' '}
+                        <FormattedMessage id="page.confirmation.info.2.1" />{' '}
                         <Lenke href={getLenker(intl.locale).saksbehandlingstider} target="_blank">
-                            <FormattedMessage id="page.confirmation.info.3.2" />
+                            <FormattedMessage id="page.confirmation.info.2.2" />
                         </Lenke>{' '}
-                        <FormattedMessage id="page.confirmation.info.3.3" />
+                        <FormattedMessage id="page.confirmation.info.2.3" />
                     </li>
                 </ul>
             </Box>
