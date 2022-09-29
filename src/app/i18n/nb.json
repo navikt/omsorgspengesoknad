@@ -169,14 +169,15 @@
     "page.confirmation.sidetittel": "Vi har mottatt søknaden din",
     "page.confirmation.tittel": "Vi har mottatt søknad om ekstra omsorgsdager",
     "page.confirmation.info.tittel": "Hva skjer videre nå?",
-    "page.confirmation.info.1": "Vi kontakter deg hvis vi trenger flere opplysninger.",
-    "page.confirmation.info.2.1": "Når søknaden er ferdigbehandlet, får du et svar fra oss på «Min side». Du kan se",
-    "page.confirmation.info.2.2": "saksbehandlingstiden",
-    "page.confirmation.info.2.3": "for ditt fylke her.",
+    "page.confirmation.info.1": "Vi behandler søknaden din.",
+    "page.confirmation.info.2": "Vi kontakter deg hvis vi trenger flere opplysninger.",
+    "page.confirmation.info.3.1": "Når søknaden er ferdigbehandlet, får du et svar fra oss på «Min side».",
+    "page.confirmation.info.3.2": "Du kan sjekke saksbehandlingstiden her.",
 
     "page.form.ubesvarteSpørsmålInfo": "For å komme videre, må du svare på alle spørsmålene ovenfor",
 
     "page.ikkeTilgang.sidetittel": "Søknad om ekstra omsorgsdager",
+
     "page.ikkeTilgang.tekst": "Du har ikke tilgang til denne siden. Dersom du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.",
     "page.ikkeTilgang.lastNed": "Her kan du laste ned papirsøknaden",
 
