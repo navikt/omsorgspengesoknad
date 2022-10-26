@@ -18,7 +18,8 @@
         "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": true,
         "baseUrl": "./src",
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "types": ["jest", "node", "@types/testing-library__jest-dom"]
     },
     "awesomeTypescriptLoaderOptions": {
         "useCache": false
