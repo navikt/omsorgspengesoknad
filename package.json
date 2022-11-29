@@ -27,7 +27,7 @@
         "@navikt/sif-common-amplitude": "^2.6.2",
         "@navikt/sif-common-core": "^11.3.0",
         "@navikt/sif-common-formik": "23.1.1",
-        "@navikt/sif-common-sentry": "^0.3.1",
+        "@navikt/sif-common-sentry": "^0.5.2",
         "@navikt/sif-common-soknad": "^5.3.1",
         "@snyk/protect": "^1.1064.0",
         "axios": "^0.27.2",
