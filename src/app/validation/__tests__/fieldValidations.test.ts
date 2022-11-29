@@ -8,7 +8,7 @@ describe('validateAttachments', () => {
     const largeFileSize = MAX_TOTAL_ATTACHMENT_SIZE_BYTES / 2 + 1;
     const uploadedAttachment: Attachment = { file: fileMock, pending: false, uploaded: true };
     const largeAttachment: Attachment = {
-        file: { ...fileMock, size: largeFileSize, name: 'filename.png' },
+        file: { ...fileMock, size: largeFileSize, name: 'filename.png' } as File,
         pending: false,
         uploaded: true,
     };
