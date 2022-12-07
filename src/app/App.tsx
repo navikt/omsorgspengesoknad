@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
 import Modal from 'nav-frontend-modal';
-import IntroPage from './pages/intro-page/IntroPage';
 import RouteConfig from './config/routeConfig';
 import { getEnvironmentVariable } from './utils/envUtils';
 import '@navikt/sif-common-core/lib/styles/globalStyles.less';
@@ -34,7 +33,9 @@ const App: React.FC = () => {
                 publicPath={publicPath}>
                 <SoknadApplicationCommonRoutes
                     contentRoutes={[
-                        <Route path="/" key="intro" exact={true} component={IntroPage} />,
+                        <Route path="/" key="intro" exact={true}>
+                            <Redirect to={RouteConfig.SØKNAD_ROUTE_PREFIX} />
+                        </Route>,
                         <Route
                             path={RouteConfig.SØKNAD_ROUTE_PREFIX}
                             key="soknad"
