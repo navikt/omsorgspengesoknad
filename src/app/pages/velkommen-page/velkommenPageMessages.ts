@@ -24,7 +24,8 @@ export const velkommenPageMessages: MessageFileFormat = {
             'Jeg forstår at hvis jeg gir uriktige opplysninger, kan det få konsekvenser for retten min til det jeg søker om',
         'page.velkommen.form.ansvar.list.2.1': 'Jeg har lest og forstått det som står på',
         'page.velkommen.form.ansvar.list.2.2': 'nav.no/rett og plikt',
-        'page.velkommen.harForståttRettigheterOgPlikter.notChecked': 'Du må velge at du har lest og forstått',
+        'page.velkommen.harForståttRettigheterOgPlikter.notChecked':
+            'Du må velge at du har forstått ditt ansvar som søker',
         'personopplysninger.1': 'Slik behandler NAV personopplysningene dine',
         'personopplysninger.2':
             'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste. Deler av saken din behandles automatisk.',
