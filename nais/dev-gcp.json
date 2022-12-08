@@ -16,7 +16,7 @@
         "FRONTEND_API_PATH": "/api",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
         "LOGIN_URL": "https://omsorgspengesoknad.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgspenger/soknad",
-        "NYNORSK": "on",
+        "NYNORSK": "off",
         "APPSTATUS_PROJECT_ID": "ryujtq87",
         "APPSTATUS_DATASET": "staging",
         "USE_AMPLITUDE": "true",
